@@ -1,377 +1,297 @@
 ---
-import LandingLayout from '@/layouts/LandingLayout.astro';
-import { Hero } from '@/components/hero';
-import Button from '@/components/ui/form/Button/Button.astro';
-import Badge from '@/components/ui/data-display/Badge/Badge.astro';
-import Card from '@/components/ui/data-display/Card/Card.astro';
-import Icon from '@/components/ui/primitives/Icon/Icon.astro';
-import BlogCard from '@/components/blog/BlogCard.astro';
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import EntityCard from '@/components/he/EntityCard.astro';
+import EntityGrid from '@/components/he/EntityGrid.astro';
+import FAQSection from '@/components/he/FAQSection.astro';
+import PlatformLogosStrip from '@/components/he/PlatformLogosStrip.astro';
+import { Icon } from 'astro-icon/components';
 import { getCollection } from 'astro:content';
-import siteConfig from '@/config/site.config';
+import {
+  getFeaturedPlatforms,
+  getFeaturedApis,
+  getFeaturedDatasets,
+  getAllCategories,
+} from '@/lib/content-queries';
 
-const projectItems = await getCollection('projects');
-const featuredProjects = projectItems
-  .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 4);
+const platforms = await getFeaturedPlatforms(8);
+const apis = await getFeaturedApis(6);
+const datasets = await getFeaturedDatasets(6);
+const categories = await getAllCategories();
+categories.sort((a, b) => a.data.order - b.data.order || a.data.name.localeCompare(b.data.name));
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => {
-    if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
-    return b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf();
-  })
+const blogPosts = (await getCollection('blog'))
+  .filter(p => !p.data.draft)
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
   .slice(0, 3);
+
+const faqs = [
+  {
+    question: 'What does Happy Endpoint sell?',
+    answer: 'Web-scraping APIs and structured datasets for real-estate, travel, grocery, finance, retail, fashion, and beauty platforms. Everything is listed on RapidAPI for instant integration.',
+  },
+  {
+    question: 'Do I need an account on happyendpoint.com?',
+    answer: 'No — the site is a catalog. Sign-up, billing, and API keys all live on RapidAPI. Every API page links straight to its RapidAPI listing.',
+  },
+  {
+    question: 'Are free samples available?',
+    answer: 'Yes. Many datasets ship with free samples you can download without an account. <a href="/free-datasets" class="text-brand-600 underline">See all free samples</a>.',
+  },
+  {
+    question: 'What if I need a custom dataset or scraping job?',
+    answer: '<a href="/contact" class="text-brand-600 underline">Contact us</a> with your use case — we frequently put together custom snapshots for specific platforms.',
+  },
+  {
+    question: 'How is pricing structured?',
+    answer: "APIs use RapidAPI's per-request model with free tiers on most endpoints. Datasets are priced per snapshot — see each dataset page for details.",
+  },
+  {
+    question: 'What about API documentation?',
+    answer: 'Full OpenAPI docs live at <a href="https://docs.happyendpoint.com" class="text-brand-600 underline">docs.happyendpoint.com</a>.',
+  },
+];
+
+const sampleCode = `{
+  "success": true,
+  "platform": "propertyfinder",
+  "count": 128,
+  "listings": [
+    {
+      "id": "pf-1204382",
+      "title": "2BR Apartment · Dubai Marina",
+      "price_aed": 1850000,
+      "bedrooms": 2,
+      "area_sqft": 1214,
+      "agent": "Better Homes LLC"
+    }
+  ]
+}`;
 ---
 
-<LandingLayout
-  title="Astro Rocket — Astro 6 starter theme"
-  description="A production-ready Astro 6 starter with 12 beautiful themes, 57+ components, built-in i18n, dark mode and a fast, modern foundation to build anything on."
-  image="/og-default.svg"
-  includePersonSchema={true}
-  includeProfessionalServiceSchema={true}
+<MarketingLayout
+  title="APIs & datasets for the platforms that matter"
+  description="Happy Endpoint sells web-scraping APIs and structured datasets on RapidAPI. Real estate, travel, grocery, finance, retail, fashion, and beauty — with free samples available."
 >
-  <!-- Hero -->
-  <Hero layout="centered" size="xl" class="hero-dark-gradient">
-    <Badge slot="badge" variant="brand" pill pulse class="dark:text-brand-200">Available for new projects</Badge>
-
-    <h1 slot="title">
-      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Astro Rocket —</span><br />
-      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)] dark:text-foreground dark:[-webkit-text-fill-color:currentColor]">Web Designer</span><span class="text-foreground [-webkit-text-fill-color:currentColor]"> &amp; Developer</span>
-    </h1>
-
-    <p slot="description">
-      A production-ready Astro 6 starter with 12 beautiful themes, 57+ components, built-in i18n, dark mode and a fast, modern foundation to build anything on.
-    </p>
-
-   <Fragment slot="actions">
-      <Button size="lg" href="https://github.com/hansmartens68/Astro-Rocket">
-        <Icon name="github" size="sm" />
-        Get it on GitHub
-      </Button>
-      <Button size="lg" variant="outline" href="/blog/astro-rocket-getting-started">
-        <Icon name="rocket" size="sm" />
-        Get started
-        <Icon name="arrow-right" size="sm" />
-      </Button>
-    </Fragment>
-  </Hero>
-
-  <!-- Services Section -->
-  <section class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
-        <div class="flex flex-col items-center gap-6">
-          <Badge variant="brand" pill>Services</Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-            What I do
-          </h2>
-        </div>
-        <p class="text-lg text-foreground-muted max-w-2xl mx-auto">
-          From concept to launch.
-        </p>
-      </div>
-
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-reveal data-reveal-delay="1">
-        <!-- Web Design -->
-        <Card hover>
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="layout" size="sm" />
-            </div>
-            <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Web Design</h3>
-              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Clean, modern interfaces that look great on every screen. Focused on clarity, usability, and your brand identity.
-              </p>
-            </div>
-          </div>
-        </Card>
-
-        <!-- Web Development -->
-        <Card hover>
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="code" size="sm" />
-            </div>
-            <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Web Development</h3>
-              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Fast, accessible websites built with modern tooling. Astro, Tailwind, and best-practice architecture from day one.
-              </p>
-            </div>
-          </div>
-        </Card>
-
-        <!-- Performance -->
-        <Card hover>
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="zap" size="sm" />
-            </div>
-            <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Performance Optimization</h3>
-              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Core Web Vitals, SEO, and page speed — built in from the start, not bolted on at the end.
-              </p>
-            </div>
-          </div>
-        </Card>
-      </div>
-    </div>
-  </section>
-
- <!-- About Teaser -->
-  <section class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
-    <div class="mx-auto max-w-6xl px-6">
-      <div class="grid gap-12 lg:grid-cols-2">
-        <div class="flex flex-col justify-center" data-reveal>
-          <div class="flex flex-col gap-6 mb-6">
-            <Badge variant="brand" pill class="self-start">About me</Badge>
-            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-              Designer, developer,<br />
-              <span class="text-brand-500">and blogger.</span>
-            </h2>
-          </div>
-          <p class="text-lg text-foreground-muted leading-relaxed mb-4">
-           Sixteen years of hands-on experience{siteConfig.address?.city ? `, based in ${siteConfig.address.city}` : ''} and available for clients worldwide. I build with Astro because it aligns with how I think about the web: lean, purposeful, and built to last.
+  <!-- 1. Hero -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-background to-background-secondary">
+    <div class="container py-16 md:py-24">
+      <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div>
+          <p class="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-foreground-secondary">
+            <span class="h-1.5 w-1.5 rounded-full bg-brand-500"></span>
+            Live on RapidAPI · free samples available
           </p>
-          <p class="text-lg text-foreground-muted leading-relaxed mb-8">
-           On the blog, I share the ideas and decisions that shape my work.
+          <h1 class="mt-4 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+            APIs and datasets for the platforms that run your industry
+          </h1>
+          <p class="mt-5 max-w-xl text-lg text-foreground-secondary">
+            Real-estate, travel, grocery, finance, retail, fashion, beauty — structured data you can plug in today. Subscribe on RapidAPI, integrate in minutes.
           </p>
-           <Button variant="outline" href="/about" class="self-start">
-            More about me
-          </Button>
-        </div>
-        <Card variant="elevated" padding="lg" class="h-full flex flex-col" data-reveal data-reveal-delay="1">
-          <p class="text-sm text-foreground mb-5 text-center">A few things about me.</p>
-          <div class="grid grid-cols-2 gap-3 flex-1 auto-rows-fr">
-            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
-              <Icon name="history" class="w-10 h-10 text-brand-500" />
-              <p class="text-sm font-semibold text-foreground">16 Years Experience</p>
-            </div>
-            <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 h-full">
-              <svg class="w-10 h-10 text-brand-500" viewBox="0 0 1280 1280" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M815.039 94.6439C824.758 106.709 829.714 122.99 839.626 155.553L1056.17 866.901C976.107 825.368 889.072 795.413 797.281 779.252L656.29 302.798C653.983 295.002 646.822 289.654 638.693 289.654C630.542 289.654 623.368 295.03 621.08 302.853L481.795 779.011C389.579 795.1 302.146 825.109 221.741 866.793L439.347 155.388L439.348 155.388C449.291 122.882 454.262 106.629 463.982 94.5853C472.562 83.9531 483.723 75.6958 496.4 70.6002C510.76 64.8284 527.756 64.8284 561.749 64.8284H717.174C751.212 64.8284 768.23 64.8284 782.603 70.6123C795.292 75.7184 806.459 83.9923 815.039 94.6439Z" fill="currentColor"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M840.951 900.754C805.253 931.279 734.002 952.097 651.929 952.097C551.197 952.097 466.767 920.737 444.363 878.561C436.354 902.732 434.558 930.396 434.558 948.068C434.558 948.068 429.281 1034.84 489.636 1095.2C489.636 1063.86 515.042 1038.46 546.381 1038.46C600.097 1038.46 600.036 1085.32 599.987 1123.34C599.986 1124.48 599.984 1125.61 599.984 1126.73C599.984 1184.44 635.255 1233.91 685.416 1254.77C677.924 1239.36 673.721 1222.05 673.721 1203.77C673.721 1148.73 706.034 1128.23 743.588 1104.41L743.588 1104.41C773.469 1085.46 806.668 1064.41 829.548 1022.17C841.486 1000.13 848.265 974.893 848.265 948.068C848.265 931.573 845.702 915.676 840.951 900.754Z" fill="currentColor"/>
-              </svg>
-              <p class="text-sm font-semibold text-foreground">Building with Astro</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="/library" class="inline-flex items-center gap-2 rounded-md bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-600">
+              Browse APIs
+              <Icon name="lucide:arrow-right" class="h-4 w-4" />
             </a>
-            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
-              <Icon name="globe" class="w-10 h-10 text-brand-500" />
-              <p class="text-sm font-semibold text-foreground">Working worldwide</p>
-            </div>
-            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
-              <Icon name="map-pin" class="w-10 h-10 text-brand-500" />
-              <p class="text-sm font-semibold text-foreground">Based in <br class="sm:hidden" />{siteConfig.address?.city ?? 'Your City'}{siteConfig.address?.country ? `, ${siteConfig.address.country}` : ''}</p>
-            </div>
+            <a href="/datasets" class="inline-flex items-center rounded-md border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-secondary">
+              Browse datasets
+            </a>
           </div>
-        </Card>
+          <div class="mt-6 flex items-center gap-4 text-sm text-foreground-muted">
+            <span class="inline-flex items-center gap-1.5">
+              <Icon name="lucide:check-circle-2" class="h-4 w-4 text-brand-500" /> No account needed
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              <Icon name="lucide:check-circle-2" class="h-4 w-4 text-brand-500" /> Try before you buy
+            </span>
+          </div>
+        </div>
+
+        <!-- Code sample -->
+        <div class="relative">
+          <div class="rounded-lg border border-border bg-card shadow-md">
+            <div class="flex items-center gap-2 border-b border-border px-4 py-2">
+              <span class="h-2.5 w-2.5 rounded-full bg-red-400/70"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-amber-400/70"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-emerald-400/70"></span>
+              <span class="ml-3 font-mono text-xs text-foreground-muted">GET /listings?city=dubai</span>
+            </div>
+            <pre class="overflow-x-auto p-4 text-xs leading-relaxed text-foreground"><code>{sampleCode}</code></pre>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Portfolio -->
-  <section id="work" class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
-        <div class="flex flex-col items-center gap-6">
-          <Badge variant="brand" pill>Selected work</Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-            Projects I've built
-          </h2>
-        </div>
-        <p class="text-lg text-foreground-muted max-w-2xl mx-auto">
-          A selection of recent work.
-        </p>
-      </div>
+  <!-- 2. Platform logos strip -->
+  <PlatformLogosStrip platforms={platforms} title="Data from platforms you know" />
 
-      <div class="grid gap-6 md:grid-cols-2" data-reveal data-reveal-delay="1">
-        {featuredProjects.map((project) => (
-          <Card variant="elevated" hover padding="lg" href={`/projects/${project.id.replace(/\.mdx?$/, '')}`} class="group flex flex-col">
-            <div class="flex flex-1 flex-col">
-              <div class="mb-3 flex items-start justify-between gap-4">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                  <Icon name="layers" size="sm" />
-                </div>
-                <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
-              </div>
-              <div class="mb-2 flex items-baseline gap-2">
-                <h3 class="font-display text-lg font-bold text-foreground">{project.data.title}</h3>
-                {project.data.year && (
-                  <span class="text-xs text-foreground-muted">{project.data.year}</span>
-                )}
-              </div>
-              <p class="text-sm text-foreground-muted leading-relaxed mb-4 flex-1">{project.data.description}</p>
-              <div class="flex flex-wrap gap-1.5">
-                {project.data.tags.map((tag) => (
-                  <Badge variant="brand">{tag}</Badge>
-                ))}
-              </div>
-            </div>
-          </Card>
-        ))}
+  <!-- 3. Featured APIs -->
+  <section class="container py-16">
+    <div class="flex items-end justify-between gap-6">
+      <div>
+        <h2 class="text-2xl font-bold text-foreground md:text-3xl">Popular APIs</h2>
+        <p class="mt-2 text-foreground-secondary">Request-time data from the platforms that matter.</p>
       </div>
+      <a href="/library" class="hidden shrink-0 text-sm font-semibold text-brand-600 hover:underline sm:block">
+        Browse all APIs &rarr;
+      </a>
     </div>
-  </section>
-
-  <!-- Testimonials -->
-  <section class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
-    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
-        <div class="flex flex-col items-center gap-6">
-          <Badge variant="brand" pill>Testimonials</Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-            What clients say
-          </h2>
-        </div>
-        <p class="text-lg text-foreground-muted">
-          Replace these with your own client quotes.
-        </p>
-      </div>
-
-      <div class="grid gap-6 md:grid-cols-2" data-reveal data-reveal-delay="1">
-        <!-- Testimonial 1 -->
-        <Card variant="elevated" padding="lg" hover>
-          <div class="flex flex-col h-full gap-4">
-            <div class="flex gap-1 text-brand-500" role="img" aria-label="5 out of 5 stars">
-              {[...Array(5)].map(() => (
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
-            </div>
-            <blockquote class="flex-1 text-foreground-muted leading-relaxed">
-              "The new site launched on time and hit every goal we set. Performance improved dramatically — load times dropped and the feedback from our customers has been overwhelmingly positive."
-            </blockquote>
-            <div class="flex items-center gap-3 pt-4 border-t border-border">
-              <div class="w-9 h-9 rounded-full bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center text-brand-500 font-bold text-sm shrink-0">
-                A
-              </div>
-              <div>
-                <p class="text-sm font-semibold text-foreground">Alex Morgan</p>
-                <p class="text-xs text-foreground-muted">Founder, Bright Studio</p>
-              </div>
-            </div>
-          </div>
-        </Card>
-
-        <!-- Testimonial 2 -->
-        <Card variant="elevated" padding="lg" hover>
-          <div class="flex flex-col h-full gap-4">
-            <div class="flex gap-1 text-brand-500" role="img" aria-label="5 out of 5 stars">
-              {[...Array(5)].map(() => (
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
-            </div>
-            <blockquote class="flex-1 text-foreground-muted leading-relaxed">
-              "Straightforward from first conversation to final handover. The right questions were asked, we were kept in the loop throughout, and the end result exceeded what we imagined. Would recommend without hesitation."
-            </blockquote>
-            <div class="flex items-center gap-3 pt-4 border-t border-border">
-              <div class="w-9 h-9 rounded-full bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center text-brand-500 font-bold text-sm shrink-0">
-                S
-              </div>
-              <div>
-                <p class="text-sm font-semibold text-foreground">Sarah Chen</p>
-                <p class="text-xs text-foreground-muted">CEO, Luma Agency</p>
-              </div>
-            </div>
-          </div>
-        </Card>
-      </div>
-    </div>
-  </section>
-
-  <!-- Blog -->
-  <section class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-      <div class="flex items-end justify-between" data-reveal>
-        <div class="flex flex-col gap-6">
-          <Badge variant="brand" pill class="self-start">From the blog</Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-            Featured
-          </h2>
-        </div>
-        <a href="/blog" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-brand-500 hover:text-brand-600 transition-colors shrink-0">
-          View all posts
-          <Icon name="arrow-right" size="sm" />
-        </a>
-      </div>
-
-      <div class="grid gap-6 md:grid-cols-3" data-reveal data-reveal-delay="1">
-        {posts.map((post) => (
-          <BlogCard
-            title={post.data.title}
-            description={post.data.description}
-            href={`/blog/${post.id.replace('en/', '')}`}
-            publishedAt={post.data.publishedAt}
-            tags={post.data.tags}
-            author={post.data.author}
-            image={post.data.image}
-            svgSlug={post.data.svgSlug}
+    <div class="mt-8">
+      <EntityGrid columns={3}>
+        {apis.map(a => (
+          <EntityCard
+            variant="api"
+            title={a.data.name}
+            href={`/library/${a.id}`}
+            description={a.data.description}
+            tags={a.data.tags}
           />
         ))}
-      </div>
+      </EntityGrid>
+    </div>
+  </section>
 
-      <div class="text-center sm:hidden">
-        <Button variant="outline" href="/blog">
-          View all posts
-          <Icon name="arrow-right" size="sm" />
-        </Button>
+  <!-- 4. Featured datasets -->
+  <section class="border-t border-border bg-background-secondary py-16">
+    <div class="container">
+      <div class="flex items-end justify-between gap-6">
+        <div>
+          <h2 class="text-2xl font-bold text-foreground md:text-3xl">Popular datasets</h2>
+          <p class="mt-2 text-foreground-secondary">Bulk snapshots when you need every row.</p>
+        </div>
+        <a href="/datasets" class="hidden shrink-0 text-sm font-semibold text-brand-600 hover:underline sm:block">
+          Browse all datasets &rarr;
+        </a>
+      </div>
+      <div class="mt-8">
+        <EntityGrid columns={3}>
+          {datasets.map(d => (
+            <EntityCard
+              variant="dataset"
+              title={d.data.name}
+              href={`/datasets/${d.id}`}
+              description={d.data.description}
+              metrics={[
+                { label: 'Records', value: d.data.recordCount },
+                { label: 'Format', value: d.data.format },
+              ]}
+              badge={d.data.price.toLowerCase() === 'free' ? 'FREE' : d.data.freeSample ? 'FREE SAMPLE' : undefined}
+              tags={d.data.tags}
+            />
+          ))}
+        </EntityGrid>
       </div>
     </div>
   </section>
 
- <!-- CTA -->
-  <section class="relative z-10 py-[var(--space-section-md)] bg-background">
-    <div class="mx-auto max-w-2xl px-6 text-center" data-reveal>
-      <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
-        Have a project in mind?
-      </h2>
-      <p class="text-lg text-foreground-muted mb-8 text-balance">
-        Whether it's a new build or something that needs a fresh perspective — I'd love to hear about it.
+  <!-- 5. Categories row -->
+  <section class="container py-16">
+    <h2 class="text-2xl font-bold text-foreground md:text-3xl">Browse by industry</h2>
+    <p class="mt-2 text-foreground-secondary">Find the data you need, fast.</p>
+    <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {categories.map(c => (
+        <a
+          href={`/categories/${c.id}`}
+          class="group flex items-center gap-3 rounded-lg border border-border bg-card px-4 py-3 transition hover:border-border-strong hover:shadow-sm"
+        >
+          <span class="flex h-10 w-10 items-center justify-center rounded-md bg-brand-500/10 text-brand-600">
+            <Icon name="lucide:layers" class="h-5 w-5" />
+          </span>
+          <div class="flex-1">
+            <p class="font-semibold text-foreground group-hover:text-brand-600">{c.data.name}</p>
+            <p class="text-xs text-foreground-muted line-clamp-1">{c.data.tagline}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- 6. Free samples CTA band -->
+  <section class="border-y border-border bg-brand-500/5 py-12">
+    <div class="container">
+      <div class="flex flex-col items-start gap-5 md:flex-row md:items-center md:justify-between">
+        <div class="max-w-2xl">
+          <h2 class="text-2xl font-bold text-foreground md:text-3xl">Try it with real data, free</h2>
+          <p class="mt-2 text-foreground-secondary">
+            Representative samples, full schema, no account required. Perfect for evaluating fit before you subscribe.
+          </p>
+        </div>
+        <a href="/free-datasets" class="inline-flex items-center gap-2 rounded-md bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-600">
+          Browse free samples
+          <Icon name="lucide:download" class="h-4 w-4" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. How it works -->
+  <section class="container py-16">
+    <h2 class="text-center text-2xl font-bold text-foreground md:text-3xl">From discovery to live data in three steps</h2>
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {[
+        { num: '01', title: 'Browse', body: 'Find the API or dataset that matches your use case. Each listing shows features, formats, and sample data.', icon: 'lucide:search' },
+        { num: '02', title: 'Subscribe', body: 'One-click subscription on RapidAPI. Free tiers on most APIs; transparent per-request pricing.', icon: 'lucide:credit-card' },
+        { num: '03', title: 'Integrate', body: 'Copy the code sample, drop in your API key, and ship. Full OpenAPI docs at docs.happyendpoint.com.', icon: 'lucide:zap' },
+      ].map(step => (
+        <div class="relative rounded-lg border border-border bg-card p-6">
+          <span class="text-xs font-bold uppercase tracking-widest text-brand-600">Step {step.num}</span>
+          <div class="mt-3 flex h-10 w-10 items-center justify-center rounded-md bg-brand-500/10 text-brand-600">
+            <Icon name={step.icon} class="h-5 w-5" />
+          </div>
+          <h3 class="mt-4 text-lg font-semibold text-foreground">{step.title}</h3>
+          <p class="mt-2 text-sm text-foreground-secondary">{step.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 8. Latest blog posts -->
+  {blogPosts.length > 0 && (
+    <section class="border-t border-border bg-background-secondary py-16">
+      <div class="container">
+        <div class="flex items-end justify-between gap-6">
+          <div>
+            <h2 class="text-2xl font-bold text-foreground md:text-3xl">Latest from the blog</h2>
+            <p class="mt-2 text-foreground-secondary">Guides, comparisons, and integration walkthroughs.</p>
+          </div>
+          <a href="/blog" class="hidden shrink-0 text-sm font-semibold text-brand-600 hover:underline sm:block">
+            All posts &rarr;
+          </a>
+        </div>
+        <div class="mt-8 grid gap-4 md:grid-cols-3">
+          {blogPosts.map(post => (
+            <a href={`/blog/${post.id}`} class="group flex flex-col gap-3 rounded-lg border border-border bg-card p-5 transition hover:border-border-strong hover:shadow-md">
+              <p class="text-xs font-medium uppercase tracking-wide text-foreground-muted">
+                {new Date(post.data.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+              </p>
+              <h3 class="text-lg font-semibold text-foreground group-hover:text-brand-600">{post.data.title}</h3>
+              <p class="text-sm text-foreground-secondary line-clamp-2">{post.data.description}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- 9. FAQ -->
+  <FAQSection faqs={faqs} />
+
+  <!-- 10. Final CTA -->
+  <section class="border-t border-border bg-background py-16">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-3xl font-bold text-foreground md:text-4xl">Find your data, ship your product</h2>
+      <p class="mt-3 text-lg text-foreground-secondary">
+        {platforms.length} platforms covered. New data added every week.
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button size="lg" href="/contact">
-          Start a project
-          <Icon name="arrow-right" size="sm" />
-        </Button>
-        <Button size="lg" variant="outline" href="/about">
-          More about me
-        </Button>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="/library" class="inline-flex items-center gap-2 rounded-md bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-600">
+          Explore APIs
+          <Icon name="lucide:arrow-right" class="h-4 w-4" />
+        </a>
+        <a href="/contact" class="inline-flex items-center rounded-md border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-secondary">
+          Talk to us
+        </a>
       </div>
     </div>
   </section>
-
-<script>
-  function initCountup() {
-    const counters = document.querySelectorAll<HTMLElement>('[data-countup]:not([data-countup-init])');
-    if (counters.length === 0) return;
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        observer.unobserve(entry.target);
-        const el = entry.target as HTMLElement;
-        const target = parseInt(el.dataset.countup ?? '0', 10);
-        const suffix = el.dataset.suffix ?? '';
-        const duration = 1200;
-        const start = performance.now();
-        const tick = (now: number) => {
-          const elapsed = now - start;
-          const progress = Math.min(elapsed / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          el.textContent = Math.round(eased * target) + suffix;
-          if (progress < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-      });
-    }, { threshold: 0.4 });
-    counters.forEach((el) => {
-      el.dataset.countupInit = 'true';
-      observer.observe(el);
-    });
-  }
-
-  document.addEventListener('astro:page-load', initCountup);
-</script>
-</LandingLayout>
+</MarketingLayout>
