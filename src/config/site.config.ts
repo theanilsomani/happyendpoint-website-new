@@ -16,15 +16,8 @@ export interface SiteConfig {
     country: string;
   };
   socialLinks: string[];
-  twitter?: {
-    site: string;
-    creator: string;
-  };
-  verification?: {
-    google?: string;
-    bing?: string;
-  };
-  /** Path to author photo (relative to site root, e.g. '/avatar.jpg'). Used in Person schema. */
+  twitter?: { site: string; creator: string };
+  verification?: { google?: string; bing?: string };
   authorImage?: string;
   /**
    * Set to false if your blog post images already match your theme color
@@ -58,47 +51,26 @@ export interface SiteConfig {
 }
 
 const siteConfig: SiteConfig = {
-  name: 'Astro Rocket',
+  name: 'Happy Endpoint',
   description:
-    'Astro Rocket — A production-ready Astro 6 starter with 12 beautiful themes, 57+ components, built-in i18n, dark mode and a fast, modern foundation to build anything on.',
-  url: SITE_URL || 'https://astrorocket.dev',
+    'APIs and datasets for real-estate, travel, grocery, finance, retail, fashion, and beauty — sold on RapidAPI. Free samples available.',
+  url: SITE_URL || 'https://happyendpoint.com',
   ogImage: '/og-default.svg',
-  author: 'Hans Martens',
-  email: 'hello@hansmartens.dev',
-  address: {
-    street: '',
-    city: 'Veghel',
-    state: '',
-    zip: '',
-    country: 'the Netherlands',
-  },
+  author: 'Happy Endpoint',
+  email: 'hello@happyendpoint.com',
   socialLinks: [
-    'https://github.com/hansmartens68/Astro-Rocket',
-    'https://x.com/hansmartens_dev',
-    'https://www.linkedin.com',
+    'https://rapidapi.com/user/happyendpoint',
   ],
-  twitter: {
-    site: 'https://x.com/hansmartens_dev',
-    creator: '@hansmartens_dev',
-  },
+  twitter: { site: '@happyendpoint', creator: '@happyendpoint' },
   verification: {
     google: GOOGLE_SITE_VERIFICATION,
     bing: BING_SITE_VERIFICATION,
   },
-  authorImage: '/avatar.svg',
   blogImageOverlay: true,
   branding: {
-    logo: {
-      alt: 'Astro Rocket',
-      imageUrl: '/favicon.svg',
-    },
-    favicon: {
-      svg: '/favicon.svg',
-    },
-    colors: {
-      themeColor: '#3b82f6',
-      backgroundColor: '#ffffff',
-    },
+    logo: { alt: 'Happy Endpoint', imageUrl: '/favicon.svg' },
+    favicon: { svg: '/favicon.svg' },
+    colors: { themeColor: '#2563eb', backgroundColor: '#ffffff' },
   },
 };
 
