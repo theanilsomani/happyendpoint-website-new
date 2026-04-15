@@ -35,6 +35,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "validate": "pnpm lint && pnpm check && pnpm build",
+    "migrate": "tsx scripts/migrate-legacy-data.ts",
     "test": "vitest",
     "test:e2e": "playwright test"
   },

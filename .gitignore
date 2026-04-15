@@ -55,6 +55,9 @@ public/pagefind/
 # npm lockfile (pnpm only)
 package-lock.json
 
+# Legacy migration snapshots (generated; not committed)
+scripts/legacy-snapshot/
+
 # Internal docs
 southwell-astro-boilerplate-docs.md
 southwell-astro-boilerplate-prd.md
