@@ -135,7 +135,7 @@ if (includeProfessionalServiceSchema) {
     <!-- Theme script (runs before body paint; <html> starts with class="dark" as default) -->
     <script is:inline>
       (function () {
-        var el = document.documentElement;
+        const el = document.documentElement;
         try {
           if (sessionStorage.getItem('theme') === 'light') {
             el.classList.remove('dark');

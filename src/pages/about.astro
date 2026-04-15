@@ -2,7 +2,6 @@
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import Breadcrumbs from '@/components/he/Breadcrumbs.astro';
 import { getAllPublishedPlatforms, getAllPublishedApis, getAllPublishedDatasets } from '@/lib/content-queries';
-import { Icon } from 'astro-icon/components';
 
 const [platforms, apis, datasets] = await Promise.all([
   getAllPublishedPlatforms(),

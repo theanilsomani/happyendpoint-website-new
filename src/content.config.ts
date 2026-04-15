@@ -70,8 +70,8 @@ const projects = defineCollection({
     z.object({
       title: z.string(),
       description: z.string(),
-      url: z.string().url().optional(),
-      repo: z.string().url().optional(),
+      url: z.url().optional(),
+      repo: z.url().optional(),
       image: image().optional(),
       imageAlt: z.string().optional(),
       tags: z.array(z.string()).default([]),
@@ -92,7 +92,7 @@ const stack = defineCollection({
     name: z.string(),
     description: z.string(),
     version: z.string(),
-    url: z.string().url(),
+    url: z.url(),
     icon: z.string(), // icon name, e.g. 'brand-astro'
     colorOklch: z.string(), // OKLCH params, e.g. '62.5% 0.22 38'
     order: z.number().default(0),
@@ -138,7 +138,7 @@ const apis = defineCollection({
   schema: z.object({
     name: z.string(),
     platform: z.string(),
-    rapidApiUrl: z.string().url(),
+    rapidApiUrl: z.url(),
     version: z.string().optional(),
     description: z.string().max(300),
     tags: z.array(z.string()).default([]),

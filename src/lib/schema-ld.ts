@@ -42,7 +42,7 @@ export function datasetSchema(dataset: DatasetEntry, platform: PlatformEntry | u
       name: siteConfig.name,
       url: siteConfig.url,
     },
-    distribution: dataset.data.format.split(/[,\/]/).map((f: string) => ({
+    distribution: dataset.data.format.split(/[,/]/).map((f: string) => ({
       '@type': 'DataDownload',
       encodingFormat: f.trim(),
     })),
@@ -51,7 +51,7 @@ export function datasetSchema(dataset: DatasetEntry, platform: PlatformEntry | u
   };
 }
 
-export function softwareApplicationSchema(api: ApiEntry, platform: PlatformEntry | undefined) {
+export function softwareApplicationSchema(api: ApiEntry, _platform: PlatformEntry | undefined) {
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',

@@ -1,7 +1,7 @@
 type Frontmatter = Record<string, unknown>;
 
 function needsQuoting(s: string): boolean {
-  if (/[:#\[\]{}&*!|>'"%@`\n]/.test(s)) return true;
+  if (/[:#[\]{}&*!|>'"%@`\n]/.test(s)) return true;
   if (/^(\s|-|\?|:|>)/.test(s)) return true;
   if (/^(true|false|null|yes|no|~|)$/i.test(s)) return true;
   if (/^-?\d/.test(s)) return true;
