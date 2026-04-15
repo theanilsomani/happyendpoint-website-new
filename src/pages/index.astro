@@ -4,6 +4,7 @@ import EntityCard from '@/components/he/EntityCard.astro';
 import EntityGrid from '@/components/he/EntityGrid.astro';
 import FAQSection from '@/components/he/FAQSection.astro';
 import PlatformLogosStrip from '@/components/he/PlatformLogosStrip.astro';
+import FeatureRows from '@/components/he/FeatureRows.astro';
 import { Icon } from 'astro-icon/components';
 import { getCollection } from 'astro:content';
 import {
@@ -138,6 +139,70 @@ const apiPills = [
 
   <!-- 2. Platform logos strip -->
   <PlatformLogosStrip platforms={platforms} title="Data from platforms you know" />
+
+  <!-- 2b. Alternating feature rows -->
+  <FeatureRows rows={[
+    {
+      title: 'Enrich your data pipelines',
+      body: 'Plug our APIs directly into your existing ETL, CRM, or analytics stack. Fresh records, on demand.',
+      bullets: [
+        'Live endpoints on RapidAPI',
+        'Updated on a schedule you can trust',
+        'Direct integration with common platforms — Zapier, Make, n8n',
+      ],
+      imagePosition: 'right',
+    },
+    {
+      title: 'Powerful web scraping under the hood',
+      body: 'We handle the scraping, rotating proxies, parsing, and anti-bot work so you don\'t have to.',
+      bullets: [
+        'Advanced parsing handles complex markup',
+        'TLS fingerprinting + rotating residential proxies',
+        'Bypass anti-bot systems quietly',
+      ],
+      imagePosition: 'left',
+    },
+    {
+      title: 'Data from 13+ leading platforms',
+      body: 'Every platform you\'d want to scrape yourself, already integrated and maintained.',
+      bullets: [
+        'Easy setup, one-click subscription',
+        'Data retrieved via clean, documented APIs',
+        'Collect as much or as little as you need',
+      ],
+      imagePosition: 'right',
+    },
+    {
+      title: 'Connect your favourite tools',
+      body: 'Point your favourite automation platform at our APIs — no custom adapter required.',
+      bullets: [
+        'Works with Zapier, Make, n8n, Pipedream',
+        'Standard OAuth and API-key authentication',
+        'Hit-the-ground-running templates',
+      ],
+      imagePosition: 'left',
+    },
+    {
+      title: 'Fast and reliable APIs',
+      body: 'Low latency, high availability, predictable responses — day and night.',
+      bullets: [
+        'Under-300ms response times on cached endpoints',
+        'Global edge delivery via Cloudflare',
+        'Uptime monitored 24/7 with transparent status',
+      ],
+      imagePosition: 'right',
+    },
+    {
+      title: 'GDPR and compliance-ready',
+      body: 'We only surface publicly available data and follow responsible-scraping practices. Your compliance team can sleep.',
+      bullets: [
+        'Public-data-only collection policy',
+        'Deletion requests honoured on demand',
+        'Transparent provenance on every record',
+      ],
+      imagePosition: 'left',
+    },
+  ]} />
 
   <!-- 3. Featured APIs -->
   <section class="container py-16">
