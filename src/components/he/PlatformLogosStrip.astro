@@ -1,0 +1,26 @@
+---
+import type { PlatformEntry } from '@/lib/content-queries';
+
+export interface Props {
+  platforms: PlatformEntry[];
+  title?: string;
+}
+const { platforms, title = 'Trusted data from' } = Astro.props;
+---
+{platforms.length > 0 && (
+  <section class="border-y border-border bg-background-secondary py-10">
+    <div class="container">
+      <p class="text-center text-xs font-semibold uppercase tracking-widest text-foreground-muted">{title}</p>
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+        {platforms.map(p => (
+          <a href={`/platforms/${p.id}`} class="group inline-flex items-center gap-2 text-foreground-secondary hover:text-foreground">
+            <span class="flex h-8 w-8 items-center justify-center rounded bg-card text-xs font-bold text-brand-600 ring-1 ring-border">
+              {p.data.name.charAt(0)}
+            </span>
+            <span class="text-sm font-medium">{p.data.name}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

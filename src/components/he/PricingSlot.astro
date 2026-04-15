@@ -1,0 +1,30 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  pricing: unknown;       // null = placeholder; later may be a structured pricing object
+  rapidApiUrl: string;
+}
+const { pricing, rapidApiUrl } = Astro.props;
+---
+<section class="rounded-lg border border-border bg-card p-6">
+  <h2 class="text-lg font-semibold text-foreground">Pricing</h2>
+  {pricing ? (
+    <pre class="mt-3 overflow-x-auto rounded bg-background-secondary p-3 text-xs">{JSON.stringify(pricing, null, 2)}</pre>
+  ) : (
+    <>
+      <p class="mt-2 text-sm text-foreground-secondary">
+        Current plans, free tier limits, and per-request pricing live on RapidAPI — always up to date.
+      </p>
+      <a
+        href={rapidApiUrl}
+        target="_blank"
+        rel="noopener"
+        class="mt-4 inline-flex items-center gap-2 rounded-md bg-brand-500 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-600"
+      >
+        View pricing on RapidAPI
+        <Icon name="lucide:external-link" class="h-4 w-4" />
+      </a>
+    </>
+  )}
+</section>

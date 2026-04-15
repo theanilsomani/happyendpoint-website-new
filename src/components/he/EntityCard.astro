@@ -1,0 +1,82 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Metric {
+  label: string;
+  value: string;
+}
+
+export interface Props {
+  variant: 'api' | 'dataset' | 'platform' | 'category' | 'free-sample';
+  title: string;
+  href: string;
+  description: string;
+  metrics?: Metric[];
+  tags?: string[];
+  icon?: string;      // iconify name like "lucide:box" or "simple-icons:rapidapi"
+  badge?: string;     // "NEW", "FREE", etc.
+  logoUrl?: string;   // optional raster/svg URL for platform logos
+}
+
+const { variant, title, href, description, metrics = [], tags = [], icon, badge, logoUrl } = Astro.props;
+
+const variantIcon: Record<Props['variant'], string> = {
+  api: 'lucide:webhook',
+  dataset: 'lucide:database',
+  platform: 'lucide:globe',
+  category: 'lucide:layers',
+  'free-sample': 'lucide:download',
+};
+
+const iconName = icon ?? variantIcon[variant];
+---
+
+<a
+  href={href}
+  class="group relative flex flex-col gap-3 rounded-lg border border-border bg-card p-5 transition hover:border-border-strong hover:shadow-md"
+  data-entity-card
+  data-variant={variant}
+  data-tags={tags.join(',')}
+>
+  {badge && (
+    <span class="absolute right-4 top-4 rounded-full bg-brand-500/10 px-2 py-0.5 text-xs font-medium text-brand-600">
+      {badge}
+    </span>
+  )}
+
+  <div class="flex items-center gap-3">
+    {logoUrl ? (
+      <img src={logoUrl} alt="" class="h-10 w-10 rounded-md object-contain" loading="lazy" />
+    ) : (
+      <div class="flex h-10 w-10 items-center justify-center rounded-md bg-brand-500/10 text-brand-600">
+        <Icon name={iconName} class="h-5 w-5" />
+      </div>
+    )}
+    <h3 class="flex-1 text-base font-semibold text-foreground group-hover:text-brand-600">
+      {title}
+    </h3>
+  </div>
+
+  <p class="text-sm text-foreground-secondary line-clamp-2">{description}</p>
+
+  {metrics.length > 0 && (
+    <dl class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-foreground-muted">
+      {metrics.map(m => (
+        <div class="flex items-center gap-1">
+          <dt class="uppercase tracking-wide">{m.label}:</dt>
+          <dd class="font-medium text-foreground-secondary">{m.value}</dd>
+        </div>
+      ))}
+    </dl>
+  )}
+
+  {tags.length > 0 && (
+    <div class="mt-auto flex flex-wrap gap-1">
+      {tags.slice(0, 4).map(t => (
+        <span class="rounded-full border border-border bg-background-secondary px-2 py-0.5 text-xs text-foreground-muted">
+          {t}
+        </span>
+      ))}
+    </div>
+  )}
+</a>

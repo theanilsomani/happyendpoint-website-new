@@ -1,0 +1,45 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  heading?: string;
+  sampleName: string;
+  recordCount: string;
+  format: string;
+  downloadUrl?: string;
+  parentHref?: string;   // link to the paid parent dataset
+}
+const { heading = 'Try a free sample first', sampleName, recordCount, format, downloadUrl, parentHref } = Astro.props;
+---
+<div class="rounded-lg border border-brand-500/30 bg-brand-500/5 p-6">
+  <div class="flex items-start gap-3">
+    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-brand-500/10 text-brand-600">
+      <Icon name="lucide:download" class="h-5 w-5" />
+    </div>
+    <div class="flex-1">
+      <h3 class="text-base font-semibold text-foreground">{heading}</h3>
+      <p class="mt-1 text-sm text-foreground-secondary">{sampleName}</p>
+      <dl class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-foreground-muted">
+        <div class="flex gap-1"><dt class="uppercase tracking-wide">Records:</dt><dd class="font-medium text-foreground-secondary">{recordCount}</dd></div>
+        <div class="flex gap-1"><dt class="uppercase tracking-wide">Format:</dt><dd class="font-medium text-foreground-secondary">{format}</dd></div>
+      </dl>
+      <div class="mt-4 flex flex-wrap gap-3">
+        {downloadUrl ? (
+          <a href={downloadUrl} class="inline-flex items-center gap-1 rounded-md bg-brand-500 px-3 py-1.5 text-sm font-semibold text-white hover:bg-brand-600">
+            Download sample
+            <Icon name="lucide:arrow-down" class="h-4 w-4" />
+          </a>
+        ) : (
+          <a href="/contact" class="inline-flex items-center gap-1 rounded-md bg-brand-500 px-3 py-1.5 text-sm font-semibold text-white hover:bg-brand-600">
+            Request sample
+          </a>
+        )}
+        {parentHref && (
+          <a href={parentHref} class="inline-flex items-center rounded-md border border-border-strong px-3 py-1.5 text-sm font-semibold text-foreground hover:bg-secondary">
+            See full dataset
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</div>
