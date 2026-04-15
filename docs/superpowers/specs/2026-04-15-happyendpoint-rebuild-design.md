@@ -367,16 +367,17 @@ The per-slug free-dataset → parent-dataset redirect map is generated at build 
 
 ## 10. Contact form
 
-- Route: `src/pages/api/contact.ts` (Cloudflare Function)
-- Validates body server-side (Zod)
-- Honeypot field to deter bots
-- Rate limit by IP (simple Cloudflare KV counter, 5/hour)
-- Sends via Resend to a configured destination email
-- UI form component reused from template
+**Backend is deferred.** User has not yet chosen an email-sending provider (Resend, Postmark, SendGrid, Cloudflare Email Routing, etc.). In this phase we ship the **UI only**, matching the overall visual design:
 
-Environment variables:
-- `RESEND_API_KEY`
-- `CONTACT_DESTINATION_EMAIL`
+- `/contact` page aligned with site-wide design tokens, typography, and spacing
+- Form fields: name, email, subject, message, honeypot (hidden)
+- Client-side validation (required fields, email format)
+- Submit button in a "disabled / coming soon" state **OR** posts to a stubbed endpoint that returns a friendly success message without actually sending — whichever the implementation plan chooses (prefer stub endpoint so the UX reads as complete).
+- No real network integration, no API keys required to build or deploy.
+
+When a provider is chosen later, swap the stub for a real Cloudflare Function handler. The form UI does not change.
+
+Suggested alternative contact channels on the page until backend is live: direct email link, RapidAPI provider contact, optional Calendly or similar.
 
 ---
 
@@ -415,7 +416,7 @@ Expanded to a full task breakdown in the subsequent implementation plan. High-le
 ### Phase 3 — Marketing & supporting pages
 
 - Home (all 10 sections)
-- About, Contact (Resend), FAQ, Use cases, Why Happy Endpoint, Privacy, Terms
+- About, Contact (UI only — backend deferred), FAQ, Use cases, Why Happy Endpoint, Privacy, Terms
 - Blog with 3–5 seeded SEO posts
 - Pagefind search page
 
@@ -435,7 +436,7 @@ Expanded to a full task breakdown in the subsequent implementation plan. High-le
 - Lighthouse ≥ 95 on Performance, SEO, Accessibility, Best Practices for the five representative pages.
 - No broken internal links at build time (enforced by `astro check` + reference validation).
 - All old URLs resolve: either identical path, or 301 to the correct new URL.
-- Contact form end-to-end: submission arrives at destination email.
+- Contact page UI is complete, styled, and validates client-side; backend stubbed until a provider is chosen.
 - Site deploys cleanly to Cloudflare Pages on push to `main`.
 
 ---
@@ -446,3 +447,4 @@ Expanded to a full task breakdown in the subsequent implementation plan. High-le
 - Per-entity generated OG images (static brand OG for now; auto-generation later).
 - Additional blog posts beyond the initial 3–5 seeds (ongoing content work).
 - Brand color change (one-file swap, as designed).
+- Contact form backend provider selection and integration (UI ships in this phase).
