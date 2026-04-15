@@ -1,0 +1,152 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import EntityHero from '@/components/he/EntityHero.astro';
+import EntityCard from '@/components/he/EntityCard.astro';
+import EntityGrid from '@/components/he/EntityGrid.astro';
+import Breadcrumbs from '@/components/he/Breadcrumbs.astro';
+import FAQSection from '@/components/he/FAQSection.astro';
+import FreeSampleBlock from '@/components/he/FreeSampleBlock.astro';
+import { getCollection, render } from 'astro:content';
+import {
+  getPlatformBySlug,
+  getCategoryBySlug,
+  getApisForPlatform,
+  getDatasetsForPlatform,
+  getFreeSamplesForPlatform,
+} from '@/lib/content-queries';
+
+export async function getStaticPaths() {
+  const platforms = await getCollection('platforms');
+  return platforms.map(p => ({ params: { slug: p.id } }));
+}
+
+const { slug } = Astro.params;
+const platform = await getPlatformBySlug(slug!);
+if (!platform) return Astro.redirect('/404');
+
+const { Content } = await render(platform);
+const category = await getCategoryBySlug(platform.data.category);
+const apis = await getApisForPlatform(platform.id);
+const datasets = await getDatasetsForPlatform(platform.id);
+const freeSamples = await getFreeSamplesForPlatform(platform.id);
+
+const faqs = [
+  {
+    question: `What ${platform.data.name} data can I access?`,
+    answer: platform.data.description,
+  },
+  {
+    question: 'Are free samples available?',
+    answer: freeSamples.length > 0
+      ? `Yes — ${freeSamples.length} free sample${freeSamples.length === 1 ? '' : 's'} available. Scroll down to download.`
+      : 'Not for this platform yet, but <a href="/contact" class="text-brand-600 underline">contact us</a> for a custom sample.',
+  },
+  {
+    question: 'How often is the data updated?',
+    answer: 'APIs serve live data on every request. Datasets are refreshed on a regular cadence (daily or weekly depending on the platform).',
+  },
+  {
+    question: 'Can I use this data commercially?',
+    answer: 'Yes — subject to the plan you subscribe to on RapidAPI. See the pricing section of each API page for details.',
+  },
+];
+---
+
+<MarketingLayout
+  title={`${platform.data.name} APIs & datasets`}
+  description={platform.data.description}
+>
+  <Breadcrumbs items={[
+    { label: 'Home', href: '/' },
+    { label: 'Platforms', href: '/platforms' },
+    { label: platform.data.name },
+  ]} />
+
+  <EntityHero
+    eyebrow="Platform"
+    title={`${platform.data.name} data`}
+    tagline={platform.data.tagline}
+    badges={category ? [category.data.name, platform.data.domain] : [platform.data.domain]}
+    primaryCta={apis.length > 0 ? { label: 'See APIs', href: '#apis' } : undefined}
+    secondaryCta={datasets.length > 0 ? { label: 'See datasets', href: '#datasets' } : undefined}
+  />
+
+  <article class="container max-w-3xl py-12 prose">
+    <Content />
+  </article>
+
+  {apis.length > 0 && (
+    <section id="apis" class="border-t border-border bg-background-secondary py-12">
+      <div class="container">
+        <h2 class="text-2xl font-bold text-foreground md:text-3xl">APIs for {platform.data.name}</h2>
+        <p class="mt-2 text-foreground-secondary">Live, request-time data endpoints on RapidAPI.</p>
+        <div class="mt-8">
+          <EntityGrid columns={3}>
+            {apis.map(a => (
+              <EntityCard
+                variant="api"
+                title={a.data.name}
+                href={`/library/${a.id}`}
+                description={a.data.description}
+                tags={a.data.tags}
+              />
+            ))}
+          </EntityGrid>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {datasets.length > 0 && (
+    <section id="datasets" class="container py-12">
+      <h2 class="text-2xl font-bold text-foreground md:text-3xl">Datasets for {platform.data.name}</h2>
+      <p class="mt-2 text-foreground-secondary">Structured bulk data snapshots.</p>
+      <div class="mt-8">
+        <EntityGrid columns={3}>
+          {datasets.map(d => (
+            <EntityCard
+              variant="dataset"
+              title={d.data.name}
+              href={`/datasets/${d.id}`}
+              description={d.data.description}
+              metrics={[
+                { label: 'Records', value: d.data.recordCount },
+                { label: 'Format', value: d.data.format },
+                { label: 'Price', value: d.data.price },
+              ]}
+              badge={d.data.freeSample !== undefined || d.data.price.toLowerCase() === 'free' ? 'FREE SAMPLE' : undefined}
+              tags={d.data.tags}
+            />
+          ))}
+        </EntityGrid>
+      </div>
+    </section>
+  )}
+
+  {freeSamples.length > 0 && (
+    <section id="free-samples" class="border-t border-border bg-background-secondary py-12">
+      <div class="container">
+        <h2 class="text-2xl font-bold text-foreground md:text-3xl">Free samples</h2>
+        <div class="mt-8 grid gap-4 md:grid-cols-2">
+          {freeSamples.map(d => {
+            const sample = d.data.freeSample ?? {
+              name: d.data.name,
+              recordCount: d.data.recordCount,
+              format: d.data.format,
+            };
+            return (
+              <FreeSampleBlock
+                sampleName={sample.name}
+                recordCount={sample.recordCount}
+                format={sample.format}
+                parentHref={`/datasets/${d.id}`}
+              />
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <FAQSection faqs={faqs} />
+</MarketingLayout>
