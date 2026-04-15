@@ -1,0 +1,20 @@
+# =========================================================================
+# Happy Endpoint redirects
+# Syntax: <from> <to> <status>
+# Docs: https://developers.cloudflare.com/pages/configuration/redirects/
+# =========================================================================
+
+# --- Legacy /apis/* → /library/* -----------------------------------------
+/apis                    /library                    301
+/apis/:slug              /library/:slug              301
+
+# --- Legacy free-datasets index kept (we have our own /free-datasets) ----
+# (no-op, same path)
+
+# --- Dropped pages from the legacy site -----------------------------------
+/login                   /                           301
+/signup                  /                           301
+/pricing                 /library                    301
+
+# --- Generated per-slug free-dataset → parent dataset redirects below ----
+# (appended by scripts/generate-redirects.ts before deploy)

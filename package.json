@@ -27,8 +27,10 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
-    "postbuild": "pagefind --site dist",
+    "generate-redirects": "tsx scripts/generate-redirects.ts",
+    "compose-redirects": "node scripts/compose-redirects.mjs",
+    "build": "pnpm generate-redirects && astro build",
+    "postbuild": "pagefind --site dist && pnpm compose-redirects",
     "preview": "astro preview",
     "check": "astro check",
     "lint": "eslint .",

@@ -24,7 +24,14 @@ export default defineConfig({
 
   image: { layout: 'constrained' },
 
-  integrations: [react(), mdx(), sitemap(), icon()],
+  integrations: [
+    react(),
+    mdx(),
+    sitemap({
+      filter: (page) => !page.includes('/search') && !page.includes('/components'),
+    }),
+    icon(),
+  ],
   vite: { plugins: [tailwindcss()] },
   security: { checkOrigin: true },
   markdown: { shikiConfig: { theme: 'github-dark', wrap: true } },

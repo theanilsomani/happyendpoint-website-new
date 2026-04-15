@@ -59,6 +59,9 @@ package-lock.json
 # Legacy migration snapshots (generated; not committed)
 scripts/legacy-snapshot/
 
+# Generated redirect fragments (build artifact)
+scripts/generated/
+
 # Internal docs
 southwell-astro-boilerplate-docs.md
 southwell-astro-boilerplate-prd.md
