@@ -1,0 +1,48 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import Breadcrumbs from '@/components/he/Breadcrumbs.astro';
+import siteConfig from '@/config/site.config';
+
+const updated = 'April 15, 2026';
+---
+
+<MarketingLayout
+  title="Privacy policy"
+  description="How Happy Endpoint collects, uses, and protects your information."
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Privacy' }]} />
+
+  <article class="container max-w-3xl py-12 prose">
+    <p class="text-sm text-foreground-muted">Last updated: {updated}</p>
+    <h1>Privacy policy</h1>
+    <p>This policy explains what information Happy Endpoint ("we", "us") collects when you use our website, APIs, and datasets, and how we handle it.</p>
+
+    <h2>Information we collect</h2>
+    <ul>
+      <li><strong>Contact form submissions.</strong> When you send us a message, we store the name, email, subject, and body you provide, solely to respond.</li>
+      <li><strong>Server logs.</strong> Our hosting provider records standard access logs (IP address, user agent, request path) for 30 days for security and debugging.</li>
+      <li><strong>Analytics.</strong> We use privacy-respecting analytics to understand which pages are useful. No cross-site tracking.</li>
+    </ul>
+
+    <h2>Information we do NOT collect</h2>
+    <p>We don't use advertising cookies, we don't sell user data, and we don't track you across the internet.</p>
+
+    <h2>API & dataset usage</h2>
+    <p>When you subscribe to an API on RapidAPI, RapidAPI's privacy policy applies to your account, key, and billing data. When you purchase a dataset, we retain proof-of-purchase for accounting.</p>
+
+    <h2>Data in our datasets</h2>
+    <p>Our APIs and datasets surface publicly available data from source platforms. We don't target personal information. Where incidental PII appears (e.g. a publicly listed agent contact on a real-estate listing), we treat it the same as the source platform does. If you believe personal data about you appears inappropriately in our datasets, <a href={`mailto:${siteConfig.email}`}>email us</a> and we'll investigate.</p>
+
+    <h2>Third parties</h2>
+    <p>We use Cloudflare Pages for hosting and RapidAPI as our product marketplace. These services have their own privacy policies, which apply when you interact with them.</p>
+
+    <h2>Your rights</h2>
+    <p>You can ask us to delete your contact-form submission at any time. Email us at <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.</p>
+
+    <h2>Changes</h2>
+    <p>If we materially change this policy we'll update the date at the top of this page.</p>
+
+    <h2>Contact</h2>
+    <p>Questions? <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> or the <a href="/contact">contact form</a>.</p>
+  </article>
+</MarketingLayout>

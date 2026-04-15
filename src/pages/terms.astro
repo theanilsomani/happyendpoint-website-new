@@ -1,0 +1,44 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import Breadcrumbs from '@/components/he/Breadcrumbs.astro';
+import siteConfig from '@/config/site.config';
+
+const updated = 'April 15, 2026';
+---
+
+<MarketingLayout
+  title="Terms of service"
+  description="Terms governing your use of the Happy Endpoint website, APIs, and datasets."
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Terms' }]} />
+
+  <article class="container max-w-3xl py-12 prose">
+    <p class="text-sm text-foreground-muted">Last updated: {updated}</p>
+    <h1>Terms of service</h1>
+    <p>By using this website, Happy Endpoint's APIs, or datasets, you agree to these terms.</p>
+
+    <h2>Website use</h2>
+    <p>The Happy Endpoint website is provided as-is for informational purposes. You may browse, share links, and reference our content. You may not scrape the site itself for bulk reproduction.</p>
+
+    <h2>APIs</h2>
+    <p>APIs are sold through RapidAPI. Your subscription on RapidAPI is governed by RapidAPI's terms and the specific plan you choose. We agree to keep the APIs functional on the plan you've paid for; you agree to use them within rate limits and permitted use.</p>
+
+    <h2>Datasets</h2>
+    <p>When you purchase a dataset, you receive a license to use the data internally or in products you ship. Redistribution of the raw dataset as a competing product is not permitted. Free samples are for evaluation — you may not ship them in production without a paid license.</p>
+
+    <h2>Data accuracy</h2>
+    <p>We make reasonable efforts to provide accurate, up-to-date data, but cannot guarantee the source platforms' accuracy. Use your own validation for high-stakes applications.</p>
+
+    <h2>Acceptable use</h2>
+    <p>Don't use our APIs or datasets to violate source platforms' terms, to harass individuals, or to break the law. Don't rebundle and resell our data as a directly competing product.</p>
+
+    <h2>Limitation of liability</h2>
+    <p>Our total liability is capped at the amount you paid us in the twelve months preceding a claim. We are not liable for indirect or consequential damages.</p>
+
+    <h2>Changes</h2>
+    <p>We may update these terms. Continued use after an update means you accept the new terms.</p>
+
+    <h2>Contact</h2>
+    <p><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> or the <a href="/contact">contact form</a>.</p>
+  </article>
+</MarketingLayout>
