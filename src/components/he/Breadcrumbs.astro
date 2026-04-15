@@ -12,7 +12,7 @@ const ld = breadcrumbListSchema(
   items.map(i => ({ name: i.label, url: i.href ? `${siteConfig.url}${i.href}` : siteConfig.url })),
 );
 ---
-<nav aria-label="Breadcrumb" class="container pt-4 text-sm text-foreground-muted">
+<nav aria-label="Breadcrumb" class="container pt-20 text-sm text-foreground-muted">
   <ol class="flex flex-wrap items-center gap-1">
     {items.map((item, i) => (
       <li class="flex items-center gap-1">
