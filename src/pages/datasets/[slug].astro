@@ -1,0 +1,172 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import EntityHero from '@/components/he/EntityHero.astro';
+import EntityCard from '@/components/he/EntityCard.astro';
+import EntityGrid from '@/components/he/EntityGrid.astro';
+import Breadcrumbs from '@/components/he/Breadcrumbs.astro';
+import FAQSection from '@/components/he/FAQSection.astro';
+import FreeSampleBlock from '@/components/he/FreeSampleBlock.astro';
+import JsonLd from '@/components/seo/JsonLd.astro';
+import { getCollection, render } from 'astro:content';
+import {
+  getPlatformBySlug,
+  getCategoryBySlug,
+  getApisForPlatform,
+  getDatasetsForPlatform,
+} from '@/lib/content-queries';
+import { datasetSchema } from '@/lib/schema-ld';
+import type { Thing, WithContext } from 'schema-dts';
+
+export async function getStaticPaths() {
+  const datasets = await getCollection('datasets');
+  return datasets.map(d => ({ params: { slug: d.id } }));
+}
+
+const { slug } = Astro.params;
+const allDatasets = await getCollection('datasets');
+const dataset = allDatasets.find(d => d.id === slug);
+if (!dataset) return Astro.redirect('/404');
+
+const { Content } = await render(dataset);
+
+const platform = await getPlatformBySlug(dataset.data.platform);
+const category = platform ? await getCategoryBySlug(platform.data.category) : undefined;
+const apis = platform ? await getApisForPlatform(platform.id) : [];
+const platformDatasets = platform ? await getDatasetsForPlatform(platform.id) : [];
+const relatedDatasets = platformDatasets.filter(d => d.id !== dataset.id).slice(0, 3);
+const apiCounterpart = apis[0]; // the canonical API for this platform
+
+const hasInlineSample = dataset.data.freeSample !== undefined;
+const isFreeItself = dataset.data.price.toLowerCase() === 'free';
+
+const faqs = [
+  {
+    question: `What's in the ${dataset.data.name}?`,
+    answer: dataset.data.description,
+  },
+  {
+    question: 'What format is the data delivered in?',
+    answer: `${dataset.data.format}. Let us know if you need a different format.`,
+  },
+  {
+    question: 'How is the data collected?',
+    answer: 'Collected, deduplicated, and sanity-checked through our data pipeline. Refreshed on a regular cadence.',
+  },
+  {
+    question: 'Can I get a sample first?',
+    answer: hasInlineSample
+      ? 'Yes — a free sample is available in the section below with the exact same schema as the full dataset.'
+      : isFreeItself
+        ? 'This listing IS the free sample. <a href="/datasets" class="text-brand-600 underline">Browse paid datasets</a> for the full version.'
+        : 'Contact us via the <a href="/contact" class="text-brand-600 underline">contact page</a> to request a sample.',
+  },
+];
+
+const jsonLd = datasetSchema(dataset, platform) as WithContext<Thing>;
+---
+
+<MarketingLayout
+  title={dataset.data.name}
+  description={dataset.data.description}
+>
+  <Breadcrumbs items={[
+    { label: 'Home', href: '/' },
+    { label: 'Datasets', href: '/datasets' },
+    { label: dataset.data.name },
+  ]} />
+
+  <EntityHero
+    eyebrow="Dataset"
+    title={dataset.data.name}
+    tagline={dataset.data.description}
+    badges={[
+      dataset.data.recordCount,
+      dataset.data.format,
+      dataset.data.price,
+      ...(platform ? [platform.data.name] : []),
+      ...(category ? [category.data.name] : []),
+    ]}
+    primaryCta={{ label: 'Purchase on RapidAPI', href: apis[0]?.data.rapidApiUrl ?? '/contact', external: !!apis[0] }}
+    secondaryCta={platform ? { label: `All ${platform.data.name} data`, href: `/platforms/${platform.id}` } : undefined}
+  />
+
+  <article class="container max-w-3xl py-12 prose">
+    <Content />
+  </article>
+
+  {dataset.data.features.length > 0 && (
+    <section class="container max-w-3xl pb-8">
+      <h2 class="text-2xl font-bold text-foreground">What's in this dataset</h2>
+      <ul class="mt-4 grid gap-2 md:grid-cols-2">
+        {dataset.data.features.map(f => (
+          <li class="flex items-start gap-2 text-sm text-foreground-secondary">
+            <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
+            <span>{f}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {dataset.data.freeSample && (
+    <section class="border-t border-border bg-background-secondary py-12">
+      <div class="container max-w-4xl">
+        <FreeSampleBlock
+          heading="Download a free sample"
+          sampleName={dataset.data.freeSample.name}
+          recordCount={dataset.data.freeSample.recordCount}
+          format={dataset.data.freeSample.format}
+          downloadUrl={dataset.data.freeSample.downloadUrl}
+        />
+      </div>
+    </section>
+  )}
+
+  {relatedDatasets.length > 0 && (
+    <section class="container py-12">
+      <h2 class="text-2xl font-bold text-foreground">More from {platform?.data.name ?? 'this platform'}</h2>
+      <div class="mt-8">
+        <EntityGrid columns={3}>
+          {relatedDatasets.map(d => (
+            <EntityCard
+              variant="dataset"
+              title={d.data.name}
+              href={`/datasets/${d.id}`}
+              description={d.data.description}
+              metrics={[
+                { label: 'Records', value: d.data.recordCount },
+                { label: 'Price', value: d.data.price },
+              ]}
+              badge={d.data.price.toLowerCase() === 'free' ? 'FREE' : d.data.freeSample ? 'FREE SAMPLE' : undefined}
+              tags={d.data.tags}
+            />
+          ))}
+        </EntityGrid>
+      </div>
+    </section>
+  )}
+
+  {apiCounterpart && (
+    <section class="border-t border-border bg-background-secondary py-12">
+      <div class="container max-w-3xl">
+        <h2 class="text-2xl font-bold text-foreground">Need live data instead?</h2>
+        <p class="mt-2 text-foreground-secondary">
+          If you need request-time data, the {platform?.data.name} API covers the same ground.
+        </p>
+        <div class="mt-6">
+          <EntityCard
+            variant="api"
+            title={apiCounterpart.data.name}
+            href={`/library/${apiCounterpart.id}`}
+            description={apiCounterpart.data.description}
+            tags={apiCounterpart.data.tags}
+          />
+        </div>
+      </div>
+    </section>
+  )}
+
+  <FAQSection faqs={faqs} />
+</MarketingLayout>
+
+<JsonLd schema={jsonLd} />
