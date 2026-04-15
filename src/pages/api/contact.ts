@@ -1,4 +1,8 @@
-export const prerender = false;
+// NOTE: Contact form backend is deferred to Phase 3 (Cloudflare adapter).
+// prerender = false requires a server adapter; we use prerender = true for
+// now so the static build passes. The POST handler is preserved for when
+// the adapter ships. A GET is added to satisfy static prerendering.
+export const prerender = true;
 
 import type { APIRoute } from 'astro';
 import { z } from 'astro/zod';
@@ -12,6 +16,13 @@ const contactSchema = z.object({
   message: z.string().min(10, 'Message must be at least 10 characters').max(5000),
   honeypot: z.string().max(0), // Anti-spam: must be empty
 });
+
+// GET handler required for static prerendering; returns 405 at runtime.
+export const GET: APIRoute = () =>
+  new Response(JSON.stringify({ error: 'Method not allowed' }), {
+    status: 405,
+    headers: { 'Content-Type': 'application/json', Allow: 'POST' },
+  });
 
 export const POST: APIRoute = async ({ request }) => {
   try {
