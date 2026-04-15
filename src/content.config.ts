@@ -99,6 +99,97 @@ const stack = defineCollection({
   }),
 });
 
+// --- Happy Endpoint domain collections ------------------------------------
+
+const categories = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/categories' }),
+  schema: z.object({
+    name: z.string(),
+    tagline: z.string().max(140),
+    description: z.string().max(300),
+    icon: z.string().optional(),
+    order: z.number().default(99),
+  }),
+});
+
+const platforms = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/platforms' }),
+  schema: ({ image }) =>
+    z.object({
+      name: z.string(),
+      domain: z.string(),
+      category: z.string(),
+      icon: z.string().optional(),
+      logo: image().optional(),
+      tagline: z.string().max(140),
+      description: z.string().max(300),
+      longDescription: z.string().optional(),
+      tags: z.array(z.string()).default([]),
+      hasApi: z.boolean().default(false),
+      hasDatasets: z.boolean().default(false),
+      hasFreeDatasets: z.boolean().default(false),
+      featured: z.boolean().default(false),
+      draft: z.boolean().default(false),
+    }),
+});
+
+const apis = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/apis' }),
+  schema: z.object({
+    name: z.string(),
+    platform: z.string(),
+    rapidApiUrl: z.string().url(),
+    version: z.string().optional(),
+    description: z.string().max(300),
+    tags: z.array(z.string()).default([]),
+    features: z.array(z.string()).default([]),
+    endpoints: z
+      .array(
+        z.object({
+          method: z.enum(['GET', 'POST', 'PUT', 'PATCH', 'DELETE']),
+          path: z.string(),
+          summary: z.string().optional(),
+        }),
+      )
+      .default([]),
+    openApiFile: z.string().optional(),
+    pricing: z.null().default(null),
+    icon: z.string().optional(),
+    featured: z.boolean().default(false),
+    draft: z.boolean().default(false),
+  }),
+});
+
+const datasets = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/datasets' }),
+  schema: z.object({
+    name: z.string(),
+    platform: z.string(),
+    version: z.string().optional(),
+    description: z.string().max(300),
+    recordCount: z.string(),
+    format: z.string(),
+    price: z.string(),
+    tags: z.array(z.string()).default([]),
+    features: z.array(z.string()).default([]),
+    freeSample: z
+      .object({
+        id: z.string(),
+        name: z.string(),
+        version: z.string().optional(),
+        description: z.string().max(300),
+        recordCount: z.string(),
+        format: z.string(),
+        features: z.array(z.string()).default([]),
+        downloadUrl: z.string().optional(),
+      })
+      .optional(),
+    icon: z.string().optional(),
+    featured: z.boolean().default(false),
+    draft: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   blog,
   pages,
@@ -106,4 +197,8 @@ export const collections = {
   faqs,
   stack,
   projects,
+  categories,
+  platforms,
+  apis,
+  datasets,
 };
