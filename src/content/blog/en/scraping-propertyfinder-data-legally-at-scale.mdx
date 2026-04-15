@@ -1,0 +1,65 @@
+---
+title: 'Scraping PropertyFinder data legally — and at scale'
+description: 'What you need to know about data provenance, terms of service, and scaling web-scraped data ingestion without building your own scraper.'
+publishedAt: 2026-04-08
+author: 'Happy Endpoint Team'
+tags: ['scraping', 'legal', 'compliance', 'propertyfinder']
+---
+
+"Can I scrape [platform] legally?" is one of the most-asked questions in the data-products space. The honest answer: it depends on your jurisdiction, your use case, and what the platform's terms say. Here's what we've learned operating at scale.
+
+## The legal landscape, briefly
+
+In many jurisdictions, collecting **publicly available** data is generally permissible, subject to platform terms of service. Landmark cases (hiQ v. LinkedIn in the US) established that public data isn't subject to the Computer Fraud and Abuse Act, though the legal picture continues to evolve and varies significantly by country.
+
+The key concept: **publicly available** means you can view the data without logging in, without bypassing a paywall, and without circumventing technical access controls.
+
+Everything beyond that — gated content, personal data, walled-garden APIs — requires a different legal posture and usually contract negotiation with the platform.
+
+## What this means for PropertyFinder data
+
+PropertyFinder listings are public. Anyone can visit the site without authentication, browse listings, see photos, read agent details. That's the data we serve via <a href="/library/propertyfinder-api">the PropertyFinder API</a> and <a href="/datasets/propertyfinder-transactions-data">the transactions dataset</a>.
+
+We don't scrape authenticated sections, private agent dashboards, or unposted listings.
+
+## Scaling collection without building scrapers
+
+If you're tempted to roll your own scraping infrastructure, the operational overhead is:
+
+- **Browser automation** (Playwright, Puppeteer) to handle JavaScript-rendered pages
+- **Proxy rotation** to avoid IP bans
+- **CAPTCHA handling** when anti-bot measures trigger
+- **Parsing resilience** when the source HTML changes
+- **Rate limiting** to be polite and avoid detection
+- **Storage, queues, dedup** for the pipeline itself
+
+We've built all of that. That's what an API subscription gets you — someone else's headache.
+
+For an in-house team to match our collection freshness on PropertyFinder alone, you're looking at ~2 engineers full-time on pipelines that are adjacent to, not part of, your actual product.
+
+## Compliance practices we follow
+
+- **Respect `robots.txt`** where it applies.
+- **Rate-limit our collection** well below the platform's apparent tolerance.
+- **Don't store excessive personal data.** Agent contact details on public listings are the source platform's choice to publish; we store what's there but don't enrich with external lookups.
+- **Allow deletion requests.** If a listing is removed from the source or an individual asks us to remove their info, we do.
+- **No reselling raw data as a competing product.** You can use our data internally or in products you ship; you can't rebundle it as a directly competing API. See our <a href="/terms">terms</a>.
+
+## What you should do
+
+If you're building on top of PropertyFinder data:
+
+1. **Check your jurisdiction.** Data law varies significantly. Consult local counsel for high-stakes use cases.
+2. **Read the PropertyFinder ToS.** If you're hitting their API or scraping their site directly, you're a party to those terms. If you're using our API, your contract is with RapidAPI and us.
+3. **Design for provenance.** Keep the source and collection date with each record. Audits are easier that way.
+4. **Handle deletion requests.** Build the admin flow to remove records from your system on demand, not as an afterthought.
+
+## The easy path
+
+Skip the scraper. Subscribe on RapidAPI:
+- <a href="/library/propertyfinder-api">PropertyFinder API</a> for live data
+- <a href="/datasets/propertyfinder-transactions-data">Transactions dataset</a> for analytics
+
+Or start with <a href="/free-datasets">a free sample</a> to see what you'd be working with.
+
+<strong>Disclaimer:</strong> This post is general information, not legal advice. Data-scraping law is nuanced and jurisdiction-specific — always consult qualified counsel for production use cases.

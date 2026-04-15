@@ -1,0 +1,68 @@
+---
+title: 'Datasets vs live APIs: which one do you need?'
+description: 'Bulk snapshots and live request-time data solve different problems. A decision framework for picking the right one — or both.'
+publishedAt: 2026-02-21
+author: 'Happy Endpoint Team'
+tags: ['datasets', 'apis', 'architecture']
+featured: true
+---
+
+"We need data from [platform]" is a sentence that sends you down two very different paths depending on *what you're doing with the data*. Here's a short framework for deciding.
+
+## The core question: is the data you need a point-in-time or a stream?
+
+**Point-in-time** = a snapshot. You want every row, once. You're doing analysis, training a model, backfilling a database, or producing a report.
+
+**Stream** = live. You want fresh data on demand. You're powering a search UI, an alerting service, or a product that reflects the source platform in near-real-time.
+
+Point-in-time = dataset. Stream = API.
+
+## When a dataset wins
+
+- **Research and analytics.** "What's the average price per square foot in Dubai Marina over the last year?" You want historical density that no API rate limit lets you pull efficiently.
+- **AI / ML training.** Models need volume. Datasets give you millions of rows in a single file.
+- **Internal dashboards.** Refresh weekly, show aggregates. You don't need per-user freshness.
+- **Bulk enrichment.** You have a list of 500,000 records to enrich. An API at 10 req/sec would take 14 hours; a dataset join is 30 seconds.
+
+## When an API wins
+
+- **Customer-facing search.** Your user searched "2-bedroom Marina under 2M AED" — they expect live inventory. The listing that was available last month doesn't count.
+- **Alerting.** A new listing appeared in the last 15 minutes; your user needs to know.
+- **Price tracking.** You track current prices; historical is nice-to-have.
+- **On-demand lookups.** You need one record at a time, triggered by user action.
+
+## When you need both
+
+This is common and often missed. Pattern: a dataset for the cold path (analytics, ML, bulk), an API for the hot path (live product).
+
+Example — a real-estate search product with market-trend insights:
+
+- **API**: powers the live search. <a href="/library/propertyfinder-api">PropertyFinder API</a> returns current listings.
+- **Dataset**: powers the "market trends" tab. <a href="/datasets/propertyfinder-transactions-data">PropertyFinder Transactions Dataset</a> has the full history.
+
+Same platform, two products, two integration patterns, one coherent customer experience.
+
+## Cost dynamics
+
+Datasets have fixed up-front pricing — buy once, use indefinitely (within licence terms).
+
+APIs scale with usage — more users, more requests, more cost. But you're paying only for what you consume, and freshness is built in.
+
+For a dataset-heavy product (analytics, BI), datasets are almost always cheaper. For an API-heavy product (live consumer app), APIs are almost always cheaper. The hybrid approach is cheapest when you can cleanly separate cold and hot paths.
+
+## How to decide in 90 seconds
+
+Ask:
+1. Does my product break if the data is 24 hours old? → **API**
+2. Will I re-query the same data repeatedly? → **Dataset**
+3. Is this for analysis or training? → **Dataset**
+4. Is this for a live user experience? → **API**
+5. Both cold-path analytics AND hot-path UX? → **Both**
+
+## Where to start
+
+- <a href="/library">Browse APIs</a>
+- <a href="/datasets">Browse datasets</a>
+- <a href="/free-datasets">Download a free sample</a> before committing to either
+
+Still unsure? <a href="/contact">Tell us what you're building</a> — we'll point you at the right shape.

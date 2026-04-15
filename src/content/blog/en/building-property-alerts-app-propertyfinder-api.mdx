@@ -1,0 +1,95 @@
+---
+title: 'Building a property-alerts app with the PropertyFinder API'
+description: 'End-to-end walkthrough of a simple property-alerts app — how to poll the PropertyFinder API, deduplicate results, and notify users when new listings appear.'
+publishedAt: 2026-03-24
+author: 'Happy Endpoint Team'
+tags: ['tutorial', 'propertyfinder', 'real-estate', 'alerts']
+---
+
+This post walks through a small but production-shaped app: a service that lets users subscribe to property-search criteria and notifies them when new listings match. We'll use <a href="/library/propertyfinder-api">the PropertyFinder API</a>, but the pattern generalises.
+
+## The shape of the problem
+
+Users save search criteria. Every few minutes, our service polls the API for each search. New listings — ones we haven't seen before — trigger notifications. Old listings (price-change updates excluded) don't.
+
+## Architecture in one sentence
+
+A cron job per search, each poll dedupes against a seen-listings set, each new listing fires an outbox event. Keep state simple: one Redis key per search holding the set of seen listing IDs.
+
+## Polling loop
+
+```js
+async function poll(search) {
+  const results = await fetchPropertyFinder(search.criteria);
+  const seen = await redis.sMembers(`alerts:${search.id}:seen`);
+  const seenSet = new Set(seen);
+
+  const fresh = results.listings.filter(l => !seenSet.has(l.id));
+  if (fresh.length === 0) return;
+
+  await redis.sAdd(`alerts:${search.id}:seen`, fresh.map(l => l.id));
+  await publishAlertEvents(search.userId, fresh);
+}
+```
+
+Three notes:
+- Use the listing **ID**, not a URL hash — IDs are stable.
+- Cap the `seen` set. Evict IDs for listings not returned in the last N polls so the set doesn't grow unbounded.
+- `publishAlertEvents` puts one event per new listing on your outbox. Don't send notifications synchronously from the poll loop.
+
+## Fetching PropertyFinder
+
+Using the API from <a href="/library/propertyfinder-api">the library</a>:
+
+```js
+async function fetchPropertyFinder(criteria) {
+  const params = new URLSearchParams({
+    city: criteria.city,
+    min_price: criteria.minPrice,
+    max_price: criteria.maxPrice,
+    bedrooms: criteria.bedrooms,
+    per_page: '50',
+  });
+
+  const res = await fetch(`https://propertyfinder.p.rapidapi.com/search?${params}`, {
+    headers: {
+      'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+      'X-RapidAPI-Host': 'propertyfinder.p.rapidapi.com',
+    },
+  });
+
+  if (!res.ok) throw new Error(`PF returned ${res.status}`);
+  return res.json();
+}
+```
+
+Respect the rate limit on your plan — batch polls with a leaky bucket if you have many users.
+
+## Cold-start: the first poll
+
+The first time a user saves a search, the poll returns dozens of listings that are "new" to us but probably not new in the world. Two options:
+
+1. **Mark them all as seen, don't notify.** Users see alerts only for listings that appear AFTER they subscribed. Clean but a little boring for the first notification.
+2. **Show them as "initial matches," notify once with a summary.** Warmer onboarding.
+
+We default to option 2 with a capped summary notification ("23 listings currently match — here are the 5 most recent").
+
+## Deduplication across sources (optional)
+
+If you also want to alert on Bayut, you can query <a href="/platforms/bayut">Bayut</a> in parallel. Dedupe by a canonical key (address + bedrooms + approximate area) — different platforms use different IDs, but the same listing shares canonical attributes.
+
+Or — cheaper — use <a href="/platforms/uae-realestate">the UAE aggregator</a> which pre-dedupes across sources.
+
+## Testing without burning rate limits
+
+Before turning on the real poll, run your whole pipeline against <a href="/free-datasets">a free sample</a>. The schema matches the live API, so your dedup logic, event publisher, and notification UI all work end-to-end without making a single API call.
+
+## What not to do
+
+- Don't poll every search on a uniform 60-second schedule. Space them out (round-robin) to stay inside rate limits.
+- Don't notify on every field change — only "new listing appeared" and "price dropped >X%" are interesting.
+- Don't store full listing JSON indefinitely. IDs + timestamps + minimal metadata (price, URL) are enough.
+
+## Next steps
+
+<a href="/library/propertyfinder-api">View the PropertyFinder API</a> to subscribe, or read about <a href="/library/uae-realestate-api">the UAE aggregator API</a> if you want cross-platform coverage from the start.

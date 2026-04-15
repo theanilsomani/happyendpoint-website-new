@@ -1,0 +1,81 @@
+---
+title: 'UAE real estate data sources compared: PropertyFinder, Bayut, and aggregators'
+description: 'Which UAE property data source fits your use case? A side-by-side look at PropertyFinder, Bayut, and the aggregator API that combines them.'
+publishedAt: 2026-03-10
+author: 'Happy Endpoint Team'
+tags: ['real-estate', 'uae', 'propertyfinder', 'bayut', 'comparison']
+---
+
+If you're building anything touching UAE real estate — property search, market analytics, investment research, alerting — you're picking between three practical sources: **PropertyFinder**, **Bayut**, and an **aggregator** that combines both.
+
+Happy Endpoint offers APIs and datasets for all three. Here's how to pick.
+
+## Coverage: what each source actually has
+
+### PropertyFinder
+
+- Deep coverage in Dubai and Abu Dhabi.
+- Best-in-class detail for premium listings (luxury apartments, villas).
+- Transaction history available in dataset form.
+- Source: <a href="/platforms/propertyfinder">PropertyFinder platform page</a>
+
+### Bayut
+
+- Strong presence across UAE emirates (not just Dubai / Abu Dhabi).
+- Bigger volume of mid-market and affordable listings.
+- Historical data available via our dataset, less deep than PropertyFinder's transactions.
+- Source: <a href="/platforms/bayut">Bayut platform page</a>
+
+### UAE Real Estate aggregator
+
+- Combines PropertyFinder + Bayut + adjacent sources into a single API.
+- De-duplicated across platforms — the same property listed on both is returned once.
+- Best if you want to avoid integrating two separate APIs.
+- Source: <a href="/platforms/uae-realestate">UAE Real Estate platform page</a>
+
+## Data structure: what you get per listing
+
+Fields are similar across sources (price, bedrooms, area, agent, photos, location). Differences:
+
+- **Geocoding**: all three include lat/lng. PropertyFinder's is most precise.
+- **Agent metadata**: Bayut exposes agent response rate and active-listings count — useful for "trusted agent" features.
+- **Historical prices**: PropertyFinder dataset has multi-year price history; Bayut dataset is shorter.
+- **Photos**: all include galleries; Bayut returns the most per listing on average.
+
+## When to pick which
+
+**Pick PropertyFinder** if you're:
+- Building a luxury / Dubai-focused product
+- Doing analytics on price trends (the transactions dataset is the strongest signal)
+- Powering a high-end search experience
+
+**Pick Bayut** if you're:
+- Targeting mid-market / mass affluent users
+- Covering emirates beyond Dubai / Abu Dhabi
+- Building for price-conscious segments
+
+**Pick the aggregator** if you're:
+- Building a meta-search (like a price-comparison site)
+- Running an alerting service that should fire regardless of which platform the listing appears on
+- Not sure and want the broadest coverage
+
+## Pricing pattern
+
+All three APIs use RapidAPI's per-request pricing with free tiers. The aggregator is slightly more expensive per request than either PF or Bayut alone — you're paying for the dedup + merge compute. If you're serving heavy traffic and only need one source, direct is cheaper.
+
+Datasets are priced per snapshot. The <a href="/datasets/propertyfinder-transactions-data">PropertyFinder Transactions Dataset</a> is typically the first dataset UAE teams buy because of its analytical depth.
+
+## Evaluate before you commit
+
+Each platform has a <a href="/free-datasets">free sample</a> available. Schemas match the paid APIs exactly, so your integration code works against the sample and the live API identically. The usual evaluation flow:
+
+1. Download the free sample for your top pick.
+2. Write your parser against the sample.
+3. Verify the shape is what you expected.
+4. Swap the sample read for a live API call.
+
+That's a half-day evaluation for a decision that drives months of product work.
+
+## Next step
+
+<a href="/categories/real-estate">Browse all real-estate sources</a> or <a href="/contact">tell us about your use case</a> — we're happy to point you at the sharpest fit.
