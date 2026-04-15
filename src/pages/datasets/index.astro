@@ -12,10 +12,6 @@ const categories = await getAllCategories();
 
 const platformToCategory = new Map(platforms.map(p => [p.id, p.data.category]));
 
-const tagSet = new Set<string>();
-datasets.forEach(d => d.data.tags.forEach(t => tagSet.add(t)));
-const allTags = Array.from(tagSet).sort();
-
 const facets = [
   {
     key: 'platform',
@@ -28,11 +24,6 @@ const facets = [
     key: 'category',
     label: 'Category',
     options: categories.map(c => ({ value: c.id, label: c.data.name })),
-  },
-  {
-    key: 'tag',
-    label: 'Tag',
-    options: allTags.map(t => ({ value: t, label: t })),
   },
 ];
 ---

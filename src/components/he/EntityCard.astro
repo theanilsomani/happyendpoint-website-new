@@ -13,12 +13,13 @@ export interface Props {
   description: string;
   metrics?: Metric[];
   tags?: string[];
+  showTags?: boolean;  // default false — opt-in to render tag chips
   icon?: string;      // iconify name like "lucide:box" or "simple-icons:rapidapi"
   badge?: string;     // "NEW", "FREE", etc.
   logoUrl?: string;   // optional raster/svg URL for platform logos
 }
 
-const { variant, title, href, description, metrics = [], tags = [], icon, badge, logoUrl } = Astro.props;
+const { variant, title, href, description, metrics = [], tags = [], showTags = false, icon, badge, logoUrl } = Astro.props;
 
 const variantIcon: Record<Props['variant'], string> = {
   api: 'lucide:webhook',
@@ -70,7 +71,7 @@ const iconName = icon ?? variantIcon[variant];
     </dl>
   )}
 
-  {tags.length > 0 && (
+  {showTags && tags.length > 0 && (
     <div class="mt-auto flex flex-wrap gap-1">
       {tags.slice(0, 4).map(t => (
         <span class="rounded-full border border-border bg-background-secondary px-2 py-0.5 text-xs text-foreground-muted">

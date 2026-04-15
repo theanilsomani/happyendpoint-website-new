@@ -13,11 +13,6 @@ const categories = await getAllCategories();
 // Look-up: platformId -> categorySlug (via platform)
 const platformToCategory = new Map(platforms.map(p => [p.id, p.data.category]));
 
-// Collect all unique tags across APIs
-const tagSet = new Set<string>();
-apis.forEach(a => a.data.tags.forEach(t => tagSet.add(t)));
-const allTags = Array.from(tagSet).sort();
-
 const facets = [
   {
     key: 'platform',
@@ -30,11 +25,6 @@ const facets = [
     key: 'category',
     label: 'Category',
     options: categories.map(c => ({ value: c.id, label: c.data.name })),
-  },
-  {
-    key: 'tag',
-    label: 'Tag',
-    options: allTags.map(t => ({ value: t, label: t })),
   },
 ];
 ---
