@@ -1,0 +1,108 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import Breadcrumbs from '@/components/he/Breadcrumbs.astro';
+import FreeSampleBlock from '@/components/he/FreeSampleBlock.astro';
+import FAQSection from '@/components/he/FAQSection.astro';
+import FilterPanel from '@/components/he/FilterPanel.tsx';
+import { getAllFreeSamples, getAllPublishedPlatforms, getAllCategories } from '@/lib/content-queries';
+
+const datasets = await getAllFreeSamples();
+datasets.sort((a, b) => a.data.name.localeCompare(b.data.name));
+
+const platforms = await getAllPublishedPlatforms();
+const categories = await getAllCategories();
+const platformToCategory = new Map(platforms.map(p => [p.id, p.data.category]));
+const platformById = new Map(platforms.map(p => [p.id, p.data.name]));
+
+const facets = [
+  {
+    key: 'platform',
+    label: 'Platform',
+    options: platforms
+      .filter(p => datasets.some(d => d.data.platform === p.id))
+      .map(p => ({ value: p.id, label: p.data.name })),
+  },
+  {
+    key: 'category',
+    label: 'Category',
+    options: categories.map(c => ({ value: c.id, label: c.data.name })),
+  },
+];
+
+const faqs = [
+  {
+    question: 'What do I get with a free sample?',
+    answer: 'A representative slice of the full dataset, with the exact same schema. Perfect for testing integrations and evaluating data quality before you subscribe.',
+  },
+  {
+    question: 'Do I need an account?',
+    answer: 'No account or credit card required. Click download and you\'re done.',
+  },
+  {
+    question: 'Can I use samples commercially?',
+    answer: 'Samples are for evaluation. For production use, subscribe to the full dataset or the corresponding API on RapidAPI.',
+  },
+  {
+    question: 'Can I request a custom sample?',
+    answer: 'Yes — <a href="/contact" class="text-brand-600 underline">contact us</a> with your use case and we\'ll put together a focused sample.',
+  },
+];
+---
+
+<MarketingLayout
+  title="Free data samples"
+  description="Download free samples of our APIs and datasets. No account, no credit card — just data you can start using today."
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Datasets' }]} />
+
+  <section class="container py-10 md:py-14">
+    <header class="max-w-2xl">
+      <h1 class="text-3xl font-bold text-foreground md:text-4xl">Free data samples</h1>
+      <p class="mt-3 text-lg text-foreground-secondary">
+        Try before you buy. Every sample has the same schema as the full dataset — test your integration in minutes.
+      </p>
+    </header>
+
+    <div class="mt-10 grid gap-8 md:grid-cols-[260px_1fr]">
+      <FilterPanel client:load facets={facets} heading="Filter samples" />
+
+      <div data-filter-target>
+        <div class="grid gap-4 md:grid-cols-2">
+          {datasets.map(d => {
+            const sample = d.data.freeSample ?? {
+              name: d.data.name,
+              recordCount: d.data.recordCount,
+              format: d.data.format,
+              downloadUrl: undefined as string | undefined,
+            };
+            const parentSlug = d.id;
+            const platformName = platformById.get(d.data.platform) ?? d.data.platform;
+            const category = platformToCategory.get(d.data.platform) ?? '';
+            const isStandaloneFree = d.data.price.toLowerCase() === 'free';
+            return (
+              <div
+                data-entity-card
+                data-variant="free-sample"
+                data-platform={d.data.platform}
+                data-category={category}
+                data-tags={d.data.tags.join(',')}
+                data-search={`${sample.name} ${d.data.description} ${platformName}`.toLowerCase()}
+              >
+                <FreeSampleBlock
+                  heading={`${platformName} — free sample`}
+                  sampleName={sample.name}
+                  recordCount={sample.recordCount}
+                  format={sample.format}
+                  downloadUrl={sample.downloadUrl}
+                  parentHref={isStandaloneFree ? undefined : `/datasets/${parentSlug}`}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} />
+</MarketingLayout>
