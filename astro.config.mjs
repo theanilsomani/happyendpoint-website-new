@@ -4,10 +4,8 @@ import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
-import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
-  adapter: cloudflare({ imageService: 'passthrough' }),
   site: process.env.SITE_URL || 'https://happyendpoint.com',
   output: 'static',
 
