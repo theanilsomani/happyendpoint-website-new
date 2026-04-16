@@ -28,7 +28,7 @@ export default defineConfig({
     react(),
     mdx(),
     sitemap({
-      filter: (page) => !page.includes('/search') && !page.includes('/components'),
+      filter: (page) => !page.includes('/search') && !page.includes('/components') && !page.includes('/projects'),
     }),
     icon(),
   ],
