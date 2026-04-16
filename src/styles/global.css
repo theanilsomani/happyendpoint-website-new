@@ -656,6 +656,19 @@
       animation: none;
     }
   }
+
+  /* Skip entrance animations on back/forward navigation so page
+     height is stable for instant scroll restoration */
+  .no-entrance-animations .animate-fade-in,
+  .no-entrance-animations .animate-slide-up,
+  .no-entrance-animations .animate-slide-down,
+  .no-entrance-animations .animate-hero-slide-up,
+  .no-entrance-animations [data-reveal] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 /* -------------------------------------------------------------------------

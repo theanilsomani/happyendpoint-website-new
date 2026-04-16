@@ -140,6 +140,30 @@ if (includeProfessionalServiceSchema) {
 
       })();
     </script>
+
+    <!-- Scroll restoration: ensure back/forward navigation restores position instantly -->
+    <script is:inline>
+      (function () {
+        // Force browser to handle scroll restoration
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'auto';
+        }
+
+        // On back/forward navigation (persisted pages from bfcache),
+        // skip entrance animations so page height is stable for scroll restore
+        window.addEventListener('pageshow', function (e) {
+          if (e.persisted) {
+            document.documentElement.classList.add('no-entrance-animations');
+          }
+        });
+
+        // Also detect back-navigation via performance API (when bfcache misses)
+        var navType = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+        if (navType && navType.type === 'back_forward') {
+          document.documentElement.classList.add('no-entrance-animations');
+        }
+      })();
+    </script>
   </head>
 
   <body class="min-h-screen bg-background text-foreground antialiased">
