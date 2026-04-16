@@ -538,8 +538,6 @@ const buttonId = `${menuId}-button`;
   }
 
   initMobileMenu();
-  document.addEventListener('astro:page-load', initMobileMenu);
-  document.addEventListener('astro:after-swap', initMobileMenu);
 </script>
 
 <script>
@@ -592,8 +590,6 @@ const buttonId = `${menuId}-button`;
   }
 
   initScrollWatcher();
-  document.addEventListener('astro:page-load', initScrollWatcher);
-  document.addEventListener('astro:after-swap', initScrollWatcher);
 </script>
 
 <script>
@@ -625,8 +621,6 @@ const buttonId = `${menuId}-button`;
   }
 
   initScrollProgress();
-  document.addEventListener('astro:page-load', initScrollProgress);
-  document.addEventListener('astro:after-swap', initScrollProgress);
 </script>
 
 <style is:global>

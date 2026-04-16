@@ -4,7 +4,6 @@ import SEO from '@/components/seo/SEO.astro';
 import JsonLd from '@/components/seo/JsonLd.astro';
 import Analytics from '@/components/layout/Analytics.astro';
 import ConsentBanner from '@/components/ui/overlay/ConsentBanner';
-import { ClientRouter } from 'astro:transitions';
 import { createWebsiteSchema, createOrganizationSchema, createPersonSchema, createProfessionalServiceSchema } from '@/lib/schema';
 import type { WebSite, Organization, Person, WithContext } from 'schema-dts';
 import siteConfig from '@/config/site.config';
@@ -85,9 +84,6 @@ if (includeProfessionalServiceSchema) {
     <!-- Analytics (loads if PUBLIC_GA_MEASUREMENT_ID or PUBLIC_GTM_ID is set) -->
     <Analytics />
 
-    <!-- View Transitions (client-side routing with animated page transitions) -->
-    <ClientRouter />
-
     <!-- Dynamic favicon: syncs letter (first letter of site name) and color (brand-500) with active theme -->
     <script define:vars={{ _faviconLetter: siteConfig.name.charAt(0).toUpperCase() }}>
       (function () {
@@ -126,8 +122,6 @@ if (includeProfessionalServiceSchema) {
             }
           }).observe(document.documentElement, { attributes: true });
 
-          // Re-run after Astro view transitions swap the head
-          document.addEventListener('astro:after-swap', updateFavicon);
         }
       })();
     </script>
@@ -144,29 +138,6 @@ if (includeProfessionalServiceSchema) {
           }
         } catch (_) { /* ignored */ }
 
-        if (!window.__themeListenersInit) {
-          window.__themeListenersInit = true;
-
-          document.addEventListener('astro:before-swap', function (e) {
-            try {
-              if (sessionStorage.getItem('theme') === 'light') {
-                e.newDocument.documentElement.classList.remove('dark');
-              } else {
-                e.newDocument.documentElement.classList.add('dark');
-              }
-            } catch (_) { /* ignored */ }
-          });
-
-          document.addEventListener('astro:after-swap', function () {
-            try {
-              if (sessionStorage.getItem('theme') === 'light') {
-                document.documentElement.classList.remove('dark');
-              } else {
-                document.documentElement.classList.add('dark');
-              }
-            } catch (_) { /* ignored */ }
-          });
-        }
       })();
     </script>
   </head>
@@ -226,8 +197,6 @@ if (includeProfessionalServiceSchema) {
         }
 
         initBackToTop();
-        document.addEventListener('astro:page-load', initBackToTop);
-        document.addEventListener('astro:after-swap', initBackToTop);
       })();
     </script>
 
@@ -254,7 +223,6 @@ if (includeProfessionalServiceSchema) {
           initReveal();
         }
 
-        document.addEventListener('astro:after-swap', initReveal);
       })();
     </script>
   </body>
