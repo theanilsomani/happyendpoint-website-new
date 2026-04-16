@@ -663,6 +663,9 @@
   .no-entrance-animations .animate-slide-up,
   .no-entrance-animations .animate-slide-down,
   .no-entrance-animations .animate-hero-slide-up,
+  .no-entrance-animations .animate-sheet-up,
+  .no-entrance-animations .animate-dropdown-in,
+  .no-entrance-animations .animate-menu-down,
   .no-entrance-animations [data-reveal] {
     animation: none !important;
     opacity: 1 !important;
