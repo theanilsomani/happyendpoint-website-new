@@ -1,0 +1,1056 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Tesco Data API",
+    "version": "1.0",
+    "x-category": "Data",
+    "description": "# 🛍️ Tesco Data API – Real-Time Grocery Data for Tesco UK & Ireland\n\nUnlock real-time access to **Tesco UK & Ireland grocery data** with a powerful, developer-friendly API by HappyEndpoint. Built for speed and scalability, this API enables you to extract structured product data, pricing, promotions, and category insights — perfect for modern **retail, grocery, and eCommerce applications**.\n\nWhether you're building a **price comparison tool**, **shopping assistant**, or **market intelligence platform**, this API gives you seamless access to Tesco’s live product catalog.\n\n---\n\n## 📅 Last Updated\n\n**March 23, 2026**\n\n## ⚡ Highlights\n\n* 🚀 No proxies required\n* 📦 Access to **300,000+ SKUs**\n* 🔄 Real-time Tesco product data\n* ⚡ Fast & reliable API responses\n* 🌍 Supports **Tesco UK & Tesco Ireland**\n\n---\n\n## 🌐 Useful Links\n\n* 🌍 **Official Website:** [https://happyendpoint.com/](https://happyendpoint.com/)\n* 🛍️ **Tesco API:** [https://happyendpoint.com/apis/tesco](https://happyendpoint.com/apis/tesco)\n* 📘 **Documentation:** [https://happyendpoint.com/apis/tesco/docs/](https://happyendpoint.com/apis/tesco/docs/)\n* 🐦 **Twitter:** [https://x.com/happyendpointhq](https://x.com/happyendpointhq)\n* 📩 **Contact Email:** [happyendpointhq@gmail.com](mailto:happyendpointhq@gmail.com)\n\n---\n📩 **Need custom scraping or bulk data?**\nWe provide tailored scraping solutions. Reach out anytime:\n👉 **[happyendpointhq@gmail.com](mailto:happyendpointhq@gmail.com)**\n\n---\n\n## 🔧 Available Endpoints\n\n### 🔎 Product Search (UK)\n\n* **`GET /product-search-by-keyword`**\n  Search Tesco UK products using keywords like `\"milk\"`, `\"bread\"`, `\"snacks\"`, `\"electronics\"`.\n\n---\n\n### 📦 Product Details\n\n* **`GET /product-details`** (UK)\n  Retrieve detailed product data using **product ID or URL**.\n\n* **`GET /ireland-product-details`** (Ireland)\n  Fetch detailed Tesco Ireland product info via **ID or URL**.\n\n---\n\n### 🗂️ Category Browsing (Paginated)\n\n* **`GET /category-page`** (UK)\n  Access paginated product listings using **category ID**.\n\n* **`GET /ireland-category-page`** (Ireland)\n  Browse Tesco Ireland categories with full pagination support.\n\n---\n\n### 🧭 Category Management\n\n* **`GET /get-category-id-for-uk`**\n  Retrieve full category taxonomy for Tesco UK.\n\n* **`GET /get-category-ids-for-ireland`**\n  Get structured category hierarchy for Tesco Ireland.\n\n---\n\n## 📊 Data You Can Access\n\n* 🏷️ Product names & descriptions\n* 💷 Pricing & promotional offers\n* 🖼️ Product images\n* 📦 Availability & stock status\n* 🥗 Nutritional information\n* 🗂️ Category hierarchy\n* 🔍 Search results & filters\n\n---\n\n## 🔍 Sample Use Cases\n\n* 📊 Retail analytics & competitive intelligence\n* 📱 Grocery comparison & price alert apps\n* 🤖 AI chatbots & smart shopping assistants\n* 🧠 Consumer behavior & demand analysis\n* 🛒 eCommerce aggregation platforms\n* 📦 Inventory & catalog automation systems\n\n---\n\n## 💡 Why Use This API?\n\n* 🔄 **Live data directly from Tesco UK & Ireland**\n* ⚡ **Fast, low-latency responses**\n* 🧩 **Simple REST API integration**\n* 📚 **Complete category taxonomy support**\n* 🌍 **Multi-region grocery data coverage**\n* 🔒 **Reliable infrastructure with stable endpoints**\n\n---\n\n## 🚀 Get Started\n\nStart building powerful grocery and retail applications today with the **Tesco Data API** by HappyEndpoint.\n\n🛍️ Build smarter grocery tools.\n📊 Unlock real-time retail insights.\n⚡ Scale your applications effortlessly.\n\n---\n\n## 🔎 SEO Keywords\n\nTesco API, Tesco UK API, Tesco Ireland API, grocery API, supermarket API, retail data API, grocery data API, Tesco product API, Tesco scraper, Tesco data scraping API, real-time grocery API, grocery price API, supermarket price tracker API, Tesco price tracking API, food product API, nutrition data API, grocery comparison API, eCommerce grocery API, retail analytics API, product catalog API, inventory tracking API, UK supermarket API, Ireland supermarket API, grocery dataset API, food price monitoring API, Tesco offers API, Tesco deals API, shopping API, RapidAPI Tesco API, HappyEndpoint API, grocery intelligence API, supermarket data extraction",
+    "x-public": true,
+    "x-thumbnail": "https://rapidapi-prod-apis.s3.amazonaws.com/4f4b110d-fc24-4070-9562-d544fbdee641.jpg",
+    "x-version-lifecycle": "active",
+    "termsOfService": "The best unofficial real time Tesco UK & Ireland Data API",
+    "x-website": "https://happyendpoint.com",
+    "x-twitter": "https://x.com/happyendpointhq",
+    "x-linkedin": "https://www.linkedin.com/in/happyendpoint/",
+    "x-github": "https://github.com/happyendpointhq",
+    "contact": {
+      "name": "Happy Endpoint",
+      "email": "happyendpointhq@gmail.com",
+      "url": "https://happyendpoint.com/"
+    },
+    "x-logo": {
+      "url": "https://rapidapi-prod-apis.s3.amazonaws.com/4fbbbe2c-9928-44b9-9f44-7e457eebaf5f.jpg",
+      "altText": "Fotocasa API",
+      "href": "https://happyendpoint.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://tesco-data-api.p.rapidapi.com",
+      "description": "Base URL"
+    }
+  ],
+  "security": [{ "RapidApiKey": [] }],
+  "components": {
+    "securitySchemes": {
+      "RapidApiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-RapidAPI-Key"
+      }
+    },
+    "parameters": {
+      "RapidApiHostHeader": {
+        "name": "X-RapidAPI-Host",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "default": "tesco-data-api.p.rapidapi.com"
+        }
+      }
+    },
+    "schemas": {
+      "CommonHealthCheckResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "required": ["success"]
+      },
+      "PageInformation": {
+        "type": "object",
+        "properties": {
+          "totalResults": {
+            "type": "integer",
+            "example": 14
+          },
+          "currentPage": {
+            "type": "integer",
+            "example": 1
+          },
+          "resultsOnPage": {
+            "type": "integer",
+            "example": 14
+          },
+          "resultsPerPage": {
+            "type": "integer",
+            "example": 24
+          }
+        },
+        "required": [
+          "totalResults",
+          "currentPage",
+          "resultsOnPage",
+          "resultsPerPage"
+        ]
+      },
+      "PopularFilter": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The facet ID for the filter",
+            "example": "b;QmFrZXJ5JTdDQnJlYWQlN0NTZWVkZWQlMjBCcmVhZA=="
+          },
+          "name": {
+            "type": "string",
+            "description": "The display name of the filter",
+            "example": "Seeded Bread"
+          }
+        },
+        "required": ["id", "name"]
+      },
+      "ProductPrice": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "price": {
+            "type": "number",
+            "example": 5
+          },
+          "unitPrice": {
+            "type": "number",
+            "example": 5.56
+          },
+          "unitOfMeasure": {
+            "type": "string",
+            "example": "kg"
+          }
+        },
+        "required": ["price", "unitPrice", "unitOfMeasure"]
+      },
+      "ProductPromotion": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "example": "Any 2 for £8 Clubcard Price - Selected Tesco Bbq Meat & Rtc Products"
+          },
+          "offerType": {
+            "type": "string",
+            "example": "CLUBCARD_PRICING"
+          },
+          "startDate": {
+            "type": "string",
+            "example": "2025-03-24T00:00:00Z"
+          },
+          "endDate": {
+            "type": "string",
+            "example": "2025-09-21T23:00:00Z"
+          }
+        },
+        "required": ["description", "offerType", "startDate", "endDate"]
+      },
+      "ProductReviews": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "averageRating": {
+            "type": "number",
+            "nullable": true,
+            "example": 4.4
+          },
+          "reviewCount": {
+            "type": "number",
+            "example": 9
+          }
+        },
+        "required": ["averageRating", "reviewCount"]
+      },
+      "CategoryBreadcrumb": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "b;RnJlc2glMjBGb29k"
+          },
+          "name": {
+            "type": "string",
+            "example": "Fresh Food"
+          },
+          "level": {
+            "type": "integer",
+            "description": "Hierarchy level (0=SuperDept, 1=Dept, etc.)",
+            "example": 0
+          }
+        },
+        "required": ["id", "name", "level"]
+      },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "320816358"
+          },
+          "tpnb": {
+            "type": "string",
+            "description": "Tesco Product Number Base",
+            "example": "96234274"
+          },
+          "gtin": {
+            "type": "string",
+            "nullable": true,
+            "description": "Global Trade Item Number (Barcode)",
+            "example": "05063445800654"
+          },
+          "title": {
+            "type": "string",
+            "example": "Tesco Fire Pit Sweet and Smoky BBQ Chicken Drumsticks 900g"
+          },
+          "brand": {
+            "type": "string",
+            "nullable": true,
+            "example": "FIRE PIT"
+          },
+          "isForSale": {
+            "type": "boolean",
+            "example": true
+          },
+          "imageUrl": {
+            "type": "string",
+            "format": "uri",
+            "example": "https://digitalcontent.api.tesco.com/v2/media/ghs/d364d1d7-e6b1-4159-b48d-786904623902/901272b4-2839-476a-a023-332ce2565fde.jpeg?h=225&w=225"
+          },
+          "price": {
+            "$ref": "#/components/schemas/ProductPrice"
+          },
+          "promotions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductPromotion"
+            }
+          },
+          "reviews": {
+            "$ref": "#/components/schemas/ProductReviews"
+          },
+          "categoryBreadcrumbs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CategoryBreadcrumb"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "tpnb",
+          "gtin",
+          "title",
+          "brand",
+          "isForSale",
+          "imageUrl",
+          "price",
+          "promotions",
+          "reviews",
+          "categoryBreadcrumbs"
+        ]
+      },
+      "ProductSearchData": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "example": "bread"
+          },
+          "pageInformation": {
+            "$ref": "#/components/schemas/PageInformation"
+          },
+          "popularFilters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PopularFilter"
+            },
+            "description": "Suggested filters related to the search query"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Product"
+            }
+          }
+        },
+        "required": ["query", "pageInformation", "popularFilters", "products"]
+      },
+      "TescoProductSearchResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductSearchData"
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "ValidationErrorResponseSchema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "example": "Invalid request: Query is required"
+          },
+          "error": {
+            "type": "string",
+            "example": "VALIDATION_ERROR"
+          }
+        },
+        "required": ["success", "message", "error"]
+      },
+      "InternalErrorResponseSchema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "example": "Internal server error. Please try again later."
+          },
+          "error": {
+            "type": "string",
+            "example": "INTERNAL_ERROR"
+          }
+        },
+        "required": ["success", "message", "error"]
+      },
+      "TescoApiErrorResponseSchema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "example": "Tesco API is currently unavailable. Please try again later."
+          },
+          "error": {
+            "type": "string",
+            "example": "TESCO_API_ERROR"
+          }
+        },
+        "required": ["success", "message", "error"]
+      },
+      "ProductDetailsResponseSchema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "productId": {
+                "type": "string",
+                "description": "The extracted product ID",
+                "example": "330659955"
+              },
+              "results": {
+                "nullable": true,
+                "description": "Product details from Tesco"
+              }
+            },
+            "required": ["productId"],
+            "description": "Product details data from Tesco"
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "CategoryPageData": {
+        "type": "object",
+        "properties": {
+          "categoryId": {
+            "type": "string",
+            "example": "b;RnJlc2glMjBGb29k"
+          },
+          "pageNo": {
+            "type": "integer",
+            "example": 1
+          },
+          "pageInformation": {
+            "$ref": "#/components/schemas/PageInformation"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Product"
+            }
+          }
+        },
+        "required": ["categoryId", "pageNo", "pageInformation", "products"]
+      },
+      "TescoCategoryPageResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/CategoryPageData"
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "IrelandCategoryPageResponseSchema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "categoryId": {
+                "type": "string",
+                "description": "The category ID used",
+                "example": "b;RnJlc2glMjBGb29kJTdDQmFjayUyMHRvJTIwU2Nob29sJTIwTHVuY2hib3glN0NTYW5kd2ljaCUyMEZpbGxpbmdzJTIwJiUyMFNwcmVhZHM="
+              },
+              "pageNo": {
+                "type": "number",
+                "description": "The page number used",
+                "example": 1
+              },
+              "pageInformation": {
+                "nullable": true,
+                "description": "Page information including total count, page details"
+              },
+              "results": {
+                "nullable": true,
+                "description": "Product results from the category"
+              }
+            },
+            "required": ["categoryId", "pageNo"],
+            "description": "Category page data from Tesco Ireland"
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "IrelandProductDetailsResponseSchema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "productId": {
+                "type": "string",
+                "description": "The extracted product ID",
+                "example": "266719388"
+              },
+              "results": {
+                "nullable": true,
+                "description": "Product details from Tesco Ireland"
+              }
+            },
+            "required": ["productId"],
+            "description": "Product details data from Tesco Ireland"
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "CategoryItemSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Category ID/facet for API calls",
+            "example": "b;TWFya2V0cGxhY2UlN0NUb3AlMjBEZWFscyU3Q0dhcmRlbiUyMCYlMjBPdXRkb29y"
+          },
+          "name": {
+            "type": "string",
+            "description": "Category name",
+            "example": "Garden & Outdoor"
+          },
+          "label": {
+            "type": "string",
+            "description": "Category label type",
+            "example": "aisle"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "nullable": true
+            },
+            "description": "Subcategories (nested structure)"
+          }
+        },
+        "required": ["name", "label"]
+      },
+      "GetCategoryIdResponseSchema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "taxonomy": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CategoryItemSchema"
+                },
+                "description": "Hierarchical category structure with IDs for API calls",
+                "example": [
+                  {
+                    "name": "Marketplace",
+                    "label": "superDepartment",
+                    "children": [
+                      {
+                        "name": "Top Deals",
+                        "label": "department",
+                        "children": [
+                          {
+                            "id": "b;TWFya2V0cGxhY2UlN0NUb3AlMjBEZWFscyU3Q0dhcmRlbiUyMCYlMjBPdXRkb29y",
+                            "label": "aisle",
+                            "name": "Garden & Outdoor"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "required": ["taxonomy"],
+            "description": "Category taxonomy data from Tesco"
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "GetCategoryIdsForIrelandResponseSchema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "taxonomy": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CategoryItemSchema"
+                },
+                "description": "Hierarchical category structure with IDs for API calls",
+                "example": [
+                  {
+                    "name": "Groceries",
+                    "label": "superDepartment",
+                    "children": [
+                      {
+                        "name": "Fresh Food",
+                        "label": "department",
+                        "children": [
+                          {
+                            "id": "b;R3JvY2VyaWVzJTdDRnJlc2glMjBGb29kJTdDRnJ1aXQlMjAmJTIwVmVnZXRhYmxlcw==",
+                            "label": "aisle",
+                            "name": "Fruit & Vegetables"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "required": ["taxonomy"],
+            "description": "Category taxonomy data from Tesco Ireland"
+          }
+        },
+        "required": ["success", "data"]
+      }
+    }
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": ["System"],
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" }
+        ],
+        "summary": "Health check endpoint",
+        "description": "Returns the health status of the Semrush API service including system metrics and processing time",
+        "operationId": "/health",
+        "responses": {
+          "200": {
+            "description": "Health check",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonHealthCheckResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product-search-by-keyword": {
+      "get": {
+        "tags": ["Product Search"],
+        "summary": "Search products by keyword on Tesco UK",
+        "description": "Search for products on Tesco UK using keywords. Provide a search query to get product results including prices, availability, and product details.",
+        "operationId": "/product-search-by-keyword",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "description": "Search query for products (e.g., 'powerbank', 'milk', 'bread')",
+              "example": "bread"
+            },
+            "required": true,
+            "description": "Search query for products (e.g., 'powerbank', 'milk', 'bread')",
+            "name": "query",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with product search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TescoProductSearchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid query parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad gateway - Tesco API unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TescoApiErrorResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product-details": {
+      "get": {
+        "tags": ["Product Details"],
+        "summary": "Get product details from Tesco UK",
+        "description": "Retrieve detailed product information from Tesco UK. Provide a product ID or full product URL to get comprehensive product data including pricing, descriptions, and specifications.",
+        "operationId": "/product-details",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500,
+              "description": "- Product ID or full Tesco product URL (e.g., `330659955` or `https://www.tesco.com/groceries/en-GB/products/330659955`)\n- Get the product ID from `Product Search/product-search-by-keyword` endpoint\n- Get the Product ID `data.products[0].id`",
+              "example": "330659955"
+            },
+            "required": true,
+            "description": "- Product ID or full Tesco product URL (e.g., `330659955` or `https://www.tesco.com/groceries/en-GB/products/330659955`)\n- Get the product ID from `Product Search/product-search-by-keyword` endpoint\n- Get the Product ID `data.products[0].id`",
+            "name": "productId",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with product details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDetailsResponseSchema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid product ID parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad gateway - Tesco API unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TescoApiErrorResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/category-page": {
+      "get": {
+        "tags": ["Category Pages"],
+        "summary": "Get category page data from Tesco UK",
+        "description": "Retrieve category page information from Tesco UK. Provide a category page URL to get structured data about products in that category.",
+        "operationId": "/category-page",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300,
+              "description": "- Tesco category ID/facet (e.g., `b;RnJlc2glMjBGb29k` for Fresh Food)\n- Get the `categoryID` from `Helper/get-category-id` endpoint",
+              "example": "b;RnJlc2glMjBGb29k"
+            },
+            "required": true,
+            "description": "- Tesco category ID/facet (e.g., `b;RnJlc2glMjBGb29k` for Fresh Food)\n- Get the `categoryID` from `Helper/get-category-id` endpoint",
+            "name": "categoryId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "description": "Page number for pagination (default: 1)",
+              "example": 1
+            },
+            "required": false,
+            "description": "Page number for pagination (default: 1)",
+            "name": "pageNo",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with category page data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TescoCategoryPageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid category ID or page number parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad gateway - Tesco API unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TescoApiErrorResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ireland-category-page": {
+      "get": {
+        "tags": ["Category Pages"],
+        "summary": "Get category page data from Tesco Ireland",
+        "description": "Retrieve category page information from Tesco Ireland. Provide a category page URL to get structured data about products in that category.",
+        "operationId": "/ireland-category-page",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "description": "- Tesco category ID/facet (e.g., `b;RnJlc2glMjBGb29kJTdDQmFjayUyMHRvJTIwU2Nob29sJTIwTHVuY2hib3glN0NTYW5kd2ljaCUyMEZpbGxpbmdzJTIwJiUyMFNwcmVhZHM=` for Fresh Food)\n- Get the `categoryID` from `Helper/get-category-id` endpoint",
+              "example": "b;RnJlc2glMjBGb29kJTdDQmFjayUyMHRvJTIwU2Nob29sJTIwTHVuY2hib3glN0NTYW5kd2ljaCUyMEZpbGxpbmdzJTIwJiUyMFNwcmVhZHM="
+            },
+            "required": true,
+            "description": "- Tesco category ID/facet (e.g., `b;RnJlc2glMjBGb29kJTdDQmFjayUyMHRvJTIwU2Nob29sJTIwTHVuY2hib3glN0NTYW5kd2ljaCUyMEZpbGxpbmdzJTIwJiUyMFNwcmVhZHM=` for Fresh Food)\n- Get the `categoryID` from `Helper/get-category-id` endpoint",
+            "name": "categoryId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "description": "Page number for pagination (default: 1)",
+              "example": 1
+            },
+            "required": false,
+            "description": "Page number for pagination (default: 1)",
+            "name": "pageNo",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with Ireland category page data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IrelandCategoryPageResponseSchema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid category ID or page number parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad gateway - Tesco API unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TescoApiErrorResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ireland-product-details": {
+      "get": {
+        "tags": ["Product Details"],
+        "summary": "Get product details from Tesco Ireland",
+        "description": "Retrieve detailed product information from Tesco Ireland. Provide a product ID or full product URL to get comprehensive product data including pricing, descriptions, and specifications.",
+        "operationId": "/ireland-product-details",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500,
+              "description": "Product ID or full Tesco Ireland product URL (e.g., '266719388' or 'https://www.tesco.ie/groceries/en-IE/products/266719388')",
+              "example": "266719388"
+            },
+            "required": true,
+            "description": "Product ID or full Tesco Ireland product URL (e.g., '266719388' or 'https://www.tesco.ie/groceries/en-IE/products/266719388')",
+            "name": "productId",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with Ireland product details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IrelandProductDetailsResponseSchema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid product ID parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad gateway - Tesco API unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TescoApiErrorResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get-category-ids-for-uk": {
+      "get": {
+        "tags": ["Category Management"],
+        "summary": "Get category taxonomy and IDs from Tesco UK",
+        "description": "Retrieve the complete category taxonomy structure with category IDs that can be used with other category endpoints. No parameters required.",
+        "operationId": "/get-category-id-for-uk",
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with category taxonomy and IDs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCategoryIdResponseSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad gateway - Tesco API unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TescoApiErrorResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get-category-ids-for-ireland": {
+      "get": {
+        "tags": ["Category Management"],
+        "summary": "Get category taxonomy and IDs from Tesco Ireland",
+        "description": "Retrieve the complete category taxonomy structure with category IDs that can be used with other Ireland category endpoints. No parameters required.",
+        "operationId": "/get-category-ids-for-ireland",
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with Ireland category taxonomy and IDs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCategoryIdsForIrelandResponseSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad gateway - Tesco API unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TescoApiErrorResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1177 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "1.0",
+    "title": "Fotocasa",
+    "x-category": "Business",
+    "description": "## Unlock the Power of Spanish Real Estate Data 🏘️\n\nThe **Fotocasa API** provides seamless access to one of Spain's largest real estate databases, offering real-time property information across Spain, Andorra, and the Balearic Islands. Whether you're building a property application, conducting market research, or developing real estate solutions, our API delivers the data you need with precision and reliability.\n\n#### 📅 Last Updated: March 23, 2026\n#### ⚡No Proxies Needed\n#### 🚀 More than 1.5million properties\n\n### Need Custom Data of Fotocasa\nIf you need already scraped data in CSV and Excel ready or need us to scrape data for you, contact us at: [happyendpointhq@gmail.com](mailto:happyendpointhq@gmail.com)\n\n### Key Features:\n\n-   Property Search Suggestions\n-   Detailed Property Listings\n-   Comprehensive Property Information\n-   Real-time Data Updates\n-   Location-based Searches\n    \n\n### Why Choose Fotocasa API?\n\n#### 📊 Comprehensive Coverage\n\nAccess millions of property listings across Spain's most desirable locations, from Barcelona's urban centers to Costa del Sol's beachfront properties. Our database covers all property types, including residential, commercial, and vacation rentals.\n\n#### 🚀 Real-time Updates\n\nStay current with the Spanish real estate market through our continuously updated database. Get access to new listings, price changes, and property status updates as they happen.\n\n#### 🎯 Precise Search Capabilities\n\nImplement powerful search functionality with our suggestion engine, helping users find exactly what they're looking for. Filter by location, price, property type, and more.\n\n### 💡 Use Cases:\n\n-   Real Estate Platforms & Applications\n-   Market Analysis & Research\n-   Property Valuation Tools\n-   Investment Portfolio Management\n-   Location Intelligence Solutions\n    \n\n### 🔒 Reliable & Secure\n\nBuilt with enterprise-grade security and following best practices in API design, ensuring your data access is both secure and efficient.\n\n### Technical Specifications:\n\n-   RESTful API\n-   JSON Response Format\n-   HTTPS Protocol\n-   Rate Limiting Available\n-   Comprehensive Documentation\n    \n\n### Target Markets:\n\n-   Spain (All Regions)\n-   Andorra\n-   Balearic Islands\n-   International Investors & Researchers\n    \n\n### Perfect For:\n\n-   Property Technology Companies\n-   Real Estate Agencies\n-   Market Research Firms\n-   Property Developers\n-   Investment Companies\n-   Data Analytics Providers\n    \n\n### Getting Started\n\nIntegration is straightforward with our detailed documentation and support resources. Our API uses standard authentication methods and provides clear examples for all endpoints.\n\n### Authentication\n- `X-RapidAPI-Key`: Get your key from RapidAPI.\n- `X-RapidAPI-Host`: Always set to `fotocasa3.p.rapidapi.com`.\n\n### Pricing\n\nWe offer flexible pricing plans to suit different usage levels, from startups to enterprise solutions. All plans include access to our core features with varying rate limits.\n\n----------\n\nJoin the growing number of businesses leveraging Fotocasa's comprehensive property data to power their solutions and make informed real estate decisions. Whether you're building a property search engine, conducting market analysis, or developing innovative real estate tools, **Fotocasa API** provides the reliable data foundation you need.\n\n**Start exploring Spanish real estate opportunities today with Fotocasa API - your gateway to Spain's property market.** 🏠🔑\n\n----------\n*Fotocasa API, Spanish real estate API, Property data API Spain, Real estate listings API, Spain property API, Real estate market data Spain, Real estate API integration, Property search API, Real estate data provider, Property listing API, Spain property listings data, Real estate analytics API, Real estate software tools, Property investment API, Real estate market insights, API for real estate developers, Housing data API Spain, Real estate app data feed, Spain property information API, Real estate tech solutions, Real estate API, Property data, Spain property, PropTech, Real estate development, Data API, Real estate analytics, Real estate data Spain, Real estate information API, Spain housing market API, Property database Spain, Real estate software integration, Real estate data service, Real estate application API*",
+    "x-website": "https://happyendpoint.com",
+    "x-twitter": "https://x.com/happyendpointhq",
+    "x-linkedin": "https://www.linkedin.com/in/happyendpoint/",
+    "x-github": "https://github.com/happyendpointhq",
+    "x-public": true,
+    "x-thumbnail": "https://rapidapi-prod-apis.s3.amazonaws.com/42b173bd-1b93-4334-b2e6-9c5dcd40ec12.png",
+    "x-version-lifecycle": "active",
+    "termsOfService": "The best unofficial Fotocasa API",
+    "contact": {
+      "name": "Happy Endpoint",
+      "email": "happyendpointhq@gmail.com",
+      "url": "https://happyendpoint.com/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://fotocasa3.p.rapidapi.com",
+      "description": "Base URL"
+    }
+  ],
+  "security": [{ "RapidApiKey": [] }],
+  "components": {
+    "securitySchemes": {
+      "RapidApiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-RapidAPI-Key"
+      }
+    },
+    "parameters": {
+      "RapidApiHostHeader": {
+        "name": "X-RapidAPI-Host",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "default": "fotocasa3.p.rapidapi.com"
+        }
+      }
+    },
+    "schemas": {
+      "CommonHealthCheckResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "required": ["success"]
+      },
+      "HappyEndpointFotocasaGetSuggestionsSuccessResponseSchema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Flag for a successful request"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "level-5-id-28079-lang-0"
+                },
+                "hasChildren": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "childrenLevelId": {
+                  "type": "number",
+                  "example": 7
+                },
+                "type": {
+                  "type": "string",
+                  "example": "location"
+                },
+                "groupCategory": {
+                  "type": "number",
+                  "example": 5
+                },
+                "suggestTypeId": {
+                  "type": "number",
+                  "example": 0
+                },
+                "localizationLevel5": {
+                  "type": "string",
+                  "example": "Madrid Capital"
+                },
+                "combinedLocationIds": {
+                  "type": "string",
+                  "example": "724,14,28,173,0,28079,0,0,0"
+                },
+                "coordinates": {
+                  "type": "object",
+                  "properties": {
+                    "longitude": {
+                      "type": "number",
+                      "example": -3.68624
+                    },
+                    "latitude": {
+                      "type": "number",
+                      "example": 40.4096
+                    }
+                  },
+                  "required": ["longitude", "latitude"],
+                  "title": "Coordinates",
+                  "example": {
+                    "longitude": -3.68624,
+                    "latitude": 40.4096
+                  }
+                },
+                "text": {
+                  "type": "string",
+                  "example": "Madrid Capital, Madrid"
+                },
+                "baseText": {
+                  "type": "string",
+                  "example": "Madrid Capital"
+                },
+                "poiCategory": {
+                  "type": "number",
+                  "example": 0
+                },
+                "isPoi": {
+                  "type": "boolean",
+                  "example": false
+                }
+              },
+              "required": [
+                "id",
+                "hasChildren",
+                "childrenLevelId",
+                "type",
+                "groupCategory",
+                "suggestTypeId",
+                "localizationLevel5",
+                "combinedLocationIds",
+                "coordinates",
+                "text",
+                "baseText",
+                "poiCategory",
+                "isPoi"
+              ]
+            },
+            "description": "Array containing suggestions"
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "CommonBadRequestWithValidationErrorResponseSchema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "example": "Invalid payload provided. Please ensure: 1) 'Content-Type: application/json' is included in your request headers 2) Request body contains valid JSON data."
+          },
+          "error": {
+            "type": "object",
+            "properties": {},
+            "example": {
+              "issues": [
+                {
+                  "code": "too_small",
+                  "minimum": 1,
+                  "type": "array",
+                  "inclusive": true,
+                  "exact": false,
+                  "message": "Array must contain at least 1 element(s)",
+                  "path": ["urls"]
+                }
+              ],
+              "name": "ZodError"
+            }
+          }
+        },
+        "required": ["success", "message"]
+      },
+      "CommonErrorResponseSchema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "example": "Internal server error"
+          }
+        },
+        "required": ["success", "message"]
+      },
+      "HappyEndpointFotocasaSearchAdsSuccessResponseSchema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "nullable": true
+          }
+        },
+        "required": ["success"]
+      },
+      "FotocasaValidationErrorResponseSchema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "example": "Property subtypes are not supported for property type: PREMISES. Subtypes are only available for HOMES."
+          },
+          "errorType": {
+            "type": "string",
+            "enum": ["VALIDATION_ERROR"],
+            "example": "VALIDATION_ERROR"
+          }
+        },
+        "required": ["success", "message", "errorType"]
+      },
+      "HappyEndpointFotocasaPropertyDetailsSuccessResponseSchema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Flag for a successful request"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "1_182702197"
+              },
+              "uris": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "example": "/es/comprar/vivienda/madrid-capital/aire-acondicionado-calefaccion-ascensor/182702197/d"
+                    },
+                    "language": {
+                      "type": "string",
+                      "example": "es_ES"
+                    }
+                  },
+                  "required": ["value", "language"]
+                }
+              },
+              "zone": {
+                "type": "string",
+                "example": ""
+              },
+              "baths": {
+                "type": "number",
+                "example": 1
+              },
+              "floor": {
+                "type": "string",
+                "example": "3"
+              },
+              "phone": {
+                "type": "string",
+                "example": "910923867"
+              },
+              "rooms": {
+                "type": "number",
+                "example": 2
+              },
+              "wasId": {
+                "type": "string",
+                "nullable": true
+              },
+              "agency": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "example": "9202765062251"
+                  },
+                  "web": {
+                    "type": "string",
+                    "example": "http://www.engelvoelkers.com/"
+                  },
+                  "logo": {
+                    "type": "string",
+                    "example": "https://static.fotocasa.es/images/client/9202765062251/681089.jpg?rule=original"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "EV MMC SPAIN S.L.U."
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "professional"
+                  },
+                  "urls": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "value": {
+                          "type": "string",
+                          "example": "/inmobiliarias/engel-volkers-madrid-9202765062251"
+                        },
+                        "language": {
+                          "type": "string",
+                          "example": "es_ES"
+                        }
+                      },
+                      "required": ["value", "language"]
+                    }
+                  },
+                  "alias": {
+                    "type": "string",
+                    "example": "ENGEL & VÖLKERS MADRID"
+                  },
+                  "wasId": {
+                    "type": "string",
+                    "example": "900610580269"
+                  },
+                  "publisherId": {
+                    "type": "string",
+                    "example": "01336661-942a-46d2-997a-1f511a6696d0"
+                  }
+                },
+                "required": [
+                  "id",
+                  "web",
+                  "logo",
+                  "name",
+                  "type",
+                  "urls",
+                  "alias",
+                  "wasId",
+                  "publisherId"
+                ]
+              },
+              "number": {
+                "type": "string",
+                "nullable": true
+              },
+              "prices": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "amount": {
+                      "type": "number",
+                      "example": 325000
+                    },
+                    "amountDrop": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "periodicity": {
+                      "type": "string",
+                      "example": "0"
+                    }
+                  },
+                  "required": ["amount", "amountDrop", "periodicity"]
+                }
+              },
+              "street": {
+                "type": "string",
+                "nullable": true
+              },
+              "heating": {
+                "type": "string",
+                "nullable": true
+              },
+              "surface": {
+                "type": "number",
+                "example": 70
+              },
+              "zipCode": {
+                "type": "string",
+                "example": "28012"
+              },
+              "features": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  },
+                  "required": ["id"]
+                }
+              },
+              "hotWater": {
+                "type": "string",
+                "nullable": true
+              },
+              "location": {
+                "type": "object",
+                "properties": {
+                  "latitude": {
+                    "type": "number",
+                    "example": 40.4062766625279
+                  },
+                  "level1Id": {
+                    "type": "string",
+                    "example": "14"
+                  },
+                  "level2Id": {
+                    "type": "string",
+                    "example": "28"
+                  },
+                  "level3Id": {
+                    "type": "string",
+                    "example": "173"
+                  },
+                  "level4Id": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "level5Id": {
+                    "type": "string",
+                    "example": "28079"
+                  },
+                  "level6Id": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "level7Id": {
+                    "type": "string",
+                    "example": "672"
+                  },
+                  "level8Id": {
+                    "type": "string",
+                    "example": "48"
+                  },
+                  "countryId": {
+                    "type": "string",
+                    "example": "724"
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "example": -3.6993530007344
+                  },
+                  "level1Name": {
+                    "type": "string",
+                    "example": "Madrid"
+                  },
+                  "level2Name": {
+                    "type": "string",
+                    "example": "Madrid"
+                  },
+                  "level3Name": {
+                    "type": "string",
+                    "example": "Madrid, Zona de"
+                  },
+                  "level4Name": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "level5Name": {
+                    "type": "string",
+                    "example": "Madrid Capital"
+                  },
+                  "level6Name": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "level7Name": {
+                    "type": "string",
+                    "example": "Centro"
+                  },
+                  "level8Name": {
+                    "type": "string",
+                    "example": "Embajadores - Lavapiés"
+                  },
+                  "countryName": {
+                    "type": "string",
+                    "example": "España"
+                  }
+                },
+                "required": [
+                  "latitude",
+                  "level1Id",
+                  "level2Id",
+                  "level3Id",
+                  "level4Id",
+                  "level5Id",
+                  "level6Id",
+                  "level7Id",
+                  "level8Id",
+                  "countryId",
+                  "longitude",
+                  "level1Name",
+                  "level2Name",
+                  "level3Name",
+                  "level4Name",
+                  "level5Name",
+                  "level6Name",
+                  "level7Name",
+                  "level8Name",
+                  "countryName"
+                ]
+              },
+              "products": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "161"
+                    }
+                  },
+                  "required": ["id"]
+                }
+              },
+              "antiquity": {
+                "type": "string",
+                "example": "8"
+              },
+              "contracts": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "productId": {
+                      "type": "string",
+                      "example": "7"
+                    }
+                  },
+                  "required": ["productId"]
+                }
+              },
+              "promotion": {
+                "type": "string",
+                "nullable": true
+              },
+              "subsidies": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "example": [
+                  "aval-comprar-casa-nacional",
+                  "mi-primera-vivienda-madrid"
+                ]
+              },
+              "multimedia": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "example": "https://static.fotocasa.es/images/ads/cc2f4b4d-7002-4056-ba8f-3e457f326ce0?rule=original"
+                    },
+                    "type": {
+                      "type": "string",
+                      "example": "2"
+                    },
+                    "position": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "required": ["url", "type", "position"]
+                }
+              },
+              "propertyId": {
+                "type": "string",
+                "example": "182702197"
+              },
+              "streetType": {
+                "type": "string",
+                "nullable": true
+              },
+              "description": {
+                "type": "string",
+                "example": "Engel & Völkers presenta una propiedad innovadora con diseño vanguardista..."
+              },
+              "orientation": {
+                "type": "string",
+                "nullable": true
+              },
+              "promotionId": {
+                "type": "string",
+                "nullable": true
+              },
+              "qualityRate": {
+                "type": "number",
+                "example": 0
+              },
+              "creationDate": {
+                "type": "string",
+                "example": "2024-03-22T06:22:14.237"
+              },
+              "propertyType": {
+                "type": "string",
+                "example": "2"
+              },
+              "purchaseType": {
+                "type": "string",
+                "example": "2"
+              },
+              "groundSurface": {
+                "type": "string",
+                "nullable": true
+              },
+              "realEstateAdId": {
+                "type": "string",
+                "example": "232c3f5d-d49f-4adb-bb82-e3e404300836"
+              },
+              "agencyReference": {
+                "type": "string",
+                "example": "I-00W4J7-W-02PJ47"
+              },
+              "propertySubtype": {
+                "type": "string",
+                "example": "1"
+              },
+              "transactionType": {
+                "type": "string",
+                "example": "1"
+              },
+              "showCounterOffer": {
+                "type": "boolean",
+                "example": true
+              },
+              "energyCertificate": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "energyEfficiencyValue": {
+                    "type": "number",
+                    "example": 999
+                  },
+                  "environmentImpactValue": {
+                    "type": "number",
+                    "example": 999
+                  },
+                  "energyEfficiencyRatingType": {
+                    "type": "string",
+                    "example": "7"
+                  },
+                  "environmentImpactRatingType": {
+                    "type": "string",
+                    "example": "7"
+                  },
+                  "energyPerformanceCertificateType": {
+                    "type": "string",
+                    "example": "1"
+                  }
+                },
+                "required": [
+                  "id",
+                  "energyEfficiencyValue",
+                  "environmentImpactValue",
+                  "energyEfficiencyRatingType",
+                  "environmentImpactRatingType",
+                  "energyPerformanceCertificateType"
+                ]
+              },
+              "touristOfficeCode": {
+                "type": "string",
+                "nullable": true
+              },
+              "conservationStatus": {
+                "type": "string",
+                "example": "1"
+              },
+              "externalContactUrl": {
+                "type": "string",
+                "nullable": true
+              },
+              "rentReferenceIndex": {
+                "type": "string",
+                "nullable": true
+              },
+              "hasOnlineGuidedTour": {
+                "type": "boolean",
+                "example": false
+              },
+              "addressVisibilityMode": {
+                "type": "string",
+                "example": "3"
+              },
+              "rentWithOptionToBuyRelatedAd": {
+                "type": "string",
+                "nullable": true
+              }
+            },
+            "required": [
+              "id",
+              "uris",
+              "zone",
+              "baths",
+              "floor",
+              "phone",
+              "rooms",
+              "wasId",
+              "agency",
+              "number",
+              "prices",
+              "street",
+              "heating",
+              "surface",
+              "zipCode",
+              "features",
+              "hotWater",
+              "location",
+              "products",
+              "antiquity",
+              "contracts",
+              "promotion",
+              "subsidies",
+              "multimedia",
+              "propertyId",
+              "streetType",
+              "description",
+              "orientation",
+              "promotionId",
+              "qualityRate",
+              "creationDate",
+              "propertyType",
+              "purchaseType",
+              "groundSurface",
+              "realEstateAdId",
+              "agencyReference",
+              "propertySubtype",
+              "transactionType",
+              "showCounterOffer",
+              "energyCertificate",
+              "touristOfficeCode",
+              "conservationStatus",
+              "externalContactUrl",
+              "rentReferenceIndex",
+              "hasOnlineGuidedTour",
+              "addressVisibilityMode",
+              "rentWithOptionToBuyRelatedAd"
+            ],
+            "description": "Property details response"
+          }
+        },
+        "required": ["success", "data"]
+      }
+    }
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": ["Health"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/RapidApiHostHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Health check",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonHealthCheckResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/suggestions": {
+      "get": {
+        "tags": ["Fotocasa"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/RapidApiHostHeader"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100,
+              "description": "Query to get location suggestions for",
+              "example": "madrid"
+            },
+            "required": true,
+            "name": "query",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fotocasa data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HappyEndpointFotocasaGetSuggestionsSuccessResponseSchema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonBadRequestWithValidationErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonErrorResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/searchads": {
+      "get": {
+        "tags": ["Fotocasa"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/RapidApiHostHeader"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Get the Location from /location-suggestion endpoint.",
+              "example": "724,14,28,173,0,28079,0,0,0"
+            },
+            "required": true,
+            "name": "combinedLocations",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Get the longitude from /location-suggestion endpoint.",
+              "example": "-3.68624"
+            },
+            "required": true,
+            "name": "longitude",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Get the latitude from /location-suggestion endpoint.",
+              "example": "40.4096"
+            },
+            "required": true,
+            "name": "latitude",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Page number for pagination",
+              "example": "1"
+            },
+            "required": true,
+            "name": "pageNumber",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Number of results per page (default: 30)",
+              "example": "30"
+            },
+            "required": false,
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["BUY", "RENT"],
+              "description": "Type of transaction: BUY or RENT",
+              "example": "BUY"
+            },
+            "required": true,
+            "name": "transactionType",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "HOMES",
+                "GARAGES",
+                "LAND",
+                "PREMISES",
+                "OFFICE",
+                "BOX_ROOM",
+                "BUILDING"
+              ],
+              "description": "Type of property: HOMES, GARAGES, LAND, etc.",
+              "example": "HOMES"
+            },
+            "required": true,
+            "name": "propertyType",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Filter for new construction properties (true/false)",
+              "example": "true"
+            },
+            "required": false,
+            "name": "isNewConstruction",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Sort order: true for descending, false for ascending",
+              "example": "true"
+            },
+            "required": false,
+            "name": "sortOrderDesc",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "RATING",
+                "LATEST",
+                "PRICE",
+                "SURFACE",
+                "PRICE_PER_AREA",
+                "ONLINE_GUIDED_TOUR"
+              ],
+              "description": "Sort criteria: RATING (default), LATEST (newest first), PRICE, SURFACE (area), etc.",
+              "example": "RATING"
+            },
+            "required": true,
+            "name": "sortType",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Property condition: ALMOST_NEW, VERY_GOOD, GOOD, FOR_RENOVATION, REFURBISHED (comma-separated)",
+              "example": "ALMOST_NEW"
+            },
+            "required": false,
+            "name": "conservationStatus",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["INDIFFERENT", "TWO_DAYS", "ONE_WEEK", "ONE_MONTH"],
+              "description": "Filter by listing age: INDIFFERENT, TWO_DAYS, ONE_WEEK, ONE_MONTH",
+              "example": "INDIFFERENT"
+            },
+            "required": true,
+            "name": "publicationDate",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Specific types of homes (only for HOMES): HOUSE_CHALET, RURAL_PROPERTY, DUPLEX, etc. (comma-separated)"
+            },
+            "required": false,
+            "name": "propertySubtypes",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Minimum price in euros",
+              "example": "200000"
+            },
+            "required": false,
+            "name": "minPrice",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Maximum price in euros",
+              "example": "500000"
+            },
+            "required": false,
+            "name": "maxPrice",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Minimum property size in square meters",
+              "example": "150"
+            },
+            "required": false,
+            "name": "minSurface",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Maximum property size in square meters",
+              "example": "1000"
+            },
+            "required": false,
+            "name": "maxSurface",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Minimum number of rooms (bedrooms)",
+              "example": "2"
+            },
+            "required": false,
+            "name": "minRooms",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Minimum number of bathrooms",
+              "example": "1"
+            },
+            "required": false,
+            "name": "minBathrooms",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fotocasa search ads results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HappyEndpointFotocasaSearchAdsSuccessResponseSchema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/CommonBadRequestWithValidationErrorResponseSchema"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FotocasaValidationErrorResponseSchema"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonErrorResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/property-details": {
+      "get": {
+        "tags": ["Fotocasa"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/RapidApiHostHeader"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["BUY", "RENT"],
+              "description": "Make sure to match the transaction type with the propertyID"
+            },
+            "required": true,
+            "name": "transactionType",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100,
+              "description": "Property ID from search-ads endpoint",
+              "example": "185617904"
+            },
+            "required": true,
+            "name": "propertyId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["en", "es", "de", "ca"]
+            },
+            "required": true,
+            "name": "language",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fotocasa property details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HappyEndpointFotocasaPropertyDetailsSuccessResponseSchema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonBadRequestWithValidationErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonErrorResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

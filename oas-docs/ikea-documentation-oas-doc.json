@@ -1,0 +1,1991 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "1.0",
+    "title": "Ikea API Pro",
+    "x-category": "eCommerce",
+    "description": "# 🪑 IKEA API Pro – Real-Time Furniture & Home Decor Data API\n\n🚀 **Power your application with IKEA API Pro!**\n\nUnlock one of the most reliable, comprehensive, and developer-friendly APIs for accessing IKEA product data. Built for speed and scalability, **IKEA API Pro** delivers structured, real-time data for products, categories, stores, and more — perfect for **eCommerce**, **interior design apps**, **retail analytics**, and **market research tools**.\n\n---\n\n## 📅 Last Updated\n\n**March 23, 2026**\n\n## ⚡ Highlights\n\n* 📦 Access to **12,000+ IKEA products**\n* 🔄 Real-time product & catalog data\n* 🚀 No proxies required\n* ⚡ Fast & stable API performance\n* 🌍 Multi-country support\n\n---\n\n## 🌐 Useful Links\n\n* 🌍 **Official Website:** [https://happyendpoint.com/](https://happyendpoint.com/)\n* 🪑 **IKEA API:** [https://happyendpoint.com/apis/ikea](https://happyendpoint.com/apis/ikea)\n* 📘 **Documentation:** [https://happyendpoint.com/apis/ikea/docs/](https://happyendpoint.com/apis/ikea/docs/)\n* 🐦 **Twitter:** [https://x.com/happyendpointhq](https://x.com/happyendpointhq)\n* 📩 **Contact Email:** [happyendpointhq@gmail.com](mailto:happyendpointhq@gmail.com)\n\n---\n\n## 📦 Custom Data & Scraping Services Available\n\nNeed more than what the API provides?\n\nWe offer **custom IKEA data scraping and bulk datasets** tailored to your needs:\n\n* 📊 Large-scale product datasets (CSV / Excel ready)\n* 🛍️ Full catalog extraction\n* 📈 Pricing & availability tracking\n* 🤖 AI training datasets\n* 🔧 Custom scraping solutions\n\n📩 Contact us for custom data:\n👉 **[happyendpointhq@gmail.com](mailto:happyendpointhq@gmail.com)**\n\n---\n\n## 🧩 API Features\n\nOur API is structured into four powerful feature sets, giving you flexibility and scalability as your application grows:\n\n### 📊 Feature 1: Foundational Data\n\n* Access supported **countries**\n* Retrieve IKEA **store locations**\n* Explore the full **category tree**\n\n---\n\n### 🔎 Feature 2: Keyword-Based Product Search\n\n* Search products using keywords\n* Apply advanced filters for precision\n* Ideal for building search engines & discovery tools\n\n---\n\n### 🗂️ Feature 3: Full Category Browsing\n\n* Browse products by category\n* Navigate catalog like IKEA’s website\n* Includes category-based filters\n\n---\n\n### 📦 Feature 4: Rich Product Details\n\n* High-resolution images\n* Pricing & availability\n* Dimensions & materials\n* Product specifications & metadata\n\n---\n\n## 🔧 Core Endpoints\n\n* 🔎 `search by keyword` – Find products instantly\n* 🗂️ `search by category` – Browse catalog by category\n* 🎯 `filters` – Refine search results\n* 📦 `product details` – Get detailed product data\n* 🏬 `stores` – Retrieve store location data\n* 🌍 `countries` – Supported regions & localization\n\n---\n\n## 🎯 What Can You Build?\n\n* 🛒 E-commerce & affiliate storefronts\n* 🏡 Interior design & mood board apps\n* 📊 Price comparison & tracking tools\n* 📦 Inventory & stock monitoring systems\n* 🧠 AI-powered furniture recommendation engines\n* 🛍️ Dropshipping & catalog automation platforms\n\n---\n\n## 💡 Why Choose IKEA API Pro?\n\n* ⚡ **High-speed, low-latency API**\n* 🔄 **Real-time IKEA catalog data**\n* 🌍 **Global coverage with multi-region support**\n* 🧩 **Easy REST integration with clean JSON**\n* 🔒 **Reliable infrastructure & stable endpoints**\n* 👨‍💻 Built for developers by **HappyEndpoint**\n\n---\n\n## 🚀 Free Plan Available\n\nTo help you get started, we offer a **Free Basic Plan**:\n\n* 🎁 **500 requests/month**\n* 🔓 Access to all endpoints\n* 🧪 Perfect for testing & prototyping\n\nUpgrade anytime as your usage scales.\n\n---\n\n## 📈 Ideal For\n\n* 🛍️ E-commerce & retail platforms\n* 🏡 Home decor & furniture apps\n* 📊 Market research & analytics tools\n* 🤖 AI & recommendation engines\n* 📦 Inventory & catalog systems\n\n---\n\n## 🔎 SEO Keywords\n\nIKEA API, furniture API, home decor API, IKEA product API, IKEA scraper, IKEA data API, furniture data API, home goods API, retail product API, product catalog API, eCommerce furniture API, interior design API, IKEA price API, IKEA stock API, furniture dataset API, home decor dataset, product search API, retail data API, IKEA catalog API, IKEA scraping API, price tracking furniture API, dropshipping furniture API, home furnishing API, shopping API, RapidAPI IKEA API, HappyEndpoint API, furniture analytics API, product details API, catalog browsing API, global retail API\n\n---\n\n## ⚠️ Disclaimer\n\nThis is an independent API built by HappyEndpoint. It is **not affiliated with, endorsed, or sponsored by IKEA**. All data is sourced from publicly available information.\n\n---\n\n## 🚀 Get Started\n\nStart building powerful furniture and home decor applications with **IKEA API Pro** today.\n\n🪑 Build smarter apps\n📊 Unlock retail insights\n⚡ Scale without limits",
+    "x-public": true,
+    "x-thumbnail": "https://rapidapi-prod-apis.s3.amazonaws.com/4fbbbe2c-9928-44b9-9f44-7e457eebaf5f.jpg",
+    "x-version-lifecycle": "active",
+    "termsOfService": "The best unofficial real time Ikea Data API",
+    "x-website": "https://happyendpoint.com",
+    "x-twitter": "https://x.com/happyendpointhq",
+    "x-linkedin": "https://www.linkedin.com/in/happyendpoint/",
+    "x-github": "https://github.com/happyendpointhq",
+    "contact": {
+      "name": "Happy Endpoint",
+      "email": "happyendpointhq@gmail.com",
+      "url": "https://happyendpoint.com/"
+    },
+    "x-logo": {
+      "url": "https://rapidapi-prod-apis.s3.amazonaws.com/4fbbbe2c-9928-44b9-9f44-7e457eebaf5f.jpg",
+      "altText": "Fotocasa API",
+      "href": "https://happyendpoint.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://ikea-api-pro.p.rapidapi.com",
+      "description": "Base URL"
+    }
+  ],
+  "security": [{ "RapidApiKey": [] }],
+  "components": {
+    "securitySchemes": {
+      "RapidApiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-RapidAPI-Key"
+      }
+    },
+    "parameters": {
+      "RapidApiHostHeader": {
+        "name": "X-RapidAPI-Host",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "default": "ikea-api-pro.p.rapidapi.com"
+        }
+      }
+    },
+    "schemas": {
+      "CommonHealthCheckResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "required": ["success"]
+      },
+      "IkeaProductSearchResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "products": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Product ID",
+                      "example": "70575947"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Product name",
+                      "example": "HÄGERNÄS"
+                    },
+                    "typeName": {
+                      "type": "string",
+                      "description": "Product type name or short description",
+                      "example": "Table and 4 chairs"
+                    },
+                    "url": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "URL to the main product page",
+                      "example": "https://www.ikea.com/us/en/p/haegernaes-table-and-4-chairs-antique-stain-pine-70575947/"
+                    },
+                    "price": {
+                      "type": "object",
+                      "properties": {
+                        "currency": {
+                          "type": "string",
+                          "description": "Currency code (e.g., 'USD')",
+                          "example": "USD"
+                        },
+                        "currentPrice": {
+                          "type": "number",
+                          "description": "The price as a numerical value",
+                          "example": 259.99
+                        },
+                        "formattedPrice": {
+                          "type": "string",
+                          "description": "The price formatted as a string",
+                          "example": "$259.99"
+                        }
+                      },
+                      "required": ["currency", "currentPrice", "formattedPrice"]
+                    },
+                    "rating": {
+                      "type": "object",
+                      "properties": {
+                        "average": {
+                          "type": "number",
+                          "default": 0,
+                          "description": "Average rating value",
+                          "example": 4.7
+                        },
+                        "count": {
+                          "type": "number",
+                          "default": 0,
+                          "description": "Total number of ratings",
+                          "example": 252
+                        }
+                      }
+                    },
+                    "images": {
+                      "type": "object",
+                      "properties": {
+                        "main": {
+                          "type": "string",
+                          "format": "uri",
+                          "description": "URL of the main product image"
+                        },
+                        "contextual": {
+                          "type": "string",
+                          "format": "uri",
+                          "description": "URL of the contextual (in-room) product image"
+                        },
+                        "all": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "description": "Type of the image",
+                                "example": "MAIN_PRODUCT_IMAGE"
+                              },
+                              "url": {
+                                "type": "string",
+                                "format": "uri",
+                                "description": "URL of the image",
+                                "example": "https://www.ikea.com/us/en/images/products/haegernaes-table-and-4-chairs-antique-stain-pine__1350925_pe951817_s5.jpg"
+                              }
+                            },
+                            "required": ["type", "url"]
+                          },
+                          "description": "List of all available product images"
+                        }
+                      },
+                      "required": ["main", "all"]
+                    },
+                    "details": {
+                      "type": "object",
+                      "properties": {
+                        "designText": {
+                          "type": "string",
+                          "nullable": true,
+                          "description": "Main design description (e.g., color, material). Can be null.",
+                          "example": "antique stain pine"
+                        },
+                        "isOnlineSellable": {
+                          "type": "boolean",
+                          "description": "Indicates if the product can be purchased online",
+                          "example": true
+                        },
+                        "badge": {
+                          "type": "string",
+                          "nullable": true,
+                          "description": "Promotional badge text (e.g., 'Best seller')",
+                          "example": "Best seller"
+                        }
+                      },
+                      "required": ["designText", "isOnlineSellable", "badge"]
+                    },
+                    "categoryPath": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "description": "Category name",
+                            "example": "Tables & chairs"
+                          },
+                          "key": {
+                            "type": "string",
+                            "description": "Category key or ID",
+                            "example": "fu002"
+                          }
+                        },
+                        "required": ["name", "key"]
+                      },
+                      "description": "Breadcrumb trail of product categories"
+                    },
+                    "variants": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Product variant ID",
+                            "example": "20575997"
+                          },
+                          "url": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "URL to the product variant page",
+                            "example": "https://www.ikea.com/us/en/p/haegernaes-table-and-4-chairs-black-stained-pine-20575997/"
+                          },
+                          "designText": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "Variant description (e.g., color, material). Can be null.",
+                            "example": "black stained pine"
+                          },
+                          "imageUrl": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "Image URL of the variant",
+                            "example": "https://www.ikea.com/us/en/images/products/haegernaes-table-and-4-chairs-black-stained-pine__1350921_pe951814_s5.jpg"
+                          },
+                          "price": {
+                            "type": "object",
+                            "properties": {
+                              "currency": {
+                                "type": "string",
+                                "description": "Currency code (e.g., 'USD')",
+                                "example": "USD"
+                              },
+                              "currentPrice": {
+                                "type": "number",
+                                "description": "The price as a numerical value",
+                                "example": 259.99
+                              },
+                              "formattedPrice": {
+                                "type": "string",
+                                "description": "The price formatted as a string",
+                                "example": "$259.99"
+                              }
+                            },
+                            "required": [
+                              "currency",
+                              "currentPrice",
+                              "formattedPrice"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "url",
+                          "designText",
+                          "imageUrl",
+                          "price"
+                        ]
+                      },
+                      "description": "List of available product variants (e.g., different colors)"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "typeName",
+                    "url",
+                    "price",
+                    "rating",
+                    "images",
+                    "details",
+                    "categoryPath",
+                    "variants"
+                  ]
+                }
+              },
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "number",
+                    "description": "The starting index of the returned products in the full list.",
+                    "example": 24
+                  },
+                  "end": {
+                    "type": "number",
+                    "description": "The ending index of the returned products in the full list.",
+                    "example": 48
+                  },
+                  "total": {
+                    "type": "number",
+                    "description": "The total number of products available for this query.",
+                    "example": 57
+                  }
+                },
+                "required": ["start", "end", "total"]
+              }
+            },
+            "required": ["products", "pagination"]
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "ValidationErrorResponseSchema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "example": "Invalid request: Keyword is required and must be a non-empty string"
+          },
+          "error": {
+            "type": "string",
+            "example": "VALIDATION_ERROR"
+          }
+        },
+        "required": ["success", "message", "error"]
+      },
+      "InternalErrorResponseSchema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "example": "Internal server error. Please try again later."
+          },
+          "error": {
+            "type": "string",
+            "example": "INTERNAL_ERROR"
+          }
+        },
+        "required": ["success", "message", "error"]
+      },
+      "IkeaApiErrorResponseSchema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "example": "IKEA product search service is currently unavailable. Please try again later."
+          },
+          "error": {
+            "type": "string",
+            "example": "IKEA_API_ERROR"
+          }
+        },
+        "required": ["success", "message", "error"]
+      },
+      "IkeaFiltersResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "sortOrders": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the sort functionality.",
+                    "example": "sort_by"
+                  },
+                  "parameter": {
+                    "type": "string",
+                    "description": "The query parameter name to use for sorting.",
+                    "example": "sortOrder"
+                  },
+                  "values": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The value to use in the 'sortOrder' query parameter.",
+                          "example": "PRICE_LOW_TO_HIGH"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "The human-readable name for the sort option.",
+                          "example": "Price: low to high"
+                        },
+                        "eventAction": {
+                          "type": "string",
+                          "description": "IKEA's internal event action name.",
+                          "example": "sort_by_price_low"
+                        }
+                      },
+                      "required": ["id", "name", "eventAction"]
+                    }
+                  }
+                },
+                "required": ["name", "parameter", "values"],
+                "description": "Available sorting options for the search query."
+              },
+              "filters": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "The display name of the filter group.",
+                      "example": "Size"
+                    },
+                    "parameter": {
+                      "type": "string",
+                      "description": "The parameter ID to use in the 'filters' query.",
+                      "example": "f-measurement-buckets"
+                    },
+                    "values": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "The value to use in the 'filters' query parameter.",
+                            "example": "WIDTH_0_26"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "The human-readable name for the filter option.",
+                            "example": "Width: 0 - 25 \""
+                          }
+                        },
+                        "required": ["id", "name"]
+                      }
+                    }
+                  },
+                  "required": ["name", "parameter", "values"]
+                },
+                "description": "Available filters to refine the search query."
+              }
+            },
+            "required": ["sortOrders", "filters"]
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "ResourceNotFoundErrorResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "example": "The requested resource was not found for the specified country. Please verify your inputs."
+          },
+          "error": {
+            "type": "string",
+            "example": "RESOURCE_NOT_FOUND"
+          }
+        },
+        "required": ["success", "message", "error"]
+      },
+      "IkeaProductSearchResponseSchema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "nullable": true,
+            "example": {}
+          }
+        },
+        "required": ["success"]
+      },
+      "IkeaCategoryFiltersResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "categoryInfo": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the current category.",
+                    "example": "Dressers & storage drawers"
+                  },
+                  "key": {
+                    "type": "string",
+                    "description": "The unique key for the current category.",
+                    "example": "st004"
+                  },
+                  "url": {
+                    "type": "string",
+                    "nullable": true,
+                    "format": "uri",
+                    "description": "The direct URL to this category page on IKEA's website."
+                  },
+                  "parentKeys": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "An array of keys for the parent categories.",
+                    "example": ["st001"]
+                  }
+                },
+                "required": ["name", "key", "url", "parentKeys"]
+              },
+              "sortOrders": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the sort functionality.",
+                    "example": "sort_by"
+                  },
+                  "parameter": {
+                    "type": "string",
+                    "description": "The query parameter name to use for sorting.",
+                    "example": "sortOrder"
+                  },
+                  "values": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The value to use in the 'sortOrder' query parameter.",
+                          "example": "PRICE_LOW_TO_HIGH"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "The human-readable name for the sort option.",
+                          "example": "Price: low to high"
+                        },
+                        "eventAction": {
+                          "type": "string",
+                          "description": "IKEA's internal event action name.",
+                          "example": "sort_by_price_low"
+                        }
+                      },
+                      "required": ["id", "name", "eventAction"]
+                    }
+                  }
+                },
+                "required": ["name", "parameter", "values"],
+                "description": "Available sorting options for the search query."
+              },
+              "filters": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "The display name of the filter group.",
+                      "example": "Color"
+                    },
+                    "parameter": {
+                      "type": "string",
+                      "description": "The parameter ID to use in the 'filters' query.",
+                      "example": "f-colors"
+                    },
+                    "values": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "The value to use in the 'filters' query parameter.",
+                            "example": "10156"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "The human-readable name for the filter option.",
+                            "example": "white"
+                          }
+                        },
+                        "required": ["id", "name"]
+                      }
+                    }
+                  },
+                  "required": ["name", "parameter", "values"]
+                },
+                "description": "Available filters to refine the search query."
+              }
+            },
+            "required": ["categoryInfo", "sortOrders", "filters"]
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "IkeaProductDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "productInfo": {
+                "type": "object",
+                "properties": {
+                  "productName": {
+                    "type": "string",
+                    "example": "STORKLINTA"
+                  },
+                  "productID": {
+                    "type": "string",
+                    "example": "60561248"
+                  },
+                  "productType": {
+                    "type": "string",
+                    "example": "ART"
+                  },
+                  "onlineSellable": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "currency": {
+                    "type": "string",
+                    "example": "USD"
+                  },
+                  "productPrice": {
+                    "type": "number",
+                    "example": 249.99
+                  },
+                  "priceExclTax": {
+                    "type": "number",
+                    "example": 249.99
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "6-drawer dresser, white/anchor/unlock function, 55 1/8x18 7/8x29 1/2 \""
+                  },
+                  "visibleItemNo": {
+                    "type": "string",
+                    "example": "605.612.48"
+                  },
+                  "measurement": {
+                    "type": "string",
+                    "nullable": true,
+                    "example": "55 1/8x18 7/8x29 1/2 \""
+                  },
+                  "productDetailedInfo": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Paragraphs of detailed product information.",
+                    "example": [
+                      "This wide dresser gives you plenty of storage space..."
+                    ]
+                  },
+                  "designerName": {
+                    "type": "string",
+                    "nullable": true,
+                    "example": "IKEA of Sweden"
+                  },
+                  "assemblyInstructionGuide": {
+                    "type": "string",
+                    "nullable": true,
+                    "format": "uri",
+                    "description": "Direct URL to the product's assembly instruction PDF."
+                  }
+                },
+                "required": [
+                  "productName",
+                  "productID",
+                  "productType",
+                  "onlineSellable",
+                  "currency",
+                  "productPrice",
+                  "priceExclTax",
+                  "description",
+                  "visibleItemNo",
+                  "measurement",
+                  "productDetailedInfo",
+                  "designerName",
+                  "assemblyInstructionGuide"
+                ]
+              },
+              "gallery": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "example": "IMAGE"
+                    },
+                    "imageAltDes": {
+                      "type": "string",
+                      "example": "STORKLINTA 6-drawer dresser, white/anchor/unlock function"
+                    },
+                    "url": {
+                      "type": "string",
+                      "nullable": true,
+                      "format": "uri"
+                    }
+                  },
+                  "required": ["type", "imageAltDes", "url"]
+                },
+                "description": "List of product images and videos."
+              },
+              "variants": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "example": "dark brown/oak effect anchor/unlock function"
+                    },
+                    "url": {
+                      "type": "string",
+                      "nullable": true,
+                      "format": "uri"
+                    },
+                    "productID": {
+                      "type": "string",
+                      "example": "50561244"
+                    },
+                    "imageUrl": {
+                      "type": "string",
+                      "nullable": true,
+                      "format": "uri"
+                    },
+                    "imageAlt": {
+                      "type": "string",
+                      "example": "STORKLINTA 6-drawer dresser, dark brown/oak effect"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "url",
+                    "productID",
+                    "imageUrl",
+                    "imageAlt"
+                  ]
+                },
+                "description": "List of product variations (e.g., different colors or materials)."
+              },
+              "packaging": {
+                "type": "object",
+                "properties": {
+                  "weightText": {
+                    "type": "string",
+                    "nullable": true,
+                    "example": "88 lb 12 oz"
+                  },
+                  "widthText": {
+                    "type": "string",
+                    "nullable": true,
+                    "example": "19 ¾ \""
+                  },
+                  "lengthText": {
+                    "type": "string",
+                    "nullable": true,
+                    "example": "55 ½ \""
+                  },
+                  "heightText": {
+                    "type": "string",
+                    "nullable": true,
+                    "example": "4 ¼ \""
+                  },
+                  "diameterText": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "Only present for circular items."
+                  }
+                },
+                "required": [
+                  "weightText",
+                  "widthText",
+                  "lengthText",
+                  "heightText",
+                  "diameterText"
+                ],
+                "description": "Details about the product's packaging for transport."
+              },
+              "rating": {
+                "type": "object",
+                "properties": {
+                  "average": {
+                    "type": "number",
+                    "default": 0,
+                    "example": 4.1
+                  },
+                  "reviewCount": {
+                    "type": "number",
+                    "default": 0,
+                    "example": 177
+                  },
+                  "reviewInfo": {
+                    "type": "string",
+                    "example": "Average rating of 4.1 out of 5 stars from 177 reviews."
+                  }
+                },
+                "required": ["reviewInfo"]
+              },
+              "highlightedReviews": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "The name of the reviewer.",
+                      "example": "Anna K."
+                    },
+                    "ratingValue": {
+                      "type": "number",
+                      "default": 0,
+                      "description": "The star rating given by the reviewer.",
+                      "example": 5
+                    },
+                    "title": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "The title of the review.",
+                      "example": "Perfect for our bedroom!"
+                    },
+                    "text": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "The main body of the review text.",
+                      "example": "This was very easy to put together and it looks great. Very sturdy."
+                    },
+                    "countryName": {
+                      "type": "string",
+                      "description": "The country of the reviewer.",
+                      "example": "United States"
+                    }
+                  },
+                  "required": ["name", "title", "text", "countryName"]
+                },
+                "description": "A list of featured customer reviews."
+              }
+            },
+            "required": [
+              "productInfo",
+              "gallery",
+              "variants",
+              "packaging",
+              "rating",
+              "highlightedReviews"
+            ]
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "IkeaCategoriesResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "categories": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The unique identifier for the category.",
+                      "example": "49155"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "The display name of the category.",
+                      "example": "Christmas tree ornaments & toppers"
+                    },
+                    "url": {
+                      "type": "string",
+                      "nullable": true,
+                      "format": "uri",
+                      "description": "The full URL to the category page on IKEA's website.",
+                      "example": "https://www.ikea.com/us/en/cat/tree-ornaments-accessories-49155/"
+                    },
+                    "imageUrl": {
+                      "type": "string",
+                      "nullable": true,
+                      "format": "uri",
+                      "description": "URL for the category's representative image.",
+                      "example": "https://www.ikea.com/global/assets/range-categorisation/images/product/tree-ornaments-accessories-49155.jpeg"
+                    }
+                  },
+                  "required": ["id", "name", "url", "imageUrl"]
+                },
+                "description": "A flat list of all available IKEA product categories and sub-categories."
+              }
+            },
+            "required": ["categories"]
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "IkeaCountriesResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "countries": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "countryName": {
+                      "type": "string",
+                      "description": "The name of the country.",
+                      "example": "Hong Kong,香港"
+                    },
+                    "countryURL": {
+                      "type": "string",
+                      "description": "The URL of the IKEA site for the country/region.",
+                      "example": "IKEA.com/hk"
+                    },
+                    "countryISOCode": {
+                      "type": "string",
+                      "description": "The 3 digit ISO code  of the country/region.",
+                      "example": "HKG"
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "The two-letter country code.",
+                      "example": "HK"
+                    },
+                    "sites": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "language": {
+                            "type": "string",
+                            "description": "The name of the language.",
+                            "example": "English"
+                          },
+                          "languageCode": {
+                            "type": "string",
+                            "description": "The two-letter code for the language.",
+                            "example": "en"
+                          },
+                          "url": {
+                            "type": "string",
+                            "nullable": true,
+                            "format": "uri",
+                            "description": "The direct URL to the IKEA site for this language.",
+                            "example": "https://www.ikea.cn/cn/en/"
+                          }
+                        },
+                        "required": ["language", "languageCode", "url"]
+                      },
+                      "description": "A list of available language-specific sites for this country."
+                    }
+                  },
+                  "required": [
+                    "countryName",
+                    "countryURL",
+                    "countryISOCode",
+                    "code",
+                    "sites"
+                  ]
+                },
+                "description": "A list of all countries/regions where IKEA has a presence."
+              }
+            },
+            "required": ["countries"]
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "IkeaStoresResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "stores": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "storeId": {
+                      "type": "string",
+                      "description": "The unique identifier for the IKEA store.",
+                      "example": "680"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "The full official name of the store.",
+                      "example": "IKEA Los Angeles - Arcadia"
+                    },
+                    "lat": {
+                      "type": "number",
+                      "description": "The latitude coordinate of the store.",
+                      "example": 34.1348867704382
+                    },
+                    "lng": {
+                      "type": "number",
+                      "description": "The longitude coordinate of the store.",
+                      "example": -118.051567544364
+                    },
+                    "displayName": {
+                      "type": "string",
+                      "description": "A shorter, more user-friendly display name.",
+                      "example": "Arcadia, CA"
+                    },
+                    "storePageUrl": {
+                      "type": "string",
+                      "nullable": true,
+                      "format": "uri",
+                      "description": "The URL to the store's official page on the IKEA website.",
+                      "example": "https://www.ikea.com/us/en/stores/arcadia/"
+                    },
+                    "address": {
+                      "type": "object",
+                      "properties": {
+                        "street": {
+                          "type": "string",
+                          "description": "Street address.",
+                          "example": "400 South Baldwin Ave Suite D5"
+                        },
+                        "zipCode": {
+                          "type": "string",
+                          "description": "Zip code.",
+                          "example": "91007"
+                        },
+                        "city": {
+                          "type": "string",
+                          "description": "City.",
+                          "example": "Arcadia"
+                        },
+                        "displayAddress": {
+                          "type": "string",
+                          "description": "Full display address.",
+                          "example": "400 South Baldwin Ave Suite D5, Arcadia"
+                        }
+                      },
+                      "required": [
+                        "street",
+                        "zipCode",
+                        "city",
+                        "displayAddress"
+                      ]
+                    },
+                    "classification": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string",
+                          "description": "The classification code for the store type.",
+                          "example": "PAOP"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "The classification name for the store type.",
+                          "example": "IKEA PLAN AND ORDER POINT"
+                        }
+                      },
+                      "required": ["code", "name"]
+                    }
+                  },
+                  "required": [
+                    "storeId",
+                    "name",
+                    "lat",
+                    "lng",
+                    "displayName",
+                    "storePageUrl",
+                    "address",
+                    "classification"
+                  ]
+                },
+                "description": "A list of IKEA stores for the specified country."
+              }
+            },
+            "required": ["stores"]
+          }
+        },
+        "required": ["success", "data"]
+      }
+    }
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "Ikea API"
+        ],
+        "summary": "Health check endpoint",
+        "description": "Returns the health status of the Semrush API service including system metrics and processing time",
+        "operationId": "/health",
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Health check",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonHealthCheckResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product-search-by-keyword": {
+      "get": {
+        "tags": [
+          "Ikea API"
+        ],
+        "summary": "Search products by keyword on Ikea",
+        "description": "Search for products on Ikea using keywords. Provide a search query to get product results including prices, availability, and product details.",
+        "operationId": "Search By Keyword",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "description": "- Search keyword for IKEA products\n- Examples: `table`, `chair`, `sofa`, `desk`, `bed`, `storage`",
+              "example": "table"
+            },
+            "required": true,
+            "description": "- Search keyword for IKEA products\n- Examples: `table`, `chair`, `sofa`, `desk`, `bed`, `storage`",
+            "name": "keyword",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2,
+              "description": "- Two-letter country code\n- Get available country codes from `/countries` endpoint\n- Examples: `us` (United States), `ca` (Canada), `gb` (United Kingdom), `ch` (Switzerland), `se` (Sweden), `de` (Germany)",
+              "example": "us"
+            },
+            "required": true,
+            "description": "- Two-letter country code\n- Get available country codes from `/countries` endpoint\n- Examples: `us` (United States), `ca` (Canada), `gb` (United Kingdom), `ch` (Switzerland), `se` (Sweden), `de` (Germany)",
+            "name": "countryCode",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2,
+              "description": "- Two-letter language code\n- Get available language codes from `/countries` endpoint\n- Examples: `en` (English), `fr` (French), `de` (German), `it` (Italian), `sv` (Swedish)\n- Note: `ca` supports `en` or `fr`, `ch` supports `de`, `fr`, `it`, or `en`",
+              "example": "en"
+            },
+            "required": true,
+            "description": "- Two-letter language code\n- Get available language codes from `/countries` endpoint\n- Examples: `en` (English), `fr` (French), `de` (German), `it` (Italian), `sv` (Swedish)\n- Note: `ca` supports `en` or `fr`, `ch` supports `de`, `fr`, `it`, or `en`",
+            "name": "languageCode",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Page number for pagination (default page size: 24)\n- Examples: `1`, `2`, `3`, `4`, `5`",
+              "example": "1"
+            },
+            "required": false,
+            "description": "- Page number for pagination (default page size: 24)\n- Examples: `1`, `2`, `3`, `4`, `5`",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Filters in format: parameterId=valueId,parameterId=valueId\n- Get Filters from \"product-search-by-keyword-filters\"\n- Example: `f-measurement-buckets=WIDTH_0_26,f-measurement-buckets=WIDTH_26_28,f-type=chair,f-type=desk`",
+              "example": "f-price-buckets=PRICE_0_10000,f-colors=10156"
+            },
+            "required": false,
+            "description": "- Filters in format: parameterId=valueId,parameterId=valueId\n- Get Filters from \"product-search-by-keyword-filters\"\n- Example: `f-measurement-buckets=WIDTH_0_26,f-measurement-buckets=WIDTH_26_28,f-type=chair,f-type=desk`",
+            "name": "filters",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "RELEVANCE",
+                "PRICE_LOW_TO_HIGH",
+                "PRICE_HIGH_TO_LOW",
+                "NEWEST",
+                "RATING",
+                "NAME_ASCENDING",
+                "MOST_POPULAR"
+              ],
+              "description": "- Sort order for results (default: RELEVANCE)\n- Options: `RELEVANCE`, `PRICE_LOW_TO_HIGH`, `PRICE_HIGH_TO_LOW`, `NEWEST`, `RATING`, `NAME_ASCENDING`, `MOST_POPULAR`",
+              "example": "RELEVANCE"
+            },
+            "required": false,
+            "description": "- Sort order for results (default: RELEVANCE)\n- Options: `RELEVANCE`, `PRICE_LOW_TO_HIGH`, `PRICE_HIGH_TO_LOW`, `NEWEST`, `RATING`, `NAME_ASCENDING`, `MOST_POPULAR`",
+            "name": "sortOrder",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with IKEA product search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IkeaProductSearchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid query parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad gateway - IKEA API unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IkeaApiErrorResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product-search-by-keyword-filters": {
+      "get": {
+        "tags": [
+          "Ikea API"
+        ],
+        "summary": "Filters for Product Search By Keyword Endpoint",
+        "description": "Get Filters to be used for Product Search by Keyword endpoint. Get filters like price, material, color, size etc.",
+        "operationId": "Filters for Search By Keyword",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "description": "- Search keyword for IKEA products to get available filters\n- Examples: `table`, `chair`, `sofa`, `desk`, `bed`, `storage`",
+              "example": "table"
+            },
+            "required": true,
+            "description": "- Search keyword for IKEA products to get available filters\n- Examples: `table`, `chair`, `sofa`, `desk`, `bed`, `storage`",
+            "name": "keyword",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2,
+              "description": "- Two-letter country code\n- Get available country codes from `/countries` endpoint\n- Examples: `us` (United States), `ca` (Canada), `gb` (United Kingdom), `ch` (Switzerland), `se` (Sweden), `de` (Germany)",
+              "example": "us"
+            },
+            "required": true,
+            "description": "- Two-letter country code\n- Get available country codes from `/countries` endpoint\n- Examples: `us` (United States), `ca` (Canada), `gb` (United Kingdom), `ch` (Switzerland), `se` (Sweden), `de` (Germany)",
+            "name": "countryCode",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2,
+              "description": "- Two-letter language code\n- Get available language codes from `/countries` endpoint\n- Examples: `en` (English), `fr` (French), `de` (German), `it` (Italian), `sv` (Swedish)\n- Note: `ca` supports `en` or `fr`, `ch` supports `de`, `fr`, `it`, or `en`",
+              "example": "en"
+            },
+            "required": true,
+            "description": "- Two-letter language code\n- Get available language codes from `/countries` endpoint\n- Examples: `en` (English), `fr` (French), `de` (German), `it` (Italian), `sv` (Swedish)\n- Note: `ca` supports `en` or `fr`, `ch` supports `de`, `fr`, `it`, or `en`",
+            "name": "languageCode",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with available filters for IKEA product search",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IkeaFiltersResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid query parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource Not Found - The specified resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad gateway - IKEA API unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IkeaApiErrorResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product-search-by-category": {
+      "get": {
+        "tags": [
+          "Ikea API"
+        ],
+        "summary": "Search products by Category ID on Ikea",
+        "description": "Search for products on Ikea using Category ID. Provide a search query to get product results including prices, availability, and product details",
+        "operationId": "Search By Category",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 50,
+              "description": "- IKEA category ID\n- Get category IDs from `/categories` endpoint\n- Examples: `10385` (Filing cabinets & storage cabinets), `18768` (Kids tables), `700675` (Tables)",
+              "example": "st004"
+            },
+            "required": true,
+            "description": "- IKEA category ID\n- Get category IDs from `/categories` endpoint\n- Examples: `10385` (Filing cabinets & storage cabinets), `18768` (Kids tables), `700675` (Tables)",
+            "name": "categoryId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2,
+              "description": "- Two-letter country code\n- Get available country codes from `/countries` endpoint\n- Examples: `us` (United States), `ca` (Canada), `gb` (United Kingdom), `ch` (Switzerland), `se` (Sweden), `de` (Germany)",
+              "example": "us"
+            },
+            "required": true,
+            "description": "- Two-letter country code\n- Get available country codes from `/countries` endpoint\n- Examples: `us` (United States), `ca` (Canada), `gb` (United Kingdom), `ch` (Switzerland), `se` (Sweden), `de` (Germany)",
+            "name": "countryCode",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2,
+              "description": "- Two-letter language code\n- Get available language codes from `/countries` endpoint\n- Examples: `en` (English), `fr` (French), `de` (German), `it` (Italian), `sv` (Swedish)\n- Note: `ca` supports `en` or `fr`, `ch` supports `de`, `fr`, `it`, or `en`",
+              "example": "en"
+            },
+            "required": true,
+            "description": "- Two-letter language code\n- Get available language codes from `/countries` endpoint\n- Examples: `en` (English), `fr` (French), `de` (German), `it` (Italian), `sv` (Swedish)\n- Note: `ca` supports `en` or `fr`, `ch` supports `de`, `fr`, `it`, or `en`",
+            "name": "languageCode",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Page number for pagination (default page size: 24)\n- Examples: `1`, `2`, `3`, `4`, `5`",
+              "example": "1"
+            },
+            "required": false,
+            "description": "- Page number for pagination (default page size: 24)\n- Examples: `1`, `2`, `3`, `4`, `5`",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Filters in format: parameterId=valueId,parameterId=valueId\n- Get available filters from `/product-search-by-category-filters` endpoint\n- Examples: `f-price-buckets=PRICE_0_10000`, `f-colors=10156`, `f-top-seller=true`\n- Multiple filters: `f-price-buckets=PRICE_0_10000,f-colors=10156,f-top-seller=true`",
+              "example": "f-price-buckets=PRICE_0_10000,f-colors=10156"
+            },
+            "required": false,
+            "description": "- Filters in format: parameterId=valueId,parameterId=valueId\n- Get available filters from `/product-search-by-category-filters` endpoint\n- Examples: `f-price-buckets=PRICE_0_10000`, `f-colors=10156`, `f-top-seller=true`\n- Multiple filters: `f-price-buckets=PRICE_0_10000,f-colors=10156,f-top-seller=true`",
+            "name": "filters",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "RELEVANCE",
+                "PRICE_LOW_TO_HIGH",
+                "PRICE_HIGH_TO_LOW",
+                "NEWEST",
+                "RATING",
+                "NAME_ASCENDING",
+                "MOST_POPULAR"
+              ],
+              "description": "- Sort order for results (default: RELEVANCE)\n- Options: `RELEVANCE`, `PRICE_LOW_TO_HIGH`, `PRICE_HIGH_TO_LOW`, `NEWEST`, `RATING`, `NAME_ASCENDING`, `MOST_POPULAR`",
+              "example": "RELEVANCE"
+            },
+            "required": false,
+            "description": "- Sort order for results (default: RELEVANCE)\n- Options: `RELEVANCE`, `PRICE_LOW_TO_HIGH`, `PRICE_HIGH_TO_LOW`, `NEWEST`, `RATING`, `NAME_ASCENDING`, `MOST_POPULAR`",
+            "name": "sortOrder",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with IKEA products from the specified category",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IkeaProductSearchResponseSchema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid query parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource Not Found - The specified resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad gateway - IKEA API unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IkeaApiErrorResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product-search-by-category-filters": {
+      "get": {
+        "tags": [
+          "Ikea API"
+        ],
+        "summary": "Filters for Product Search By Category Endpoint",
+        "description": "Get Filters to be used for Product Search by Category endpoint. Get filters like price, material, color, size etc.",
+        "operationId": "Filters for Search By Category",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 50,
+              "description": "- IKEA category ID to get available filters\n- Get category IDs from `/categories` endpoint\n- Examples: `10385` (Filing cabinets & storage cabinets), `18768` (Kids tables), `700675` (Tables)",
+              "example": "st004"
+            },
+            "required": true,
+            "description": "- IKEA category ID to get available filters\n- Get category IDs from `/categories` endpoint\n- Examples: `10385` (Filing cabinets & storage cabinets), `18768` (Kids tables), `700675` (Tables)",
+            "name": "categoryId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2,
+              "description": "- Two-letter country code\n- Get available country codes from `/countries` endpoint\n- Examples: `us` (United States), `ca` (Canada), `gb` (United Kingdom), `ch` (Switzerland), `se` (Sweden), `de` (Germany)",
+              "example": "us"
+            },
+            "required": true,
+            "description": "- Two-letter country code\n- Get available country codes from `/countries` endpoint\n- Examples: `us` (United States), `ca` (Canada), `gb` (United Kingdom), `ch` (Switzerland), `se` (Sweden), `de` (Germany)",
+            "name": "countryCode",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2,
+              "description": "- Two-letter language code\n- Get available language codes from `/countries` endpoint\n- Examples: `en` (English), `fr` (French), `de` (German), `it` (Italian), `sv` (Swedish)\n- Note: `ca` supports `en` or `fr`, `ch` supports `de`, `fr`, `it`, or `en`",
+              "example": "en"
+            },
+            "required": true,
+            "description": "- Two-letter language code\n- Get available language codes from `/countries` endpoint\n- Examples: `en` (English), `fr` (French), `de` (German), `it` (Italian), `sv` (Swedish)\n- Note: `ca` supports `en` or `fr`, `ch` supports `de`, `fr`, `it`, or `en`",
+            "name": "languageCode",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with available filters for IKEA category search",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IkeaCategoryFiltersResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid query parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource Not Found - The specified category ID does not exist for the country.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad gateway - IKEA API unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IkeaApiErrorResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product-details": {
+      "get": {
+        "tags": [
+          "Ikea API"
+        ],
+        "summary": "Get Product Details",
+        "description": "Get Product Details using product ID",
+        "operationId": "Product Details",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 50,
+              "description": "- IKEA product ID\n- Get product IDs from `/product-search-by-keyword` or `/product-search-by-category` endpoints\n- Examples: `s29420393`, `60561248`, `50590915`",
+              "example": "60561248"
+            },
+            "required": true,
+            "description": "- IKEA product ID\n- Get product IDs from `/product-search-by-keyword` or `/product-search-by-category` endpoints\n- Examples: `s29420393`, `60561248`, `50590915`",
+            "name": "productId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2,
+              "description": "- Two-letter country code\n- Get available country codes from `/countries` endpoint\n- Examples: `us` (United States), `ca` (Canada), `gb` (United Kingdom), `ch` (Switzerland), `se` (Sweden), `de` (Germany)",
+              "example": "us"
+            },
+            "required": true,
+            "description": "- Two-letter country code\n- Get available country codes from `/countries` endpoint\n- Examples: `us` (United States), `ca` (Canada), `gb` (United Kingdom), `ch` (Switzerland), `se` (Sweden), `de` (Germany)",
+            "name": "countryCode",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2,
+              "description": "- Two-letter language code\n- Get available language codes from `/countries` endpoint\n- Examples: `en` (English), `fr` (French), `de` (German), `it` (Italian), `sv` (Swedish)\n- Note: `ca` supports `en` or `fr`, `ch` supports `de`, `fr`, `it`, or `en`",
+              "example": "en"
+            },
+            "required": true,
+            "description": "- Two-letter language code\n- Get available language codes from `/countries` endpoint\n- Examples: `en` (English), `fr` (French), `de` (German), `it` (Italian), `sv` (Swedish)\n- Note: `ca` supports `en` or `fr`, `ch` supports `de`, `fr`, `it`, or `en`",
+            "name": "languageCode",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with IKEA product details HTML page",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IkeaProductDetailsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid query parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource Not Found - The specified resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad gateway - IKEA API unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IkeaApiErrorResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "tags": [
+          "Ikea API"
+        ],
+        "summary": "Get Categories list",
+        "description": "Get categories ID list to be used in Search products by Category endpoint",
+        "operationId": "Categories",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2,
+              "description": "- Two-letter country code\n- Get available country codes from `/countries` endpoint\n- Examples: `us` (United States), `ca` (Canada), `gb` (United Kingdom), `ch` (Switzerland), `se` (Sweden), `de` (Germany)",
+              "example": "us"
+            },
+            "required": true,
+            "description": "- Two-letter country code\n- Get available country codes from `/countries` endpoint\n- Examples: `us` (United States), `ca` (Canada), `gb` (United Kingdom), `ch` (Switzerland), `se` (Sweden), `de` (Germany)",
+            "name": "countryCode",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2,
+              "description": "- Two-letter language code\n- Get available language codes from `/countries` endpoint\n- Examples: `en` (English), `fr` (French), `de` (German), `it` (Italian), `sv` (Swedish)\n- Note: `ca` supports `en` or `fr`, `ch` supports `de`, `fr`, `it`, or `en`",
+              "example": "en"
+            },
+            "required": true,
+            "description": "- Two-letter language code\n- Get available language codes from `/countries` endpoint\n- Examples: `en` (English), `fr` (French), `de` (German), `it` (Italian), `sv` (Swedish)\n- Note: `ca` supports `en` or `fr`, `ch` supports `de`, `fr`, `it`, or `en`",
+            "name": "languageCode",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with IKEA categories and navigation structure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IkeaCategoriesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid query parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource Not Found - The specified resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad gateway - IKEA API unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IkeaApiErrorResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/countries": {
+      "get": {
+        "tags": [
+          "Ikea API"
+        ],
+        "summary": "Get Countries list",
+        "description": "Get countries ID list to be used in Search products endpoint",
+        "operationId": "Countries",
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with IKEA countries and regions data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IkeaCountriesResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource Not Found - The specified resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad gateway - IKEA API unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IkeaApiErrorResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stores": {
+      "get": {
+        "tags": [
+          "Ikea API"
+        ],
+        "summary": "Get Stores list",
+        "description": "Get stores list using country code",
+        "operationId": "Stores",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2,
+              "description": "- Two-letter country code\n- Get available country codes from `/countries` endpoint\n- Examples: `us` (United States), `ca` (Canada), `gb` (United Kingdom), `ch` (Switzerland), `se` (Sweden), `de` (Germany)",
+              "example": "us"
+            },
+            "required": true,
+            "description": "- Two-letter country code\n- Get available country codes from `/countries` endpoint\n- Examples: `us` (United States), `ca` (Canada), `gb` (United Kingdom), `ch` (Switzerland), `se` (Sweden), `de` (Germany)",
+            "name": "countryCode",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with IKEA stores information for the specified country",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IkeaStoresResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid query parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource Not Found - The specified resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalErrorResponseSchema"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad gateway - IKEA API unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IkeaApiErrorResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

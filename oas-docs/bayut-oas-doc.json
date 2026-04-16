@@ -1,0 +1,2784 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "1.0",
+    "title": "Bayut",
+    "x-category": "Data",
+    "description": "\r\n# 🏠 Bayut Data API\r\n\r\n### 🚨 📊 Bayut Dataset for Sale\r\n**100K+ Bayut records (transactions + listings)**  \r\n💰 Cheap pricing available  \r\n\r\n👉 Contact: **happyendpointhq@gmail.com**\r\n\r\n---\r\n\r\n### ⚡ Key Info\r\n\r\n- 📅 **Last update**: March 23, 2026  \r\n- 🚀 **No proxies needed**\r\n- 🇦🇪 **UAE-wide coverage (Dubai + more)**  \r\n- ⚡ **Fast, real-time API**\r\n\r\n## 🌐 Useful Links\r\n\r\n* 🏛️ **Bayut API:** [https://bayutapi.dev](https://bayutapi.dev/)\r\n* 🌍 **HappyEndpoint Website:** [https://happyendpoint.com/](https://happyendpoint.com/)\r\n* 📘 **Documentation:** [https://happyendpoint.com/apis/bayut/docs/](https://happyendpoint.com/apis/bayut/docs/)\r\n* 🐦 **Twitter:** [https://x.com/happyendpointhq](https://x.com/happyendpointhq)\r\n* 📩 **Contact Email:** [happyendpointhq@gmail.com](mailto:happyendpointhq@gmail.com)\r\n\r\n![Bayut Property Data API](https://i.ibb.co/CpLQFZXf/propertyfinder-bayut-happyendpoint.png)\r\n\r\n---\r\n\r\n### 📦 What You Get\r\n\r\n- Property listings  \r\n- Agents & agencies  \r\n- Locations & amenities  \r\n- New projects  \r\n\r\n---\r\n\r\n### 🔌 Use Cases\r\n\r\n- Real estate apps  \r\n- Analytics tools  \r\n- Investment dashboards  \r\n- Lead generation  \r\n\r\n---\r\n\r\n### 🔄 Updates\r\n\r\n- New endpoints coming soon  \r\n👉 Subscribe early\r\n---\r\n# Why Use This API?\r\n\r\n### 🚀 Save Development Time\r\nAvoid building and maintaining complex web scrapers for real estate portals.\r\n\r\n### ⚡ Fast & Reliable\r\nAll data is returned in **clean JSON format**, ready to integrate into your application.\r\n\r\n### 📊 Powerful Real Estate Data\r\nAccess **property listings, agents, agencies, locations, amenities, and development projects**.\r\n\r\n### 🔎 Flexible Search Filters\r\nSearch properties using filters such as:\r\n\r\n- location\r\n- price range\r\n- bedrooms\r\n- bathrooms\r\n- property type\r\n- amenities\r\n- completion status\r\n- and more\r\n\r\n### 🏗 Built for Developers\r\nDesigned for **SaaS platforms, dashboards, analytics tools, and real estate startups**.\r\n\r\n---\r\n\r\n# What Data You Can Access\r\n\r\nThis API provides access to multiple types of **UAE property market data**:\r\n\r\n- Dubai property listings\r\n- UAE apartments for rent\r\n- villas for sale in Dubai\r\n- off-plan projects and new developments\r\n- real estate agents\r\n- real estate agencies\r\n- property amenities\r\n- location search and IDs\r\n\r\nAll responses are returned in **structured JSON** for easy integration.\r\n\r\n---\r\n\r\n# Available Endpoints\r\n\r\n## Location Endpoints\r\n\r\n### `/autocomplete`\r\n\r\nSearch for **locations across Dubai and the UAE**.\r\n\r\nThis endpoint returns **location suggestions, IDs, and slugs** that can be used with other endpoints.\r\n\r\nUse it to power:\r\n\r\n- location search bars\r\n- property search filters\r\n- autocomplete location inputs\r\n\r\nExample use cases:\r\n\r\n- Search for areas like *Dubai Marina, Downtown Dubai, Palm Jumeirah*\r\n- Get location IDs for property search\r\n- Build location dropdowns\r\n\r\n---\r\n\r\n# Property Search Endpoints\r\n\r\n## `/search-property`\r\n\r\nSearch **real estate properties for sale or rent in Dubai and the UAE**.\r\n\r\nThis endpoint allows you to filter listings using multiple criteria including:\r\n\r\n- location\r\n- property type\r\n- bedrooms\r\n- bathrooms\r\n- price range\r\n- area size\r\n- amenities\r\n- completion status\r\n- purpose (sale or rent)\r\n\r\nUse this endpoint to build:\r\n\r\n- **property listing websites**\r\n- **real estate mobile apps**\r\n- **property comparison tools**\r\n- **investment dashboards**\r\n\r\nExample data returned:\r\n\r\n- property title\r\n- price\r\n- bedrooms\r\n- bathrooms\r\n- property type\r\n- area size\r\n- location\r\n- listing images\r\n- amenities\r\n- listing agent\r\n\r\n---\r\n\r\n## `/search-new-projects`\r\n\r\nSearch **off-plan properties and new development projects in Dubai**.\r\n\r\nOff-plan properties are properties **under construction or recently launched developments**.\r\n\r\nThis endpoint is ideal for applications focused on:\r\n\r\n- **Dubai off-plan property investment**\r\n- **new real estate development tracking**\r\n- **project comparison tools**\r\n- **investment research platforms**\r\n\r\nExample returned data:\r\n\r\n- project name\r\n- developer\r\n- location\r\n- starting price\r\n- completion status\r\n- available floor plans\r\n\r\n---\r\n\r\n# Agent Endpoints\r\n\r\n## `/agent-search-by-name`\r\n\r\nSearch **real estate agents in Dubai and the UAE by name**.\r\n\r\nReturns matching agents including:\r\n\r\n- agent name\r\n- agency\r\n- badges\r\n- languages\r\n- property listing count\r\n\r\nThis endpoint is useful for building:\r\n\r\n- **agent directories**\r\n- **agent search tools**\r\n- **real estate CRM integrations**\r\n\r\n---\r\n\r\n## `/agent-properties`\r\n\r\nRetrieve **all property listings from a specific real estate agent**.\r\n\r\nThis allows you to build:\r\n\r\n- agent profile pages\r\n- agent listing dashboards\r\n- agent performance analytics\r\n\r\nYou will need the **agent owner ID** from the agent data to retrieve listings.\r\n\r\n---\r\n\r\n# Agency Endpoints\r\n\r\n## `/agency-search`\r\n\r\nSearch **real estate agencies in Dubai or other UAE locations**.\r\n\r\nReturns agencies that have active listings in the specified location.\r\n\r\nUseful for building:\r\n\r\n- **agency directories**\r\n- **agency ranking platforms**\r\n- **market research tools**\r\n\r\n---\r\n\r\n## `/agency-search-by-name`\r\n\r\nSearch **real estate agencies by name**.\r\n\r\nReturns matching agencies with information such as:\r\n\r\n- agency name\r\n- listing counts\r\n- agent counts\r\n- basic agency profile data\r\n\r\n---\r\n\r\n## `/agency-details`\r\n\r\nRetrieve **detailed information about a real estate agency**.\r\n\r\nReturned data may include:\r\n\r\n- agency profile\r\n- contact information\r\n- listing statistics\r\n- agency branding\r\n\r\n---\r\n\r\n## `/agency-properties`\r\n\r\nRetrieve **all properties listed by a specific real estate agency**.\r\n\r\nUse this to build:\r\n\r\n- agency profile pages\r\n- agency listing portals\r\n- agency analytics tools\r\n\r\n---\r\n\r\n# Market Data Endpoints\r\n\r\n## `/amenities-search`\r\n\r\nSearch available **property amenities**.\r\n\r\nThis endpoint returns:\r\n\r\n- amenity names\r\n- number of properties containing each amenity\r\n\r\nExamples:\r\n\r\n- swimming pool\r\n- balcony\r\n- gym\r\n- parking\r\n- security\r\n- furnished\r\n\r\nThe returned amenity names can be used inside the `/search-property` endpoint.\r\n\r\nThis allows you to build **advanced property filtering systems**.\r\n\r\n---\r\n\r\n# Potential Use Cases\r\n\r\nThis API can power a wide variety of **real estate platforms and tools**.\r\n\r\n### Build Property Listing Websites\r\nCreate a **Dubai property portal** similar to popular real estate platforms.\r\n\r\n### Real Estate Mobile Apps\r\nBuild iOS or Android apps that show **UAE property listings in real time**.\r\n\r\n### Property Comparison Tools\r\nHelp users compare properties by:\r\n\r\n- price\r\n- location\r\n- size\r\n- amenities\r\n- developer\r\n\r\n### Investment Analysis Platforms\r\nTrack:\r\n\r\n- price differences between areas\r\n- rental yield potential\r\n- off-plan project opportunities\r\n\r\n### Real Estate Market Dashboards\r\nBuild dashboards for:\r\n\r\n- brokers\r\n- investors\r\n- analysts\r\n\r\n### Agent & Agency Directories\r\nCreate searchable directories of:\r\n\r\n- real estate agents\r\n- real estate agencies\r\n- listing portfolios\r\n\r\n### Real Estate CRM Systems\r\nAutomatically sync:\r\n\r\n- property listings\r\n- agent data\r\n- agency data\r\n\r\n---\r\n\r\n# SEO Keywords\r\n\r\nThis API provides data for developers building tools around:\r\n\r\n- Dubai real estate data API\r\n- UAE property listings API\r\n- property search API Dubai\r\n- Dubai property data API\r\n- real estate listings API\r\n- Bayut property data API\r\n- UAE real estate API\r\n- off-plan property API Dubai\r\n- Dubai property investment data\r\n- real estate market data UAE\r\n\r\n---\r\n\r\n# Response Format\r\n\r\nAll endpoints return **JSON responses**.\r\n\r\nExample response structure:\r\n\r\n```json\r\n{\r\n  \"success\": true,\r\n  \"data\": [],\r\n  \"pagination\": {}\r\n}\r\n````\r\n\r\nThis makes it easy to integrate the API with:\r\n\r\n* JavaScript\r\n* Python\r\n* Node.js\r\n* React\r\n* mobile applications\r\n* backend services\r\n\r\n---\r\n\r\n# Built for Developers\r\n\r\nThe API is designed to be:\r\n\r\n* **simple to integrate**\r\n* **fast to query**\r\n* **scalable for production**\r\n* **stable for long-term use**\r\n\r\nYou can start building applications around **Dubai real estate listings, agents, agencies, and property data** within minutes.\r\n\r\n---\r\n\r\nIf you build something interesting with this API, feel free to share it.\r\nI'd love to see what you create 🚀",
+    "x-website": "https://happyendpoint.com",
+    "x-twitter": "https://x.com/happyendpointhq",
+    "x-linkedin": "https://www.linkedin.com/in/happyendpoint/",
+    "x-github": "https://github.com/happyendpointhq",
+    "x-public": true,
+    "x-thumbnail": "https://rapidapi-prod-apis.s3.amazonaws.com/414d2f9d-a7b4-4219-8979-10e608963f99.png",
+    "x-version-lifecycle": "active",
+    "termsOfService": "The best unofficial real time Bayut Data API",
+    "externalDocs": {
+      "description": "Read more",
+      "url": "https://happyendpoint.com/apis/bayut/docs/"
+    },
+    "contact": {
+      "name": "Happy Endpoint",
+      "email": "happyendpointhq@gmail.com",
+      "url": "https://happyendpoint.com/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://bayut14.p.rapidapi.com",
+      "description": "Base URL"
+    }
+  ],
+  "security": [{ "RapidApiKey": [] }],
+  "components": {
+    "securitySchemes": {
+      "RapidApiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-RapidAPI-Key"
+      }
+    },
+    "parameters": {
+      "RapidApiHostHeader": {
+        "name": "X-RapidAPI-Host",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "default": "bayut14.p.rapidapi.com"
+        }
+      }
+    },
+    "schemas": {
+      "CommonHealthCheckResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "required": ["success"]
+      },
+      "LocationResult": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "nullable": true,
+            "example": 36
+          },
+          "externalID": {
+            "type": "string",
+            "nullable": true,
+            "example": "5003"
+          },
+          "name": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "Localized names keyed by language code",
+            "example": {
+              "en": "Dubai Marina",
+              "ar": "دبي مارينا"
+            }
+          },
+          "slug": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "example": {
+              "en": "/dubai/dubai-marina"
+            }
+          },
+          "level": {
+            "type": "number",
+            "nullable": true,
+            "example": 2
+          },
+          "type": {
+            "type": "string",
+            "nullable": true,
+            "example": "neighborhood"
+          },
+          "geography": {
+            "nullable": true,
+            "description": "Geographic coordinates"
+          },
+          "path": {
+            "type": "string",
+            "nullable": true,
+            "description": "Location hierarchy path",
+            "example": "Dubai \u003E Dubai Marina"
+          },
+          "adCount": {
+            "type": "number",
+            "nullable": true,
+            "example": 12450
+          }
+        },
+        "required": [
+          "id",
+          "externalID",
+          "name",
+          "slug",
+          "level",
+          "type",
+          "path",
+          "adCount"
+        ]
+      },
+      "BayutAutocompleteResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "locations": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/LocationResult"
+                }
+              },
+              "total": {
+                "type": "number",
+                "example": 5
+              }
+            },
+            "required": ["locations", "total"]
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "BayutValidationErrorResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "example": "Invalid request: Missing required parameter"
+          },
+          "error": {
+            "type": "string",
+            "example": "VALIDATION_ERROR"
+          }
+        },
+        "required": ["success", "message", "error"]
+      },
+      "BayutInternalErrorResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "example": "Internal server error. Please try again later."
+          },
+          "error": {
+            "type": "string",
+            "example": "INTERNAL_ERROR"
+          }
+        },
+        "required": ["success", "message", "error"]
+      },
+      "BayutApiErrorResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "example": "Service temporarily unavailable. Please try again later."
+          },
+          "error": {
+            "type": "string",
+            "example": "API_ERROR"
+          }
+        },
+        "required": ["success", "message", "error"]
+      },
+      "PropertyItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "example": "10283980"
+          },
+          "externalID": {
+            "type": "string",
+            "nullable": true,
+            "example": "10283980"
+          },
+          "title": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "example": {
+              "en": "2BR Apartment in Dubai Marina"
+            }
+          },
+          "description": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "slug": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "purpose": {
+            "type": "string",
+            "nullable": true,
+            "example": "for-sale"
+          },
+          "price": {
+            "type": "number",
+            "nullable": true,
+            "example": 1500000
+          },
+          "rentFrequency": {
+            "type": "string",
+            "nullable": true
+          },
+          "rooms": {
+            "type": "number",
+            "nullable": true,
+            "example": 2
+          },
+          "baths": {
+            "type": "number",
+            "nullable": true,
+            "example": 3
+          },
+          "area": {
+            "type": "number",
+            "nullable": true,
+            "description": "Area in sqm",
+            "example": 120.5
+          },
+          "coverPhoto": {
+            "nullable": true
+          },
+          "photoCount": {
+            "type": "number",
+            "nullable": true,
+            "example": 15
+          },
+          "videoCount": {
+            "type": "number",
+            "nullable": true,
+            "example": 1
+          },
+          "panoramaCount": {
+            "type": "number",
+            "nullable": true,
+            "example": 0
+          },
+          "location": {
+            "nullable": true
+          },
+          "category": {
+            "nullable": true
+          },
+          "agency": {
+            "nullable": true
+          },
+          "contactName": {
+            "type": "string",
+            "nullable": true,
+            "example": "John Smith"
+          },
+          "phoneNumber": {
+            "nullable": true
+          },
+          "referenceNumber": {
+            "type": "string",
+            "nullable": true,
+            "example": "REF-12345"
+          },
+          "isVerified": {
+            "type": "boolean",
+            "nullable": true,
+            "example": true
+          },
+          "completionStatus": {
+            "type": "string",
+            "nullable": true,
+            "example": "completed"
+          },
+          "furnishingStatus": {
+            "type": "string",
+            "nullable": true,
+            "example": "furnished"
+          },
+          "createdAt": {
+            "type": "number",
+            "nullable": true,
+            "description": "Unix timestamp"
+          },
+          "updatedAt": {
+            "type": "number",
+            "nullable": true,
+            "description": "Unix timestamp"
+          },
+          "ownerAgent": {
+            "nullable": true
+          },
+          "floorPlanID": {
+            "type": "number",
+            "nullable": true
+          },
+          "geography": {
+            "nullable": true
+          },
+          "amenities": {
+            "nullable": true
+          },
+          "offplanDetails": {
+            "nullable": true
+          },
+          "project": {
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "externalID",
+          "title",
+          "purpose",
+          "price",
+          "rentFrequency",
+          "rooms",
+          "baths",
+          "area",
+          "photoCount",
+          "videoCount",
+          "panoramaCount",
+          "contactName",
+          "referenceNumber",
+          "isVerified",
+          "completionStatus",
+          "furnishingStatus",
+          "createdAt",
+          "updatedAt",
+          "floorPlanID"
+        ]
+      },
+      "BayutSearchPropertyResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "properties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PropertyItem"
+                }
+              },
+              "total": {
+                "type": "number",
+                "example": 1250
+              },
+              "page": {
+                "type": "number",
+                "description": "Current page (1-based)",
+                "example": 1
+              },
+              "totalPages": {
+                "type": "number",
+                "example": 53
+              },
+              "hitsPerPage": {
+                "type": "number",
+                "example": 24
+              }
+            },
+            "required": [
+              "properties",
+              "total",
+              "page",
+              "totalPages",
+              "hitsPerPage"
+            ]
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "BayutNewProjectSearchResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "properties": {
+                "type": "array",
+                "items": {
+                  "nullable": true
+                }
+              },
+              "total": {
+                "type": "number"
+              },
+              "page": {
+                "type": "number"
+              },
+              "totalPages": {
+                "type": "number"
+              },
+              "hitsPerPage": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "properties",
+              "total",
+              "page",
+              "totalPages",
+              "hitsPerPage"
+            ]
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "BayutPropertyDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "nullable": true,
+            "description": "Full property details"
+          }
+        },
+        "required": ["success"]
+      },
+      "BayutAgentSearchResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "nullable": true,
+            "description": "Agent search results"
+          }
+        },
+        "required": ["success"]
+      },
+      "BayutAgentSearchByNameResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "agents": {
+                "type": "array",
+                "items": {
+                  "nullable": true
+                }
+              },
+              "total": {
+                "type": "number"
+              },
+              "page": {
+                "type": "number"
+              },
+              "totalPages": {
+                "type": "number"
+              },
+              "hitsPerPage": {
+                "type": "number"
+              }
+            },
+            "required": ["agents", "total", "page", "totalPages", "hitsPerPage"]
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "BayutAgentDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "nullable": true,
+            "description": "Agent details including profile, contact info, badges, and stats"
+          }
+        },
+        "required": ["success"]
+      },
+      "BayutAgentPropertiesResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "properties": {
+                "type": "array",
+                "items": {
+                  "nullable": true
+                }
+              },
+              "total": {
+                "type": "number"
+              },
+              "page": {
+                "type": "number"
+              },
+              "totalPages": {
+                "type": "number"
+              },
+              "hitsPerPage": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "properties",
+              "total",
+              "page",
+              "totalPages",
+              "hitsPerPage"
+            ]
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "BayutAgencySearchResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "agencies": {
+                "type": "array",
+                "items": {
+                  "nullable": true
+                }
+              },
+              "total": {
+                "type": "number"
+              },
+              "page": {
+                "type": "number"
+              },
+              "totalPages": {
+                "type": "number"
+              },
+              "hitsPerPage": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "agencies",
+              "total",
+              "page",
+              "totalPages",
+              "hitsPerPage"
+            ]
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "BayutAgencySearchByNameResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "agencies": {
+                "type": "array",
+                "items": {
+                  "nullable": true
+                }
+              },
+              "total": {
+                "type": "number"
+              },
+              "page": {
+                "type": "number"
+              },
+              "totalPages": {
+                "type": "number"
+              },
+              "hitsPerPage": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "agencies",
+              "total",
+              "page",
+              "totalPages",
+              "hitsPerPage"
+            ]
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "BayutAgencyDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "nullable": true,
+            "description": "Full agency details"
+          }
+        },
+        "required": ["success"]
+      },
+      "BayutAgencyAgentsResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "nullable": true,
+            "description": "List of agents in the agency"
+          }
+        },
+        "required": ["success"]
+      },
+      "BayutAgencyPropertiesResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "properties": {
+                "type": "array",
+                "items": {
+                  "nullable": true
+                }
+              },
+              "total": {
+                "type": "number"
+              },
+              "page": {
+                "type": "number"
+              },
+              "totalPages": {
+                "type": "number"
+              },
+              "hitsPerPage": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "properties",
+              "total",
+              "page",
+              "totalPages",
+              "hitsPerPage"
+            ]
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "BayutDeveloperSearchByNameResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "developers": {
+                "type": "array",
+                "items": {
+                  "nullable": true
+                }
+              },
+              "total": {
+                "type": "number"
+              },
+              "page": {
+                "type": "number"
+              },
+              "totalPages": {
+                "type": "number"
+              },
+              "hitsPerPage": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "developers",
+              "total",
+              "page",
+              "totalPages",
+              "hitsPerPage"
+            ]
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "BayutTransactionsResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "nullable": true,
+            "description": "Transaction data"
+          }
+        },
+        "required": ["success"]
+      },
+      "AmenityItem": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "Amenity name — use this value in search-property amenities param",
+            "example": "Swimming Pool"
+          },
+          "count": {
+            "type": "number",
+            "description": "Number of properties with this amenity",
+            "example": 45230
+          },
+          "highlighted": {
+            "type": "string",
+            "description": "Highlighted match",
+            "example": "\u003Cem\u003ESwimming\u003C/em\u003E Pool"
+          }
+        },
+        "required": ["value", "count", "highlighted"]
+      },
+      "BayutAmenitiesSearchResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "amenities": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AmenityItem"
+                }
+              },
+              "total": {
+                "type": "number",
+                "example": 3
+              }
+            },
+            "required": ["amenities", "total"]
+          }
+        },
+        "required": ["success", "data"]
+      }
+    }
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": ["Health"],
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Health check",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonHealthCheckResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/autocomplete": {
+      "get": {
+        "tags": ["Location"],
+        "summary": "Search for locations in Dubai/UAE",
+        "description": "Get location suggestions and IDs for property searches. Returns location IDs and slugs that can be used as input for property search, agent search, and agency search endpoints.",
+        "operationId": "autocomplete",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "description": "- Location search query\n- Examples: `dubai marina`, `palm jumeirah`, `downtown dubai`\n- Minimum 1 character",
+              "example": "dubai"
+            },
+            "required": true,
+            "description": "- Location search query\n- Examples: `dubai marina`, `palm jumeirah`, `downtown dubai`\n- Minimum 1 character",
+            "name": "query",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "en",
+              "description": "- Comma-separated language codes for localized results\n- Available: `en` (English), `ar` (Arabic), `ru` (Russian), `zh` (Chinese)\n- Example: `en,ar` returns English + Arabic names\n- Default: `en`",
+              "example": "en"
+            },
+            "required": false,
+            "description": "- Comma-separated language codes for localized results\n- Available: `en` (English), `ar` (Arabic), `ru` (Russian), `zh` (Chinese)\n- Example: `en,ar` returns English + Arabic names\n- Default: `en`",
+            "name": "langs",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Location autocomplete results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutAutocompleteResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutInternalErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search-property": {
+      "get": {
+        "tags": ["Property Search"],
+        "summary": "Search properties for sale or rent",
+        "description": "Search properties available for sale or rent in Dubai/UAE. Filter by location, property type, bedrooms, bathrooms, price range, area, amenities, completion status, and more. Supports multiple sort orders and multi-language results.",
+        "operationId": "search-property",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["for-sale", "for-rent"],
+              "description": "- Transaction type\n- `for-sale` — properties for purchase\n- `for-rent` — properties for rent",
+              "example": "for-sale"
+            },
+            "required": true,
+            "description": "- Transaction type\n- `for-sale` — properties for purchase\n- `for-rent` — properties for rent",
+            "name": "purpose",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "description": "- Page number (starts from 1)\n- Results per page: 24",
+              "example": 1
+            },
+            "required": false,
+            "description": "- Page number (starts from 1)\n- Results per page: 24",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "en",
+              "description": "- Comma-separated language codes\n- Available: `en`, `ar`, `ru`, `zh`\n- Example: `en,ar` returns English + Arabic\n- Default: `en`",
+              "example": "en"
+            },
+            "required": false,
+            "description": "- Comma-separated language codes\n- Available: `en`, `ar`, `ru`, `zh`\n- Example: `en,ar` returns English + Arabic\n- Default: `en`",
+            "name": "langs",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Comma-separated location external IDs\n- Get IDs from `/autocomplete` endpoint (externalID field)",
+              "example": "6901,5003"
+            },
+            "required": false,
+            "description": "- Comma-separated location external IDs\n- Get IDs from `/autocomplete` endpoint (externalID field)",
+            "name": "location_ids",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Comma-separated property types\n- Use `residential` or `commercial` to search all sub-types\n- Residential types: `apartments`, `townhouses`, `penthouse`, `villas`, `villa-compound`, `hotel-apartments`, `residential-plots`, `residential-floors`, `residential-building`\n- Commercial types: `offices`, `warehouses`, `commercial-villas`, `commercial-plots`, `commercial-buildings`, `industrial-land`, `showrooms`, `shops`, `labour-camps`, `bulk-units`, `commercial-floors`, `factories`, `mixed-use-land`, `commerical-properties`",
+              "example": "apartments,villas"
+            },
+            "required": false,
+            "description": "- Comma-separated property types\n- Use `residential` or `commercial` to search all sub-types\n- Residential types: `apartments`, `townhouses`, `penthouse`, `villas`, `villa-compound`, `hotel-apartments`, `residential-plots`, `residential-floors`, `residential-building`\n- Commercial types: `offices`, `warehouses`, `commercial-villas`, `commercial-plots`, `commercial-buildings`, `industrial-land`, `showrooms`, `shops`, `labour-camps`, `bulk-units`, `commercial-floors`, `factories`, `mixed-use-land`, `commerical-properties`",
+            "name": "property_type",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "popular",
+                "latest",
+                "verified",
+                "trubroker_first",
+                "lowest_price",
+                "highest_price"
+              ],
+              "default": "popular",
+              "description": "- Sort order for results\n- `popular` — most popular (default)\n- `latest` — newest listings\n- `verified` — TruCheck verified first\n- `trubroker_first` — TruBroker agents first\n- `lowest_price` — cheapest first\n- `highest_price` — most expensive first",
+              "example": "popular"
+            },
+            "required": false,
+            "description": "- Sort order for results\n- `popular` — most popular (default)\n- `latest` — newest listings\n- `verified` — TruCheck verified first\n- `trubroker_first` — TruBroker agents first\n- `lowest_price` — cheapest first\n- `highest_price` — most expensive first",
+            "name": "sort_order",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["completed", "under-construction", "any"],
+              "description": "- Filter by completion status\n- `completed` — ready/built properties\n- `under-construction` — off-plan/under construction\n- `any` — all properties (omit this param for no filter)",
+              "example": "completed"
+            },
+            "required": false,
+            "description": "- Filter by completion status\n- `completed` — ready/built properties\n- `under-construction` — off-plan/under construction\n- `any` — all properties (omit this param for no filter)",
+            "name": "completion_status",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Comma-separated number of bedrooms\n- `0` = Studio\n- Example: `0,1,2` for studio, 1-bed, 2-bed",
+              "example": "0,1,2,3"
+            },
+            "required": false,
+            "description": "- Comma-separated number of bedrooms\n- `0` = Studio\n- Example: `0,1,2` for studio, 1-bed, 2-bed",
+            "name": "rooms",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Comma-separated number of bathrooms\n- Example: `1,2,3`",
+              "example": "1,2"
+            },
+            "required": false,
+            "description": "- Comma-separated number of bathrooms\n- Example: `1,2,3`",
+            "name": "baths",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["furnished", "unfurnished"],
+              "description": "- Filter by furnishing status\n- `furnished` — furnished properties\n- `unfurnished` — unfurnished properties",
+              "example": "furnished"
+            },
+            "required": false,
+            "description": "- Filter by furnishing status\n- `furnished` — furnished properties\n- `unfurnished` — unfurnished properties",
+            "name": "is_furnished",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "minimum": 0,
+              "description": "- Minimum price in AED\n- For sale: purchase price\n- For rent: annual rent amount\n- For Buy Transaction: `200000`, `225000`, `250000`\n- For Rent Transaction: `20000`, `30000`, `40000`",
+              "example": 200000
+            },
+            "required": false,
+            "description": "- Minimum price in AED\n- For sale: purchase price\n- For rent: annual rent amount\n- For Buy Transaction: `200000`, `225000`, `250000`\n- For Rent Transaction: `20000`, `30000`, `40000`",
+            "name": "price_min",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "minimum": 0,
+              "description": "- Maximum price in AED\n- For sale: purchase price\n- For rent: annual rent amount\n- For Buy Transaction: `400000`, `450000`, `500000`\n- For Rent Transaction: `50000`, `50000`, `85000`",
+              "example": 2000000
+            },
+            "required": false,
+            "description": "- Maximum price in AED\n- For sale: purchase price\n- For rent: annual rent amount\n- For Buy Transaction: `400000`, `450000`, `500000`\n- For Rent Transaction: `50000`, `50000`, `85000`",
+            "name": "price_max",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "minimum": 0,
+              "description": "- Minimum area in Square Feet (sqft)\n- For Buy Transactions: `800`, `1000`, `1500, `2000`\n- For Rent Transactions: `800`, `1000`, `1500, `2000`",
+              "example": 800
+            },
+            "required": false,
+            "description": "- Minimum area in Square Feet (sqft)\n- For Buy Transactions: `800`, `1000`, `1500, `2000`\n- For Rent Transactions: `800`, `1000`, `1500, `2000`",
+            "name": "area_min",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "minimum": 0,
+              "description": "- Maximum area in Square Feet (sqft)",
+              "example": 2500
+            },
+            "required": false,
+            "description": "- Maximum area in Square Feet (sqft)",
+            "name": "area_max",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Comma-separated amenity names\n- Use `/amenities-search` endpoint to find available amenities\n- Examples: `Swimming Pool`, `Security Staff`, `Gym`, `Parking`",
+              "example": "Swimming Pool,Security Staff"
+            },
+            "required": false,
+            "description": "- Comma-separated amenity names\n- Use `/amenities-search` endpoint to find available amenities\n- Examples: `Swimming Pool`, `Security Staff`, `Gym`, `Parking`",
+            "name": "amenities",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "boolean",
+              "nullable": true,
+              "description": "- Filter properties that have video tours"
+            },
+            "required": false,
+            "description": "- Filter properties that have video tours",
+            "name": "has_video",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "boolean",
+              "nullable": true,
+              "description": "- Filter properties that have 360° virtual tours"
+            },
+            "required": false,
+            "description": "- Filter properties that have 360° virtual tours",
+            "name": "has_360_tour",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "boolean",
+              "nullable": true,
+              "description": "- Filter properties that have floor plans"
+            },
+            "required": false,
+            "description": "- Filter properties that have floor plans",
+            "name": "has_floorplan",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Comma-separated agent IDs to filter by specific agents\n- Examples: `474947`, `632216`"
+            },
+            "required": false,
+            "description": "- Comma-separated agent IDs to filter by specific agents\n- Examples: `474947`, `632216`",
+            "name": "agent_ids",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Comma-separated agency external IDs to filter by specific agencies\n- Examples:- `10212`, `6168`, `6415`"
+            },
+            "required": false,
+            "description": "- Comma-separated agency external IDs to filter by specific agencies\n- Examples:- `10212`, `6168`, `6415`",
+            "name": "agency_ids",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Comma-separated developer IDs to filter by specific developers"
+            },
+            "required": false,
+            "description": "- Comma-separated developer IDs to filter by specific developers",
+            "name": "developer_ids",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["yearly", "monthly", "weekly", "daily"],
+              "description": "- Rent payment frequency (only for `for-rent` purpose)\n- Default: `yearly`\n- Options: `yearly`, `monthly`, `weekly`, `daily`"
+            },
+            "required": false,
+            "description": "- Rent payment frequency (only for `for-rent` purpose)\n- Default: `yearly`\n- Options: `yearly`, `monthly`, `weekly`, `daily`",
+            "name": "rent_frequency",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Property search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutSearchPropertyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutInternalErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search-new-projects": {
+      "get": {
+        "tags": ["Property Search"],
+        "summary": "Search new off-plan development projects",
+        "description": "Search for new development projects and off-plan properties in Dubai/UAE. These are properties with floor plans that are under construction or newly launched.",
+        "operationId": "search-new-projects",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Comma-separated location external IDs",
+              "example": "6901,5003"
+            },
+            "required": false,
+            "description": "- Comma-separated location external IDs",
+            "name": "location_ids",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "description": "- Page number (starts from 1)\n- Results per page: 24",
+              "example": 1
+            },
+            "required": false,
+            "description": "- Page number (starts from 1)\n- Results per page: 24",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "en",
+              "description": "- Comma-separated language codes: `en`, `ar`, `ru`, `zh`",
+              "example": "en"
+            },
+            "required": false,
+            "description": "- Comma-separated language codes: `en`, `ar`, `ru`, `zh`",
+            "name": "langs",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Comma-separated property types\n- Default: `residential`\n- Use `residential` or `commercial` to search all sub-types\n- Residential types: `apartments`, `townhouses`, `penthouse`, `villas`, `villa-compound`, `hotel-apartments`, `residential-plots`, `residential-floors`, `residential-building`\n- Commercial types: `offices`, `warehouses`, `commercial-villas`, `commercial-plots`, `commercial-buildings`, `industrial-land`, `showrooms`, `shops`, `labour-camps`, `bulk-units`, `commercial-floors`, `factories`, `mixed-use-land`, `commerical-properties`",
+              "example": "residential"
+            },
+            "required": false,
+            "description": "- Comma-separated property types\n- Default: `residential`\n- Use `residential` or `commercial` to search all sub-types\n- Residential types: `apartments`, `townhouses`, `penthouse`, `villas`, `villa-compound`, `hotel-apartments`, `residential-plots`, `residential-floors`, `residential-building`\n- Commercial types: `offices`, `warehouses`, `commercial-villas`, `commercial-plots`, `commercial-buildings`, `industrial-land`, `showrooms`, `shops`, `labour-camps`, `bulk-units`, `commercial-floors`, `factories`, `mixed-use-land`, `commerical-properties`",
+            "name": "property_type",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "popular",
+                "latest",
+                "verified",
+                "trubroker_first",
+                "lowest_price",
+                "highest_price"
+              ],
+              "default": "popular",
+              "description": "- Sort order for results",
+              "example": "popular"
+            },
+            "required": false,
+            "description": "- Sort order for results",
+            "name": "sort_order",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "minimum": 0,
+              "description": "- Minimum price in AED",
+              "example": 200000
+            },
+            "required": false,
+            "description": "- Minimum price in AED",
+            "name": "price_min",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "minimum": 0,
+              "description": "- Maximum price in AED",
+              "example": 5000000
+            },
+            "required": false,
+            "description": "- Maximum price in AED",
+            "name": "price_max",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "minimum": 0,
+              "description": "- Minimum area in sqft",
+              "example": 1000
+            },
+            "required": false,
+            "description": "- Minimum area in sqft",
+            "name": "area_min",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "minimum": 0,
+              "description": "- Maximum area in sqft",
+              "example": 5000
+            },
+            "required": false,
+            "description": "- Maximum area in sqft",
+            "name": "area_max",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Comma-separated bedrooms (0=Studio)",
+              "example": "1,2,3"
+            },
+            "required": false,
+            "description": "- Comma-separated bedrooms (0=Studio)",
+            "name": "rooms",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Comma-separated bathrooms",
+              "example": "1,2"
+            },
+            "required": false,
+            "description": "- Comma-separated bathrooms",
+            "name": "baths",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Comma-separated developer IDs\n- Get developer's id from `/developer-search-by-name` endpoint\n- i.e. - `551` for \"Sobha Realty\""
+            },
+            "required": false,
+            "description": "- Comma-separated developer IDs\n- Get developer's id from `/developer-search-by-name` endpoint\n- i.e. - `551` for \"Sobha Realty\"",
+            "name": "developer_ids",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["any", "0-25", "25-50", "50-75", "75-100"],
+              "default": "any"
+            },
+            "required": false,
+            "name": "completion_percentage",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "minimum": 0,
+              "maximum": 100,
+              "description": "- Max pre-handover percentage, e.g., 50"
+            },
+            "required": false,
+            "description": "- Max pre-handover percentage, e.g., 50",
+            "name": "pre_handover_payment",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New project search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutNewProjectSearchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutInternalErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/property-details": {
+      "get": {
+        "tags": ["Property Search"],
+        "summary": "Get detailed property information",
+        "description": "Get comprehensive details about a specific property by its external ID. Returns full property information including photos, floor plans, amenities, agent details, and more.",
+        "operationId": "property-details",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "- Property external ID\n- Get this from `/search-property` response (`externalID` field)\n- Example: `13495633`",
+              "example": "13495633"
+            },
+            "required": true,
+            "description": "- Property external ID\n- Get this from `/search-property` response (`externalID` field)\n- Example: `13495633`",
+            "name": "external_id",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "en",
+              "description": "- Language code for response\n- Available: `en`, `ar`, `ru`, `zh`\n- Default: `en`",
+              "example": "en"
+            },
+            "required": false,
+            "description": "- Language code for response\n- Available: `en`, `ar`, `ru`, `zh`\n- Default: `en`",
+            "name": "langs",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Property details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutPropertyDetailsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Property not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutInternalErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/agent-search": {
+      "get": {
+        "tags": ["Agents"],
+        "summary": "Search real estate agents by filters",
+        "description": "Search for real estate agents in Dubai/UAE. Filter by location, category (residential/commercial), purpose (sale/rent), TruBroker status, and agent languages.",
+        "operationId": "agent-search",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Comma-separated location external IDs\n- Get IDs from `/autocomplete` endpoint (`externalID` field)",
+              "example": "5003,5460"
+            },
+            "required": false,
+            "description": "- Comma-separated location external IDs\n- Get IDs from `/autocomplete` endpoint (`externalID` field)",
+            "name": "location_ids",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["for-sale", "for-rent"],
+              "default": "for-sale",
+              "description": "- Transaction type to filter agents by",
+              "example": "for-sale"
+            },
+            "required": false,
+            "description": "- Transaction type to filter agents by",
+            "name": "purpose",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["residential", "commercial"],
+              "default": "residential",
+              "description": "- Property category the agent specializes in",
+              "example": "residential"
+            },
+            "required": false,
+            "description": "- Property category the agent specializes in",
+            "name": "category",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "description": "- Page number (starts from 1)\n- Results per page: 40",
+              "example": 1
+            },
+            "required": false,
+            "description": "- Page number (starts from 1)\n- Results per page: 40",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "en",
+              "description": "- Language code: `en`, `ar`, `ru`, `zh`",
+              "example": "en"
+            },
+            "required": false,
+            "description": "- Language code: `en`, `ar`, `ru`, `zh`",
+            "name": "langs",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["any", "completed", "under-construction"],
+              "default": "any",
+              "description": "- Filter agents by completion status of their listings",
+              "example": "any"
+            },
+            "required": false,
+            "description": "- Filter agents by completion status of their listings",
+            "name": "completion_status",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agent search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutAgentSearchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutInternalErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/agent-search-by-name": {
+      "get": {
+        "tags": ["Agents"],
+        "summary": "Search agents by name",
+        "description": "Search for real estate agents by their name. Returns matching agents with basic profile info, badges, and listing counts.",
+        "operationId": "agent-search-by-name",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "description": "- Agent name to search for\n- Searches by name only\n- Example: `vipul`, `john`, `anna`",
+              "example": "anna"
+            },
+            "required": true,
+            "description": "- Agent name to search for\n- Searches by name only\n- Example: `vipul`, `john`, `anna`",
+            "name": "query",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "description": "- Page number (starts from 1)\n- Results per page: 20",
+              "example": 1
+            },
+            "required": false,
+            "description": "- Page number (starts from 1)\n- Results per page: 20",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "en",
+              "description": "- Language code: `en`, `ar`, `ru`, `zh`",
+              "example": "en"
+            },
+            "required": false,
+            "description": "- Language code: `en`, `ar`, `ru`, `zh`",
+            "name": "langs",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agent search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutAgentSearchByNameResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutInternalErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/agent-details": {
+      "get": {
+        "tags": ["Agents"],
+        "summary": "Get agent details",
+        "description": "Get detailed information about a specific real estate agent by their external ID. Returns agent profile, contact info, badges, stats, and service areas.",
+        "operationId": "agent-details",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "- Agent external ID\n- Get this from `/agent-search` or `/agent-search-by-name` response",
+              "example": "2518657"
+            },
+            "required": true,
+            "description": "- Agent external ID\n- Get this from `/agent-search` or `/agent-search-by-name` response",
+            "name": "agent_id",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "en",
+              "description": "- Comma-separated language codes: `en`, `ar`, `ru`, `zh`",
+              "example": "en"
+            },
+            "required": false,
+            "description": "- Comma-separated language codes: `en`, `ar`, `ru`, `zh`",
+            "name": "langs",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agent details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutAgentDetailsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Agent not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutInternalErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/agent-properties": {
+      "get": {
+        "tags": ["Agents"],
+        "summary": "Get properties listed by an agent",
+        "description": "Get all properties listed by a specific real estate agent. Uses the agent's owner ID (not external ID) to fetch their property listings. Get the owner ID from the agent-details response.",
+        "operationId": "agent-properties",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "- Agent owner ID\n- Get from `/agent-details` response (`ownerID` field)\n- This is different from `externalID` — the ownerID links agents to their listings",
+              "example": "2243594"
+            },
+            "required": true,
+            "description": "- Agent owner ID\n- Get from `/agent-details` response (`ownerID` field)\n- This is different from `externalID` — the ownerID links agents to their listings",
+            "name": "owner_id",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "description": "- Page number (starts from 1)\n- Results per page: 25",
+              "example": 1
+            },
+            "required": false,
+            "description": "- Page number (starts from 1)\n- Results per page: 25",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "en",
+              "description": "- Comma-separated language codes: `en`, `ar`, `ru`, `zh`",
+              "example": "en"
+            },
+            "required": false,
+            "description": "- Comma-separated language codes: `en`, `ar`, `ru`, `zh`",
+            "name": "langs",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agent properties",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutAgentPropertiesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutInternalErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/agency-search": {
+      "get": {
+        "tags": ["Agencies"],
+        "summary": "Search agencies by location",
+        "description": "Search for real estate agencies in Dubai/UAE by location. Returns agencies with active listings in the specified location.",
+        "operationId": "agency-search",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "- Location external ID\n- Get from `/autocomplete` endpoint (`externalID` field)\n- Example: `5001` (Dubai)\n- Example: `1` for whole of dubai, `3` for whole of Abu Dhabi",
+              "example": "1"
+            },
+            "required": true,
+            "description": "- Location external ID\n- Get from `/autocomplete` endpoint (`externalID` field)\n- Example: `5001` (Dubai)\n- Example: `1` for whole of dubai, `3` for whole of Abu Dhabi",
+            "name": "location_id",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "description": "- Page number (starts from 1)\n- Results per page: 40",
+              "example": 1
+            },
+            "required": false,
+            "description": "- Page number (starts from 1)\n- Results per page: 40",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "en",
+              "description": "- Comma-separated language codes: `en`, `ar`, `ru`, `zh`",
+              "example": "en"
+            },
+            "required": false,
+            "description": "- Comma-separated language codes: `en`, `ar`, `ru`, `zh`",
+            "name": "langs",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agency search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutAgencySearchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutInternalErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/agency-search-by-name": {
+      "get": {
+        "tags": ["Agencies"],
+        "summary": "Search agencies by name",
+        "description": "Search for real estate agencies by their name. Returns matching agencies with listing counts, agent counts, and basic info.",
+        "operationId": "agency-search-by-name",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "description": "- Agency name to search for\n- Searches by name only\n- Example: `white`, `metropolitan`, `emaar`",
+              "example": "sobha"
+            },
+            "required": true,
+            "description": "- Agency name to search for\n- Searches by name only\n- Example: `white`, `metropolitan`, `emaar`",
+            "name": "query",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "description": "- Page number (starts from 1)\n- Results per page: 80",
+              "example": 1
+            },
+            "required": false,
+            "description": "- Page number (starts from 1)\n- Results per page: 80",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "en",
+              "description": "- Language code: `en`, `ar`, `ru`, `zh`",
+              "example": "en"
+            },
+            "required": false,
+            "description": "- Language code: `en`, `ar`, `ru`, `zh`",
+            "name": "langs",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agency search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutAgencySearchByNameResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutInternalErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/agency-details": {
+      "get": {
+        "tags": ["Agencies"],
+        "summary": "Get agency details",
+        "description": "Get detailed information about a specific real estate agency by its ID. Returns agency profile, contact info, and stats.",
+        "operationId": "agency-details",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "- Agency ID\n- Get from `/agency-search` response\n- Example: `8566`",
+              "example": "8566"
+            },
+            "required": true,
+            "description": "- Agency ID\n- Get from `/agency-search` response\n- Example: `8566`",
+            "name": "agency_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agency details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutAgencyDetailsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Agency not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutInternalErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/agency-agents": {
+      "get": {
+        "tags": ["Agencies"],
+        "summary": "Get agents in an agency",
+        "description": "Get a list of all agents working in a specific real estate agency.",
+        "operationId": "agency-agents",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "- Agency ID\n- Get from `/agency-search` or `/agency-details` response\n- Example: `10212`",
+              "example": "10212"
+            },
+            "required": true,
+            "description": "- Agency ID\n- Get from `/agency-search` or `/agency-details` response\n- Example: `10212`",
+            "name": "agency_id",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "minimum": 1,
+              "default": 1,
+              "description": "Page number (default: 1)",
+              "example": 1
+            },
+            "required": false,
+            "description": "Page number (default: 1)",
+            "name": "page",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agents in agency",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutAgencyAgentsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Agency not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutInternalErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/agency-properties": {
+      "get": {
+        "tags": ["Agencies"],
+        "summary": "Get properties listed by an agency",
+        "description": "Get all properties listed by a specific real estate agency. Uses the agency's external ID to fetch their property listings.",
+        "operationId": "agency-properties",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "- Agency external ID\n- Get from `/agency-search` or `/agency-search-by-name` response (`externalID` field)\n- Example: `106317`",
+              "example": "106317"
+            },
+            "required": true,
+            "description": "- Agency external ID\n- Get from `/agency-search` or `/agency-search-by-name` response (`externalID` field)\n- Example: `106317`",
+            "name": "agency_external_id",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "description": "- Page number (starts from 1)\n- Results per page: 25",
+              "example": 1
+            },
+            "required": false,
+            "description": "- Page number (starts from 1)\n- Results per page: 25",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "en",
+              "description": "- Comma-separated language codes: `en`, `ar`, `ru`, `zh`",
+              "example": "en"
+            },
+            "required": false,
+            "description": "- Comma-separated language codes: `en`, `ar`, `ru`, `zh`",
+            "name": "langs",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agency properties",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutAgencyPropertiesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutInternalErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/developer-search-by-name": {
+      "get": {
+        "tags": ["Developers"],
+        "summary": "Search developers by name",
+        "description": "Search for real estate developers by their name. Returns matching developers with listing counts, project counts, and basic info.",
+        "operationId": "developer-search-by-name",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "description": "- Developer name to search for\n- Searches by name only\n- Example: `emaar`, `damac`, `sobha`",
+              "example": "emaar"
+            },
+            "required": true,
+            "description": "- Developer name to search for\n- Searches by name only\n- Example: `emaar`, `damac`, `sobha`",
+            "name": "query",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "description": "- Page number (starts from 1)\n- Results per page: 80",
+              "example": 1
+            },
+            "required": false,
+            "description": "- Page number (starts from 1)\n- Results per page: 80",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "en",
+              "description": "- Language code: `en`, `ar`, `ru`, `zh`",
+              "example": "en"
+            },
+            "required": false,
+            "description": "- Language code: `en`, `ar`, `ru`, `zh`",
+            "name": "langs",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Developer search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutDeveloperSearchByNameResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutInternalErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions": {
+      "get": {
+        "tags": ["Market Data"],
+        "summary": "Get property transaction history",
+        "description": "Get historical property transaction data (sales and rentals) for Dubai/UAE. Filter by purpose, category, location, completion status, time period, bedrooms, price range, and area. Useful for market analysis and pricing trends.",
+        "operationId": "transactions",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["for-sale", "for-rent"],
+              "description": "- Transaction type\n- `for-sale` — sale transactions\n- `for-rent` — rental transactions",
+              "example": "for-sale"
+            },
+            "required": true,
+            "description": "- Transaction type\n- `for-sale` — sale transactions\n- `for-rent` — rental transactions",
+            "name": "purpose",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "description": "- Page number (starts from 1)\n- Results per page: 20",
+              "example": 1
+            },
+            "required": false,
+            "description": "- Page number (starts from 1)\n- Results per page: 20",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Comma-separated category names or external IDs\n- Names: `residential`, `commercial`, `apartments`, `villas`, `townhouses`, `penthouse`, `offices`, `shops`, etc.\n- Or external IDs: `1` (residential), `2` (commercial), `4` (apartments), `3` (villas)\n- Example: `apartments,villas,townhouses` or `4,3,16`",
+              "example": "residential"
+            },
+            "required": false,
+            "description": "- Comma-separated category names or external IDs\n- Names: `residential`, `commercial`, `apartments`, `villas`, `townhouses`, `penthouse`, `offices`, `shops`, etc.\n- Or external IDs: `1` (residential), `2` (commercial), `4` (apartments), `3` (villas)\n- Example: `apartments,villas,townhouses` or `4,3,16`",
+            "name": "category_ids",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Comma-separated location external IDs from `/autocomplete`",
+              "example": "5003,5460"
+            },
+            "required": false,
+            "description": "- Comma-separated location external IDs from `/autocomplete`",
+            "name": "location_ids",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["any", "completed", "under-construction"],
+              "default": "any",
+              "description": "- Filter by completion status",
+              "example": "any"
+            },
+            "required": false,
+            "description": "- Filter by completion status",
+            "name": "completion_status",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["1m", "3m", "6m", "12m", "24m"],
+              "default": "12m",
+              "description": "- Time period for transaction data\n- `1m` — last 1 month\n- `3m` — last 3 months\n- `6m` — last 6 months\n- `12m` — last 12 months (default)\n- `24m` — last 24 months",
+              "example": "12m"
+            },
+            "required": false,
+            "description": "- Time period for transaction data\n- `1m` — last 1 month\n- `3m` — last 3 months\n- `6m` — last 6 months\n- `12m` — last 12 months (default)\n- `24m` — last 24 months",
+            "name": "time_period",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "- Comma-separated bedrooms filter\n- `0` = Studio",
+              "example": "0,1,2,3"
+            },
+            "required": false,
+            "description": "- Comma-separated bedrooms filter\n- `0` = Studio",
+            "name": "beds",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "minimum": 0,
+              "description": "- Minimum price in AED",
+              "example": 200000
+            },
+            "required": false,
+            "description": "- Minimum price in AED",
+            "name": "price_min",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "minimum": 0,
+              "description": "- Maximum price in AED",
+              "example": 5000000
+            },
+            "required": false,
+            "description": "- Maximum price in AED",
+            "name": "price_max",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "minimum": 0,
+              "description": "- Minimum area in sqft",
+              "example": 800
+            },
+            "required": false,
+            "description": "- Minimum area in sqft",
+            "name": "area_min",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "minimum": 0,
+              "description": "- Maximum area in sqft",
+              "example": 5000
+            },
+            "required": false,
+            "description": "- Maximum area in sqft",
+            "name": "area_max",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "date_desc",
+                "date_asc",
+                "price_desc",
+                "price_asc",
+                "area_desc",
+                "area_asc"
+              ],
+              "default": "date_desc",
+              "description": "- Sort order for transactions\n- `date_desc` — newest first (default)\n- `date_asc` — oldest first\n- `price_desc` — highest price first\n- `price_asc` — lowest price first\n- `area_desc` — largest area first\n- `area_asc` — smallest area first",
+              "example": "date_desc"
+            },
+            "required": false,
+            "description": "- Sort order for transactions\n- `date_desc` — newest first (default)\n- `date_asc` — oldest first\n- `price_desc` — highest price first\n- `price_asc` — lowest price first\n- `area_desc` — largest area first\n- `area_asc` — smallest area first",
+            "name": "sort_by",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transaction data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutTransactionsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutInternalErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/amenities-search": {
+      "get": {
+        "tags": ["Market Data"],
+        "summary": "Search available amenities",
+        "description": "Search for property amenities by keyword. Returns amenity names and the count of properties that have each amenity. Use the returned amenity names in the `/search-property` endpoint's `amenities` parameter.",
+        "operationId": "amenities-search",
+
+        "parameters": [
+          { "$ref": "#/components/parameters/RapidApiHostHeader" },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "description": "- Search query for amenities\n- Examples: `swimming`, `gym`, `security`, `parking`, `sauna`\n- Returns matching amenity names that can be used in `/search-property` `amenities` parameter",
+              "example": "swimming"
+            },
+            "required": true,
+            "description": "- Search query for amenities\n- Examples: `swimming`, `gym`, `security`, `parking`, `sauna`\n- Returns matching amenity names that can be used in `/search-property` `amenities` parameter",
+            "name": "query",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Amenities search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutAmenitiesSearchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutInternalErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BayutApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
