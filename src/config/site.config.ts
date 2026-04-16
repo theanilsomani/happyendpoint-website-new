@@ -57,7 +57,7 @@ const siteConfig: SiteConfig = {
   url: SITE_URL || 'https://happyendpoint.com',
   ogImage: '/og-default.svg',
   author: 'Happy Endpoint',
-  email: 'hello@happyendpoint.com',
+  email: 'happyendpointhq@gmail.com',
   socialLinks: [
     'https://rapidapi.com/user/happyendpoint',
   ],
