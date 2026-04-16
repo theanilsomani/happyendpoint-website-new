@@ -133,9 +133,14 @@
 
   html {
     font-family: var(--font-sans);
-    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Smooth scroll only for in-page anchor navigation, not for
+     browser back/forward scroll restoration */
+  html:has(:target) {
+    scroll-behavior: smooth;
   }
 
   body {
