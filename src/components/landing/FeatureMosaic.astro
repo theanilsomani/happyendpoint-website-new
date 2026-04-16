@@ -1,0 +1,152 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  // We can pass content through props if we want to make it dynamic,
+  // but for this specific redesign task, I'll bake in the requested structure.
+}
+
+const checkIcon = "lucide:check-circle-2";
+---
+
+<div class="space-y-12 py-20 lg:py-32 bg-background">
+  <!-- Section 1: Twin Blocks (homepage-2.png top) -->
+  <section class="container">
+    <div class="grid gap-8 lg:grid-cols-2">
+      <!-- Block 1 -->
+      <div class="group relative overflow-hidden rounded-3xl border border-border bg-card p-8 transition-all hover:border-brand-500/50 hover:shadow-xl">
+        <div class="relative z-10 flex flex-col h-full">
+          <h3 class="text-2xl font-bold text-foreground">Enrich your CRM and databases</h3>
+          <p class="mt-4 text-foreground-secondary">Unlock insights from a universe of 60 million companies. Rapid enrichment, daily updates.</p>
+          <ul class="mt-6 space-y-3 flex-1">
+            <li class="flex items-start gap-3">
+              <Icon name={checkIcon} class="mt-1 h-5 w-5 shrink-0 text-brand-500" />
+              <span class="text-foreground-secondary">+1,000,000 newly added companies</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <Icon name={checkIcon} class="mt-1 h-5 w-5 shrink-0 text-brand-500" />
+              <span class="text-foreground-secondary">Rapid enrichment process in under 15 days</span>
+            </li>
+          </ul>
+          <div class="mt-8 overflow-hidden rounded-xl border border-border bg-background-secondary shadow-inner">
+            <img src="https://placehold.co/600x400/f8fafc/64748b?text=CRM+Enrichment+Illustration" alt="CRM Enrichment" class="w-full transition-transform duration-500 group-hover:scale-105" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Block 2 -->
+      <div class="group relative overflow-hidden rounded-3xl border border-border bg-card p-8 transition-all hover:border-brand-500/50 hover:shadow-xl">
+        <div class="relative z-10 flex flex-col h-full">
+          <h3 class="text-2xl font-bold text-foreground">Powerful HTML Crawlers</h3>
+          <p class="mt-4 text-foreground-secondary">Experience the best of web scraping efficiency with our high-performance API.</p>
+          <ul class="mt-6 space-y-3 flex-1">
+            <li class="flex items-start gap-3">
+              <Icon name={checkIcon} class="mt-1 h-5 w-5 shrink-0 text-brand-500" />
+              <span class="text-foreground-secondary">Advanced parsing handles intricate websites</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <Icon name={checkIcon} class="mt-1 h-5 w-5 shrink-0 text-brand-500" />
+              <span class="text-foreground-secondary">Bypass Cloudflare, Akamai and more with ease</span>
+            </li>
+          </ul>
+          <div class="mt-8 overflow-hidden rounded-xl border border-border bg-background-secondary shadow-inner">
+             <img src="https://placehold.co/600x400/f8fafc/64748b?text=Crawler+Code+Sample" alt="HTML Crawler" class="w-full transition-transform duration-500 group-hover:scale-105" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Full Width (homepage-2.png bottom) -->
+  <section class="container">
+    <div class="group relative overflow-hidden rounded-3xl border border-border bg-card p-8 lg:p-12 transition-all hover:border-brand-500/50 hover:shadow-xl">
+       <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+          <div>
+            <h2 class="text-3xl font-bold text-foreground">Data from +25 leading platforms</h2>
+            <p class="mt-4 text-lg text-foreground-secondary">With over +50 endpoints already available in our directory, the data you're looking for is just a click away.</p>
+            <ul class="mt-8 space-y-4">
+              <li class="flex items-start gap-3">
+                <Icon name={checkIcon} class="mt-1 h-5 w-5 shrink-0 text-brand-500" />
+                <span class="text-foreground-secondary">Easy setup on all automation platforms</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <Icon name={checkIcon} class="mt-1 h-5 w-5 shrink-0 text-brand-500" />
+                <span class="text-foreground-secondary">Retrieve data from open sources through scraping API</span>
+              </li>
+            </ul>
+            <div class="mt-8 flex gap-4">
+               <a href="/library" class="rounded-lg bg-brand-500 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-600">Create account - For free</a>
+               <a href="/library" class="rounded-lg border border-border px-6 py-2.5 text-sm font-semibold text-foreground transition hover:bg-secondary">Browse API library</a>
+            </div>
+          </div>
+          <div class="relative overflow-hidden rounded-2xl">
+             <img src="https://placehold.co/800x500/f1f5f9/475569?text=Platforms+Isometric+Illustration" alt="Leading Platforms" class="w-full transition-transform duration-700 group-hover:scale-110" />
+          </div>
+       </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Mosaic Grid (homepage-3.png) -->
+  <section class="container">
+    <div class="grid gap-8 lg:grid-cols-12 lg:grid-rows-2">
+      <!-- Long Horizontal: Connect favorite tools -->
+      <div class="lg:col-span-12 group relative overflow-hidden rounded-3xl border border-border bg-card p-8 transition-all hover:border-brand-500/50">
+        <div class="grid gap-8 lg:grid-cols-2 lg:items-center">
+            <div>
+                <h3 class="text-2xl font-bold text-foreground">Connect your favorite tools</h3>
+                <p class="mt-3 text-foreground-secondary">Retrieve data from open sources through scraping API. Easy setup on Zapier, Make, n8n...</p>
+                <div class="mt-6 flex flex-wrap gap-2">
+                    {['Zapier', 'Make', 'n8n'].map(tool => (
+                        <span class="inline-flex items-center rounded-full border border-border bg-background-secondary px-3 py-1 text-xs font-medium text-foreground-muted">{tool}</span>
+                    ))}
+                </div>
+            </div>
+            <div class="relative h-48 lg:h-64 overflow-hidden rounded-xl">
+                 <img src="https://placehold.co/600x300/f8fafc/64748b?text=Integration+Map" alt="Integrations" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            </div>
+        </div>
+      </div>
+
+      <!-- Left Tall: Proxy Pools -->
+      <div class="lg:col-span-7 lg:row-span-2 group relative overflow-hidden rounded-3xl border border-border bg-card p-8 transition-all hover:border-brand-500/50">
+          <div class="flex flex-col h-full">
+            <div class="relative h-64 overflow-hidden rounded-xl bg-background-secondary mb-8">
+                 <img src="https://placehold.co/700x500/f1f5f9/475569?text=Global+IP+Proxy+Map" alt="Proxy Pools" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            </div>
+            <h3 class="text-2xl font-bold text-foreground">Powerful proxy pools just for you</h3>
+            <p class="mt-4 text-foreground-secondary">Dive into seamless scraping API with our dedicated proxy pools, tailored for utmost efficiency. Experience unmatched speed, reliability, and privacy.</p>
+            <ul class="mt-6 space-y-3">
+                <li class="flex items-start gap-3">
+                  <Icon name={checkIcon} class="mt-1 h-5 w-5 shrink-0 text-brand-500" />
+                  <span class="text-foreground-secondary">Our proxy pools are private, ethically tested</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <Icon name={checkIcon} class="mt-1 h-5 w-5 shrink-0 text-brand-500" />
+                  <span class="text-foreground-secondary">Ensures faster response times</span>
+                </li>
+            </ul>
+          </div>
+      </div>
+
+      <!-- Right Column: Stacked items -->
+      <div class="lg:col-span-5 space-y-8">
+          <!-- Fast and Reliable -->
+          <div class="group relative overflow-hidden rounded-3xl border border-border bg-card p-8 transition-all hover:border-brand-500/50">
+              <h3 class="text-xl font-bold text-foreground">Fast and reliable APIs</h3>
+              <p class="mt-3 text-sm text-foreground-secondary">Our ongoing enhancements to crawlers and endpoints guarantee top performance and swift responses.</p>
+          </div>
+          <!-- GDPR/CCPA -->
+          <div class="group relative overflow-hidden rounded-3xl border border-border bg-card p-8 transition-all hover:border-brand-500/50">
+             <div class="flex flex-col h-full">
+                <h3 class="text-xl font-bold text-foreground">GDPR and CCPA ready</h3>
+                <p class="mt-3 text-sm text-foreground-secondary">We safeguard all data, never selling yours or anyone else's, while meeting strict standards.</p>
+                <div class="mt-6 flex gap-4">
+                    <div class="flex h-12 w-24 items-center justify-center rounded border border-border bg-background-secondary text-[10px] font-bold text-foreground-muted uppercase tracking-tighter">GDPR Compliant</div>
+                    <div class="flex h-12 w-24 items-center justify-center rounded border border-border bg-background-secondary text-[10px] font-bold text-foreground-muted uppercase tracking-tighter">CCPA Compliant</div>
+                </div>
+             </div>
+          </div>
+      </div>
+    </div>
+  </section>
+</div>

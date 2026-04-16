@@ -4,9 +4,10 @@ import EntityCard from '@/components/he/EntityCard.astro';
 import EntityGrid from '@/components/he/EntityGrid.astro';
 import FAQSection from '@/components/he/FAQSection.astro';
 import PlatformLogosStrip from '@/components/he/PlatformLogosStrip.astro';
-import FeatureRows from '@/components/he/FeatureRows.astro';
 import { Icon } from 'astro-icon/components';
 import { getCollection } from 'astro:content';
+import FeatureMosaic from '@/components/landing/FeatureMosaic.astro';
+import HeroModern from '@/components/landing/HeroModern.astro';
 import {
   getFeaturedPlatforms,
   getFeaturedApis,
@@ -78,142 +79,13 @@ const apiPills = [
   description="Happy Endpoint sells web-scraping APIs and structured datasets on RapidAPI. Real estate, travel, grocery, finance, retail, fashion, and beauty — with free samples available."
 >
   <!-- 1. Hero -->
-  <section class="relative overflow-hidden bg-gradient-to-b from-background to-background-secondary pt-16">
-    <div class="container py-16 md:py-24">
-      <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
-        <!-- Left column -->
-        <div>
-          <div class="flex flex-wrap items-center gap-2">
-            <span class="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-foreground-secondary">
-              <span class="text-amber-400">★</span> 5.0 rating
-            </span>
-            <span class="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-foreground-secondary">
-              <Icon name="lucide:users" class="h-3.5 w-3.5 text-brand-500" /> 1k+ API community
-            </span>
-          </div>
-          <h1 class="mt-4 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-            APIs and datasets for the platforms that matter
-          </h1>
-          <p class="mt-5 max-w-xl text-lg text-foreground-secondary">
-            Scrape web data through ready-to-use APIs and structured datasets. +50 endpoints live on RapidAPI, with free samples to try first.
-          </p>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a href="/library" class="inline-flex items-center gap-2 rounded-md bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-600">
-              Browse APIs — for free
-            </a>
-            <a href="/datasets" class="inline-flex items-center gap-2 rounded-md border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-secondary">
-              <Icon name="lucide:book-open" class="h-4 w-4" />
-              Browse dataset library
-            </a>
-          </div>
-        </div>
-
-        <!-- Right column: floating API pill grid -->
-        <div class="hidden lg:block" aria-hidden="true">
-          <!-- Row 1: slight right offset -->
-          <div class="flex flex-wrap gap-2.5 translate-x-4">
-            {apiPills.slice(0, 4).map(label => (
-              <span class="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-2 text-sm font-medium text-foreground shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-                <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/10 text-brand-600">
-                  <Icon name="lucide:check" class="h-3 w-3" />
-                </span>
-                {label}
-              </span>
-            ))}
-          </div>
-          <!-- Row 2: no offset -->
-          <div class="mt-3 flex flex-wrap gap-2.5">
-            {apiPills.slice(4, 8).map(label => (
-              <span class="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-2 text-sm font-medium text-foreground shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-                <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/10 text-brand-600">
-                  <Icon name="lucide:check" class="h-3 w-3" />
-                </span>
-                {label}
-              </span>
-            ))}
-          </div>
-          <!-- Row 3: slight left offset -->
-          <div class="mt-3 flex flex-wrap gap-2.5 -translate-x-4">
-            {apiPills.slice(8, 12).map(label => (
-              <span class="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-2 text-sm font-medium text-foreground shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-                <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/10 text-brand-600">
-                  <Icon name="lucide:check" class="h-3 w-3" />
-                </span>
-                {label}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <HeroModern />
 
   <!-- 2. Platform logos strip -->
   <PlatformLogosStrip platforms={platforms} title="Data from platforms you know" />
 
-  <!-- 2b. Alternating feature rows -->
-  <FeatureRows rows={[
-    {
-      title: 'Enrich your data pipelines',
-      body: 'Plug our APIs directly into your existing ETL, CRM, or analytics stack. Fresh records, on demand.',
-      bullets: [
-        'Live endpoints on RapidAPI',
-        'Updated on a schedule you can trust',
-        'Direct integration with common platforms — Zapier, Make, n8n',
-      ],
-      imagePosition: 'right',
-    },
-    {
-      title: 'Powerful web scraping under the hood',
-      body: 'We handle the scraping, rotating proxies, parsing, and anti-bot work so you don\'t have to.',
-      bullets: [
-        'Advanced parsing handles complex markup',
-        'TLS fingerprinting + rotating residential proxies',
-        'Bypass anti-bot systems quietly',
-      ],
-      imagePosition: 'left',
-    },
-    {
-      title: 'Data from 13+ leading platforms',
-      body: 'Every platform you\'d want to scrape yourself, already integrated and maintained.',
-      bullets: [
-        'Easy setup, one-click subscription',
-        'Data retrieved via clean, documented APIs',
-        'Collect as much or as little as you need',
-      ],
-      imagePosition: 'right',
-    },
-    {
-      title: 'Connect your favourite tools',
-      body: 'Point your favourite automation platform at our APIs — no custom adapter required.',
-      bullets: [
-        'Works with Zapier, Make, n8n, Pipedream',
-        'Standard OAuth and API-key authentication',
-        'Hit-the-ground-running templates',
-      ],
-      imagePosition: 'left',
-    },
-    {
-      title: 'Fast and reliable APIs',
-      body: 'Low latency, high availability, predictable responses — day and night.',
-      bullets: [
-        'Under-300ms response times on cached endpoints',
-        'Global edge delivery via Cloudflare',
-        'Uptime monitored 24/7 with transparent status',
-      ],
-      imagePosition: 'right',
-    },
-    {
-      title: 'GDPR and compliance-ready',
-      body: 'We only surface publicly available data and follow responsible-scraping practices. Your compliance team can sleep.',
-      bullets: [
-        'Public-data-only collection policy',
-        'Deletion requests honoured on demand',
-        'Transparent provenance on every record',
-      ],
-      imagePosition: 'left',
-    },
-  ]} />
+  <!-- 2b. Modern Mosaic Features -->
+  <FeatureMosaic />
 
   <!-- 3. Featured APIs -->
   <section class="container py-16">

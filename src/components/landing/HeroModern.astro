@@ -1,0 +1,97 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface ApiCard {
+  title: string;
+  icon: string;
+  color: string;
+}
+
+const apiCards: ApiCard[] = [
+  { title: 'Email Verification', icon: 'lucide:mail', color: 'bg-blue-500' },
+  { title: 'Pinterest User Info', icon: 'lucide:users', color: 'bg-pink-500' },
+  { title: 'Cloudflare Bypass API', icon: 'lucide:shield-check', color: 'bg-orange-500' },
+  { title: 'Youtube Video Download', icon: 'lucide:youtube', color: 'bg-red-500' },
+  { title: 'Amazon Product', icon: 'lucide:shopping-cart', color: 'bg-yellow-500' },
+  { title: 'Real Estate Data', icon: 'lucide:home', color: 'bg-green-500' },
+];
+---
+
+<section class="relative overflow-hidden bg-background pt-16 pb-20 lg:pt-24 lg:pb-32">
+  <!-- Decorative background elements -->
+  <div class="absolute inset-0 -z-10 bg-grid-pattern [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] opacity-20 dark:opacity-40"></div>
+  <div class="absolute top-0 right-0 -z-10 h-[500px] w-[500px] bg-brand-500/10 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2"></div>
+
+  <div class="container relative">
+    <div class="grid gap-16 lg:grid-cols-2 lg:items-center">
+      <!-- Left content -->
+      <div class="flex flex-col items-start">
+        <div class="flex flex-wrap items-center gap-3 animate-fade-in">
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/50 backdrop-blur-sm px-3 py-1 text-xs font-medium text-foreground-secondary shadow-sm">
+            <span class="text-amber-400 text-sm">★</span> 5.0 rating
+          </span>
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/50 backdrop-blur-sm px-3 py-1 text-xs font-medium text-foreground-secondary shadow-sm">
+            <Icon name="lucide:users" class="h-3.5 w-3.5 text-brand-500" /> 1k+ API community
+          </span>
+        </div>
+
+        <h1 class="mt-8 text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl animate-slide-up">
+          Web scraping, made <span class="text-brand-600">easy</span> with APIs
+        </h1>
+
+        <p class="mt-6 max-w-xl text-lg text-foreground-secondary animate-slide-up delay-1">
+          Get onboard the #1 platform enabling forward-thinking companies to leverage the full potential of web data through +50 ready-to-use scraping APIs.
+        </p>
+
+        <div class="mt-10 flex flex-wrap gap-4 animate-slide-up delay-2">
+          <a
+            href="/library"
+            class="group inline-flex items-center gap-2 rounded-lg bg-brand-500 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-brand-600 hover:shadow-xl active:scale-[0.98]"
+          >
+            Get started — For free
+            <Icon name="lucide:arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </a>
+          <a
+            href="/library"
+            class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground transition hover:bg-secondary active:scale-[0.98]"
+          >
+            <Icon name="lucide:layout-grid" class="h-4 w-4" />
+            Browse API library
+          </a>
+        </div>
+      </div>
+
+      <!-- Right content: API Cluster -->
+      <div class="relative hidden lg:block animate-fade-in delay-3" aria-hidden="true">
+        <div class="grid grid-cols-2 gap-4 perspective-1000">
+          {apiCards.map((card, idx) => (
+            <div
+              class={`group flex items-center gap-3 rounded-xl border border-border bg-card p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-brand-500/50 ${idx % 2 === 1 ? 'mt-8' : ''}`}
+              style={`animation-delay: ${idx * 100}ms`}
+            >
+              <div class={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${card.color} text-white shadow-inner`}>
+                <Icon name={card.icon} class="h-5 w-5" />
+              </div>
+              <span class="text-sm font-semibold text-foreground">{card.title}</span>
+              <div class="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-brand-500 to-primary opacity-0 transition group-hover:opacity-10 -z-10 blur-sm"></div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Floating decorative icons -->
+        <div class="absolute -top-12 -right-8 animate-pulse text-brand-500/20">
+          <Icon name="lucide:code-2" class="h-24 w-24 rotate-12" />
+        </div>
+        <div class="absolute -bottom-16 -left-12 animate-pulse text-primary/20 delay-1000">
+          <Icon name="lucide:database" class="h-32 w-32 -rotate-12" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+</style>
