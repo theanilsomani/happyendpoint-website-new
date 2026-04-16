@@ -140,11 +140,8 @@ function getSocialIcon(platform: string): string {
             {hasLogoSlot ? (
               <slot name="logo" />
             ) : (
-              <a href="/" class="flex items-center gap-2">
-                <Logo size="md" />
-                <span class="font-display text-base font-bold text-brand-500">
-                  {siteConfig.name}
-                </span>
+              <a href="/" class="flex items-center">
+                <Logo size="lg" />
               </a>
             )}
             {(hasTaglineSlot || tagline) && (
@@ -310,11 +307,8 @@ function getSocialIcon(platform: string): string {
           hasLogoSlot ? (
             <slot name="logo" />
           ) : (
-            <a href="/" class="flex items-center gap-2">
-              <Logo size="md" />
-              <span class="font-display text-xl font-bold text-brand-500">
-                {siteConfig.name}
-              </span>
+            <a href="/" class="flex items-center">
+              <Logo size="lg" />
             </a>
           )
         )}
