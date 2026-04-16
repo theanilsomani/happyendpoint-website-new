@@ -17,25 +17,25 @@ const apiCards: ApiCard[] = [
 ];
 ---
 
-<section class="relative overflow-hidden bg-background pt-16 pb-20 lg:pt-24 lg:pb-32">
+<section class="relative overflow-hidden bg-background pt-24 pb-16 lg:pt-24 lg:pb-32">
   <!-- Decorative background elements -->
   <div class="absolute inset-0 -z-10 bg-grid-pattern [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] opacity-20 dark:opacity-40"></div>
   <div class="absolute top-0 right-0 -z-10 h-[500px] w-[500px] bg-brand-500/10 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2"></div>
 
   <div class="container relative">
-    <div class="grid gap-16 lg:grid-cols-2 lg:items-center">
-      <!-- Left content -->
-      <div class="flex flex-col items-start">
-        <div class="flex flex-wrap items-center gap-3 animate-fade-in">
-          <span class="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/50 backdrop-blur-sm px-3 py-1 text-xs font-medium text-foreground-secondary shadow-sm">
+    <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+      <!-- Content column -->
+      <div class="flex flex-col items-center text-center lg:items-start lg:text-left">
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 animate-fade-in">
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/50 backdrop-blur-sm px-2.5 py-0.5 text-xs font-medium text-foreground-secondary shadow-sm">
             <span class="text-amber-400 text-sm">★</span> 5.0 rating
           </span>
-          <span class="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/50 backdrop-blur-sm px-3 py-1 text-xs font-medium text-foreground-secondary shadow-sm">
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/50 backdrop-blur-sm px-2.5 py-0.5 text-xs font-medium text-foreground-secondary shadow-sm">
             <Icon name="lucide:users" class="h-3.5 w-3.5 text-brand-500" /> 1k+ API community
           </span>
         </div>
 
-        <h1 class="mt-8 text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl animate-slide-up">
+        <h1 class="mt-8 text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-foreground to-foreground/70 sm:text-5xl lg:text-7xl animate-slide-up">
           Web scraping, made <span class="text-brand-600">easy</span> with APIs
         </h1>
 
@@ -43,17 +43,17 @@ const apiCards: ApiCard[] = [
           Get onboard the #1 platform enabling forward-thinking companies to leverage the full potential of web data through +50 ready-to-use scraping APIs.
         </p>
 
-        <div class="mt-10 flex flex-wrap gap-4 animate-slide-up delay-2">
+        <div class="mt-10 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto animate-slide-up delay-2">
           <a
             href="/library"
-            class="group inline-flex items-center gap-2 rounded-lg bg-brand-500 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-brand-600 hover:shadow-xl active:scale-[0.98]"
+            class="group inline-flex items-center justify-center gap-2 w-full sm:w-auto rounded-lg bg-brand-500 px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/10 transition-all hover:bg-brand-600 hover:shadow-xl hover:shadow-brand-500/20 hover:scale-[1.02] active:scale-[0.98]"
           >
             Get started — For free
             <Icon name="lucide:arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </a>
           <a
             href="/library"
-            class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground transition hover:bg-secondary active:scale-[0.98]"
+            class="inline-flex items-center justify-center gap-2 w-full sm:w-auto rounded-lg border border-border bg-card px-8 py-3.5 text-sm font-semibold text-foreground transition-all hover:bg-secondary hover:translate-y-[-1px] hover:shadow-md active:scale-[0.98]"
           >
             <Icon name="lucide:layout-grid" class="h-4 w-4" />
             Browse API library

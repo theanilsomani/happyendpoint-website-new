@@ -118,7 +118,7 @@
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* Container */
-  --container-max: 1200px;
+  --container-max: 1450px;
 }
 
 /* -------------------------------------------------------------------------
@@ -268,7 +268,19 @@
 
   @media (min-width: 768px) {
     .container {
-      padding-inline: 2rem;
+      padding-inline: 3rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container {
+      padding-inline: 4rem;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .container {
+      padding-inline: 6rem;
     }
   }
 
