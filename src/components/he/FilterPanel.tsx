@@ -83,7 +83,7 @@ export default function FilterPanel({
   );
 
   return (
-    <aside className="sticky top-20 space-y-5 rounded-lg border border-border bg-card p-5">
+    <aside className="relative md:sticky md:top-24 space-y-5 rounded-lg border border-border bg-card p-5">
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-semibold uppercase tracking-wider text-foreground-muted">{heading}</h2>
         {hasActiveFilter && (
