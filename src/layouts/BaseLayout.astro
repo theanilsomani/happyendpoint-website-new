@@ -61,6 +61,10 @@ if (includeProfessionalServiceSchema) {
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href={siteConfig.branding.favicon.svg} />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="theme-color" content={siteConfig.branding.colors.themeColor} />
 
@@ -84,47 +88,51 @@ if (includeProfessionalServiceSchema) {
     <!-- Analytics (loads if PUBLIC_GA_MEASUREMENT_ID or PUBLIC_GTM_ID is set) -->
     <Analytics />
 
-    <!-- Dynamic favicon: syncs letter (first letter of site name) and color (brand-500) with active theme -->
-    <script define:vars={{ _faviconLetter: siteConfig.name.charAt(0).toUpperCase() }}>
-      (function () {
-        const LETTER = _faviconLetter;
+    <!--
+      Dynamic favicon (DISABLED): redraws the SVG favicon whenever the active
+      theme changes, by reading --brand-500 and re-generating a single-letter
+      monogram. Disabled while we ship the static "API" wordmark favicon. Kept
+      here so we can re-enable it (or repurpose for the wordmark) later.
 
-        function updateFavicon() {
-          const color = getComputedStyle(document.documentElement).getPropertyValue('--brand-500').trim();
-          if (!color) return;
-          const svg =
-            '<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">' +
-            '<rect width="48" height="48" rx="8" fill="' + color + '"/>' +
-            '<text x="24" y="24" text-anchor="middle" dominant-baseline="central" ' +
-            'font-family="Outfit, system-ui, sans-serif" font-weight="700" font-size="34" fill="white">' +
-            LETTER +
-            '</text></svg>';
-          const link = document.querySelector('link[rel="icon"]');
-          if (link) link.setAttribute('href', 'data:image/svg+xml,' + encodeURIComponent(svg));
-        }
+      <script define:vars={{ _faviconLetter: siteConfig.name.charAt(0).toUpperCase() }}>
+        (function () {
+          const LETTER = _faviconLetter;
 
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', updateFavicon);
-        } else {
-          updateFavicon();
-        }
+          function updateFavicon() {
+            const color = getComputedStyle(document.documentElement).getPropertyValue('--brand-500').trim();
+            if (!color) return;
+            const svg =
+              '<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">' +
+              '<rect width="48" height="48" rx="8" fill="' + color + '"/>' +
+              '<text x="24" y="24" text-anchor="middle" dominant-baseline="central" ' +
+              'font-family="Outfit, system-ui, sans-serif" font-weight="700" font-size="34" fill="white">' +
+              LETTER +
+              '</text></svg>';
+            const link = document.querySelector('link[rel="icon"]');
+            if (link) link.setAttribute('href', 'data:image/svg+xml,' + encodeURIComponent(svg));
+          }
 
-        if (!window.__faviconListenerInit) {
-          window.__faviconListenerInit = true;
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', updateFavicon);
+          } else {
+            updateFavicon();
+          }
 
-          // Re-run whenever data-theme or dark/light class changes
-          new MutationObserver(function (mutations) {
-            for (let i = 0; i < mutations.length; i++) {
-              if (mutations[i].attributeName === 'data-theme' || mutations[i].attributeName === 'class') {
-                updateFavicon();
-                break;
+          if (!window.__faviconListenerInit) {
+            window.__faviconListenerInit = true;
+
+            new MutationObserver(function (mutations) {
+              for (let i = 0; i < mutations.length; i++) {
+                if (mutations[i].attributeName === 'data-theme' || mutations[i].attributeName === 'class') {
+                  updateFavicon();
+                  break;
+                }
               }
-            }
-          }).observe(document.documentElement, { attributes: true });
-
-        }
-      })();
-    </script>
+            }).observe(document.documentElement, { attributes: true });
+          }
+        })();
+      </script>
+    -->
 
     <!-- Theme script (runs before body paint; <html> starts with class="dark" as default) -->
     <script is:inline>

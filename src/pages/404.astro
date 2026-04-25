@@ -1,10 +1,10 @@
 ---
-import LandingLayout from '@/layouts/LandingLayout.astro';
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 ---
 
-<LandingLayout
+<MarketingLayout
   title="Page not found"
   description="The page you're looking for has either been moved, deleted, or never existed in the first place."
   noindex
@@ -40,7 +40,7 @@ import Icon from '@/components/ui/primitives/Icon/Icon.astro';
         </p>
 
         <!-- CTAs -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button href="/" size="lg">
             <Icon name="arrow-left" size="sm" />
             Back to home
@@ -49,28 +49,10 @@ import Icon from '@/components/ui/primitives/Icon/Icon.astro';
             Browse blog
           </Button>
         </div>
-
-        <!-- Quick Links -->
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border">
-          <span class="text-sm text-foreground-muted">Quick Links:</span>
-          <a
-            href="/#features"
-            class="text-sm font-medium text-foreground hover:text-brand-500 transition-colors"
-          >
-            Features
-          </a>
-          <span class="text-foreground-subtle">|</span>
-          <a
-            href="/components"
-            class="text-sm font-medium text-foreground hover:text-brand-500 transition-colors"
-          >
-            Components
-          </a>
-        </div>
       </div>
     </div>
   </section>
-</LandingLayout>
+</MarketingLayout>
 
 <style>
   .error-code {

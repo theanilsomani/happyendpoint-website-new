@@ -3,7 +3,6 @@ import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import EntityCard from '@/components/he/EntityCard.astro';
 import EntityGrid from '@/components/he/EntityGrid.astro';
 import FAQSection from '@/components/he/FAQSection.astro';
-import PlatformLogosStrip from '@/components/he/PlatformLogosStrip.astro';
 import { Icon } from 'astro-icon/components';
 import { getCollection } from 'astro:content';
 import FeatureMosaic from '@/components/landing/FeatureMosaic.astro';
@@ -78,13 +77,10 @@ const apiPills = [
   title="APIs & datasets for the platforms that matter"
   description="Happy Endpoint sells web-scraping APIs and structured datasets on RapidAPI. Real estate, travel, grocery, finance, retail, fashion, and beauty — with free samples available."
 >
-  <!-- 1. Hero -->
+  <!-- 1. Hero (includes platform logos row) -->
   <HeroModern />
 
-  <!-- 2. Platform logos strip -->
-  <PlatformLogosStrip platforms={platforms} title="Data from platforms you know" />
-
-  <!-- 2b. Modern Mosaic Features -->
+  <!-- 2. Modern Mosaic Features -->
   <FeatureMosaic />
 
   <!-- 3. Featured APIs -->
