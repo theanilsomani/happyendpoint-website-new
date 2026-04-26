@@ -23,6 +23,7 @@ interface Props {
   image?: ImageMetadata;
   imageAlt?: string;
   svgSlug?: string;
+  coverImage?: string;
   tags?: string[];
   slug?: string;
 }
@@ -36,11 +37,12 @@ const {
   image,
   imageAlt,
   svgSlug,
+  coverImage,
   tags = [],
   slug = '',
 } = Astro.props;
 
-const ogImage = image?.src || siteConfig.ogImage;
+const ogImage = coverImage || image?.src || siteConfig.ogImage;
 
 const breadcrumbs = [
   { label: 'Home', href: '/' },
@@ -87,6 +89,7 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
     image={image}
     imageAlt={imageAlt}
     svgSlug={svgSlug}
+    coverImage={coverImage}
   />
 
   <article class="pt-8 pb-[var(--space-section-md)]">

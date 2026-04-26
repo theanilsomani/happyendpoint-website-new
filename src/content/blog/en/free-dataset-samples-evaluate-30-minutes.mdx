@@ -1,0 +1,98 @@
+---
+title: "Free dataset samples — what to actually look for in 30 minutes of evaluation"
+description: "How to evaluate a paid dataset before you buy: schema fit, freshness, completeness, and the five quick checks that catch most quality issues."
+publishedAt: 2026-04-26
+author: "Happy Endpoint Team"
+tags: ['datasets', 'evaluation', 'free-samples', 'buying-guide']
+featured: true
+coverImage: /blog/covers/free-dataset-samples-evaluate-30-minutes.png
+coverCategory: FRAMEWORK
+coverSlugLabel: FREE SAMPLES
+---
+
+Buying a dataset blind is the single most expensive mistake we see in the data-products space. A paid dataset that doesn't fit your use case is a sunk cost — refunds are messy, and the time you spent integrating it before realising it's wrong is gone. The fix is cheap and obvious: evaluate before you commit. Free samples exist for exactly this.
+
+This post is the evaluation playbook we recommend customers run against every paid dataset they consider — ours included.
+
+## Why we ship samples
+
+Every dataset we sell on RapidAPI has a free, downloadable sample. <a href="/free-datasets">Browse the full list of free samples here</a>. Each one is structured **identically** to the paid version — same fields, same types, same edge cases. The only difference is volume: a sample is typically a few hundred to a few thousand records; the paid dataset is the full corpus.
+
+That schema parity is deliberate. It means everything you build against the sample will work against the full dataset with no code change. Your evaluation IS your integration.
+
+## The 30-minute evaluation
+
+The framework, in five questions:
+
+### 1. Does the schema match what I expect to query?
+
+Open the sample. Look at one record. Then look at five more.
+
+Ask:
+- Are the fields I need actually present?
+- Are types what I assumed (string vs numeric, ISO date vs unix timestamp, decimal vs string)?
+- Are nested objects flat enough that my downstream tools can handle them?
+- Are there fields you didn't expect that are valuable (or that you'll need to ignore)?
+
+This is the single highest-signal check. If the schema doesn't fit, no amount of volume will fix it.
+
+### 2. Is the data populated, or is half of it `null`?
+
+Pick a sample of 50–100 records. Compute, per field, what fraction are non-null. The result tells you the realistic completeness you'll get at scale.
+
+A field that's 12% populated on the sample will be 12% populated in the paid dataset. If your application needs that field on every record, this is a dealbreaker — discover it now, not after purchase.
+
+### 3. How fresh is the data?
+
+Check the timestamp on the most recent record in the sample. Compare it to today.
+
+- Same week → fresh enough for most use cases.
+- Last month → fine for trend analytics, marginal for current-state apps.
+- Older → ask the vendor about update cadence before buying.
+
+We list every dataset's update cadence on its page, but the timestamps in the sample are the truth.
+
+### 4. Does the data look right when you eyeball it?
+
+Open 20 random records. Read them.
+
+- Does the data make sense? (No "$0" prices on premium listings, no "1970-01-01" dates, no obviously broken text encoding.)
+- Are there encoding issues with non-ASCII characters?
+- Are URLs valid and resolvable?
+- Are categorical fields using a consistent vocabulary, or do you see "Real Estate" / "real-estate" / "realestate" all in the same field?
+
+Five minutes of eyeballing catches data-quality issues that no amount of schema validation will surface.
+
+### 5. Can I write my parser against the sample and have it just work?
+
+This is the integration test. Write the actual code that will consume the dataset. Run it against the sample. Verify the output is what your downstream system needs.
+
+If it works against the sample, it will work against the paid dataset — that's the whole point of schema parity.
+
+## Red flags that should stop a purchase
+
+If any of these come up, slow down:
+
+- **Fields that should be required have inconsistent presence.** Means provenance is unreliable.
+- **The sample is structured differently than the paid version.** Means you can't actually validate before buying — that's a vendor process problem.
+- **Records reference IDs that don't resolve.** Means the dataset has dangling references to data you don't have.
+- **The vendor can't tell you when the next update will be cut.** Means update cadence is opportunistic, not committed.
+
+## What we get right (and what to check for)
+
+Every Happy Endpoint dataset:
+
+- Ships a sample with **identical schema** to the paid version.
+- Lists **update cadence** on the dataset page.
+- Lists **record count** (paid version) on the dataset page.
+- Lists the **format** (JSONL, CSV, Parquet) so you know what your toolchain has to handle.
+
+If something in your evaluation surprises you, <a href="/contact">tell us</a>. We'd rather flag a fit issue at the sample stage than have a customer onboard a dataset that doesn't match their use case.
+
+## The 90-second decision
+
+If your evaluation passes all five checks: buy. If it fails one: ask the vendor. If it fails two or more: don't buy yet — either find a different source, or talk to us about a custom snapshot.
+
+A 30-minute evaluation saves you weeks of integration work against the wrong data.
+
+<a href="/free-datasets">Browse all free samples →</a> · <a href="/datasets">Browse paid datasets →</a> · <a href="/blog/buyers-guide-to-rapidapi-data-products">A buyer's guide to RapidAPI data products</a>

@@ -1,0 +1,74 @@
+---
+title: "IKEA catalog data for furniture-retail apps: schema, freshness, and integration"
+description: "What's in the IKEA Pro API and catalog dataset — and the integration patterns that work for furniture retailers, comparison sites, and home-design products."
+publishedAt: 2026-04-26
+author: "Happy Endpoint Team"
+tags: ['ikea', 'furniture', 'retail', 'catalog', 'integration']
+coverImage: /blog/covers/ikea-catalog-data-furniture-retail-apps.png
+coverCategory: GUIDE
+coverSlugLabel: IKEA API
+---
+
+IKEA's catalogue is unusual in retail. The SKU set is enormous, the products themselves are durable (a BILLY bookcase from 2010 is structurally the same product today), and dimensional data — width, depth, height, weight — matters far more than for, say, fashion or grocery. If you're building a furniture comparison app, a home-design tool, an interior-style recommender, or a B2B procurement product, IKEA is one of the highest-signal sources you can ingest.
+
+This post covers what's in <a href="/library/ikea-pro">the IKEA Pro API</a> and <a href="/datasets/ikea-catalog-sample">the IKEA catalog dataset</a>, and the integration patterns that hold up at scale.
+
+## What you actually get
+
+The IKEA data shape is broader than most retail product sources because furniture has more attributes that matter:
+
+- **Identification** — product name, IKEA article number, item type code, URL.
+- **Hierarchy** — series (BILLY, MALM, KALLAX), category (bookcases, beds, storage), department (living room, bedroom).
+- **Dimensions** — width, depth, height, weight, package count. All in real units (cm, kg). Critical for fit-checks ("does this fit in my room?").
+- **Pricing** — current price by market, with currency.
+- **Availability** — in-stock state per market.
+- **Materials** — primary materials (oak, particleboard, steel) and surface treatments.
+- **Visuals** — gallery URLs for each product.
+- **Assembly** — package count and (for some products) instruction manual URLs.
+
+Every record matches the same schema across the API and dataset, so you can switch between fresh and bulk without rewriting your parser.
+
+## Pattern 1: catalog ingestion for a comparison or design app
+
+If your app needs IKEA's full assortment available locally — searchable, filterable, joinable with other furniture sources — start with the dataset:
+
+1. Pull the bulk catalog snapshot from <a href="/datasets/ikea-catalog-sample">the dataset</a>.
+2. Index by series and category for browse-style navigation.
+3. Index by dimensions for fit-style queries ("desks under 120 cm wide").
+4. Refresh monthly. IKEA's catalogue moves slowly — daily refreshes waste API budget.
+5. For the handful of products your users care about most (top sellers, watchlist items), use the live API to refresh price and stock weekly.
+
+The asymmetry — bulk for breadth, API for depth on a focused subset — is the same pattern we recommend for grocery and beauty. It costs less and feels fresher than naive uniform polling.
+
+## Pattern 2: market expansion / multi-currency
+
+If your product runs in multiple countries, IKEA prices vary by market. The API supports per-market queries; the dataset includes a market field on each row. A few notes:
+
+- **Don't infer currency from price alone.** A `price: 49` could be EUR, GBP, USD, AED, or AED divided by 100. Always read the explicit currency field.
+- **Don't assume a product is sold in every market.** IKEA discontinues regionally. Check availability per market, not just globally.
+- **Stock state is per-market.** What's in stock in Sweden may be sold out in the UK.
+
+A pricing or comparison view that handles this correctly stands out from the dozens of half-built ones.
+
+## Pattern 3: dimensional matching
+
+Furniture's killer feature is dimensions. Two examples worth building:
+
+- **"Will this fit?"** — user enters their room/space dimensions, your app filters the IKEA catalog to products that fit. Sort by closest fit, not just price.
+- **"What goes with this?"** — a user picks a sofa; your app surfaces side tables, lamps, and rugs whose dimensions are aesthetically appropriate (rough rule: side table height ≈ sofa seat height, rug width > sofa width).
+
+Both queries are trivially answered against an indexed local catalog and basically impossible from the live IKEA site without a tool layer like yours.
+
+## Schema notes
+
+- **Article numbers are stable.** A product's `articleNumber` doesn't change across markets or over time. Use it as your primary key, not the URL.
+- **Series is a great join dimension.** Most users searching for "BILLY" want every BILLY variant, not just one. Index series so you can group and faceted-filter cleanly.
+- **Package count drives shipping cost.** A flat-pack with 4 packages is cheaper to ship than 8. If you build a delivered-cost feature, this field is essential.
+
+## Where it fits in a broader catalog
+
+If you're building a furniture-comparison product, IKEA is one source — you'll likely want others too. The integration approach is the same: bulk dataset for breadth, live API for the subset that matters. Combine on category and dimensional attributes (the natural join keys for furniture).
+
+For the underlying decision on dataset vs API, see <a href="/blog/datasets-vs-live-apis-which-to-choose">datasets vs live APIs: which one do you need?</a>. For evaluation before you commit, <a href="/free-datasets">grab the free IKEA sample</a> — schema parity, no account required.
+
+<a href="/library/ikea-pro">View the IKEA Pro API →</a> · <a href="/datasets/ikea-catalog-sample">View the IKEA catalog dataset →</a>

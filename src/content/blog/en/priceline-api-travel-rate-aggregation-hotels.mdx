@@ -1,0 +1,104 @@
+---
+title: "Travel-rate aggregation with the Priceline API: hotels, dynamic pricing, and ranking signals"
+description: "How to build hotel-search and travel-rate features on the Priceline API — query patterns, freshness tradeoffs, and the ranking signals that matter."
+publishedAt: 2026-04-26
+author: "Happy Endpoint Team"
+tags: ['priceline', 'travel', 'hotels', 'dynamic-pricing', 'tutorial']
+coverImage: /blog/covers/priceline-api-travel-rate-aggregation-hotels.png
+coverCategory: TUTORIAL
+coverSlugLabel: PRICELINE API
+---
+
+Travel data is harder to integrate than most retail data because almost every value is dynamic. Hotel rates change by the hour, by occupancy, by length of stay, by booking channel, and by who's asking. If you're building meta-search, a corporate-travel tool, a price-tracking product, or a travel-deals feed, you need the same query repeated against fresh data — not a static snapshot.
+
+This post covers how to use <a href="/library/priceline-pro">the Priceline Pro API</a> for travel-rate aggregation, with notes on the patterns and tradeoffs that matter at scale.
+
+## What the API gives you
+
+The Priceline Pro API surfaces what powers Priceline's own front-end:
+
+- **Hotel search** by location (city, lat/lng, point of interest), dates, occupancy, and rate filters.
+- **Hotel detail** — full property metadata: name, brand chain, star rating, amenities, photos, location.
+- **Available rates** — current rates per room type per night for a queried date range, including taxes/fees breakdowns.
+- **Reviews** — rating distributions and review counts per property.
+- **Deals** — properties currently flagged with promotional pricing.
+
+For analytical use cases (historical rate trends, seasonal pricing, market benchmarking) the <a href="/datasets/priceline-hotels-sample">Priceline hotels dataset</a> is the right shape. The API powers live products; the dataset powers analytics.
+
+## A typical hotel-search query
+
+```js
+async function searchHotels({ city, checkIn, checkOut, adults }) {
+  const params = new URLSearchParams({
+    city,
+    checkIn,
+    checkOut,
+    adults: String(adults),
+    rooms: '1',
+    currency: 'USD',
+  });
+
+  const res = await fetch(
+    `https://priceline-pro.p.rapidapi.com/hotels/search?${params}`,
+    {
+      headers: {
+        'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+        'X-RapidAPI-Host': 'priceline-pro.p.rapidapi.com',
+      },
+    },
+  );
+
+  if (!res.ok) throw new Error(`Priceline returned ${res.status}`);
+  const { properties, totalCount } = await res.json();
+
+  return properties;
+}
+```
+
+Three things this gets right:
+- **Date range, not just dates.** Hotel pricing is per-night and varies across the stay; always pass both ends.
+- **Currency explicit.** Don't infer from anywhere — pass it.
+- **Read total count.** The API paginates; if you need every match, walk pages, but most consumer-facing UIs only need the first 50–100.
+
+## Freshness: the part everyone gets wrong
+
+The temptation is to cache aggressively. Cache too aggressively and you ship stale rates, which is the worst possible UX failure mode in travel — users see one price, click through, get a different price, lose trust.
+
+A working pattern:
+
+1. **Cache search results for 5–15 minutes** keyed on the full query (city + dates + occupancy + filters). Same query inside the cache window returns cached.
+2. **Always re-query on click-through.** If the user clicks a property, fetch fresh rates for that single property before showing the booking step. Single-property freshness is cheap; full search freshness is expensive.
+3. **Surface the cache age.** "Rates from 8 minutes ago — refresh" gives users an exit and reduces complaints when prices shift.
+
+Doing the inverse (no cache, query everything live, every time) burns your rate budget for negligible UX gain.
+
+## Ranking signals worth using
+
+The default API order is reasonable, but most products improve materially by re-ranking with a few extra signals:
+
+- **Price per night vs the market median for that city + star rating.** Surfaces real value, not just absolute cheapness.
+- **Review score weighted by review count.** A 4.7 with 2,000 reviews beats a 4.9 with 8 reviews almost always.
+- **Distance from the queried point of interest.** If the user searched "near Times Square," 500m matters more than 5km.
+- **Has-deal flag.** Properties currently on a promo deserve a small ranking boost (and a UI badge) — your conversion rate will thank you.
+
+Apply these as a re-ranking layer on top of what the API returns. Don't try to re-implement Priceline's full ranking; just nudge it for your audience.
+
+## Handling availability swings
+
+Hotel availability is volatile. A property that returned rates 5 minutes ago might be sold out now. Three things to do:
+
+- **Show "X rooms left" cues only when the API surfaces them.** Don't fabricate scarcity from absence of data.
+- **Treat 404s on rate refresh as "no longer available," not error.** Build the UX around it: "This property just sold out — here are similar nearby options."
+- **Don't promise prices you can't honour.** The price you display must match the price at the booking step. If your stack can't guarantee that, surface "rates from booking partner" caveats and link directly through.
+
+## Datasets for analytics
+
+For benchmarking, market research, or trend analysis, the <a href="/datasets/priceline-hotels-sample">Priceline hotels dataset</a> contains historical snapshots that are impractical to reconstruct from API polling. Buy the dataset; query it with whatever you'd use for analytics (DuckDB, BigQuery, even pandas for one-off questions).
+
+For more on the choice between the two, see <a href="/blog/datasets-vs-live-apis-which-to-choose">datasets vs live APIs</a>.
+
+## Try the sample first
+
+<a href="/free-datasets">Pull a free Priceline sample</a> before you commit. The schema matches the live API, so you can wire your full ingestion pipeline against the sample, validate it end-to-end, and only then flip the switch.
+
+<a href="/library/priceline-pro">View the Priceline Pro API →</a>

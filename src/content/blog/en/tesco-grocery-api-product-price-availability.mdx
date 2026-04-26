@@ -1,0 +1,82 @@
+---
+title: "Tesco grocery API: pulling product, price, and availability data at scale"
+description: "How to use the Tesco Data API on RapidAPI for grocery price intelligence — endpoint walkthrough, schema notes, and the patterns that hold up under real load."
+publishedAt: 2026-04-26
+author: "Happy Endpoint Team"
+tags: ['tesco', 'grocery', 'retail', 'tutorial', 'uk-grocery']
+coverImage: /blog/covers/tesco-grocery-api-product-price-availability.png
+coverCategory: TUTORIAL
+coverSlugLabel: TESCO API
+---
+
+UK grocery is one of the most data-heavy verticals in retail. Tesco alone publishes tens of thousands of SKUs with prices, multi-buy promotions, Clubcard offers, and stock states that all change throughout the day. If you're building price intelligence, basket optimisation, nutrition apps, or competitive monitoring, you need that data programmatically — not through screen-scraping you maintain yourself.
+
+This post walks through using <a href="/library/tesco-data">the Tesco Data API</a> on RapidAPI for production-shaped workloads.
+
+## What the Tesco Data API gives you
+
+The endpoints cover the four data shapes most grocery products care about:
+
+- **Product search** — keyword search across the catalogue, returns IDs, names, prices, and PDP URLs.
+- **Categories** — the hierarchy that powers Tesco's site navigation, useful for browsing-style apps and for batch backfills.
+- **Nutrition** — full nutrition panel data per product. Required for any health, allergen, or diet-filter feature.
+- **Clubcard offers** — current promotional pricing, including multi-buy deals (the "buy 2 for £4" mechanics that drive a meaningful slice of basket value).
+
+Each response is structured JSON with stable field names. The schema matches the shape of <a href="/datasets/tesco-products-uk">our Tesco UK products dataset</a> exactly — write your parser once, switch between the API and the dataset depending on whether you need fresh or bulk.
+
+## A typical integration loop
+
+The pattern most teams converge on:
+
+```js
+// 1. Pull the category tree once a week (it changes slowly)
+const categories = await fetchTesco('/categories');
+
+// 2. For each category you care about, sweep products
+for (const cat of categories.filter(isInteresting)) {
+  const products = await fetchTesco(`/category/${cat.id}/products`);
+  await store.upsertMany(products);
+}
+
+// 3. For your high-priority SKUs (top-N by your own logic),
+//    poll prices every few hours
+for (const sku of topPrioritySkus) {
+  const fresh = await fetchTesco(`/product/${sku.id}`);
+  if (fresh.price !== sku.lastKnownPrice) {
+    await events.emit('priceChanged', { sku: sku.id, from: sku.lastKnownPrice, to: fresh.price });
+  }
+}
+```
+
+Three things this gets right:
+- **Tiered freshness.** Categories are slow-moving; product prices are fast-moving. Don't poll everything at the same cadence.
+- **Diff against your own state.** Don't just re-write — emit events when something actually changes, so downstream consumers (alerts, dashboards) can react.
+- **Top-N priority.** A grocery catalogue is long-tail. Your important SKUs are 5% of the list; spend your rate budget there.
+
+## Schema notes that save time
+
+A few details worth knowing before your parser hits real data:
+
+- **Prices are decimals, not strings.** No locale-string parsing needed.
+- **Promotional pricing is a separate field.** `price` is the listed shelf price; `clubcardPrice` (when present) is the Clubcard-member price. Don't conflate them — Clubcard membership matters for analytics.
+- **Multi-buy deals carry their unit math.** A "2 for £4" deal returns the qualifying product, the bundle quantity, and the bundle price. You can re-derive per-unit price without parsing free text.
+- **Stock states are coarse.** "In stock" / "out of stock" / "low stock" — not per-store inventory counts. For store-level inventory you need a different data source.
+
+## Rate-limit hygiene
+
+The free tier on RapidAPI is enough to validate the integration end-to-end. For production you'll likely move to a paid tier; even then, two practices keep you well-behaved:
+
+1. **Batch your sweeps.** A category sweep at 3am UK time is cheaper and faster than 100 concurrent product calls during peak.
+2. **Cache aggressively for read-heavy paths.** Most consumer apps don't need sub-minute price freshness. A 15-minute cache cuts your bill significantly.
+
+## Where datasets fit instead
+
+If your use case is analytical — historical price trends, basket-mix research, ML training — you almost certainly want the bulk dataset, not the API. Datasets cost less per row at scale, and the schema is identical. Read more in our <a href="/blog/datasets-vs-live-apis-which-to-choose">datasets vs APIs</a> framework.
+
+For everything else — alerts, search, real-time dashboards, consumer-facing pricing — the API is the right shape.
+
+## Try before you commit
+
+<a href="/free-datasets">Download a free Tesco product sample</a> first. The schema matches the live API, so your parser, deduper, and downstream pipeline all work end-to-end against the sample without a single API call. When you flip the switch to live, only the data source changes.
+
+<a href="/library/tesco-data">View the Tesco Data API on RapidAPI →</a>

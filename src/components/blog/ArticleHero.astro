@@ -15,6 +15,7 @@ interface Props {
   image?: ImageMetadata;
   imageAlt?: string;
   svgSlug?: string;
+  coverImage?: string;
 }
 
 const {
@@ -27,6 +28,7 @@ const {
   image,
   imageAlt,
   svgSlug,
+  coverImage,
 } = Astro.props;
 
 // Estimate reading time
@@ -104,9 +106,19 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
     </div>
   </div>
 
-  {(svgSlug || image) && (
+  {(coverImage || svgSlug || image) && (
     <div class="relative mx-auto max-w-5xl px-6 mt-[var(--space-section)] animate-hero-slide-up [animation-delay:200ms]">
-      {svgSlug ? (
+      {coverImage ? (
+        <div class="relative overflow-hidden rounded-xl border border-border shadow-2xl">
+          <img
+            src={coverImage}
+            alt={imageAlt || title}
+            class="aspect-[1200/630] w-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      ) : svgSlug ? (
         <div
           class="relative overflow-hidden rounded-xl border border-border shadow-2xl
             bg-gradient-to-br from-brand-100/50 to-brand-50/30 dark:from-brand-900/50 dark:to-brand-600/30"
