@@ -7,13 +7,29 @@ interface ApiCard {
   color: string;
 }
 
-const apiCards: ApiCard[] = [
-  { title: 'Email Verification', icon: 'lucide:mail', color: 'bg-blue-500' },
-  { title: 'Pinterest User Info', icon: 'lucide:users', color: 'bg-pink-500' },
-  { title: 'Cloudflare Bypass API', icon: 'lucide:shield-check', color: 'bg-orange-500' },
-  { title: 'Youtube Video Download', icon: 'lucide:youtube', color: 'bg-red-500' },
+const row1 = [
+  { title: 'Cloudflare Bypass', icon: 'lucide:shield-check', color: 'bg-orange-500' },
+  { title: 'Brave Search', icon: 'lucide:compass', color: 'bg-blue-500' },
+  { title: 'Best Buy Search', icon: 'lucide:shopping-bag', color: 'bg-blue-600' },
+  { title: 'Audible Search', icon: 'lucide:headphones', color: 'bg-yellow-500' },
+];
+const row2 = [
+  { title: 'Google Maps', icon: 'lucide:map-pin', color: 'bg-green-500' },
+  { title: 'LinkedIn Job Suggest', icon: 'lucide:linkedin', color: 'bg-blue-700' },
+  { title: 'Email Verification', icon: 'lucide:mail-check', color: 'bg-indigo-500' },
+  { title: 'TikTok Video', icon: 'lucide:music', color: 'bg-pink-500' },
+];
+const row3 = [
   { title: 'Amazon Product', icon: 'lucide:shopping-cart', color: 'bg-yellow-500' },
-  { title: 'Real Estate Data', icon: 'lucide:home', color: 'bg-green-500' },
+  { title: 'Disposable Email', icon: 'lucide:shield-off', color: 'bg-purple-600' },
+  { title: 'Real Estate Data', icon: 'lucide:home', color: 'bg-emerald-500' },
+  { title: 'Youtube Video', icon: 'lucide:youtube', color: 'bg-red-500' },
+];
+const row4 = [
+  { title: 'Weibo Search', icon: 'lucide:message-circle', color: 'bg-yellow-600' },
+  { title: 'Pinterest User Info', icon: 'lucide:users', color: 'bg-pink-600' },
+  { title: 'AI Content', icon: 'lucide:bot', color: 'bg-violet-500' },
+  { title: 'X Data', icon: 'lucide:twitter', color: 'bg-sky-500' },
 ];
 
 interface PlatformLogo {
@@ -55,7 +71,7 @@ const platformLogos: PlatformLogo[] = [
           </span>
         </div>
 
-        <h1 class="mt-7 text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-foreground to-foreground/70 sm:text-5xl lg:text-6xl xl:text-4xl animate-slide-up">
+        <h1 class="mt-7 text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-5xl xl:text-6xl animate-slide-up">
           Web scraping, made <span class="text-brand-600">easy</span> with APIs
         </h1>
 
@@ -81,29 +97,66 @@ const platformLogos: PlatformLogo[] = [
         </div>
       </div>
 
-      <!-- Right content: API Cluster -->
+      <!-- Right content: API Cloud -->
       <div class="relative hidden lg:block animate-fade-in delay-3" aria-hidden="true">
-        <div class="grid grid-cols-2 gap-4 perspective-1000">
-          {apiCards.map((card, idx) => (
-            <div
-              class={`group flex items-center gap-3 rounded-xl border border-border bg-card p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-brand-500/50 ${idx % 2 === 1 ? 'mt-8' : ''}`}
-              style={`animation-delay: ${idx * 100}ms`}
-            >
-              <div class={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${card.color} text-white shadow-inner`}>
-                <Icon name={card.icon} class="h-5 w-5" />
+        <div class="relative flex h-[350px] flex-col gap-4 justify-center overflow-hidden [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_70%)] opacity-90">
+          
+          <!-- Row 1 -->
+          <div class="flex gap-4 justify-center -translate-x-8">
+            {row1.map((card, idx) => (
+              <div class="group flex items-center gap-2.5 rounded-full border border-border bg-card px-3.5 py-2 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-default shrink-0">
+                <div class={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${card.color} text-white shadow-inner`}>
+                  <Icon name={card.icon} class="h-3.5 w-3.5" />
+                </div>
+                <span class="text-xs font-semibold text-foreground whitespace-nowrap">{card.title}</span>
               </div>
-              <span class="text-sm font-semibold text-foreground">{card.title}</span>
-              <div class="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-brand-500 to-primary opacity-0 transition group-hover:opacity-10 -z-10 blur-sm"></div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          <!-- Row 2 -->
+          <div class="flex gap-4 justify-center translate-x-4">
+            {row2.map((card, idx) => (
+              <div class="group flex items-center gap-2.5 rounded-full border border-border bg-card px-3.5 py-2 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-default shrink-0">
+                <div class={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${card.color} text-white shadow-inner`}>
+                  <Icon name={card.icon} class="h-3.5 w-3.5" />
+                </div>
+                <span class="text-xs font-semibold text-foreground whitespace-nowrap">{card.title}</span>
+              </div>
+            ))}
+          </div>
+
+          <!-- Row 3 -->
+          <div class="flex gap-4 justify-center -translate-x-12">
+            {row3.map((card, idx) => (
+              <div class="group flex items-center gap-2.5 rounded-full border border-border bg-card px-3.5 py-2 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-default shrink-0">
+                <div class={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${card.color} text-white shadow-inner`}>
+                  <Icon name={card.icon} class="h-3.5 w-3.5" />
+                </div>
+                <span class="text-xs font-semibold text-foreground whitespace-nowrap">{card.title}</span>
+              </div>
+            ))}
+          </div>
+
+          <!-- Row 4 -->
+          <div class="flex gap-4 justify-center translate-x-8">
+            {row4.map((card, idx) => (
+              <div class="group flex items-center gap-2.5 rounded-full border border-border bg-card px-3.5 py-2 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-default shrink-0">
+                <div class={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${card.color} text-white shadow-inner`}>
+                  <Icon name={card.icon} class="h-3.5 w-3.5" />
+                </div>
+                <span class="text-xs font-semibold text-foreground whitespace-nowrap">{card.title}</span>
+              </div>
+            ))}
+          </div>
+
         </div>
 
         <!-- Floating decorative icons -->
-        <div class="absolute -top-12 -right-8 animate-pulse text-brand-500/20">
-          <Icon name="lucide:code-2" class="h-24 w-24 rotate-12" />
+        <div class="absolute -top-4 -right-4 animate-pulse text-brand-500/10 pointer-events-none">
+          <Icon name="lucide:code-2" class="h-20 w-20 rotate-12" />
         </div>
-        <div class="absolute -bottom-16 -left-12 animate-pulse text-primary/20 delay-1000">
-          <Icon name="lucide:database" class="h-32 w-32 -rotate-12" />
+        <div class="absolute -bottom-8 left-0 animate-pulse text-primary/10 delay-1000 pointer-events-none">
+          <Icon name="lucide:database" class="h-24 w-24 -rotate-12" />
         </div>
       </div>
     </div>
