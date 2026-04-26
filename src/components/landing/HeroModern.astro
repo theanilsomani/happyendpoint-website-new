@@ -37,7 +37,7 @@ const platformLogos: PlatformLogo[] = [
 ];
 ---
 
-<section class="relative overflow-hidden bg-background pt-24 pb-16 lg:pt-24 lg:pb-32">
+<section class="relative overflow-hidden bg-background pt-20 pb-12 lg:pt-24 lg:pb-16">
   <!-- Decorative background elements -->
   <div class="absolute inset-0 -z-10 bg-grid-pattern [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] opacity-20 dark:opacity-40"></div>
   <div class="absolute top-0 right-0 -z-10 h-[500px] w-[500px] bg-brand-500/10 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2"></div>
@@ -47,33 +47,33 @@ const platformLogos: PlatformLogo[] = [
       <!-- Content column -->
       <div class="flex flex-col items-center text-center lg:items-start lg:text-left">
         <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 animate-fade-in">
-          <span class="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/50 backdrop-blur-sm px-2.5 py-0.5 text-xs font-medium text-foreground-secondary shadow-sm">
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/50 backdrop-blur-sm px-3 py-1 text-xs font-medium text-foreground-secondary shadow-sm">
             <span class="text-amber-400 text-sm">★</span> 5.0 rating
           </span>
-          <span class="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/50 backdrop-blur-sm px-2.5 py-0.5 text-xs font-medium text-foreground-secondary shadow-sm">
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/50 backdrop-blur-sm px-3 py-1 text-xs font-medium text-foreground-secondary shadow-sm">
             <Icon name="lucide:users" class="h-3.5 w-3.5 text-brand-500" /> 1k+ API community
           </span>
         </div>
 
-        <h1 class="mt-8 text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-foreground to-foreground/70 sm:text-5xl lg:text-7xl animate-slide-up">
+        <h1 class="mt-7 text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-foreground to-foreground/70 sm:text-5xl lg:text-6xl xl:text-4xl animate-slide-up">
           Web scraping, made <span class="text-brand-600">easy</span> with APIs
         </h1>
 
-        <p class="mt-6 max-w-xl text-lg text-foreground-secondary animate-slide-up delay-1">
+        <p class="mt-5 max-w-xl text-lg text-foreground-secondary animate-slide-up delay-1">
           Get onboard the #1 platform enabling forward-thinking companies to leverage the full potential of web data through +50 ready-to-use scraping APIs.
         </p>
 
-        <div class="mt-10 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto animate-slide-up delay-2">
+        <div class="mt-9 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto animate-slide-up delay-2">
           <a
             href="/library"
-            class="group inline-flex items-center justify-center gap-2 w-full sm:w-auto rounded-lg bg-brand-700 px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-700/10 transition-all hover:bg-brand-800 hover:shadow-xl hover:shadow-brand-700/20 hover:scale-[1.02] active:scale-[0.98]"
+            class="group inline-flex items-center justify-center gap-2 w-full sm:w-auto rounded-lg bg-brand-700 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-700/10 transition-all hover:bg-brand-800 hover:shadow-xl hover:shadow-brand-700/20 hover:scale-[1.02] active:scale-[0.98]"
           >
             Get started — For free
             <Icon name="lucide:arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </a>
           <a
             href="/library"
-            class="inline-flex items-center justify-center gap-2 w-full sm:w-auto rounded-lg border border-border bg-card px-8 py-3.5 text-sm font-semibold text-foreground transition-all hover:bg-secondary hover:translate-y-[-1px] hover:shadow-md active:scale-[0.98]"
+            class="inline-flex items-center justify-center gap-2 w-full sm:w-auto rounded-lg border border-border bg-card px-7 py-3.5 text-sm font-semibold text-foreground transition-all hover:bg-secondary hover:translate-y-[-1px] hover:shadow-md active:scale-[0.98]"
           >
             <Icon name="lucide:layout-grid" class="h-4 w-4" />
             Browse API library
@@ -108,12 +108,13 @@ const platformLogos: PlatformLogo[] = [
       </div>
     </div>
 
-    <!-- Platform logos: muted, monochrome, hover restores brand colours -->
-    <div class="mt-16 lg:mt-24 animate-fade-in delay-3">
-      <p class="text-center text-xs font-semibold uppercase tracking-widest text-foreground-muted">
+    <!-- Platform logos: muted, monochrome, hover restores brand colours.
+         Left-aligned on desktop to match the rest of the homepage's section titles. -->
+    <div class="mt-14 lg:mt-20 animate-fade-in delay-3">
+      <p class="text-center text-xs font-semibold uppercase tracking-widest text-foreground-muted lg:text-left">
         Data from platforms you know
       </p>
-      <ul class="hero-logos mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-14">
+      <ul class="hero-logos mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-14 lg:justify-start">
         {platformLogos.map(logo => (
           <li>
             <img
@@ -139,9 +140,9 @@ const platformLogos: PlatformLogo[] = [
   /* Mute the logos with grayscale + lower opacity so they read as a calm
      "trust" strip; restore on hover to preserve brand recognisability. */
   .hero-logos img {
-    height: 1.75rem;
+    height: 2rem;
     width: auto;
-    max-width: 8rem;
+    max-width: 9rem;
     object-fit: contain;
     filter: grayscale(100%);
     opacity: 0.55;
