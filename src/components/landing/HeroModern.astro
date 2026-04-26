@@ -167,16 +167,15 @@ const platformLogos: PlatformLogo[] = [
       <p class="text-center text-xs font-semibold uppercase tracking-widest text-foreground-muted lg:text-left">
         Data from platforms you know
       </p>
-      <ul class="hero-logos mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-14 lg:justify-start">
+      <ul class="hero-logos mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-6 sm:gap-x-10 lg:justify-start">
         {platformLogos.map(logo => (
-          <li>
+          <li class="flex items-center justify-center w-[110px] h-[40px]">
             <img
               src={logo.src}
               alt={`${logo.name} logo`}
               loading="lazy"
               decoding="async"
-              width="120"
-              height="32"
+              class="max-h-full max-w-full object-contain"
             />
           </li>
         ))}
@@ -193,10 +192,6 @@ const platformLogos: PlatformLogo[] = [
   /* Mute the logos with grayscale + lower opacity so they read as a calm
      "trust" strip; restore on hover to preserve brand recognisability. */
   .hero-logos img {
-    height: 2rem;
-    width: auto;
-    max-width: 9rem;
-    object-fit: contain;
     filter: grayscale(100%);
     opacity: 0.55;
     transition: filter 0.2s ease, opacity 0.2s ease;
