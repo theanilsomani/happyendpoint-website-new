@@ -82,7 +82,7 @@ const breadcrumbs = [
     />
 
     <article class="pt-8 pb-[var(--space-section-md)]">
-      <div class="mx-auto max-w-4xl px-6">
+      <div class="container max-w-5xl">
         <Breadcrumbs items={breadcrumbs} class="mb-8" />
 
         {services.length > 0 && (
@@ -113,7 +113,7 @@ const breadcrumbs = [
 
     {related.length > 0 && (
       <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border" data-reveal>
-        <div class="mx-auto max-w-4xl px-6">
+        <div class="container">
           <h2 class="font-display text-2xl font-bold text-foreground mb-6">More projects</h2>
           <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((project) => (

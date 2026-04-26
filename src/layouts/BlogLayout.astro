@@ -93,7 +93,7 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
   />
 
   <article class="pt-8 pb-[var(--space-section-md)]">
-    <div class="mx-auto max-w-4xl px-6">
+    <div class="container max-w-5xl">
       <!-- Breadcrumbs -->
       <Breadcrumbs items={breadcrumbs} class="mb-8" />
 
@@ -135,7 +135,7 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
 
   <!-- Related Posts -->
   {tags.length > 0 && (
-    <div class="mx-auto max-w-screen-xl px-6" data-reveal>
+    <div class="container" data-reveal>
       <RelatedPosts currentSlug={slug} tags={tags} locale="en" maxPosts={3} />
     </div>
   )}

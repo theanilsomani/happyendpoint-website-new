@@ -54,7 +54,7 @@ const getPostUrl = (postId: string) => {
   {
     featuredPosts.length > 0 && (
       <section id="featured-section" class="bg-background-secondary py-[var(--space-section-md)] border-t border-border">
-        <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+        <div class="container flex flex-col gap-8">
           <h2 class="font-display text-foreground text-3xl md:text-4xl font-bold" data-reveal>
             Featured
           </h2>
@@ -83,7 +83,7 @@ const getPostUrl = (postId: string) => {
 
   <!-- All Posts Section -->
   <section class:list={[featuredPosts.length > 0 ? 'bg-background' : 'bg-background-secondary', 'py-[var(--space-section-md)] border-t border-border']}>
-    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+    <div class="container flex flex-col gap-8">
       <div class="flex flex-wrap items-center justify-between gap-4" data-reveal>
         {
           featuredPosts.length > 0 && nonFeaturedPosts.length > 0 && (

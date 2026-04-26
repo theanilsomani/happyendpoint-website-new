@@ -35,7 +35,7 @@ const projects = items.sort((a, b) => a.data.order - b.data.order);
   <!-- All projects -->
   {projects.length > 0 && (
     <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-      <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+      <div class="container flex flex-col gap-8">
 
         <div class="grid gap-6 md:grid-cols-2" data-reveal>
           {projects.map((project) => (
@@ -75,7 +75,7 @@ const projects = items.sort((a, b) => a.data.order - b.data.order);
 
  <!-- CTA -->
   <section class="py-[var(--space-section-md)] bg-background">
-    <div class="mx-auto max-w-2xl px-6 text-center" data-reveal>
+    <div class="container max-w-2xl text-center" data-reveal>
       <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
         Want something like this?
       </h2>
