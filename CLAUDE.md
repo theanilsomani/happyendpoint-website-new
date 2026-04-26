@@ -8,6 +8,8 @@ This is **happyendpoint.com** — a marketing/catalog site for APIs and datasets
 
 The site is **static** (`output: 'static'` in `astro.config.mjs`) and ships to **Cloudflare Pages**. The Next.js predecessor lives at `D:/Programming/happyendpoint-website` and is the source of legacy data for the migration script.
 
+**For broader product, business, voice/brand context, and a running log of recent work**, read `docs/PROJECT-CONTEXT.md` — it covers what we sell, who we sell to, what conventions to match, and what NOT to do unprompted.
+
 ## Commands
 
 | Command | Purpose |
