@@ -48,9 +48,9 @@ export interface LegalLink {
 
 interface Props extends HTMLAttributes<'footer'> {
   /** Layout style */
-  layout?: 'simple' | 'columns' | 'minimal' | 'stacked';
+  layout?: 'simple' | 'columns' | 'minimal' | 'stacked' | 'premium';
   /** Number of columns (only for columns layout) */
-  columns?: 2 | 3 | 4;
+  columns?: 2 | 3 | 4 | 5;
   /** Background variant */
   background?: 'default' | 'secondary' | 'invert';
   /** Override default navigation */
@@ -71,6 +71,8 @@ interface Props extends HTMLAttributes<'footer'> {
   hideLogo?: boolean;
   /** Tagline text under logo */
   tagline?: string;
+  /** Show pre-footer CTA */
+  showPreFooter?: boolean;
 }
 
 const {
@@ -86,9 +88,46 @@ const {
   legalLinks = [],
   hideLogo = false,
   tagline,
+  showPreFooter = false,
   class: className,
   ...attrs
 } = Astro.props;
+
+// Premium footer links
+const premiumLinks = {
+  navigation: [
+    { label: 'Pricing', href: '/pricing' },
+    { label: 'API Library', href: '/library' },
+    { label: 'Datasets', href: '/datasets' },
+    { label: 'Free Datasets', href: '/free-datasets' },
+    { label: 'Blog', href: '/blog' },
+  ],
+  apis: [
+    { label: 'UAE Real Estate API', href: '/library/uae-realestate-api' },
+    { label: 'Bayut Data API', href: '/library/bayut-api' },
+    { label: 'PropertyFinder API', href: '/library/propertyfinder-api' },
+    { label: 'Sephora Catalog API', href: '/library/sephora-api' },
+  ],
+  datasets: [
+    { label: 'Bayut Property Dataset', href: '/datasets/bayut-properties' },
+    { label: 'Tesco Products Dataset', href: '/datasets/tesco-products' },
+    { label: 'H&M Inventory Dataset', href: '/datasets/hm-inventory' },
+    { label: 'Morningstar Data', href: '/datasets/morningstar' },
+  ],
+  learn: [
+    { label: 'API Documentation', href: 'https://docs.happyendpoint.com', external: true },
+    { label: 'Use Cases', href: '/use-cases' },
+    { label: 'Why Happy Endpoint?', href: '/why-happyendpoint' },
+    { label: 'FAQ', href: '/faq' },
+  ],
+  resources: [
+    { label: 'Custom requests', href: '/contact' },
+    { label: 'Contact Support', href: '/contact' },
+    { label: 'Privacy Policy', href: '/privacy' },
+    { label: 'Terms of Service', href: '/terms' },
+    { label: 'Cookie Policy', href: '/privacy' },
+  ]
+};
 
 // Get navigation items
 const defaultNav: NavItem[] = getNavItems().map((item: NavConfigItem) => ({
@@ -129,8 +168,141 @@ function getSocialIcon(platform: string): string {
 }
 ---
 
-<footer class={footerClasses} {...attrs}>
+<footer class={cn('border-t border-border pt-16', footerClasses)} {...attrs}>
   <div class="container">
+    {showPreFooter && (
+      <div class="mb-12 border-b border-border pb-12">
+        <div class="flex flex-col items-center justify-between gap-6 md:flex-row">
+          <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+            Web scraping, made <span class="text-brand-600">easy</span>.
+          </h2>
+          <div class="flex flex-wrap items-center gap-4">
+            <a href="/library" class="rounded-lg border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground transition hover:bg-secondary">
+              Browse API library
+            </a>
+            <a href="/library" class="rounded-lg bg-brand-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-800 shadow-md">
+              Get started — For free
+            </a>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {layout === 'premium' && (
+      <>
+        <div class="grid grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-5">
+          {/* Column 1: Navigation */}
+          <div class="space-y-4">
+            <h3 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-foreground-muted">
+              Navigation
+              <Icon name="external-link" class="h-3 w-3 opacity-50" />
+            </h3>
+            <ul class="space-y-3">
+              {premiumLinks.navigation.map(link => (
+                <li>
+                  <a href={link.href} class="text-sm font-medium text-foreground-secondary transition hover:text-brand-600">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 2: API Library */}
+          <div class="space-y-4">
+            <h3 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-foreground-muted">
+              API Library
+              <Icon name="external-link" class="h-3 w-3 opacity-50" />
+            </h3>
+            <ul class="space-y-3">
+              {premiumLinks.apis.map(link => (
+                <li class="flex items-center gap-2">
+                  <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/10 text-brand-600">
+                    <Icon name="webhook" class="h-3 w-3" />
+                  </span>
+                  <a href={link.href} class="text-sm font-medium text-foreground-secondary transition hover:text-brand-600">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Datasets */}
+          <div class="space-y-4">
+            <h3 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-foreground-muted">
+              Datasets
+              <Icon name="external-link" class="h-3 w-3 opacity-50" />
+            </h3>
+            <ul class="space-y-3">
+              {premiumLinks.datasets.map(link => (
+                <li class="flex items-center gap-2">
+                  <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/10 text-brand-600">
+                    <Icon name="database" class="h-3 w-3" />
+                  </span>
+                  <a href={link.href} class="text-sm font-medium text-foreground-secondary transition hover:text-brand-600">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Learn */}
+          <div class="space-y-4">
+            <h3 class="text-sm font-semibold uppercase tracking-wider text-foreground-muted">Learn</h3>
+            <ul class="space-y-3">
+              {premiumLinks.learn.map(link => (
+                <li>
+                  <a href={link.href} class="text-sm font-medium text-foreground-secondary transition hover:text-brand-600">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 5: Resources */}
+          <div class="space-y-4">
+            <h3 class="text-sm font-semibold uppercase tracking-wider text-foreground-muted">Resources</h3>
+            <ul class="space-y-3">
+              {premiumLinks.resources.map(link => (
+                <li>
+                  <a href={link.href} class="text-sm font-medium text-foreground-secondary transition hover:text-brand-600">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div class="mt-20 flex flex-col items-center justify-between gap-6 border-t border-border pt-8 pb-12 md:flex-row">
+          <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-foreground-muted">
+            <a href="/privacy" class="hover:text-foreground">Privacy Policy</a>
+            <span>|</span>
+            <a href="/terms" class="hover:text-foreground">Terms</a>
+            <span>|</span>
+            <span set:html={processedCopyright} />
+          </div>
+
+          <div class="flex flex-wrap items-center gap-4">
+            <div class="flex items-center gap-3 pr-4 border-r border-border">
+              <img src="/ccpa-compliant-badge.svg" alt="CCPA Compliant" class="h-6" />
+              <img src="/gdpr-compliant-badge.svg" alt="GDPR Compliant" class="h-6" />
+            </div>
+            <div class="flex items-center gap-4 text-foreground-muted opacity-60 grayscale hover:grayscale-0 transition duration-300">
+              <Icon name="visa" class="h-5 w-auto" />
+              <Icon name="mastercard" class="h-5 w-auto" />
+              <Icon name="amex" class="h-5 w-auto" />
+              <Icon name="banknote" class="h-5 w-5" />
+            </div>
+          </div>
+        </div>
+      </>
+    )}
+
     {layout === 'simple' && (
       <>
       <div class="flex flex-col md:flex-row justify-between items-center gap-[var(--space-stack-lg)]">
