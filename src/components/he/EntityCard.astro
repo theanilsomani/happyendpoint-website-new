@@ -5,6 +5,7 @@ import { cn } from '@/lib/cn';
 interface Metric {
   label: string;
   value: string;
+  icon?: string;
 }
 
 export interface Props {
@@ -64,12 +65,13 @@ const iconName = icon ?? variantIcon[variant];
     </h3>
   </div>
 
-  <p class="text-sm text-foreground-secondary line-clamp-2">{description}</p>
+  <p class="text-sm text-foreground-secondary">{description}</p>
 
   {metrics.length > 0 && (
-    <dl class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-foreground-muted">
+    <dl class="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-xs text-foreground-muted">
       {metrics.map(m => (
-        <div class="flex items-center gap-1">
+        <div class="flex items-center gap-1.5">
+          {m.icon && <Icon name={m.icon} class="h-3.5 w-3.5 text-brand-600" />}
           <dt class="uppercase tracking-wide">{m.label}:</dt>
           <dd class="font-medium text-foreground-secondary">{m.value}</dd>
         </div>

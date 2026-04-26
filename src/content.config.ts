@@ -154,6 +154,8 @@ const apis = defineCollection({
       .default([]),
     openApiFile: z.string().optional(),
     pricing: z.null().default(null),
+    users: z.number().optional().default(0),
+    rating: z.number().optional().default(0),
     icon: z.string().optional(),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),

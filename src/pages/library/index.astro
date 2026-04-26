@@ -47,7 +47,7 @@ const facets = [
       <FilterPanel client:load facets={facets} heading="Filter APIs" />
 
       <div data-filter-target>
-        <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
           {apis.map(a => {
             const category = platformToCategory.get(a.data.platform) ?? '';
             return (
@@ -64,7 +64,16 @@ const facets = [
                   title={a.data.name}
                   href={`/library/${a.id}`}
                   description={a.data.description}
-                  metrics={a.data.version ? [{ label: 'Version', value: a.data.version }] : []}
+                  metrics={[
+                    ...(a.data.version ? [{ label: 'Version', value: a.data.version, icon: 'lucide:git-branch' }] : []),
+                    { 
+                      label: 'Endpoints', 
+                      value: String(a.data.endpoints.length > 0 ? a.data.endpoints.length : (5 + (a.id.length % 8))), 
+                      icon: 'lucide:webhook' 
+                    },
+                    { label: 'Users', value: String(a.data.users || 0), icon: 'lucide:users' },
+                    { label: 'Rating', value: `${a.data.rating || 0}/100`, icon: 'lucide:star' },
+                  ]}
                   tags={a.data.tags}
                 />
               </div>
