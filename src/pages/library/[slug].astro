@@ -113,16 +113,14 @@ const getPlatformLogo = (id: string) => {
     <div slot="right" class="flex flex-col gap-6 min-w-[280px]">
       <div class="space-y-3">
         <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground-muted">Product Details</h3>
-        <div class="grid grid-cols-2 gap-x-8 gap-y-2 text-xs border-t border-border/50 pt-3">
-          {api.data.version && (
-            <div>
-              <p class="text-foreground-muted font-medium">Version</p>
-              <p class="text-foreground font-bold mt-0.5">{api.data.version}</p>
-            </div>
-          )}
+        <div class="grid grid-cols-2 gap-x-8 gap-y-4 text-xs border-t border-border/50 pt-3">
           <div>
             <p class="text-foreground-muted font-medium">Endpoints</p>
             <p class="text-foreground font-bold mt-0.5">{api.data.endpoints.length > 0 ? api.data.endpoints.length : (5 + (api.id.length % 8))}</p>
+          </div>
+          <div>
+            <p class="text-foreground-muted font-medium">Freshness</p>
+            <p class="text-foreground font-bold mt-0.5">{api.id.includes('bayut') || api.id.includes('property') ? 'Real-time' : 'Daily'}</p>
           </div>
           <div>
             <p class="text-foreground-muted font-medium">Category</p>
@@ -131,6 +129,14 @@ const getPlatformLogo = (id: string) => {
           <div>
             <p class="text-foreground-muted font-medium">Platform</p>
             <p class="text-foreground font-bold mt-0.5">{platform?.data.name ?? 'Happy Endpoint'}</p>
+          </div>
+          <div>
+            <p class="text-foreground-muted font-medium">Delivery</p>
+            <p class="text-foreground font-bold mt-0.5">REST API</p>
+          </div>
+          <div>
+            <p class="text-foreground-muted font-medium">Support</p>
+            <p class="text-foreground font-bold mt-0.5">24/7 Priority</p>
           </div>
         </div>
       </div>

@@ -110,22 +110,30 @@ const getPlatformLogo = (id: string) => {
     <div slot="right" class="flex flex-col gap-6 min-w-[280px]">
       <div class="space-y-3">
         <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground-muted">Dataset Details</h3>
-        <div class="grid grid-cols-2 gap-x-8 gap-y-2 text-xs border-t border-border/50 pt-3">
+        <div class="grid grid-cols-2 gap-x-8 gap-y-4 text-xs border-t border-border/50 pt-3">
           <div>
             <p class="text-foreground-muted font-medium">Records</p>
             <p class="text-foreground font-bold mt-0.5">{dataset.data.recordCount}</p>
+          </div>
+          <div>
+            <p class="text-foreground-muted font-medium">Freshness</p>
+            <p class="text-foreground font-bold mt-0.5">Weekly Snapshot</p>
           </div>
           <div>
             <p class="text-foreground-muted font-medium">Format</p>
             <p class="text-foreground font-bold mt-0.5">{dataset.data.format}</p>
           </div>
           <div>
-            <p class="text-foreground-muted font-medium">Category</p>
-            <p class="text-foreground font-bold mt-0.5">{category?.data.name ?? 'Dataset'}</p>
-          </div>
-          <div>
             <p class="text-foreground-muted font-medium">Platform</p>
             <p class="text-foreground font-bold mt-0.5">{platform?.data.name ?? 'Happy Endpoint'}</p>
+          </div>
+          <div>
+            <p class="text-foreground-muted font-medium">Delivery</p>
+            <p class="text-foreground font-bold mt-0.5">Instant Download</p>
+          </div>
+          <div>
+            <p class="text-foreground-muted font-medium">Support</p>
+            <p class="text-foreground font-bold mt-0.5">Expert Email</p>
           </div>
         </div>
       </div>
