@@ -6,7 +6,10 @@ import EntityGrid from '@/components/he/EntityGrid.astro';
 import Breadcrumbs from '@/components/he/Breadcrumbs.astro';
 import FAQSection from '@/components/he/FAQSection.astro';
 import FreeSampleBlock from '@/components/he/FreeSampleBlock.astro';
+import PricingCard from '@/components/he/PricingCard.astro';
+import InfoCard from '@/components/he/InfoCard.astro';
 import JsonLd from '@/components/seo/JsonLd.astro';
+import { Icon } from 'astro-icon/components';
 import { getCollection, render } from 'astro:content';
 import {
   getPlatformBySlug,
@@ -63,6 +66,25 @@ const faqs = [
 ];
 
 const jsonLd = datasetSchema(dataset, platform) as WithContext<Thing>;
+
+// Logo Mapping Helper
+const getPlatformLogo = (id: string) => {
+  const mapping: Record<string, string> = {
+    'bayut': '/companies-logo/Bayut_logo.svg',
+    'propertyfinder': '/companies-logo/Property_Finder_logo.svg',
+    'fotocasa': '/companies-logo/Logo_Fotocasa.svg',
+    'hm': '/companies-logo/HM-Logo.svg',
+    'ikea': '/companies-logo/Ikea_logo.svg',
+    'klarna': '/companies-logo/Klarna_logo.svg',
+    'morningstar': '/companies-logo/Morningstar_Logo.svg',
+    'priceline': '/companies-logo/Priceline_logo.svg',
+    'sephora': '/companies-logo/Sephora_logo.svg',
+    'tesco': '/companies-logo/Tesco_Logo.svg',
+    'kohls': '/companies-logo/Kohl\'s_logo.svg',
+    'rightmove': '/companies-logo/rightmove_logo.svg', // Fallback
+  };
+  return mapping[id] || null;
+};
 ---
 
 <MarketingLayout
@@ -79,53 +101,120 @@ const jsonLd = datasetSchema(dataset, platform) as WithContext<Thing>;
     eyebrow="Dataset"
     title={dataset.data.name}
     tagline={dataset.data.description}
+    logoUrl={platform ? getPlatformLogo(platform.id) : undefined}
     badges={[
-      dataset.data.recordCount,
-      dataset.data.format,
-      dataset.data.price,
       ...(platform ? [platform.data.name] : []),
-      ...(category ? [category.data.name] : []),
     ]}
     primaryCta={{ label: 'Purchase on RapidAPI', href: apis[0]?.data.rapidApiUrl ?? '/contact', external: !!apis[0] }}
-    secondaryCta={platform ? { label: `All ${platform.data.name} data`, href: `/platforms/${platform.id}` } : undefined}
-  />
-
-  <article class="container max-w-3xl py-12 prose">
-    <Content />
-  </article>
-
-  {dataset.data.features.length > 0 && (
-    <section class="container max-w-3xl pb-8">
-      <h2 class="text-2xl font-bold text-foreground">What's in this dataset</h2>
-      <ul class="mt-4 grid gap-2 md:grid-cols-2">
-        {dataset.data.features.map(f => (
-          <li class="flex items-start gap-2 text-sm text-foreground-secondary">
-            <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
-            <span>{f}</span>
-          </li>
-        ))}
-      </ul>
-    </section>
-  )}
-
-  {dataset.data.freeSample && (
-    <section class="border-t border-border bg-background-secondary py-12">
-      <div class="container max-w-4xl">
-        <FreeSampleBlock
-          heading="Download a free sample"
-          sampleName={dataset.data.freeSample.name}
-          recordCount={dataset.data.freeSample.recordCount}
-          format={dataset.data.freeSample.format}
-          downloadUrl={dataset.data.freeSample.downloadUrl}
-        />
+  >
+    <div slot="right" class="flex flex-col gap-6 min-w-[280px]">
+      <div class="space-y-3">
+        <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground-muted">Dataset Details</h3>
+        <div class="grid grid-cols-2 gap-x-8 gap-y-2 text-xs border-t border-border/50 pt-3">
+          <div>
+            <p class="text-foreground-muted font-medium">Records</p>
+            <p class="text-foreground font-bold mt-0.5">{dataset.data.recordCount}</p>
+          </div>
+          <div>
+            <p class="text-foreground-muted font-medium">Format</p>
+            <p class="text-foreground font-bold mt-0.5">{dataset.data.format}</p>
+          </div>
+          <div>
+            <p class="text-foreground-muted font-medium">Category</p>
+            <p class="text-foreground font-bold mt-0.5">{category?.data.name ?? 'Dataset'}</p>
+          </div>
+          <div>
+            <p class="text-foreground-muted font-medium">Platform</p>
+            <p class="text-foreground font-bold mt-0.5">{platform?.data.name ?? 'Happy Endpoint'}</p>
+          </div>
+        </div>
       </div>
-    </section>
-  )}
+
+      {apiCounterpart && (
+        <div class="space-y-3">
+          <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground-muted">Live Access</h3>
+          <div class="space-y-2">
+            <a href={`/library/${apiCounterpart.id}`} class="group flex items-center justify-between gap-3 p-2 rounded-lg border border-border bg-brand-500/[0.02] hover:bg-brand-500/[0.05] transition-colors">
+              <div class="min-w-0">
+                <p class="text-xs font-bold text-foreground truncate">{apiCounterpart.data.name}</p>
+                <p class="text-[9px] uppercase tracking-wider text-foreground-muted">REST API</p>
+              </div>
+              <Icon name="lucide:webhook" class="h-3.5 w-3.5 text-foreground-muted group-hover:text-brand-600 transition-colors" />
+            </a>
+          </div>
+        </div>
+      )}
+    </div>
+  </EntityHero>
+
+  <div class="container py-12 md:py-16">
+    <div class="grid gap-16 lg:grid-cols-[1fr_320px]">
+      <div class="space-y-24">
+        <!-- Overview / Long Description -->
+        <section id="overview">
+          <h2 class="text-2xl font-bold tracking-tight text-foreground mb-8">Overview</h2>
+          <article class="prose max-w-none prose-p:text-lg prose-p:leading-relaxed prose-headings:text-foreground">
+            <Content />
+          </article>
+        </section>
+
+        <!-- Features / What's in the dataset -->
+        {dataset.data.features.length > 0 && (
+          <section id="features">
+            <h2 class="text-2xl font-bold tracking-tight text-foreground mb-8">What's in this dataset</h2>
+            <div class="grid gap-6 sm:grid-cols-2">
+              {dataset.data.features.map(f => (
+                <div class="flex items-start gap-4 p-2">
+                  <div class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-500/10">
+                    <Icon name="lucide:check" class="h-3.5 w-3.5 text-brand-600" />
+                  </div>
+                  <span class="text-base font-medium leading-relaxed text-foreground-secondary">{f}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <!-- Free Sample Block -->
+        {dataset.data.freeSample && (
+          <section id="sample" class="rounded-3xl border border-border bg-card p-10 md:p-12 shadow-sm">
+            <FreeSampleBlock
+              heading="Download a free sample"
+              sampleName={dataset.data.freeSample.name}
+              recordCount={dataset.data.freeSample.recordCount}
+              format={dataset.data.freeSample.format}
+              downloadUrl={dataset.data.freeSample.downloadUrl}
+            />
+          </section>
+        )}
+
+        <!-- FAQ -->
+        <section id="faq" class="pt-12 border-t border-border">
+          <FAQSection faqs={faqs} isNested={true} />
+        </section>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="space-y-12">
+        <!-- Pricing Card -->
+        <PricingCard pricing={dataset.data.price} rapidApiUrl={apis[0]?.data.rapidApiUrl ?? '/contact'} />
+      </aside>
+    </div>
+  </div>
 
   {relatedDatasets.length > 0 && (
-    <section class="container py-12">
-      <h2 class="text-2xl font-bold text-foreground">More from {platform?.data.name ?? 'this platform'}</h2>
-      <div class="mt-8">
+    <section class="border-t border-border py-24 bg-background">
+      <div class="container">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div>
+            <h2 class="text-3xl font-bold tracking-tight text-foreground">More from {platform?.data.name ?? 'this platform'}</h2>
+            <p class="mt-2 text-foreground-secondary text-lg">Browse other snapshots and data formats available for this source.</p>
+          </div>
+          <a href="/datasets" class="group flex items-center gap-2 text-sm font-bold text-brand-600">
+            View all datasets 
+            <Icon name="lucide:arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </a>
+        </div>
         <EntityGrid columns={2}>
           {relatedDatasets.map(d => (
             <EntityCard
@@ -145,28 +234,6 @@ const jsonLd = datasetSchema(dataset, platform) as WithContext<Thing>;
       </div>
     </section>
   )}
-
-  {apiCounterpart && (
-    <section class="border-t border-border bg-background-secondary py-12">
-      <div class="container max-w-3xl">
-        <h2 class="text-2xl font-bold text-foreground">Need live data instead?</h2>
-        <p class="mt-2 text-foreground-secondary">
-          If you need request-time data, the {platform?.data.name} API covers the same ground.
-        </p>
-        <div class="mt-6">
-          <EntityCard
-            variant="api"
-            title={apiCounterpart.data.name}
-            href={`/library/${apiCounterpart.id}`}
-            description={apiCounterpart.data.description}
-            tags={apiCounterpart.data.tags}
-          />
-        </div>
-      </div>
-    </section>
-  )}
-
-  <FAQSection faqs={faqs} />
 </MarketingLayout>
 
 <JsonLd schema={jsonLd} />
