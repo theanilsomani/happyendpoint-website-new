@@ -245,15 +245,21 @@ const platformLogos: PlatformLogo[] = [
 
 <script>
   const scrollContainer = document.querySelector('.mask-horizontal') as HTMLElement;
-  let isDown = false;
-  let startX: number;
-  let scrollLeft: number;
-
   if (scrollContainer) {
+    let isDown = false;
+    let startX: number;
+    let scrollLeft: number;
+    let containerOffsetLeft = scrollContainer.offsetLeft;
+
+    // Update cached offset on resize
+    window.addEventListener('resize', () => {
+      containerOffsetLeft = scrollContainer.offsetLeft;
+    }, { passive: true });
+
     scrollContainer.addEventListener('mousedown', (e) => {
       isDown = true;
       scrollContainer.classList.add('cursor-grabbing');
-      startX = e.pageX - scrollContainer.offsetLeft;
+      startX = e.pageX - containerOffsetLeft;
       scrollLeft = scrollContainer.scrollLeft;
     });
 
@@ -270,7 +276,7 @@ const platformLogos: PlatformLogo[] = [
     scrollContainer.addEventListener('mousemove', (e) => {
       if (!isDown) return;
       e.preventDefault();
-      const x = e.pageX - scrollContainer.offsetLeft;
+      const x = e.pageX - containerOffsetLeft;
       const walk = (x - startX) * 2;
       scrollContainer.scrollLeft = scrollLeft - walk;
     });
