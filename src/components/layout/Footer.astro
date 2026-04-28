@@ -177,10 +177,10 @@ function getSocialIcon(platform: string): string {
             Find your data, <span class="text-brand-600">ship your product</span>.
           </h2>
           <div class="flex flex-wrap items-center gap-4">
-            <a href="/library" class="rounded-lg border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground transition hover:bg-secondary">
+            <a href="/library" class="rounded-lg border border-border bg-card/40 backdrop-blur-md px-6 py-3 text-sm font-semibold text-foreground transition hover:bg-secondary dark:border-white/20 dark:bg-white/[0.08] dark:hover:bg-white/[0.12]">
               Browse API library
             </a>
-            <a href={siteConfig.socialLinks[0]} target="_blank" class="rounded-lg bg-brand-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-800 shadow-md">
+            <a href={siteConfig.socialLinks[0]} target="_blank" class="rounded-lg bg-brand-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-800 shadow-md dark:bg-brand-600 dark:hover:bg-brand-500">
               Get started - For free
             </a>
           </div>
