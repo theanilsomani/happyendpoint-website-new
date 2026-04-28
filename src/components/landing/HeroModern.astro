@@ -55,8 +55,9 @@ const platformLogos: PlatformLogo[] = [
 
 <section class="relative overflow-hidden bg-background pt-20 pb-12 lg:pt-24 lg:pb-16">
   <!-- Decorative background elements -->
-  <div class="absolute inset-0 -z-10 bg-grid-pattern [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] opacity-20 dark:opacity-40"></div>
-  <div class="absolute top-0 right-0 -z-10 h-[500px] w-[500px] bg-brand-500/10 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2"></div>
+  <div class="absolute inset-0 -z-10 bg-grid-pattern [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] opacity-10 dark:opacity-20"></div>
+  <div class="absolute top-0 right-0 -z-10 h-[600px] w-[600px] bg-brand-500/15 blur-[120px] rounded-full translate-x-1/3 -translate-y-1/2"></div>
+  <div class="absolute bottom-0 left-0 -z-10 h-[500px] w-[500px] bg-blue-600/10 blur-[100px] rounded-full -translate-x-1/4 translate-y-1/4"></div>
 
   <div class="container relative">
     <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
@@ -163,23 +164,26 @@ const platformLogos: PlatformLogo[] = [
 
     <!-- Platform logos: muted, monochrome, hover restores brand colours.
          Left-aligned on desktop to match the rest of the homepage's section titles. -->
-    <div class="mt-14 lg:mt-20 animate-fade-in delay-3">
-      <p class="text-center text-xs font-semibold uppercase tracking-widest text-foreground-muted lg:text-left">
-        Data from platforms you know
+    <div class="mt-12 lg:mt-16 animate-fade-in delay-3">
+      <p class="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-foreground-muted/80 lg:text-left mb-4">
+        Trusted by data-driven companies worldwide
       </p>
-      <ul class="hero-logos mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-5 sm:gap-x-8 lg:justify-start">
-        {platformLogos.map(logo => (
-          <li class="flex items-center justify-center w-[95px] h-[32px]">
-            <img
-              src={logo.src}
-              alt={`${logo.name} logo`}
-              loading="lazy"
-              decoding="async"
-              class="max-h-full max-w-full object-contain"
-            />
-          </li>
-        ))}
-      </ul>
+      
+      <div class="relative overflow-x-auto no-scrollbar mask-horizontal cursor-grab active:cursor-grabbing select-none py-4">
+        <div class="logo-perspective-container">
+          <div class="flex w-max animate-infinite-scroll gap-12 items-center hover:[animation-play-state:paused]">
+            {[...platformLogos, ...platformLogos, ...platformLogos].map(logo => (
+              <div class="flex items-center justify-center w-[110px] h-[38px] shrink-0 transition-transform duration-300 hover:scale-105">
+              <img
+                src={logo.src}
+                alt={`${logo.name} logo`}
+                class="hero-logo-img max-h-full max-w-full object-contain"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -189,23 +193,85 @@ const platformLogos: PlatformLogo[] = [
     perspective: 1000px;
   }
 
-  /* Mute the logos with grayscale + lower opacity so they read as a calm
-     "trust" strip; restore on hover to preserve brand recognisability. */
-  .hero-logos img {
+  /* Mute the logos with grayscale + lower opacity */
+  .hero-logo-img {
     filter: grayscale(100%);
-    opacity: 0.55;
-    transition: filter 0.2s ease, opacity 0.2s ease;
+    opacity: 0.45;
+    transition: all 0.3s ease;
   }
-  .hero-logos img:hover {
+  
+  .hero-logo-img:hover {
     filter: grayscale(0%);
     opacity: 1;
   }
-  :global(html.dark) .hero-logos img {
-    filter: grayscale(100%) invert(1);
-    opacity: 0.7;
+  
+  :global(html.dark) .hero-logo-img {
+    filter: grayscale(100%) invert(1) brightness(1.2);
+    opacity: 0.55;
   }
-  :global(html.dark) .hero-logos img:hover {
-    filter: grayscale(0%) invert(0);
+  
+  :global(html.dark) .hero-logo-img:hover {
+    filter: grayscale(0%) invert(0) brightness(1);
     opacity: 1;
   }
+
+  /* Facing on side effect for the strip */
+  .mask-horizontal {
+    perspective: 2000px;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .logo-perspective-container {
+    transform-style: preserve-3d;
+    transform: rotateY(-10deg) rotateX(1deg);
+    padding: 1rem 0;
+  }
+  
+  .animate-infinite-scroll {
+    transform-style: preserve-3d;
+    animation: infinite-scroll 35s linear infinite;
+  }
 </style>
+
+<script>
+  const scrollContainer = document.querySelector('.mask-horizontal') as HTMLElement;
+  let isDown = false;
+  let startX: number;
+  let scrollLeft: number;
+
+  if (scrollContainer) {
+    scrollContainer.addEventListener('mousedown', (e) => {
+      isDown = true;
+      scrollContainer.classList.add('cursor-grabbing');
+      startX = e.pageX - scrollContainer.offsetLeft;
+      scrollLeft = scrollContainer.scrollLeft;
+    });
+
+    scrollContainer.addEventListener('mouseleave', () => {
+      isDown = false;
+      scrollContainer.classList.remove('cursor-grabbing');
+    });
+
+    scrollContainer.addEventListener('mouseup', () => {
+      isDown = false;
+      scrollContainer.classList.remove('cursor-grabbing');
+    });
+
+    scrollContainer.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - scrollContainer.offsetLeft;
+      const walk = (x - startX) * 2;
+      scrollContainer.scrollLeft = scrollLeft - walk;
+    });
+  }
+</script>
