@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-icon/components';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 
 interface ApiCard {
   title: string;
@@ -8,28 +8,28 @@ interface ApiCard {
 }
 
 const row1 = [
-  { title: 'Cloudflare Bypass', icon: 'lucide:shield-check', color: 'bg-orange-500' },
-  { title: 'Brave Search', icon: 'lucide:compass', color: 'bg-blue-500' },
-  { title: 'Best Buy Search', icon: 'lucide:shopping-bag', color: 'bg-blue-600' },
-  { title: 'Audible Search', icon: 'lucide:headphones', color: 'bg-yellow-500' },
+  { title: 'Cloudflare Bypass', icon: 'shield-check', color: 'bg-orange-500' },
+  { title: 'Brave Search', icon: 'compass', color: 'bg-blue-500' },
+  { title: 'Best Buy Search', icon: 'shopping-bag', color: 'bg-blue-600' },
+  { title: 'Audible Search', icon: 'headphones', color: 'bg-yellow-500' },
 ];
 const row2 = [
-  { title: 'Google Maps', icon: 'lucide:map-pin', color: 'bg-green-500' },
-  { title: 'LinkedIn Job Suggest', icon: 'lucide:linkedin', color: 'bg-blue-700' },
-  { title: 'Email Verification', icon: 'lucide:mail-check', color: 'bg-indigo-500' },
-  { title: 'TikTok Video', icon: 'lucide:music', color: 'bg-pink-500' },
+  { title: 'Google Maps', icon: 'map-pin', color: 'bg-green-500' },
+  { title: 'LinkedIn Job Suggest', icon: 'linkedin', color: 'bg-blue-700' },
+  { title: 'Email Verification', icon: 'mail-check', color: 'bg-indigo-500' },
+  { title: 'TikTok Video', icon: 'simple-icons:tiktok', color: 'bg-pink-500' },
 ];
 const row3 = [
-  { title: 'Amazon Product', icon: 'lucide:shopping-cart', color: 'bg-yellow-500' },
-  { title: 'Disposable Email', icon: 'lucide:shield-off', color: 'bg-purple-600' },
-  { title: 'Real Estate Data', icon: 'lucide:home', color: 'bg-emerald-500' },
-  { title: 'Youtube Video', icon: 'lucide:youtube', color: 'bg-red-500' },
+  { title: 'Amazon Product', icon: 'shopping-cart', color: 'bg-yellow-500' },
+  { title: 'Disposable Email', icon: 'ghost', color: 'bg-purple-600' },
+  { title: 'Real Estate Data', icon: 'home', color: 'bg-emerald-500' },
+  { title: 'Youtube Video', icon: 'simple-icons:youtube', color: 'bg-red-500' },
 ];
 const row4 = [
-  { title: 'Weibo Search', icon: 'lucide:message-circle', color: 'bg-yellow-600' },
-  { title: 'Pinterest User Info', icon: 'lucide:users', color: 'bg-pink-600' },
-  { title: 'AI Content', icon: 'lucide:bot', color: 'bg-violet-500' },
-  { title: 'X Data', icon: 'lucide:twitter', color: 'bg-sky-500' },
+  { title: 'Weibo Search', icon: 'message-square', color: 'bg-yellow-600' },
+  { title: 'Pinterest User Info', icon: 'simple-icons:pinterest', color: 'bg-pink-600' },
+  { title: 'AI Content', icon: 'bot', color: 'bg-violet-500' },
+  { title: 'X Data', icon: 'x-twitter', color: 'bg-sky-500' },
 ];
 
 interface PlatformLogo {
@@ -68,7 +68,7 @@ const platformLogos: PlatformLogo[] = [
             <span class="text-amber-400 text-sm">★</span> 5.0 rating
           </span>
           <span class="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/50 backdrop-blur-sm px-3 py-1 text-xs font-medium text-foreground-secondary shadow-sm dark:bg-white/[0.05] dark:border-white/10 dark:text-foreground">
-            <Icon name="lucide:users" class="h-3.5 w-3.5 text-brand-500" /> 1k+ API community
+            <Icon name="users" class="h-3.5 w-3.5 text-brand-500" /> 1k+ API community
           </span>
         </div>
 
@@ -86,13 +86,13 @@ const platformLogos: PlatformLogo[] = [
             class="group inline-flex items-center justify-center gap-2 w-full sm:w-auto rounded-lg bg-brand-700 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-700/10 transition-all hover:bg-brand-800 hover:shadow-xl hover:shadow-brand-700/20 hover:scale-[1.02] active:scale-[0.98] dark:bg-brand-600 dark:hover:bg-brand-500"
           >
             Get started — For free
-            <Icon name="lucide:arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <Icon name="arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </a>
           <a
             href="/library"
             class="inline-flex items-center justify-center gap-2 w-full sm:w-auto rounded-lg border border-border bg-card/40 backdrop-blur-md px-7 py-3.5 text-sm font-semibold text-foreground transition-all hover:bg-secondary hover:translate-y-[-1px] hover:shadow-md active:scale-[0.98] dark:border-white/20 dark:bg-white/[0.08] dark:hover:bg-white/[0.12]"
           >
-            <Icon name="lucide:layout-grid" class="h-4 w-4" />
+            <Icon name="layout-grid" class="h-4 w-4" />
             Browse API library
           </a>
         </div>
@@ -185,6 +185,7 @@ const platformLogos: PlatformLogo[] = [
         </div>
       </div>
     </div>
+  </div>
   </div>
 </section>
 

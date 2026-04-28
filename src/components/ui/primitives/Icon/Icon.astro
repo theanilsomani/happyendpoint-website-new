@@ -52,7 +52,7 @@ const iconMap: Record<string, string> = {
   amex:               'simple-icons:americanexpress',
 };
 
-const resolvedName = iconMap[name] ?? `lucide:${name}`;
+const resolvedName = name.includes(':') ? name : (iconMap[name] ?? `lucide:${name}`);
 const isSimpleIcon = resolvedName.startsWith('simple-icons:');
 ---
 

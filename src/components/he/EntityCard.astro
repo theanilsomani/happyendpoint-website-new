@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-icon/components';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import { cn } from '@/lib/cn';
 
 interface Metric {
@@ -24,11 +24,11 @@ export interface Props {
 const { variant, title, href, description, metrics = [], tags = [], showTags = false, icon, badge, logoUrl } = Astro.props;
 
 const variantIcon: Record<Props['variant'], string> = {
-  api: 'lucide:webhook',
-  dataset: 'lucide:database',
-  platform: 'lucide:globe',
-  category: 'lucide:layers',
-  'free-sample': 'lucide:download',
+  api: 'zap',
+  dataset: 'database',
+  platform: 'globe',
+  category: 'layers',
+  'free-sample': 'download',
 };
 
 const iconName = icon ?? variantIcon[variant];
@@ -36,7 +36,7 @@ const iconName = icon ?? variantIcon[variant];
 
 <a
   href={href}
-  class="group relative flex flex-col gap-3 rounded-lg border border-border bg-card p-5 transition hover:border-border-strong hover:shadow-md"
+  class="group relative flex flex-col gap-3 rounded-lg border border-border bg-card backdrop-blur-sm p-5 transition hover:border-border-strong hover:shadow-md active:scale-[0.99]"
   data-entity-card
   data-variant={variant}
   data-tags={tags.join(',')}
