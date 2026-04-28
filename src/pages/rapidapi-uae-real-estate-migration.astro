@@ -1,0 +1,430 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+const deadline = '2026-05-12T00:00:00Z';
+const deadlineFormatted = 'May 12, 2026';
+const oldApi = {
+  name: 'Bayut',
+  url: 'https://rapidapi.com/happyendpoint/api/bayut14',
+  host: 'bayut14.p.rapidapi.com',
+  endpoint: 'https://bayut14.p.rapidapi.com/health'
+};
+
+const newApi = {
+  name: 'UAE Real Estate',
+  url: 'https://rapidapi.com/happyendpoint/api/uae-real-estate3',
+  host: 'uae-real-estate3.p.rapidapi.com',
+  endpoint: 'https://uae-real-estate3.p.rapidapi.com/health'
+};
+---
+
+<MarketingLayout
+  title="Migration Guide: Bayut API to UAE Real Estate API"
+  description="Important migration guide for users of the Bayut API on RapidAPI. Transition to the new UAE Real Estate API by May 12th."
+>
+  <main class="relative overflow-hidden">
+    <!-- Background Accents -->
+    <div class="absolute inset-0 -z-10 bg-grid opacity-[0.03]"></div>
+    <div class="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-brand-500/10 blur-3xl"></div>
+    <div class="absolute top-1/2 -right-24 h-96 w-96 rounded-full bg-brand-500/5 blur-3xl"></div>
+
+    <section class="container relative py-20 lg:py-32">
+      <!-- Background Decorative Elements -->
+      <div class="absolute top-0 left-1/2 -z-10 h-[600px] w-full -translate-x-1/2 bg-[radial-gradient(circle_at_center,var(--brand-500)_0%,transparent_70%)] opacity-[0.05]"></div>
+      
+      <!-- Deadline Alert -->
+      <div class="mb-12 flex justify-center">
+        <div class="group flex items-center gap-3 rounded-full border border-warning/30 bg-warning/5 px-5 py-2 text-sm font-semibold text-warning shadow-[0_0_20px_rgba(var(--warning-rgb),0.1)] transition-all hover:border-warning/50 hover:bg-warning/10 animate-slide-down">
+          <div class="flex h-2 w-2">
+            <span class="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-warning opacity-75"></span>
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-warning"></span>
+          </div>
+          <span>Migrate by {deadlineFormatted}</span>
+          <span class="h-4 w-px bg-warning/20"></span>
+          <div id="countdown" data-deadline={deadline} class="font-mono tabular-nums">
+            Calculating...
+          </div>
+        </div>
+      </div>
+
+      <div class="mx-auto max-w-4xl text-center">
+        <h1 class="text-balance text-5xl font-extrabold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+          The New Era of <br/>
+          <span class="bg-gradient-to-r from-brand-600 via-brand-500 to-brand-400 bg-clip-text text-transparent">UAE Real Estate Data</span>
+        </h1>
+        <p class="mx-auto mt-8 max-w-2xl text-xl leading-relaxed text-foreground-secondary">
+          We've rebranded and upgraded our legacy Bayut API. Enjoy <strong>enhanced stability</strong>, <strong>faster response times</strong>, and <strong>100% data compatibility</strong>.
+        </p>
+        
+        <div class="mt-12 flex flex-wrap justify-center gap-6">
+          <a href={newApi.url} target="_blank" class="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-brand-600 px-8 py-4 text-lg font-bold text-white transition-all hover:bg-brand-700 hover:shadow-[0_0_30px_rgba(var(--brand-600-rgb),0.3)] active:scale-95">
+            <span>Subscribe to New API</span>
+            <Icon name="lucide:external-link" class="h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+          </a>
+          <a href="#guide" class="inline-flex items-center gap-2 rounded-xl border border-border-strong bg-card px-8 py-4 text-lg font-bold text-foreground transition-all hover:bg-secondary hover:shadow-md active:scale-95">
+            View Migration Steps
+            <Icon name="lucide:arrow-down" class="h-5 w-5 animate-bounce" />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Migration Roadmap -->
+    <section class="container py-16">
+      <div class="grid gap-8 md:grid-cols-3">
+        <!-- Step 1 -->
+        <div class="group relative rounded-2xl border border-border bg-card p-8 shadow-sm transition-all hover:border-brand-500/50 hover:shadow-xl">
+          <div class="absolute -top-4 -left-4 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-600 text-lg font-bold text-white shadow-lg">1</div>
+          <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-500/10 text-brand-600">
+            <Icon name="lucide:plus-circle" class="h-8 w-8" />
+          </div>
+          <h3 class="text-xl font-bold text-foreground">Subscribe</h3>
+          <p class="mt-3 text-foreground-secondary">
+            Visit the new <a href={newApi.url} target="_blank" class="text-brand-600 underline">UAE Real Estate API</a> listing on RapidAPI and subscribe to a plan.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="group relative rounded-2xl border border-border bg-card p-8 shadow-sm transition-all hover:border-brand-500/50 hover:shadow-xl">
+          <div class="absolute -top-4 -left-4 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-600 text-lg font-bold text-white shadow-lg">2</div>
+          <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-500/10 text-brand-600">
+            <Icon name="lucide:refresh-cw" class="h-8 w-8" />
+          </div>
+          <h3 class="text-xl font-bold text-foreground">Update Host</h3>
+          <p class="mt-3 text-foreground-secondary">
+            Change your API host from <code class="text-brand-600">{oldApi.host}</code> to <code class="text-brand-600">{newApi.host}</code>.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="group relative rounded-2xl border border-border bg-card p-8 shadow-sm transition-all hover:border-brand-500/50 hover:shadow-xl">
+          <div class="absolute -top-4 -left-4 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-600 text-lg font-bold text-white shadow-lg">3</div>
+          <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-500/10 text-brand-600">
+            <Icon name="lucide:rocket" class="h-8 w-8" />
+          </div>
+          <h3 class="text-xl font-bold text-foreground">Verify & Deploy</h3>
+          <p class="mt-3 text-foreground-secondary">
+            Run a test request to the health endpoint. Once verified, deploy your changes before the deadline.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Quick Fix Section -->
+    <section id="guide" class="container py-16">
+      <div class="relative overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-2xl lg:p-16">
+        <!-- Background Accent -->
+        <div class="absolute top-0 right-0 -z-10 h-64 w-64 translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/10 blur-3xl"></div>
+        
+        <div class="grid gap-16 lg:grid-cols-2">
+          <div>
+            <h2 class="text-4xl font-extrabold tracking-tight text-foreground">The 2-Minute Fix</h2>
+            <p class="mt-6 text-lg text-foreground-secondary leading-relaxed">
+              We've ensured that the transition is as simple as a find-and-replace. No data structures have changed, and your existing RapidAPI key will continue to work.
+            </p>
+
+            <div class="mt-10 space-y-8">
+              <div class="flex items-start gap-5">
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-success/10 text-success">
+                  <Icon name="lucide:check-circle-2" class="h-6 w-6" />
+                </div>
+                <div>
+                  <h4 class="text-lg font-bold text-foreground">New Host & URL</h4>
+                  <p class="text-foreground-secondary">Update your request headers and base URL to target the new UAE Real Estate infrastructure.</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-5">
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-success/10 text-success">
+                  <Icon name="lucide:check-circle-2" class="h-6 w-6" />
+                </div>
+                <div>
+                  <h4 class="text-lg font-bold text-foreground">Identical Payload</h4>
+                  <p class="text-foreground-secondary">Your parsing logic remains the same. The JSON response structure is bit-for-bit identical.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-5">
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-success/10 text-success">
+                  <Icon name="lucide:check-circle-2" class="h-6 w-6" />
+                </div>
+                <div>
+                  <h4 class="text-lg font-bold text-foreground">No Price Changes</h4>
+                  <p class="text-foreground-secondary">Free tiers, quotas, and pricing remain exactly the same as your current subscription.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col justify-center">
+            <div class="relative rounded-2xl border border-border bg-background/50 p-1 backdrop-blur-xl shadow-2xl">
+               <div class="flex items-center justify-between border-b border-border bg-background-secondary px-6 py-4 rounded-t-2xl">
+                  <div class="flex gap-1.5">
+                    <div class="h-3 w-3 rounded-full bg-error/40"></div>
+                    <div class="h-3 w-3 rounded-full bg-warning/40"></div>
+                    <div class="h-3 w-3 rounded-full bg-success/40"></div>
+                  </div>
+                  <span class="text-xs font-bold text-foreground-muted uppercase tracking-widest">Configuration Update</span>
+               </div>
+               <div class="p-8 space-y-8">
+                 <div class="relative">
+                   <div class="absolute -left-4 top-1/2 h-8 w-1 -translate-y-1/2 rounded-full bg-error"></div>
+                   <span class="text-xs font-bold text-error uppercase tracking-wider">Old Configuration (Remove)</span>
+                   <div class="mt-3 flex items-center justify-between rounded-xl border border-error/20 bg-error/5 p-4 text-error line-through">
+                     <span class="font-mono text-sm font-medium">{oldApi.host}</span>
+                   </div>
+                 </div>
+
+                 <div class="flex justify-center">
+                   <div class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-500 text-white shadow-lg shadow-brand-500/30">
+                     <Icon name="lucide:arrow-down" class="h-6 w-6" />
+                   </div>
+                 </div>
+
+                 <div class="relative">
+                   <div class="absolute -left-4 top-1/2 h-8 w-1 -translate-y-1/2 rounded-full bg-success"></div>
+                   <span class="text-xs font-bold text-success uppercase tracking-wider">New Configuration (Apply)</span>
+                   <div class="mt-3 flex items-center justify-between rounded-xl border border-success/30 bg-success/10 p-4 text-success shadow-[0_0_15px_rgba(var(--success-rgb),0.1)]">
+                     <span class="font-mono text-sm font-bold">{newApi.host}</span>
+                     <button class="copy-btn rounded-md bg-success/20 p-1.5 transition-colors hover:bg-success/30" data-copy={newApi.host}>
+                       <Icon name="lucide:copy" class="h-4 w-4" />
+                     </button>
+                   </div>
+                 </div>
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Side-by-Side Code Comparison -->
+    <section class="container py-24 bg-background-secondary/50 relative overflow-hidden">
+      <div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-brand-500/5 blur-3xl"></div>
+      
+      <div class="mx-auto max-w-5xl">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-foreground">Implementation Comparison</h2>
+          <p class="mt-4 text-foreground-secondary">See exactly what needs to be updated in your request.</p>
+        </div>
+        
+        <div class="grid gap-8 lg:grid-cols-2">
+          <!-- Old Implementation -->
+          <div class="relative group">
+            <div class="absolute -top-3 left-6 z-10 rounded-full bg-error px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white shadow-lg">Legacy</div>
+            <div class="rounded-2xl border border-error/20 bg-[#0d1117] p-6 shadow-xl transition-all group-hover:border-error/40">
+              <div class="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
+                <span class="text-xs font-mono text-white/40">cURL (Deprecated)</span>
+              </div>
+              <pre class="overflow-x-auto text-xs leading-6 text-[#e6edf3]"><code>curl --request GET \
+  --url <span class="text-[#ff7b72]">{oldApi.endpoint}</span> \
+  --header 'Content-Type: application/json' \
+  --header 'x-rapidapi-host: <span class="text-[#ff7b72]">{oldApi.host}</span>' \
+  --header 'x-rapidapi-key: <span class="text-white/40">YOUR_API_KEY</span>'</code></pre>
+            </div>
+          </div>
+
+          <!-- New Implementation -->
+          <div class="relative group">
+            <div class="absolute -top-3 left-6 z-10 rounded-full bg-success px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white shadow-lg">Updated</div>
+            <div class="rounded-2xl border border-success/30 bg-[#0d1117] p-6 shadow-xl transition-all ring-2 ring-success/20 group-hover:border-success/50 group-hover:ring-success/40">
+              <div class="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
+                <span class="text-xs font-mono text-white/40">cURL (Current)</span>
+                <button class="copy-btn flex items-center gap-1.5 rounded-md bg-white/5 px-2 py-1 text-[10px] font-bold text-white/60 transition-colors hover:bg-white/10 hover:text-white" data-copy={`curl --request GET --url ${newApi.endpoint} --header 'Content-Type: application/json' --header 'x-rapidapi-host: ${newApi.host}' --header 'x-rapidapi-key: YOUR_API_KEY'`}>
+                  <Icon name="lucide:copy" class="h-3 w-3" />
+                  COPY
+                </button>
+              </div>
+              <pre class="overflow-x-auto text-xs leading-6 text-[#e6edf3]"><code>curl --request GET \
+  --url <span class="text-[#7ee787]">{newApi.endpoint}</span> \
+  --header 'Content-Type: application/json' \
+  --header 'x-rapidapi-host: <span class="text-[#7ee787]">{newApi.host}</span>' \
+  --header 'x-rapidapi-key: <span class="text-white/40">YOUR_API_KEY</span>'</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-16 rounded-3xl bg-gradient-to-br from-brand-600 to-brand-700 p-1">
+          <div class="rounded-[calc(1.5rem-1px)] bg-brand-600 p-10 text-white shadow-2xl">
+            <div class="flex flex-col items-center justify-between gap-8 md:flex-row">
+              <div class="text-center md:text-left">
+                <h3 class="text-3xl font-extrabold tracking-tight">Ready to switch?</h3>
+                <p class="mt-2 text-lg text-brand-100">Subscribe to the new UAE Real Estate API and update your keys.</p>
+              </div>
+              <a href={newApi.url} target="_blank" class="group relative flex shrink-0 items-center gap-2 overflow-hidden rounded-xl bg-white px-8 py-4 text-lg font-bold text-brand-700 transition-all hover:bg-brand-50 hover:shadow-lg active:scale-95">
+                Go to RapidAPI
+                <Icon name="lucide:arrow-right" class="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Performance & Benefits -->
+    <section class="container py-24 bg-background-secondary/30 relative">
+      <div class="absolute inset-0 bg-grid opacity-[0.02] -z-10"></div>
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-foreground sm:text-4xl">Engineered for Excellence</h2>
+        <p class="mt-4 text-foreground-secondary">We didn't just change the name; we improved the core.</p>
+      </div>
+
+      <div class="grid gap-8 md:grid-cols-3">
+        <div class="group flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card transition-all hover:-translate-y-2">
+          <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-500/10 text-brand-600 shadow-inner group-hover:bg-brand-500 group-hover:text-white transition-colors">
+            <Icon name="lucide:zap" class="h-8 w-8" />
+          </div>
+          <h3 class="text-xl font-bold text-foreground">30% Lower Latency</h3>
+          <p class="mt-3 text-foreground-secondary leading-relaxed">Our new global edge network ensures faster data delivery regardless of where your servers are located.</p>
+        </div>
+        
+        <div class="group flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card transition-all hover:-translate-y-2">
+          <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-500/10 text-brand-600 shadow-inner group-hover:bg-brand-500 group-hover:text-white transition-colors">
+            <Icon name="lucide:shield-check" class="h-8 w-8" />
+          </div>
+          <h3 class="text-xl font-bold text-foreground">99.99% Uptime</h3>
+          <p class="mt-3 text-foreground-secondary leading-relaxed">Redundant cloud infrastructure with automatic failover provides enterprise-grade reliability for your applications.</p>
+        </div>
+
+        <div class="group flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card transition-all hover:-translate-y-2">
+          <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-500/10 text-brand-600 shadow-inner group-hover:bg-brand-500 group-hover:text-white transition-colors">
+            <Icon name="lucide:scale" class="h-8 w-8" />
+          </div>
+          <h3 class="text-xl font-bold text-foreground">Fully Compliant</h3>
+          <p class="mt-3 text-foreground-secondary leading-relaxed">This new API identity is fully compliant with platform requirements, guaranteeing uninterrupted service for the future.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ / Help -->
+    <section class="container py-24">
+       <div class="mx-auto max-w-4xl">
+         <div class="flex flex-col md:flex-row gap-12 items-start">
+           <div class="md:w-1/3">
+             <h2 class="text-3xl font-extrabold text-foreground leading-tight">Migration <br/>Common <br/>Questions</h2>
+             <p class="mt-4 text-foreground-secondary">Everything you need to know about the transition.</p>
+             
+             <div class="mt-8 rounded-xl bg-brand-50 p-6 border border-brand-100">
+               <h4 class="font-bold text-brand-800 text-sm uppercase tracking-wider mb-2">Note on Branding</h4>
+               <p class="text-brand-700 text-sm leading-relaxed">
+                 To ensure long-term stability and compliance with trademark guidelines, we have moved from the "Bayut" name to "UAE Real Estate". This change is permanent and ensures your service remains active without legal interruption.
+               </p>
+             </div>
+           </div>
+
+           <div class="md:w-2/3 space-y-4">
+             <details class="group rounded-xl border border-border bg-card p-6 open:shadow-lg transition-all" open>
+               <summary class="flex cursor-pointer items-center justify-between font-bold text-foreground text-lg list-none">
+                 Will my old API key work?
+                 <Icon name="lucide:chevron-down" class="h-5 w-5 transition-transform group-open:rotate-180" />
+               </summary>
+               <p class="mt-4 text-foreground-secondary leading-relaxed">
+                 Yes, your RapidAPI key remains the same. You just need to subscribe to the new <a href={newApi.url} class="text-brand-600 underline font-medium">UAE Real Estate API</a> listing to enable it for the new host.
+               </p>
+             </details>
+
+             <details class="group rounded-xl border border-border bg-card p-6 open:shadow-lg transition-all">
+               <summary class="flex cursor-pointer items-center justify-between font-bold text-foreground text-lg list-none">
+                 Is there any price difference?
+                 <Icon name="lucide:chevron-down" class="h-5 w-5 transition-transform group-open:rotate-180" />
+               </summary>
+               <p class="mt-4 text-foreground-secondary leading-relaxed">
+                 No. Pricing tiers, API call limits, and free tier quotas are identical to the original Bayut API. Your existing usage history will start fresh on the new listing.
+               </p>
+             </details>
+
+             <details class="group rounded-xl border border-border bg-card p-6 open:shadow-lg transition-all">
+               <summary class="flex cursor-pointer items-center justify-between font-bold text-foreground text-lg list-none text-error">
+                 What happens after May 12th?
+                 <Icon name="lucide:chevron-down" class="h-5 w-5 transition-transform group-open:rotate-180" />
+               </summary>
+               <div class="mt-4 space-y-3">
+                 <p class="text-foreground-secondary leading-relaxed">
+                   The old host (<code class="text-error bg-error/5 px-1.5 rounded">{oldApi.host}</code>) will be decommissioned. Any requests to the old host will return a 410 Gone or 404 Not Found error.
+                 </p>
+                 <div class="flex items-center gap-2 text-error font-bold">
+                   <Icon name="lucide:alert-circle" class="h-5 w-5" />
+                   <span>Please ensure migration is complete by May 11th to avoid downtime.</span>
+                 </div>
+               </div>
+             </details>
+
+             <details class="group rounded-xl border border-border bg-card p-6 open:shadow-lg transition-all">
+               <summary class="flex cursor-pointer items-center justify-between font-bold text-foreground text-lg list-none">
+                 Where can I find more technical info?
+                 <Icon name="lucide:chevron-down" class="h-5 w-5 transition-transform group-open:rotate-180" />
+               </summary>
+               <p class="mt-4 text-foreground-secondary leading-relaxed">
+                 Visit <a href="https://bayutapi.dev/" target="_blank" class="text-brand-600 underline font-medium">bayutapi.dev</a> for detailed endpoint documentation and updates. This site will remain the primary technical hub for UAE Real Estate data.
+               </p>
+             </details>
+           </div>
+         </div>
+       </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="container py-24 text-center">
+      <h2 class="text-3xl font-bold text-foreground">Still have questions?</h2>
+      <p class="mt-4 text-lg text-foreground-secondary">Our team is here to help with your migration.</p>
+      <div class="mt-8 flex justify-center gap-4">
+        <a href="/contact" class="inline-flex items-center gap-2 rounded-md bg-foreground px-6 py-3 font-semibold text-background transition hover:bg-foreground/90">
+          Contact Support
+          <Icon name="lucide:mail" class="h-4 w-4" />
+        </a>
+      </div>
+    </section>
+  </main>
+</MarketingLayout>
+
+<script>
+  // Countdown Timer
+  const countdownEl = document.getElementById('countdown');
+  const deadlineStr = countdownEl?.dataset.deadline;
+
+  if (countdownEl && deadlineStr) {
+    const deadline = new Date(deadlineStr).getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = deadline - now;
+
+      if (distance < 0) {
+        countdownEl.innerHTML = "Deadline Passed";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    };
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  }
+
+  // Copy to Clipboard
+  const copyButtons = document.querySelectorAll('.copy-btn');
+  copyButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const text = btn.getAttribute('data-copy');
+      if (text) {
+        navigator.clipboard.writeText(text);
+        const icon = btn.querySelector('svg');
+        if (icon) {
+          const originalHTML = icon.parentElement?.innerHTML;
+          if (btn.parentElement) {
+             btn.innerHTML = '<span class="text-[10px] font-bold">COPIED!</span>';
+             setTimeout(() => {
+               if (originalHTML) btn.innerHTML = originalHTML;
+             }, 2000);
+          }
+        }
+      }
+    });
+  });
+</script>
