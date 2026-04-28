@@ -43,7 +43,7 @@ const facets = [
     </header>
 
     <div class="mt-10 grid gap-8 md:grid-cols-[260px_1fr]">
-      <FilterPanel client:load facets={facets} heading="Filter datasets" />
+      <FilterPanel client:load facets={facets} heading="Filter datasets" pageSize={6} paginationContainer="#filter-pagination" />
 
       <div data-filter-target>
         <div class="grid gap-4 md:grid-cols-2">
@@ -53,6 +53,7 @@ const facets = [
             const hasSample = d.data.freeSample !== undefined;
             return (
               <div
+                class="h-full"
                 data-entity-card
                 data-variant="dataset"
                 data-platform={d.data.platform}
@@ -76,6 +77,7 @@ const facets = [
             );
           })}
         </div>
+        <div id="filter-pagination" class="mt-8"></div>
       </div>
     </div>
   </section>

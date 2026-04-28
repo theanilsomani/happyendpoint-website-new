@@ -44,7 +44,7 @@ const facets = [
     </header>
 
     <div class="mt-10 grid gap-8 md:grid-cols-[260px_1fr]">
-      <FilterPanel client:load facets={facets} heading="Filter APIs" />
+      <FilterPanel client:load facets={facets} heading="Filter APIs" pageSize={6} paginationContainer="#filter-pagination" />
 
       <div data-filter-target>
         <div class="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
@@ -80,6 +80,7 @@ const facets = [
             );
           })}
         </div>
+        <div id="filter-pagination" class="mt-8"></div>
       </div>
     </div>
   </section>

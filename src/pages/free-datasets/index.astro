@@ -64,7 +64,7 @@ const faqs = [
     </header>
 
     <div class="mt-10 grid gap-8 md:grid-cols-[260px_1fr]">
-      <FilterPanel client:load facets={facets} heading="Filter samples" />
+      <FilterPanel client:load facets={facets} heading="Filter samples" pageSize={6} paginationContainer="#filter-pagination" />
 
       <div data-filter-target>
         <div class="grid gap-4 md:grid-cols-2">
@@ -81,6 +81,7 @@ const faqs = [
             const isStandaloneFree = d.data.price.toLowerCase() === 'free';
             return (
               <div
+                class="h-full"
                 data-entity-card
                 data-variant="free-sample"
                 data-platform={d.data.platform}
@@ -104,6 +105,7 @@ const faqs = [
             );
           })}
         </div>
+        <div id="filter-pagination" class="mt-8"></div>
       </div>
     </div>
   </section>
