@@ -1,7 +1,7 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import Breadcrumbs from '@/components/he/Breadcrumbs.astro';
-import FreeSampleBlock from '@/components/he/FreeSampleBlock.astro';
+import EntityCard from '@/components/he/EntityCard.astro';
 import FAQSection from '@/components/he/FAQSection.astro';
 import FilterPanel from '@/components/he/FilterPanel.tsx';
 import { getAllFreeSamples, getAllPublishedPlatforms, getAllCategories } from '@/lib/content-queries';
@@ -88,13 +88,17 @@ const faqs = [
                 data-tags={d.data.tags.join(',')}
                 data-search={`${sample.name} ${d.data.description} ${platformName}`.toLowerCase()}
               >
-                <FreeSampleBlock
-                  heading={`${platformName} — free sample`}
-                  sampleName={sample.name}
-                  recordCount={sample.recordCount}
-                  format={sample.format}
-                  downloadUrl={sample.downloadUrl}
-                  parentHref={isStandaloneFree ? undefined : `/datasets/${parentSlug}`}
+                <EntityCard
+                  variant="dataset"
+                  title={sample.name}
+                  href={`/datasets/${parentSlug}`}
+                  description={d.data.description}
+                  metrics={[
+                    { label: 'Records', value: sample.recordCount },
+                    { label: 'Format', value: sample.format },
+                  ]}
+                  badge={isStandaloneFree ? 'FREE' : 'FREE SAMPLE'}
+                  tags={d.data.tags}
                 />
               </div>
             );

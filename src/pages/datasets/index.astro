@@ -46,7 +46,7 @@ const facets = [
       <FilterPanel client:load facets={facets} heading="Filter datasets" />
 
       <div data-filter-target>
-        <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="grid gap-4 md:grid-cols-2">
           {datasets.map(d => {
             const category = platformToCategory.get(d.data.platform) ?? '';
             const isFree = d.data.price.toLowerCase() === 'free';
@@ -68,7 +68,6 @@ const facets = [
                   metrics={[
                     { label: 'Records', value: d.data.recordCount },
                     { label: 'Format', value: d.data.format },
-                    { label: 'Price', value: d.data.price },
                   ]}
                   badge={isFree ? 'FREE' : hasSample ? 'FREE SAMPLE' : undefined}
                   tags={d.data.tags}
