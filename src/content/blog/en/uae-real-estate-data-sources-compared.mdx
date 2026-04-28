@@ -9,7 +9,7 @@ coverCategory: COMPARISON
 coverSlugLabel: UAE REAL ESTATE
 ---
 
-If you're building anything touching UAE real estate — property search, market analytics, investment research, alerting — you're picking between three practical sources: **PropertyFinder**, **Bayut**, and an **aggregator** that combines both.
+If you're building anything touching UAE real estate - property search, market analytics, investment research, alerting - you're picking between three practical sources: **PropertyFinder**, **Bayut**, and an **aggregator** that combines both.
 
 Happy Endpoint offers APIs and datasets for all three. Here's how to pick.
 
@@ -32,7 +32,7 @@ Happy Endpoint offers APIs and datasets for all three. Here's how to pick.
 ### UAE Real Estate aggregator
 
 - Combines PropertyFinder + Bayut + adjacent sources into a single API.
-- De-duplicated across platforms — the same property listed on both is returned once.
+- De-duplicated across platforms - the same property listed on both is returned once.
 - Best if you want to avoid integrating two separate APIs.
 - Source: <a href="/platforms/uae-realestate">UAE Real Estate platform page</a>
 
@@ -41,7 +41,7 @@ Happy Endpoint offers APIs and datasets for all three. Here's how to pick.
 Fields are similar across sources (price, bedrooms, area, agent, photos, location). Differences:
 
 - **Geocoding**: all three include lat/lng. PropertyFinder's is most precise.
-- **Agent metadata**: Bayut exposes agent response rate and active-listings count — useful for "trusted agent" features.
+- **Agent metadata**: Bayut exposes agent response rate and active-listings count - useful for "trusted agent" features.
 - **Historical prices**: PropertyFinder dataset has multi-year price history; Bayut dataset is shorter.
 - **Photos**: all include galleries; Bayut returns the most per listing on average.
 
@@ -64,7 +64,7 @@ Fields are similar across sources (price, bedrooms, area, agent, photos, locatio
 
 ## Pricing pattern
 
-All three APIs use RapidAPI's per-request pricing with free tiers. The aggregator is slightly more expensive per request than either PF or Bayut alone — you're paying for the dedup + merge compute. If you're serving heavy traffic and only need one source, direct is cheaper.
+All three APIs use RapidAPI's per-request pricing with free tiers. The aggregator is slightly more expensive per request than either PF or Bayut alone - you're paying for the dedup + merge compute. If you're serving heavy traffic and only need one source, direct is cheaper.
 
 Datasets are priced per snapshot. The <a href="/datasets/propertyfinder-transactions-data">PropertyFinder Transactions Dataset</a> is typically the first dataset UAE teams buy because of its analytical depth.
 
@@ -81,4 +81,4 @@ That's a half-day evaluation for a decision that drives months of product work.
 
 ## Next step
 
-<a href="/categories/real-estate">Browse all real-estate sources</a> or <a href="/contact">tell us about your use case</a> — we're happy to point you at the sharpest fit.
+<a href="/categories/real-estate">Browse all real-estate sources</a> or <a href="/contact">tell us about your use case</a> - we're happy to point you at the sharpest fit.

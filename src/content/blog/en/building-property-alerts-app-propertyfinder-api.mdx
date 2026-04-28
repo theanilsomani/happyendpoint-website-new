@@ -1,6 +1,6 @@
 ---
 title: 'Building a property-alerts app with the PropertyFinder API'
-description: 'End-to-end walkthrough of a simple property-alerts app — how to poll the PropertyFinder API, deduplicate results, and notify users when new listings appear.'
+description: 'End-to-end walkthrough of a simple property-alerts app - how to poll the PropertyFinder API, deduplicate results, and notify users when new listings appear.'
 publishedAt: 2026-03-24
 author: 'Happy Endpoint Team'
 tags: ['tutorial', 'propertyfinder', 'real-estate', 'alerts']
@@ -13,7 +13,7 @@ This post walks through a small but production-shaped app: a service that lets u
 
 ## The shape of the problem
 
-Users save search criteria. Every few minutes, our service polls the API for each search. New listings — ones we haven't seen before — trigger notifications. Old listings (price-change updates excluded) don't.
+Users save search criteria. Every few minutes, our service polls the API for each search. New listings - ones we haven't seen before - trigger notifications. Old listings (price-change updates excluded) don't.
 
 ## Architecture in one sentence
 
@@ -36,7 +36,7 @@ async function poll(search) {
 ```
 
 Three notes:
-- Use the listing **ID**, not a URL hash — IDs are stable.
+- Use the listing **ID**, not a URL hash - IDs are stable.
 - Cap the `seen` set. Evict IDs for listings not returned in the last N polls so the set doesn't grow unbounded.
 - `publishAlertEvents` puts one event per new listing on your outbox. Don't send notifications synchronously from the poll loop.
 
@@ -66,7 +66,7 @@ async function fetchPropertyFinder(criteria) {
 }
 ```
 
-Respect the rate limit on your plan — batch polls with a leaky bucket if you have many users.
+Respect the rate limit on your plan - batch polls with a leaky bucket if you have many users.
 
 ## Cold-start: the first poll
 
@@ -75,13 +75,13 @@ The first time a user saves a search, the poll returns dozens of listings that a
 1. **Mark them all as seen, don't notify.** Users see alerts only for listings that appear AFTER they subscribed. Clean but a little boring for the first notification.
 2. **Show them as "initial matches," notify once with a summary.** Warmer onboarding.
 
-We default to option 2 with a capped summary notification ("23 listings currently match — here are the 5 most recent").
+We default to option 2 with a capped summary notification ("23 listings currently match - here are the 5 most recent").
 
 ## Deduplication across sources (optional)
 
-If you also want to alert on Bayut, you can query <a href="/platforms/bayut">Bayut</a> in parallel. Dedupe by a canonical key (address + bedrooms + approximate area) — different platforms use different IDs, but the same listing shares canonical attributes.
+If you also want to alert on Bayut, you can query <a href="/platforms/bayut">Bayut</a> in parallel. Dedupe by a canonical key (address + bedrooms + approximate area) - different platforms use different IDs, but the same listing shares canonical attributes.
 
-Or — cheaper — use <a href="/platforms/uae-realestate">the UAE aggregator</a> which pre-dedupes across sources.
+Or - cheaper - use <a href="/platforms/uae-realestate">the UAE aggregator</a> which pre-dedupes across sources.
 
 ## Testing without burning rate limits
 
@@ -90,7 +90,7 @@ Before turning on the real poll, run your whole pipeline against <a href="/free-
 ## What not to do
 
 - Don't poll every search on a uniform 60-second schedule. Space them out (round-robin) to stay inside rate limits.
-- Don't notify on every field change — only "new listing appeared" and "price dropped >X%" are interesting.
+- Don't notify on every field change - only "new listing appeared" and "price dropped >X%" are interesting.
 - Don't store full listing JSON indefinitely. IDs + timestamps + minimal metadata (price, URL) are enough.
 
 ## Next steps

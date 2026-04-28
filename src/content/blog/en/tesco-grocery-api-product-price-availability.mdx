@@ -1,6 +1,6 @@
 ---
 title: "Tesco grocery API: pulling product, price, and availability data at scale"
-description: "How to use the Tesco Data API on RapidAPI for grocery price intelligence — endpoint walkthrough, schema notes, and the patterns that hold up under real load."
+description: "How to use the Tesco Data API on RapidAPI for grocery price intelligence - endpoint walkthrough, schema notes, and the patterns that hold up under real load."
 publishedAt: 2026-04-26
 author: "Happy Endpoint Team"
 tags: ['tesco', 'grocery', 'retail', 'tutorial', 'uk-grocery']
@@ -9,7 +9,7 @@ coverCategory: TUTORIAL
 coverSlugLabel: TESCO API
 ---
 
-UK grocery is one of the most data-heavy verticals in retail. Tesco alone publishes tens of thousands of SKUs with prices, multi-buy promotions, Clubcard offers, and stock states that all change throughout the day. If you're building price intelligence, basket optimisation, nutrition apps, or competitive monitoring, you need that data programmatically — not through screen-scraping you maintain yourself.
+UK grocery is one of the most data-heavy verticals in retail. Tesco alone publishes tens of thousands of SKUs with prices, multi-buy promotions, Clubcard offers, and stock states that all change throughout the day. If you're building price intelligence, basket optimisation, nutrition apps, or competitive monitoring, you need that data programmatically - not through screen-scraping you maintain yourself.
 
 This post walks through using <a href="/library/tesco-data">the Tesco Data API</a> on RapidAPI for production-shaped workloads.
 
@@ -17,12 +17,12 @@ This post walks through using <a href="/library/tesco-data">the Tesco Data API</
 
 The endpoints cover the four data shapes most grocery products care about:
 
-- **Product search** — keyword search across the catalogue, returns IDs, names, prices, and PDP URLs.
-- **Categories** — the hierarchy that powers Tesco's site navigation, useful for browsing-style apps and for batch backfills.
-- **Nutrition** — full nutrition panel data per product. Required for any health, allergen, or diet-filter feature.
-- **Clubcard offers** — current promotional pricing, including multi-buy deals (the "buy 2 for £4" mechanics that drive a meaningful slice of basket value).
+- **Product search** - keyword search across the catalogue, returns IDs, names, prices, and PDP URLs.
+- **Categories** - the hierarchy that powers Tesco's site navigation, useful for browsing-style apps and for batch backfills.
+- **Nutrition** - full nutrition panel data per product. Required for any health, allergen, or diet-filter feature.
+- **Clubcard offers** - current promotional pricing, including multi-buy deals (the "buy 2 for £4" mechanics that drive a meaningful slice of basket value).
 
-Each response is structured JSON with stable field names. The schema matches the shape of <a href="/datasets/tesco-products-uk">our Tesco UK products dataset</a> exactly — write your parser once, switch between the API and the dataset depending on whether you need fresh or bulk.
+Each response is structured JSON with stable field names. The schema matches the shape of <a href="/datasets/tesco-products-uk">our Tesco UK products dataset</a> exactly - write your parser once, switch between the API and the dataset depending on whether you need fresh or bulk.
 
 ## A typical integration loop
 
@@ -50,7 +50,7 @@ for (const sku of topPrioritySkus) {
 
 Three things this gets right:
 - **Tiered freshness.** Categories are slow-moving; product prices are fast-moving. Don't poll everything at the same cadence.
-- **Diff against your own state.** Don't just re-write — emit events when something actually changes, so downstream consumers (alerts, dashboards) can react.
+- **Diff against your own state.** Don't just re-write - emit events when something actually changes, so downstream consumers (alerts, dashboards) can react.
 - **Top-N priority.** A grocery catalogue is long-tail. Your important SKUs are 5% of the list; spend your rate budget there.
 
 ## Schema notes that save time
@@ -58,9 +58,9 @@ Three things this gets right:
 A few details worth knowing before your parser hits real data:
 
 - **Prices are decimals, not strings.** No locale-string parsing needed.
-- **Promotional pricing is a separate field.** `price` is the listed shelf price; `clubcardPrice` (when present) is the Clubcard-member price. Don't conflate them — Clubcard membership matters for analytics.
+- **Promotional pricing is a separate field.** `price` is the listed shelf price; `clubcardPrice` (when present) is the Clubcard-member price. Don't conflate them - Clubcard membership matters for analytics.
 - **Multi-buy deals carry their unit math.** A "2 for £4" deal returns the qualifying product, the bundle quantity, and the bundle price. You can re-derive per-unit price without parsing free text.
-- **Stock states are coarse.** "In stock" / "out of stock" / "low stock" — not per-store inventory counts. For store-level inventory you need a different data source.
+- **Stock states are coarse.** "In stock" / "out of stock" / "low stock" - not per-store inventory counts. For store-level inventory you need a different data source.
 
 ## Rate-limit hygiene
 
@@ -71,9 +71,9 @@ The free tier on RapidAPI is enough to validate the integration end-to-end. For 
 
 ## Where datasets fit instead
 
-If your use case is analytical — historical price trends, basket-mix research, ML training — you almost certainly want the bulk dataset, not the API. Datasets cost less per row at scale, and the schema is identical. Read more in our <a href="/blog/datasets-vs-live-apis-which-to-choose">datasets vs APIs</a> framework.
+If your use case is analytical - historical price trends, basket-mix research, ML training - you almost certainly want the bulk dataset, not the API. Datasets cost less per row at scale, and the schema is identical. Read more in our <a href="/blog/datasets-vs-live-apis-which-to-choose">datasets vs APIs</a> framework.
 
-For everything else — alerts, search, real-time dashboards, consumer-facing pricing — the API is the right shape.
+For everything else - alerts, search, real-time dashboards, consumer-facing pricing - the API is the right shape.
 
 ## Try before you commit
 

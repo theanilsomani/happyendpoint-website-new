@@ -53,7 +53,7 @@ export interface SiteConfig {
 const siteConfig: SiteConfig = {
   name: 'Happy Endpoint',
   description:
-    'APIs and datasets for real-estate, travel, grocery, finance, retail, fashion, and beauty — sold on RapidAPI. Free samples available.',
+    'APIs and datasets for real-estate, travel, grocery, finance, retail, fashion, and beauty - sold on RapidAPI. Free samples available.',
   url: SITE_URL || 'https://happyendpoint.com',
   ogImage: '/og-default.svg',
   author: 'Happy Endpoint',

@@ -1,5 +1,5 @@
 ---
-title: "Free dataset samples — what to actually look for in 30 minutes of evaluation"
+title: "Free dataset samples - what to actually look for in 30 minutes of evaluation"
 description: "How to evaluate a paid dataset before you buy: schema fit, freshness, completeness, and the five quick checks that catch most quality issues."
 publishedAt: 2026-04-26
 author: "Happy Endpoint Team"
@@ -10,13 +10,13 @@ coverCategory: FRAMEWORK
 coverSlugLabel: FREE SAMPLES
 ---
 
-Buying a dataset blind is the single most expensive mistake we see in the data-products space. A paid dataset that doesn't fit your use case is a sunk cost — refunds are messy, and the time you spent integrating it before realising it's wrong is gone. The fix is cheap and obvious: evaluate before you commit. Free samples exist for exactly this.
+Buying a dataset blind is the single most expensive mistake we see in the data-products space. A paid dataset that doesn't fit your use case is a sunk cost - refunds are messy, and the time you spent integrating it before realising it's wrong is gone. The fix is cheap and obvious: evaluate before you commit. Free samples exist for exactly this.
 
-This post is the evaluation playbook we recommend customers run against every paid dataset they consider — ours included.
+This post is the evaluation playbook we recommend customers run against every paid dataset they consider - ours included.
 
 ## Why we ship samples
 
-Every dataset we sell on RapidAPI has a free, downloadable sample. <a href="/free-datasets">Browse the full list of free samples here</a>. Each one is structured **identically** to the paid version — same fields, same types, same edge cases. The only difference is volume: a sample is typically a few hundred to a few thousand records; the paid dataset is the full corpus.
+Every dataset we sell on RapidAPI has a free, downloadable sample. <a href="/free-datasets">Browse the full list of free samples here</a>. Each one is structured **identically** to the paid version - same fields, same types, same edge cases. The only difference is volume: a sample is typically a few hundred to a few thousand records; the paid dataset is the full corpus.
 
 That schema parity is deliberate. It means everything you build against the sample will work against the full dataset with no code change. Your evaluation IS your integration.
 
@@ -40,7 +40,7 @@ This is the single highest-signal check. If the schema doesn't fit, no amount of
 
 Pick a sample of 50–100 records. Compute, per field, what fraction are non-null. The result tells you the realistic completeness you'll get at scale.
 
-A field that's 12% populated on the sample will be 12% populated in the paid dataset. If your application needs that field on every record, this is a dealbreaker — discover it now, not after purchase.
+A field that's 12% populated on the sample will be 12% populated in the paid dataset. If your application needs that field on every record, this is a dealbreaker - discover it now, not after purchase.
 
 ### 3. How fresh is the data?
 
@@ -67,14 +67,14 @@ Five minutes of eyeballing catches data-quality issues that no amount of schema 
 
 This is the integration test. Write the actual code that will consume the dataset. Run it against the sample. Verify the output is what your downstream system needs.
 
-If it works against the sample, it will work against the paid dataset — that's the whole point of schema parity.
+If it works against the sample, it will work against the paid dataset - that's the whole point of schema parity.
 
 ## Red flags that should stop a purchase
 
 If any of these come up, slow down:
 
 - **Fields that should be required have inconsistent presence.** Means provenance is unreliable.
-- **The sample is structured differently than the paid version.** Means you can't actually validate before buying — that's a vendor process problem.
+- **The sample is structured differently than the paid version.** Means you can't actually validate before buying - that's a vendor process problem.
 - **Records reference IDs that don't resolve.** Means the dataset has dangling references to data you don't have.
 - **The vendor can't tell you when the next update will be cut.** Means update cadence is opportunistic, not committed.
 
@@ -91,7 +91,7 @@ If something in your evaluation surprises you, <a href="/contact">tell us</a>. W
 
 ## The 90-second decision
 
-If your evaluation passes all five checks: buy. If it fails one: ask the vendor. If it fails two or more: don't buy yet — either find a different source, or talk to us about a custom snapshot.
+If your evaluation passes all five checks: buy. If it fails one: ask the vendor. If it fails two or more: don't buy yet - either find a different source, or talk to us about a custom snapshot.
 
 A 30-minute evaluation saves you weeks of integration work against the wrong data.
 

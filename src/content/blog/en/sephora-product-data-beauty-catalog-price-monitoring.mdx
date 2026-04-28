@@ -1,6 +1,6 @@
 ---
 title: "Sephora product data: building beauty-catalog and price-monitoring features"
-description: "Use cases for the Sephora API and US products dataset — catalog ingestion, price monitoring, and the schema patterns that fit beauty-vertical apps."
+description: "Use cases for the Sephora API and US products dataset - catalog ingestion, price monitoring, and the schema patterns that fit beauty-vertical apps."
 publishedAt: 2026-04-26
 author: "Happy Endpoint Team"
 tags: ['sephora', 'beauty', 'retail', 'price-monitoring', 'catalog']
@@ -9,13 +9,13 @@ coverCategory: USE CASE
 coverSlugLabel: SEPHORA API
 ---
 
-Beauty is one of the most data-rich verticals in retail. Sephora's catalogue carries thousands of SKUs across hundreds of brands, with rich attributes — shade, finish, ingredients, claims, ratings — that drive how customers actually choose products. If your app touches beauty (search, recommendations, comparison, gifting, market research), Sephora data is one of the most useful sources you can plug in.
+Beauty is one of the most data-rich verticals in retail. Sephora's catalogue carries thousands of SKUs across hundreds of brands, with rich attributes - shade, finish, ingredients, claims, ratings - that drive how customers actually choose products. If your app touches beauty (search, recommendations, comparison, gifting, market research), Sephora data is one of the most useful sources you can plug in.
 
 This post covers two real-world use patterns for <a href="/library/sephora-api">the Sephora API</a> and <a href="/datasets/sephora-products-us">the Sephora US products dataset</a>: building a beauty catalogue and running a price-monitoring service.
 
 ## Use case 1: building a beauty catalogue
 
-If you're powering a search experience, a comparison site, or a "what should I buy" recommender, you need the full catalogue with rich attributes — not just price.
+If you're powering a search experience, a comparison site, or a "what should I buy" recommender, you need the full catalogue with rich attributes - not just price.
 
 The shape of a typical ingest:
 
@@ -24,7 +24,7 @@ The shape of a typical ingest:
 3. **Index for faceted search.** Brand, category, price band, key attributes, and ratings cover most search filters customers actually use.
 4. **Refresh weekly from the dataset.** Catalogues move slowly enough that weekly is plenty. Reserve the API for the next use case.
 
-The output is a fast, faceted catalogue you control — not dependent on Sephora's site staying up or its search ranking matching your needs.
+The output is a fast, faceted catalogue you control - not dependent on Sephora's site staying up or its search ranking matching your needs.
 
 ## Use case 2: price + availability monitoring
 
@@ -54,9 +54,9 @@ for (const sku of watched) {
 ```
 
 What downstream services do with these events:
-- **Alerts** — notify users on a watchlist when a product they wanted is back in stock or has dropped in price.
-- **Competitive intel** — feed price changes into a dashboard your buyers/merchandisers use.
-- **Promo detection** — sustained price drops across a brand often indicate a promo period worth flagging.
+- **Alerts** - notify users on a watchlist when a product they wanted is back in stock or has dropped in price.
+- **Competitive intel** - feed price changes into a dashboard your buyers/merchandisers use.
+- **Promo detection** - sustained price drops across a brand often indicate a promo period worth flagging.
 
 ## Catalog vs API: which one when
 
@@ -69,7 +69,7 @@ What downstream services do with these events:
 | Bulk attribute enrichment of your existing inventory | Dataset |
 | One-off lookup triggered by user action | API |
 
-It's the same decision shape we cover in <a href="/blog/datasets-vs-live-apis-which-to-choose">datasets vs live APIs</a> — beauty-specific only because the catalogue is unusually long-lived per SKU (a foundation shade you bought 2 years ago is probably still listed today).
+It's the same decision shape we cover in <a href="/blog/datasets-vs-live-apis-which-to-choose">datasets vs live APIs</a> - beauty-specific only because the catalogue is unusually long-lived per SKU (a foundation shade you bought 2 years ago is probably still listed today).
 
 ## Schema notes
 
@@ -82,10 +82,10 @@ A few things specific to beauty data worth knowing:
 
 ## Compliance corner
 
-A reminder on what we cover in <a href="/blog/scraping-propertyfinder-data-legally-at-scale">our compliance post</a>: Sephora product data is publicly available — anyone can browse the site without authentication. We collect what's public and do not enrich with personal customer data. Your terms of use are with RapidAPI and us.
+A reminder on what we cover in <a href="/blog/scraping-propertyfinder-data-legally-at-scale">our compliance post</a>: Sephora product data is publicly available - anyone can browse the site without authentication. We collect what's public and do not enrich with personal customer data. Your terms of use are with RapidAPI and us.
 
 ## Start with a sample
 
-<a href="/free-datasets">Grab the free Sephora sample</a> — schema matches the paid dataset and the API exactly. Half a day of evaluation will tell you whether this fits your build.
+<a href="/free-datasets">Grab the free Sephora sample</a> - schema matches the paid dataset and the API exactly. Half a day of evaluation will tell you whether this fits your build.
 
 <a href="/library/sephora-api">View the Sephora API →</a> · <a href="/datasets/sephora-products-us">View the Sephora US products dataset →</a>

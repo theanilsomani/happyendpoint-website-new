@@ -1,6 +1,6 @@
 ---
 title: 'Datasets vs live APIs: which one do you need?'
-description: 'Bulk snapshots and live request-time data solve different problems. A decision framework for picking the right one — or both.'
+description: 'Bulk snapshots and live request-time data solve different problems. A decision framework for picking the right one - or both.'
 publishedAt: 2026-02-21
 author: 'Happy Endpoint Team'
 tags: ['datasets', 'apis', 'architecture']
@@ -29,7 +29,7 @@ Point-in-time = dataset. Stream = API.
 
 ## When an API wins
 
-- **Customer-facing search.** Your user searched "2-bedroom Marina under 2M AED" — they expect live inventory. The listing that was available last month doesn't count.
+- **Customer-facing search.** Your user searched "2-bedroom Marina under 2M AED" - they expect live inventory. The listing that was available last month doesn't count.
 - **Alerting.** A new listing appeared in the last 15 minutes; your user needs to know.
 - **Price tracking.** You track current prices; historical is nice-to-have.
 - **On-demand lookups.** You need one record at a time, triggered by user action.
@@ -38,7 +38,7 @@ Point-in-time = dataset. Stream = API.
 
 This is common and often missed. Pattern: a dataset for the cold path (analytics, ML, bulk), an API for the hot path (live product).
 
-Example — a real-estate search product with market-trend insights:
+Example - a real-estate search product with market-trend insights:
 
 - **API**: powers the live search. <a href="/library/propertyfinder-api">PropertyFinder API</a> returns current listings.
 - **Dataset**: powers the "market trends" tab. <a href="/datasets/propertyfinder-transactions-data">PropertyFinder Transactions Dataset</a> has the full history.
@@ -47,9 +47,9 @@ Same platform, two products, two integration patterns, one coherent customer exp
 
 ## Cost dynamics
 
-Datasets have fixed up-front pricing — buy once, use indefinitely (within licence terms).
+Datasets have fixed up-front pricing - buy once, use indefinitely (within licence terms).
 
-APIs scale with usage — more users, more requests, more cost. But you're paying only for what you consume, and freshness is built in.
+APIs scale with usage - more users, more requests, more cost. But you're paying only for what you consume, and freshness is built in.
 
 For a dataset-heavy product (analytics, BI), datasets are almost always cheaper. For an API-heavy product (live consumer app), APIs are almost always cheaper. The hybrid approach is cheapest when you can cleanly separate cold and hot paths.
 
@@ -68,4 +68,4 @@ Ask:
 - <a href="/datasets">Browse datasets</a>
 - <a href="/free-datasets">Download a free sample</a> before committing to either
 
-Still unsure? <a href="/contact">Tell us what you're building</a> — we'll point you at the right shape.
+Still unsure? <a href="/contact">Tell us what you're building</a> - we'll point you at the right shape.

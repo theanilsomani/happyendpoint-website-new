@@ -78,7 +78,7 @@ import siteConfig from '@/config/site.config';
         </button>
 
         <p id="contact-success" class="mt-4 hidden rounded-md border border-emerald-500/30 bg-emerald-500/5 p-3 text-sm text-foreground">
-          Thanks — we've received your note. We'll get back to you within one business day.
+          Thanks - we've received your note. We'll get back to you within one business day.
         </p>
         <p id="contact-note" class="mt-4 text-xs text-foreground-muted">
           We'll get back to you within one business day. Messages go straight to our team.
@@ -108,7 +108,7 @@ import siteConfig from '@/config/site.config';
         </div>
         <div class="rounded-lg border border-border bg-background-secondary p-5 text-sm text-foreground-secondary">
           <p class="font-semibold text-foreground">Looking for a platform we don't cover?</p>
-          <p class="mt-2">Tell us which and why — we add new platforms based on demand.</p>
+          <p class="mt-2">Tell us which and why - we add new platforms based on demand.</p>
         </div>
       </aside>
     </div>
@@ -122,7 +122,7 @@ import siteConfig from '@/config/site.config';
         e.preventDefault();
         const honeypot = form.querySelector('input[name="website"]');
         if (honeypot && honeypot.value) return; // silently drop bot submissions
-        // Backend deferred — show success UX; real send wired up once provider is chosen.
+        // Backend deferred - show success UX; real send wired up once provider is chosen.
         form.reset();
         const ok = document.getElementById('contact-success');
         const note = document.getElementById('contact-note');
