@@ -165,7 +165,7 @@ html.dark[data-theme="blue"] {
   --muted: oklch(26% 0.03 255);
   --muted-foreground: oklch(88% 0.01 255);
 
-  --card: oklch(21% 0.04 255 / 0.45);
+  --card: oklch(21% 0.04 255);
   --card-border: oklch(35% 0.04 255 / 0.25);
 
   --input-bg: oklch(19% 0.04 255 / 0.3);
