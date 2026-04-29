@@ -3,31 +3,16 @@ import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import Breadcrumbs from '@/components/he/Breadcrumbs.astro';
 import EntityCard from '@/components/he/EntityCard.astro';
 import FAQSection from '@/components/he/FAQSection.astro';
-import FilterPanel from '@/components/he/FilterPanel.tsx';
-import { getAllFreeSamples, getAllPublishedPlatforms, getAllCategories } from '@/lib/content-queries';
+import Pagination from '@/components/he/Pagination.tsx';
+import { getAllFreeSamples, getAllPublishedPlatforms } from '@/lib/content-queries';
+
+const PAGE_SIZE = 6;
 
 const datasets = await getAllFreeSamples();
 datasets.sort((a, b) => a.data.name.localeCompare(b.data.name));
 
 const platforms = await getAllPublishedPlatforms();
-const categories = await getAllCategories();
-const platformToCategory = new Map(platforms.map(p => [p.id, p.data.category]));
 const platformById = new Map(platforms.map(p => [p.id, p.data.name]));
-
-const facets = [
-  {
-    key: 'platform',
-    label: 'Platform',
-    options: platforms
-      .filter(p => datasets.some(d => d.data.platform === p.id))
-      .map(p => ({ value: p.id, label: p.data.name })),
-  },
-  {
-    key: 'category',
-    label: 'Category',
-    options: categories.map(c => ({ value: c.id, label: c.data.name })),
-  },
-];
 
 const faqs = [
   {
@@ -63,51 +48,45 @@ const faqs = [
       </p>
     </header>
 
-    <div class="mt-10 grid gap-8 md:grid-cols-[260px_1fr]">
-      <FilterPanel client:load facets={facets} heading="Filter samples" pageSize={6} paginationContainer="#filter-pagination" />
-
-      <div data-filter-target>
-        <div class="grid gap-4 md:grid-cols-2">
-          {datasets.map(d => {
-            const sample = d.data.freeSample ?? {
-              name: d.data.name,
-              recordCount: d.data.recordCount,
-              format: d.data.format,
-              downloadUrl: undefined as string | undefined,
-            };
-            const parentSlug = d.id;
-            const platformName = platformById.get(d.data.platform) ?? d.data.platform;
-            const category = platformToCategory.get(d.data.platform) ?? '';
-            const isStandaloneFree = d.data.price.toLowerCase() === 'free';
-            return (
-              <div
-                class="h-full"
-                data-entity-card
-                data-variant="free-sample"
-                data-platform={d.data.platform}
-                data-category={category}
-                data-tags={d.data.tags.join(',')}
-                data-search={`${sample.name} ${d.data.description} ${platformName}`.toLowerCase()}
-              >
-                <EntityCard
-                  variant="dataset"
-                  title={sample.name}
-                  href={`/datasets/${parentSlug}`}
-                  description={d.data.description}
-                  metrics={[
-                    { label: 'Records', value: sample.recordCount },
-                    { label: 'Format', value: sample.format },
-                  ]}
-                  badge={isStandaloneFree ? 'FREE' : 'FREE SAMPLE'}
-                  tags={d.data.tags}
-                />
-              </div>
-            );
-          })}
-        </div>
-        <div id="filter-pagination" class="mt-8"></div>
+    <div class="mt-10" data-filter-target>
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {datasets.map((d, i) => {
+          const sample = d.data.freeSample ?? {
+            name: d.data.name,
+            recordCount: d.data.recordCount,
+            format: d.data.format,
+            downloadUrl: undefined as string | undefined,
+          };
+          const parentSlug = d.id;
+          const platformName = platformById.get(d.data.platform) ?? d.data.platform;
+          const isStandaloneFree = d.data.price.toLowerCase() === 'free';
+          return (
+            <div
+              class:list={['h-full', i >= PAGE_SIZE && 'hidden']}
+              data-entity-card
+              data-variant="free-sample"
+              data-search={`${sample.name} ${d.data.description} ${platformName}`.toLowerCase()}
+            >
+              <EntityCard
+                variant="dataset"
+                title={sample.name}
+                href={`/datasets/${parentSlug}`}
+                description={d.data.description}
+                metrics={[
+                  { label: 'Records', value: sample.recordCount },
+                  { label: 'Format', value: sample.format },
+                ]}
+                badge={isStandaloneFree ? 'FREE' : 'FREE SAMPLE'}
+                tags={d.data.tags}
+              />
+            </div>
+          );
+        })}
       </div>
+      <div id="filter-pagination" class="mt-8"></div>
     </div>
+
+    <Pagination client:load pageSize={PAGE_SIZE} paginationContainer="#filter-pagination" />
   </section>
 
   <FAQSection faqs={faqs} />

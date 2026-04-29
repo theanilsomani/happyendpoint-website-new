@@ -5,6 +5,8 @@ import Breadcrumbs from '@/components/he/Breadcrumbs.astro';
 import FilterPanel from '@/components/he/FilterPanel.tsx';
 import { getAllPublishedApis, getAllPublishedPlatforms, getAllCategories } from '@/lib/content-queries';
 
+const PAGE_SIZE = 6;
+
 const apis = await getAllPublishedApis();
 apis.sort((a, b) => a.data.name.localeCompare(b.data.name));
 const platforms = await getAllPublishedPlatforms();
@@ -44,11 +46,11 @@ const facets = [
     </header>
 
     <div class="mt-10 grid gap-8 md:grid-cols-[260px_1fr]">
-      <FilterPanel client:load facets={facets} heading="Filter APIs" pageSize={6} paginationContainer="#filter-pagination" />
+      <FilterPanel client:load facets={facets} heading="Filter APIs" pageSize={PAGE_SIZE} paginationContainer="#filter-pagination" />
 
       <div data-filter-target>
         <div class="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
-          {apis.map(a => {
+          {apis.map((a, i) => {
             const category = platformToCategory.get(a.data.platform) ?? '';
             return (
               <div
@@ -58,6 +60,7 @@ const facets = [
                 data-category={category}
                 data-tags={a.data.tags.join(',')}
                 data-search={`${a.data.name} ${a.data.description} ${a.data.features.join(' ')}`.toLowerCase()}
+                class:list={[i >= PAGE_SIZE && 'hidden']}
               >
                 <EntityCard
                   variant="api"

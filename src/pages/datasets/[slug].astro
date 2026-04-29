@@ -83,7 +83,7 @@ const getPlatformLogo = (id: string) => {
     'kohls': '/companies-logo/Kohl\'s_logo.svg',
     'rightmove': '/companies-logo/rightmove_logo.svg', // Fallback
   };
-  return mapping[id] || null;
+  return mapping[id] || undefined;
 };
 ---
 

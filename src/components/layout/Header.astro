@@ -185,7 +185,7 @@ const buttonId = `${menuId}-button`;
         (hasLogoSlot ? (
           <slot name="logo" />
         ) : (
-          <a href="/" class="flex items-center">
+          <a href="/" class="inline-flex items-center justify-self-start">
             <Logo size={size === 'lg' ? 'lg' : 'md'} forceDark={isInvert} />
           </a>
         ))

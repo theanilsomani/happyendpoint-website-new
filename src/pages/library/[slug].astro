@@ -81,7 +81,7 @@ const getPlatformLogo = (id: string) => {
     'kohls': '/companies-logo/Kohl\'s_logo.svg',
     'rightmove': '/companies-logo/rightmove_logo.svg', // Fallback
   };
-  return mapping[id] || null;
+  return mapping[id] || undefined;
 };
 ---
 
@@ -207,7 +207,7 @@ const getPlatformLogo = (id: string) => {
       <!-- Sidebar -->
       <aside class="space-y-12">
         <!-- Pricing Card -->
-        <PricingCard pricing={api.data.pricing} rapidApiUrl={api.data.rapidApiUrl} />
+        <PricingCard rapidApiUrl={api.data.rapidApiUrl} />
       </aside>
     </div>
   </div>
