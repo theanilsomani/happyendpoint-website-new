@@ -105,7 +105,9 @@ const getPlatformLogo = (id: string) => {
     badges={[
       ...(platform ? [platform.data.name] : []),
     ]}
-    primaryCta={{ label: 'Purchase on RapidAPI', href: apis[0]?.data.rapidApiUrl ?? '/contact', external: !!apis[0] }}
+    primaryCta={isFreeItself
+      ? { label: 'Get Free Dataset', href: '/contact', external: false }
+      : { label: 'Purchase Dataset', href: '/contact', external: false }}
   >
     <div slot="right" class="flex flex-col gap-6 w-full lg:min-w-[280px]">
       <div class="space-y-3">
@@ -205,7 +207,7 @@ const getPlatformLogo = (id: string) => {
       <!-- Sidebar -->
       <aside class="space-y-12">
         <!-- Pricing Card -->
-        <PricingCard pricing={dataset.data.price} rapidApiUrl={apis[0]?.data.rapidApiUrl ?? '/contact'} />
+        <PricingCard pricing={dataset.data.price} variant="dataset" isFree={isFreeItself} />
       </aside>
     </div>
   </div>
@@ -234,7 +236,7 @@ const getPlatformLogo = (id: string) => {
                 { label: 'Records', value: d.data.recordCount },
                 { label: 'Format', value: d.data.format },
               ]}
-              badge={d.data.price.toLowerCase() === 'free' ? 'FREE' : d.data.freeSample ? 'FREE SAMPLE' : undefined}
+              badge={d.data.price.toLowerCase() === 'free' ? 'Free' : undefined}
               tags={d.data.tags}
             />
           ))}

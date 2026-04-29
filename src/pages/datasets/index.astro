@@ -52,7 +52,6 @@ const facets = [
           {datasets.map((d, i) => {
             const category = platformToCategory.get(d.data.platform) ?? '';
             const isFree = d.data.price.toLowerCase() === 'free';
-            const hasSample = d.data.freeSample !== undefined;
             return (
               <div
                 class:list={['h-full', i >= PAGE_SIZE && 'hidden']}
@@ -72,7 +71,7 @@ const facets = [
                     { label: 'Records', value: d.data.recordCount },
                     { label: 'Format', value: d.data.format },
                   ]}
-                  badge={isFree ? 'FREE' : hasSample ? 'FREE SAMPLE' : undefined}
+                  badge={isFree ? 'Free' : undefined}
                   tags={d.data.tags}
                 />
               </div>

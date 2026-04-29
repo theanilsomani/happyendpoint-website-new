@@ -3,11 +3,24 @@ import { Icon } from 'astro-icon/components';
 
 interface Props {
   pricing?: string;
-  rapidApiUrl: string;
+  rapidApiUrl?: string;
+  variant?: 'api' | 'dataset';
+  isFree?: boolean;
   external?: boolean;
 }
 
-const { pricing, rapidApiUrl, external = true } = Astro.props;
+const { pricing, rapidApiUrl, variant = 'api', isFree = false, external = true } = Astro.props;
+
+const isDataset = variant === 'dataset';
+const ctaLabel   = isDataset ? (isFree ? 'Get Free Dataset' : 'Inquire about pricing') : 'View pricing on RapidAPI';
+const ctaHref    = isDataset ? '/contact' : (rapidApiUrl ?? '/contact');
+const ctaExternal = isDataset ? false : external;
+const note       = isDataset
+  ? (isFree
+      ? 'Submit your details and we\'ll send you a secure download link.'
+      : 'Contact us to purchase this dataset. We\'ll send you a secure download link.')
+  : 'Current plans, free tier limits, and per-request pricing live on RapidAPI - always up to date.';
+const trustBadge = isDataset ? 'Secure delivery via email' : 'Secure billing via RapidAPI';
 ---
 
 <div class="rounded-xl border border-border bg-card p-6 shadow-sm">
@@ -17,24 +30,24 @@ const { pricing, rapidApiUrl, external = true } = Astro.props;
       {pricing || 'See Plans'}
     </p>
     <p class="mt-2 text-sm leading-relaxed text-foreground-secondary">
-      Current plans, free tier limits, and per-request pricing live on RapidAPI - always up to date.
+      {note}
     </p>
   </div>
 
   <div class="mt-6">
     <a
-      href={rapidApiUrl}
-      target={external ? "_blank" : undefined}
-      rel={external ? "noopener" : undefined}
+      href={ctaHref}
+      target={ctaExternal ? "_blank" : undefined}
+      rel={ctaExternal ? "noopener" : undefined}
       class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-700 px-4 py-3 text-sm font-bold text-white transition-all hover:bg-brand-800 hover:scale-[1.02] active:scale-[0.98]"
     >
-      View pricing on RapidAPI
-      <Icon name="lucide:external-link" class="h-4 w-4" />
+      {ctaLabel}
+      <Icon name={ctaExternal ? "lucide:external-link" : "lucide:arrow-right"} class="h-4 w-4" />
     </a>
   </div>
-  
+
   <div class="mt-4 flex items-center justify-center gap-2">
     <Icon name="lucide:shield-check" class="h-4 w-4 text-emerald-500" />
-    <span class="text-xs font-medium text-foreground-muted">Secure billing via RapidAPI</span>
+    <span class="text-xs font-medium text-foreground-muted">{trustBadge}</span>
   </div>
 </div>

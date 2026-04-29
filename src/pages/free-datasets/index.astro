@@ -59,7 +59,6 @@ const faqs = [
           };
           const parentSlug = d.id;
           const platformName = platformById.get(d.data.platform) ?? d.data.platform;
-          const isStandaloneFree = d.data.price.toLowerCase() === 'free';
           return (
             <div
               class:list={['h-full', i >= PAGE_SIZE && 'hidden']}
@@ -76,7 +75,7 @@ const faqs = [
                   { label: 'Records', value: sample.recordCount },
                   { label: 'Format', value: sample.format },
                 ]}
-                badge={isStandaloneFree ? 'FREE' : 'FREE SAMPLE'}
+                badge={undefined}
                 tags={d.data.tags}
               />
             </div>
