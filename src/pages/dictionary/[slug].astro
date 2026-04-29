@@ -5,11 +5,14 @@ import JsonLd from '@/components/seo/JsonLd.astro';
 import { Icon } from 'astro-icon/components';
 import { breadcrumbListSchema } from '@/lib/schema-ld';
 import siteConfig from '@/config/site.config';
-import terms from '@/data/dictionary.json';
 import type { WithContext, DefinedTerm } from 'schema-dts';
+import baseTerms from '@/data/dictionary.json';
+import extraTerms from '@/data/dictionary-extra.json';
+const terms = [...baseTerms, ...extraTerms];
 
 export function getStaticPaths() {
-  return terms.map(t => ({ params: { slug: t.slug } }));
+  const allTerms = [...baseTerms, ...extraTerms];
+  return allTerms.map(t => ({ params: { slug: t.slug } }));
 }
 
 const { slug } = Astro.params;
@@ -28,6 +31,14 @@ const categoryLabel: Record<string, string> = {
   'travel':           'Travel',
   'finance':          'Finance',
   'web-data':         'Web & APIs',
+  'scraping':         'Web Scraping',
+  'data-storage':     'Data Storage',
+  'data-management':  'Data Management',
+  'data-economics':   'Data Economics',
+  'data-processing':  'Data Processing',
+  'analytics':        'Analytics',
+  'privacy':          'Privacy & Compliance',
+  'technical':        'Technical',
 };
 
 const categoryCtaHref: Record<string, { label: string; href: string }> = {
@@ -38,9 +49,21 @@ const categoryCtaHref: Record<string, { label: string; href: string }> = {
   'travel':           { label: 'Travel APIs', href: '/library' },
   'finance':          { label: 'Finance APIs', href: '/library' },
   'web-data':         { label: 'Explore APIs', href: '/library' },
+  'scraping':         { label: 'Browse Datasets', href: '/datasets' },
+  'data-storage':     { label: 'Browse Datasets', href: '/datasets' },
+  'data-management':  { label: 'Browse Datasets', href: '/datasets' },
+  'data-economics':   { label: 'Browse Datasets', href: '/datasets' },
+  'data-processing':  { label: 'Browse Datasets', href: '/datasets' },
+  'analytics':        { label: 'Browse Datasets', href: '/datasets' },
+  'privacy':          { label: 'Browse Datasets', href: '/datasets' },
+  'technical':        { label: 'Explore APIs', href: '/library' },
 };
 
 const cta = categoryCtaHref[term.category];
+
+function renderPara(text: string): string {
+  return text.replace(/`([^`]+)`/g, '<code class="rounded bg-foreground/8 px-1 py-0.5 font-mono text-[0.85em] text-foreground">$1</code>');
+}
 const metaDescription = term.definition[0].slice(0, 160);
 
 const definedTermSchema: WithContext<DefinedTerm> = {
@@ -93,7 +116,7 @@ const breadcrumbLd = breadcrumbListSchema([
       <h2 class="text-lg font-bold text-foreground md:text-xl">{term.shortDef}</h2>
       <div class="mt-4 space-y-4 text-base leading-relaxed text-foreground-secondary">
         {term.definition.map(para => (
-          <p>{para}</p>
+          <p set:html={renderPara(para)} />
         ))}
       </div>
     </div>

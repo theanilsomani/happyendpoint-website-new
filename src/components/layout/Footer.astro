@@ -27,6 +27,7 @@ import siteConfig from '@/config/site.config';
 export interface NavItem {
   label: string;
   href: string;
+  icon?: string;
   external?: boolean;
 }
 
@@ -96,11 +97,11 @@ const {
 // Premium footer links
 const premiumLinks = {
   navigation: [
-    { label: 'Pricing', href: '/pricing' },
-    { label: 'API Library', href: '/library' },
-    { label: 'Datasets', href: '/datasets' },
-    { label: 'Free Datasets', href: '/free-datasets' },
-    { label: 'Blog', href: '/blog' },
+    { label: 'API Library',   href: '/library',       icon: 'plug' },
+    { label: 'Datasets',      href: '/datasets',      icon: 'database' },
+    { label: 'Free Datasets', href: '/free-datasets', icon: 'gift' },
+    { label: 'Dictionary',    href: '/dictionary',    icon: 'book-open' },
+    { label: 'Blog',          href: '/blog',          icon: 'newspaper' },
   ],
   apis: [
     { label: 'UAE Real Estate API', href: '/library/uae-realestate-api' },
@@ -129,11 +130,13 @@ const premiumLinks = {
   ]
 };
 
-// Get navigation items
-const defaultNav: NavItem[] = getNavItems().map((item: NavConfigItem) => ({
-  label: item.label,
-  href: item.href,
-}));
+// Get navigation items - flatten groups so children appear as direct links
+const defaultNav: NavItem[] = getNavItems().flatMap((item: NavConfigItem) => {
+  if (item.children) {
+    return item.children.map(c => ({ label: c.label, href: c.href, ...(c.icon ? { icon: c.icon } : {}) }));
+  }
+  return [{ label: item.label, href: item.href, ...(item.icon ? { icon: item.icon } : {}) }];
+});
 const navItems: NavItem[] = nav || defaultNav;
 
 // Default external links if none provided via nav
@@ -193,14 +196,14 @@ function getSocialIcon(platform: string): string {
         <div class="grid grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-5">
           {/* Column 1: Navigation */}
           <div class="space-y-4">
-            <h3 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-foreground-muted">
+            <h3 class="text-sm font-semibold uppercase tracking-wider text-foreground-muted">
               Navigation
-              <Icon name="external-link" class="h-3 w-3 opacity-50" />
             </h3>
             <ul class="space-y-3">
               {premiumLinks.navigation.map(link => (
                 <li>
-                  <a href={link.href} class="text-sm font-medium text-foreground-secondary transition hover:text-brand-600">
+                  <a href={link.href} class="flex items-center gap-2 text-sm font-medium text-foreground-secondary transition hover:text-brand-600">
+                    <Icon name={link.icon} size="xs" class="shrink-0 text-brand-600" />
                     {link.label}
                   </a>
                 </li>
@@ -325,14 +328,15 @@ function getSocialIcon(platform: string): string {
         )}
 
         {/* Navigation Links */}
-        <nav class="flex flex-wrap justify-center gap-[var(--space-inline-lg)] md:gap-[var(--space-stack-lg)] text-sm font-medium text-foreground-muted">
+        <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-medium text-foreground-muted">
           {allNavItems.map((item) => (
             <a
               href={item.href}
-              class="transition-colors hover:text-foreground"
+              class="flex items-center gap-1.5 transition-colors hover:text-foreground"
               target={item.external || item.href.startsWith('http') ? '_blank' : undefined}
               rel={item.external || item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
             >
+              {item.icon && <Icon name={item.icon} size="xs" class="shrink-0 text-brand-600" />}
               {item.label}
             </a>
           ))}
@@ -493,14 +497,15 @@ function getSocialIcon(platform: string): string {
         )}
 
         {/* Navigation Links */}
-        <nav class="flex flex-wrap justify-center gap-[var(--space-inline-lg)] text-sm font-medium text-foreground-muted">
+        <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-medium text-foreground-muted">
           {allNavItems.map((item) => (
             <a
               href={item.href}
-              class="transition-colors hover:text-foreground"
+              class="flex items-center gap-1.5 transition-colors hover:text-foreground"
               target={item.external || item.href.startsWith('http') ? '_blank' : undefined}
               rel={item.external || item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
             >
+              {item.icon && <Icon name={item.icon} size="xs" class="shrink-0 text-brand-600" />}
               {item.label}
             </a>
           ))}

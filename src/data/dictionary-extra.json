@@ -1,0 +1,1122 @@
+[
+  {
+    "slug": "web-crawler",
+    "term": "Web Crawler",
+    "icon": "lucide:network",
+    "category": "scraping",
+    "shortDef": "What is a web crawler?",
+    "definition": [
+      "A web crawler (also called a spider or bot) is an automated program that systematically browses the web by following links from page to page, downloading and indexing content as it goes. Search engines use crawlers to discover and index pages; data engineers use them to collect specific data at scale.",
+      "A crawler starts with seed URLs, downloads each page, extracts links, and adds new URLs to a queue that repeats until exhausted or a limit is reached. Unlike scraping a single page, crawling is about discovery and traversal at scale - combining a crawler with a parser creates a complete data collection pipeline.",
+      "Crawlers must handle rate limiting, session management, JavaScript-rendered pages, and anti-bot defenses. This ongoing maintenance cost is one of the primary reasons developers prefer data APIs - a stable API endpoint eliminates the need to crawl and re-parse websites every time the source changes."
+    ],
+    "relatedTerms": ["data-scraping", "html-parser", "robots-txt"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "html-parser",
+    "term": "HTML Parser",
+    "icon": "lucide:code-2",
+    "category": "scraping",
+    "shortDef": "What is an HTML parser?",
+    "definition": [
+      "An HTML parser is a tool or library that reads HTML markup and builds a structured, queryable representation (typically a DOM tree) from which specific elements can be extracted. Parsers make it possible to pull product prices, property details, or table rows from raw HTML text.",
+      "Popular parsing libraries include Beautiful Soup and lxml in Python, Cheerio in JavaScript, and Nokogiri in Ruby. Each exposes methods to select elements by CSS class, ID, tag name, or XPath expression, then extract their text or attributes.",
+      "HTML parsing is the extraction layer in a scraping pipeline - and the most fragile part. Parsers break whenever the target website changes its HTML structure. This maintenance burden is one of the core arguments for using data APIs instead of building and maintaining custom scrapers."
+    ],
+    "relatedTerms": ["web-crawler", "css-selectors", "xpath"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "headless-browser",
+    "term": "Headless Browser",
+    "icon": "lucide:monitor",
+    "category": "scraping",
+    "shortDef": "What is a headless browser?",
+    "definition": [
+      "A headless browser is a web browser that runs without a graphical user interface. It loads pages, executes JavaScript, renders the DOM, and interacts with elements - exactly like a regular browser - but operates programmatically from a server or command line without displaying anything on screen.",
+      "Headless browsers are essential for scraping JavaScript-rendered content. Many modern websites load a bare HTML skeleton and use JavaScript to fetch and display data dynamically. A plain HTTP request misses all of that; a headless browser runs the JavaScript and captures the fully rendered output.",
+      "Popular tools include Puppeteer (Chrome via DevTools Protocol), Playwright, and Selenium. Running them at scale is resource-intensive. Data APIs eliminate this complexity entirely - they deliver structured data directly without requiring the rendering infrastructure that headless browsers demand."
+    ],
+    "relatedTerms": ["javascript-rendering", "data-scraping", "dom"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "robots-txt",
+    "term": "Robots.txt",
+    "icon": "lucide:bot",
+    "category": "scraping",
+    "shortDef": "What is robots.txt?",
+    "definition": [
+      "Robots.txt is a plain-text file placed at the root of a website (e.g., `example.com/robots.txt`) that instructs automated crawlers which paths they are permitted to access. It is the standard mechanism of the Robots Exclusion Protocol, used by site operators to control bot access.",
+      "Common directives include `Disallow` (block a path), `Allow` (explicitly permit a path within a blocked section), and `Crawl-delay` (suggested wait time between requests). Robots.txt is advisory, not enforceable - malicious bots ignore it - but reputable crawlers and legally cautious data tools honor it as standard practice.",
+      "Before scraping any website, checking robots.txt is both an ethical and legal first step. Some jurisdictions have treated scraping in violation of robots.txt as a factor in computer fraud claims. Data APIs provided by the platform itself bypass this concern entirely."
+    ],
+    "relatedTerms": ["web-crawler", "data-scraping", "anti-scraping"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "anti-scraping",
+    "term": "Anti-Scraping",
+    "icon": "lucide:shield",
+    "category": "scraping",
+    "shortDef": "What are anti-scraping techniques?",
+    "definition": [
+      "Anti-scraping refers to the techniques websites use to detect and block automated data collection. As scraping has become more widespread, defenses have grown more sophisticated and layered.",
+      "Common anti-scraping measures include CAPTCHA challenges, IP-based rate limiting, browser fingerprinting (detecting non-human behavior patterns), JavaScript challenges requiring real browser execution, honeypot traps (hidden links only bots follow), and services like Cloudflare Bot Management, PerimeterX, and DataDome.",
+      "Anti-scraping defenses significantly raise the cost and complexity of maintaining scrapers over time. APIs bypass these defenses entirely - since the data provider explicitly sanctions API access through authentication, there are no blocks to circumvent and no arms race to maintain."
+    ],
+    "relatedTerms": ["captcha", "fingerprinting", "proxy"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "proxy",
+    "term": "Proxy",
+    "icon": "lucide:shuffle",
+    "category": "scraping",
+    "shortDef": "What is a proxy?",
+    "definition": [
+      "A proxy is an intermediary server that routes requests between a client and the destination server. When you route requests through a proxy, the destination sees the proxy's IP address instead of yours, masking your origin identity.",
+      "In data collection, proxies are used to distribute requests across multiple IP addresses, avoiding rate limits and IP blocks triggered by high request volume from a single address. Proxies are categorized by type: datacenter proxies (fast and cheap but easily detected), residential proxies (real consumer IPs, harder to detect, more expensive), and mobile proxies (highest authenticity, highest cost).",
+      "While proxies are a standard scraping tool, they add operational complexity and cost. For developers who need large-scale, reliable data access, subscribing to a data API is more practical than building and maintaining a proxy infrastructure."
+    ],
+    "relatedTerms": ["ip-rotation", "anti-scraping", "data-scraping"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "ip-rotation",
+    "term": "IP Rotation",
+    "icon": "lucide:refresh-cw",
+    "category": "scraping",
+    "shortDef": "What is IP rotation?",
+    "definition": [
+      "IP rotation is the practice of cycling through a pool of IP addresses when making automated requests, so no single IP accumulates enough traffic to trigger rate limiting or blocking. Each request or batch is sent from a different IP in the pool.",
+      "Websites that detect and block scrapers typically identify IP addresses sending unusually high request volumes. IP rotation distributes this traffic across many addresses, making the pattern look more like organic traffic from different users. It is typically implemented using a rotating proxy service.",
+      "IP rotation adds cost and infrastructure complexity to data collection pipelines. Data APIs eliminate this need - access is controlled by an authenticated API key, and the provider manages the underlying infrastructure for delivering data at scale."
+    ],
+    "relatedTerms": ["proxy", "anti-scraping", "rate-limiting"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "captcha",
+    "term": "CAPTCHA",
+    "icon": "lucide:lock",
+    "category": "scraping",
+    "shortDef": "What is a CAPTCHA?",
+    "definition": [
+      "CAPTCHA (Completely Automated Public Turing test to tell Computers and Humans Apart) is a challenge mechanism used by websites to distinguish human visitors from bots. Common forms include image recognition tasks, text transcription, and puzzle challenges that are easy for humans but difficult for automated scripts.",
+      "Websites deploy CAPTCHAs at search interfaces, login forms, and other access points frequently targeted by bots. CAPTCHA-solving services exist that use human workers or AI to solve challenges programmatically, but they add latency and cost to any scraping pipeline.",
+      "APIs do not use CAPTCHAs for developer access - authentication is handled via API keys, making CAPTCHAs entirely irrelevant to API-based data collection. This is one of the practical advantages of using an API over building a scraper for a CAPTCHA-protected website."
+    ],
+    "relatedTerms": ["anti-scraping", "proxy", "data-scraping"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "javascript-rendering",
+    "term": "JavaScript Rendering",
+    "icon": "lucide:cpu",
+    "category": "scraping",
+    "shortDef": "What is JavaScript rendering?",
+    "definition": [
+      "JavaScript rendering is the process of executing a web page's JavaScript code to produce the final DOM that users see. Many modern websites - built as Single Page Applications (SPAs) - load a bare HTML skeleton and use JavaScript to fetch and populate content dynamically. A plain HTTP request only retrieves the skeleton, missing all the dynamically loaded data.",
+      "Scraping JavaScript-rendered pages requires running a headless browser or a JavaScript-aware scraping tool that evaluates the code and captures the fully rendered output. This is significantly more resource-intensive than scraping static HTML.",
+      "Data APIs sidestep JavaScript rendering entirely. The provider's servers process data on the backend and return it as clean JSON, regardless of how the source website is built. This is one of the clearest practical advantages of API access over maintaining a JavaScript-capable scraper."
+    ],
+    "relatedTerms": ["headless-browser", "dom", "data-scraping"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "user-agent",
+    "term": "User-Agent",
+    "icon": "lucide:user",
+    "category": "scraping",
+    "shortDef": "What is a User-Agent?",
+    "definition": [
+      "A User-Agent is an HTTP header sent with every browser request that identifies the software making the request - including the browser name, version, rendering engine, and operating system. Servers read User-Agents to customize responses or restrict access based on the client type.",
+      "Web scrapers often set their User-Agent to mimic a regular browser, since many websites serve different content to - or outright block - requests from User-Agents that identify themselves as bots. Using a realistic browser User-Agent is a basic evasion technique in scraping.",
+      "User-Agent detection is just one layer of anti-bot defense. Sophisticated systems also check browser fingerprints, JavaScript execution patterns, and request timing alongside the User-Agent header. APIs authenticate via API keys and do not involve User-Agent management."
+    ],
+    "relatedTerms": ["anti-scraping", "fingerprinting", "data-scraping"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "dom",
+    "term": "DOM",
+    "icon": "lucide:layout",
+    "category": "scraping",
+    "shortDef": "What is the DOM?",
+    "definition": [
+      "The DOM (Document Object Model) is a programming interface that represents an HTML or XML document as a tree of objects. Every element - headings, paragraphs, tables, images - is a node in the tree, and the DOM exposes methods to traverse, query, and manipulate this structure programmatically.",
+      "In web scraping, the DOM is what parsers and headless browsers operate on. A scraper selects specific DOM nodes using CSS selectors or XPath expressions, then extracts their text content or attributes to build structured data. The quality of the DOM structure on the target page directly determines how reliable the scraper can be.",
+      "Understanding the DOM is also essential for frontend developers - it is the interface through which JavaScript modifies page content in a browser. The same tree structure that powers dynamic websites is what makes headless-browser scraping possible."
+    ],
+    "relatedTerms": ["html-parser", "css-selectors", "headless-browser"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "css-selectors",
+    "term": "CSS Selectors",
+    "icon": "lucide:hash",
+    "category": "scraping",
+    "shortDef": "What are CSS selectors?",
+    "definition": [
+      "CSS selectors are patterns used to select specific elements within an HTML document. Originally designed for applying visual styles, they are equally used in web scraping to pinpoint the exact elements that contain the data you want to extract.",
+      "Common selector patterns include element selectors (`table`), class selectors (`.product-price`), ID selectors (`#listing-title`), attribute selectors (`[data-id]`), and combinators (`div.results > ul > li`). Combining them creates precise, element-specific queries supported by most HTML parsing libraries.",
+      "The fragility of CSS selectors is a key maintenance challenge in scraping: they break whenever the website's HTML structure or class names change. This is a core reason why data APIs - with their documented, versioned endpoints - are more reliable than scrapers as a long-term data source."
+    ],
+    "relatedTerms": ["html-parser", "xpath", "dom"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "xpath",
+    "term": "XPath",
+    "icon": "lucide:code-2",
+    "category": "scraping",
+    "shortDef": "What is XPath?",
+    "definition": [
+      "XPath (XML Path Language) is a query language for navigating XML and HTML documents and selecting nodes. It expresses the path to elements using a syntax similar to file system paths, and supports conditions, functions, and predicates that make it more expressive than CSS selectors for complex extraction tasks.",
+      "XPath can select elements based on their text content (`//div[contains(text(), 'Price')]`), navigate up to parent elements, and select the Nth occurrence of an element - operations that are difficult or impossible with CSS selectors alone. It is supported natively by lxml in Python and by most XML processing tools.",
+      "XPath is more powerful than CSS selectors but also more verbose and harder to read. For most web scraping tasks, CSS selectors are preferred for their simplicity; XPath is reached for when the required traversal logic exceeds what CSS can express."
+    ],
+    "relatedTerms": ["css-selectors", "html-parser", "dom"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "fingerprinting",
+    "term": "Browser Fingerprinting",
+    "icon": "lucide:fingerprint",
+    "category": "scraping",
+    "shortDef": "What is browser fingerprinting?",
+    "definition": [
+      "Browser fingerprinting is a technique for identifying and tracking users or bots based on a unique combination of browser and device attributes - screen resolution, installed fonts, browser plugins, time zone, WebGL rendering output, and JavaScript engine behavior. Unlike cookies, fingerprinting requires no stored data on the user's device.",
+      "Anti-bot systems use fingerprinting to detect automated browsers. Headless browsers often have non-human fingerprint characteristics - missing plugins, atypical graphics capabilities, unusual JavaScript timing - that reveal them as scrapers even when their User-Agent mimics a real browser.",
+      "Services like Cloudflare Bot Management, PerimeterX, and DataDome use fingerprinting as part of a layered detection stack. Evasion requires actively spoofing dozens of browser signals simultaneously and is an ongoing arms race. Using a data API sidesteps this challenge entirely."
+    ],
+    "relatedTerms": ["anti-scraping", "headless-browser", "user-agent"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "scraping-as-a-service",
+    "term": "Scraping as a Service",
+    "icon": "lucide:cloud",
+    "category": "scraping",
+    "shortDef": "What is scraping as a service?",
+    "definition": [
+      "Scraping as a Service (ScraS) is a business model where a provider manages all the infrastructure of web data collection - proxies, CAPTCHA solving, JavaScript rendering, anti-bot evasion - and delivers extracted data to customers via API or file delivery, without the customer needing to build or maintain a scraper.",
+      "Rather than writing and maintaining scrapers, customers pay a service fee and receive structured data. Common providers offer configurable extraction templates, scheduled runs, and delivery to cloud storage or webhook endpoints.",
+      "The distinction between scraping as a service and a purpose-built data API matters: scraping services still depend on fragile HTML selectors and may break when the source website changes layout. Purpose-built data APIs (like HappyEndpoint's) deliver native data through stable, documented interfaces that do not depend on HTML structure."
+    ],
+    "relatedTerms": ["data-scraping", "proxy", "data-as-a-service"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-warehouse",
+    "term": "Data Warehouse",
+    "icon": "lucide:database",
+    "category": "data-storage",
+    "shortDef": "What is a data warehouse?",
+    "definition": [
+      "A data warehouse is a centralized repository designed for storing large volumes of structured, historical data from multiple operational systems, optimized for complex analytical queries. Unlike transactional databases designed for fast read/write operations, data warehouses are optimized for aggregations, multi-table joins, and reporting across large record sets.",
+      "Data warehouses are the backbone of business intelligence. They collect data from source systems via ETL pipelines, store it in a columnar or star-schema format, and serve queries from BI tools and analysts. Cloud warehouse platforms include Google BigQuery, Amazon Redshift, and Snowflake.",
+      "When you pull data from an API into your analytics infrastructure, the data warehouse is typically where cleaned and normalized records land for reporting and model training. Designing a clean schema for API data upfront - matching field types and naming to your warehouse standard - pays significant dividends in analytical query performance."
+    ],
+    "relatedTerms": ["data-lake", "etl", "business-intelligence"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-lake",
+    "term": "Data Lake",
+    "icon": "lucide:layers",
+    "category": "data-storage",
+    "shortDef": "What is a data lake?",
+    "definition": [
+      "A data lake is a storage repository that holds large volumes of raw data in its native format - structured, semi-structured, and unstructured - until it is needed for analysis. Unlike a data warehouse, which requires an upfront schema, a data lake stores data as-is and applies schema at query time (schema-on-read).",
+      "Data lakes are often the first landing zone for data from APIs and other sources before transformation into a warehouse-ready format. The flexibility to store raw data means nothing is discarded - you can derive new structures later as requirements evolve.",
+      "The practical challenge with data lakes is governance. Without good cataloging and metadata management, a data lake becomes a 'data swamp' - data is present but nobody knows what is in it, where it came from, or whether it is trustworthy. Pairing a data lake with a data catalog is best practice."
+    ],
+    "relatedTerms": ["data-warehouse", "etl", "big-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "parquet",
+    "term": "Parquet",
+    "icon": "lucide:file-text",
+    "category": "data-storage",
+    "shortDef": "What is Parquet?",
+    "definition": [
+      "Apache Parquet is a columnar storage file format designed for efficient analytical processing. Rather than storing data row by row like CSV, Parquet stores each column together - enabling queries that read only the columns they need and dramatically reducing I/O for analytical workloads that touch a subset of fields.",
+      "Parquet uses built-in compression and encoding that typically achieves 5-10x smaller file sizes than equivalent CSV data. It also embeds schema metadata in the file itself, so readers know data types without a separate schema definition. These properties make Parquet the preferred format for large datasets used in analytics pipelines.",
+      "HappyEndpoint datasets are available in Parquet for customers running analytical workloads where performance and storage efficiency matter. If you are loading data into a tool like Spark, BigQuery, or Athena, Parquet is almost always the right format choice."
+    ],
+    "relatedTerms": ["csv", "dataset", "data-warehouse"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "nosql",
+    "term": "NoSQL Database",
+    "icon": "lucide:database",
+    "category": "data-storage",
+    "shortDef": "What is a NoSQL database?",
+    "definition": [
+      "A NoSQL database is any database that does not use the traditional relational table/row/column model. The NoSQL category includes document stores (MongoDB), key-value stores (Redis), wide-column stores (Cassandra), and graph databases (Neo4j) - each optimized for different data models and access patterns.",
+      "NoSQL databases gained popularity for applications where schema flexibility, horizontal scalability, and high write throughput matter more than strict relational integrity. Storing API response data - which often has nested objects and variable fields - maps naturally to a document store without requiring a normalized relational schema.",
+      "Choosing between SQL and NoSQL depends on your data's structure, access patterns, and consistency requirements. Many modern applications use both: a NoSQL document store for flexible, high-volume application data and a SQL database or data warehouse for structured analytical queries."
+    ],
+    "relatedTerms": ["sql-database", "document-store", "graph-database"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "sql-database",
+    "term": "SQL Database",
+    "icon": "lucide:table-2",
+    "category": "data-storage",
+    "shortDef": "What is a SQL database?",
+    "definition": [
+      "A SQL database (relational database) stores data in tables of rows and columns, with relationships between tables defined via foreign keys. SQL (Structured Query Language) is used to query, insert, update, and delete data. Examples include PostgreSQL, MySQL, and SQLite.",
+      "SQL databases enforce a schema - the structure of each table must be defined before inserting data, and all records must conform to it. This strictness ensures data integrity and makes relational queries (joins across tables) fast and predictable.",
+      "When ingesting API data into a SQL database, you define a table schema matching the response structure and insert records on each API call. For data that changes - like property prices or product listings - you decide whether to update existing records in place or insert new rows for each change, depending on whether you need history."
+    ],
+    "relatedTerms": ["nosql", "data-schema", "etl"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "graph-database",
+    "term": "Graph Database",
+    "icon": "lucide:share-2",
+    "category": "data-storage",
+    "shortDef": "What is a graph database?",
+    "definition": [
+      "A graph database stores data as nodes (entities) and edges (relationships between entities), treating the connections as first-class data equal in importance to the entities themselves. This model is ideal for domains where relationships are as meaningful as the data points.",
+      "Graph databases excel at traversal queries that are expensive in relational databases: 'find all properties within two hops of this location', 'identify all funds that have invested in the same companies as a specific manager', or 'which products are frequently purchased together'. Common graph databases include Neo4j, Amazon Neptune, and ArangoDB.",
+      "For most API and dataset use cases, SQL or NoSQL databases are more appropriate than graph databases. Graph databases become the right choice when your primary analytical queries involve traversing complex many-to-many relationship networks across large numbers of entities."
+    ],
+    "relatedTerms": ["nosql", "sql-database", "knowledge-graph"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "document-store",
+    "term": "Document Store",
+    "icon": "lucide:file-text",
+    "category": "data-storage",
+    "shortDef": "What is a document store?",
+    "definition": [
+      "A document store is a NoSQL database that stores data as semi-structured documents - typically JSON or BSON objects. Each document can have its own structure with nested objects and arrays, without requiring all documents in a collection to share the same schema.",
+      "Document stores are a natural fit for API response data. A property listing returned by a real estate API is already a JSON object with nested fields (location, photos, agent details) - it can be inserted directly into MongoDB or Firestore without transformation to a flat relational schema.",
+      "The flexibility of document stores has trade-offs: queries across nested fields can be slower than SQL queries, and the absence of enforced schemas means data inconsistency can creep in without application-layer validation. They are best suited for storing heterogeneous records where schema flexibility is more valuable than strict consistency."
+    ],
+    "relatedTerms": ["nosql", "json", "data-schema"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "cloud-storage",
+    "term": "Cloud Storage",
+    "icon": "lucide:cloud",
+    "category": "data-storage",
+    "shortDef": "What is cloud storage?",
+    "definition": [
+      "Cloud storage is a service that stores files and data on remote servers managed by a cloud provider, accessible over the internet via API. Major providers include Amazon S3, Google Cloud Storage, and Azure Blob Storage. Files are organized into buckets or containers.",
+      "For data pipelines, cloud storage serves as the durable landing zone for raw files, processed datasets, and archived data. API responses can be stored as JSON files in S3, datasets can be delivered to a customer's bucket, and pipeline intermediates can be staged between processing steps.",
+      "Cloud storage is infinitely scalable, highly available, and low-cost for data at rest. Most modern data lakehouse architectures use cloud storage - particularly Parquet files on S3 - as the primary data layer, with compute engines like Spark, Athena, or BigQuery querying the files directly without loading them into a database first."
+    ],
+    "relatedTerms": ["data-lake", "parquet", "object-storage"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "object-storage",
+    "term": "Object Storage",
+    "icon": "lucide:box",
+    "category": "data-storage",
+    "shortDef": "What is object storage?",
+    "definition": [
+      "Object storage is a data architecture that manages data as discrete objects rather than files in a directory hierarchy or blocks on a disk. Each object contains the data itself, associated metadata, and a unique identifier. Amazon S3 is the canonical example of object storage.",
+      "Object storage is designed for unstructured and semi-structured data at massive scale. It is highly durable (typically eleven nines), globally accessible, and very low-cost for data at rest. Objects are typically written once and read many times - it is not optimized for frequent small updates.",
+      "Object storage is the foundation of modern cloud data lakes. Pipeline outputs - processed dataset files, API response archives, exported reports - are commonly stored in object storage buckets and retrieved via HTTP API calls to the storage service, making them accessible to any tool with network access."
+    ],
+    "relatedTerms": ["cloud-storage", "data-lake", "parquet"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-catalog",
+    "term": "Data Catalog",
+    "icon": "lucide:book-open",
+    "category": "data-management",
+    "shortDef": "What is a data catalog?",
+    "definition": [
+      "A data catalog is a metadata management tool that provides an inventory of all data assets within an organization - datasets, database tables, API endpoints, data pipelines - along with information about their structure, lineage, quality, ownership, and access permissions.",
+      "Data catalogs solve the discovery problem that emerges as organizations accumulate data from many sources. Without a catalog, analysts must ask colleagues what data exists, where to find it, and whether it is trustworthy - friction that significantly slows down data work.",
+      "A well-maintained catalog stores not just what data exists but also how it flows (lineage), when it was last updated (freshness), and whether quality checks pass. This information is the foundation of self-service analytics - enabling teams to find and trust data without depending on the team that created it."
+    ],
+    "relatedTerms": ["data-lineage", "data-governance", "metadata"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-lineage",
+    "term": "Data Lineage",
+    "icon": "lucide:arrow-right",
+    "category": "data-management",
+    "shortDef": "What is data lineage?",
+    "definition": [
+      "Data lineage tracks the origin, movement, and transformation of data as it flows through systems - from its source (an API call, a database, an uploaded file) through each transformation step to its final destination (a report, a model, a dashboard). It answers 'where did this data come from and what happened to it?'",
+      "Understanding lineage is essential for debugging data quality issues (where did this incorrect value originate?), assessing the impact of upstream changes (which downstream dashboards will break if we rename this API field?), and meeting compliance requirements that mandate auditability of data processing.",
+      "Tools like dbt, Apache Atlas, and OpenLineage track and visualize lineage automatically by recording metadata about transformations as they execute. In regulated environments - GDPR compliance for personal data, financial audit trails - documented lineage showing where data flows is a legal requirement."
+    ],
+    "relatedTerms": ["data-catalog", "data-governance", "etl"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-governance",
+    "term": "Data Governance",
+    "icon": "lucide:shield",
+    "category": "data-management",
+    "shortDef": "What is data governance?",
+    "definition": [
+      "Data governance is the set of policies, processes, standards, and responsibilities that ensure data is managed, used, and protected according to organizational and regulatory requirements. It defines who owns data, who can access it, how quality is maintained, and how it must be handled under regulations like GDPR and CCPA.",
+      "Effective governance creates accountability across the data lifecycle: assigning data owners for each dataset, setting access policies based on sensitivity, establishing quality standards, and documenting how data is collected, processed, and retained.",
+      "As organizations ingest data from more external sources - APIs, third-party datasets, partner data - governance becomes more complex. Knowing the provenance of each data source, the terms under which it was licensed, and any restrictions on use is a governance requirement that should be addressed before building production pipelines on external data."
+    ],
+    "relatedTerms": ["data-lineage", "data-catalog", "data-licensing"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-cleaning",
+    "term": "Data Cleaning",
+    "icon": "lucide:check-circle",
+    "category": "data-management",
+    "shortDef": "What is data cleaning?",
+    "definition": [
+      "Data cleaning (also called data cleansing) is the process of identifying and correcting errors, inconsistencies, and incomplete records in a dataset. It is typically the most time-consuming step in any data project - commonly estimated to consume 60-80% of a data professional's time.",
+      "Common cleaning tasks include removing duplicate records, filling or flagging missing values, standardizing formats (dates, currencies, addresses), correcting encoding errors, and filtering out records that fall outside valid ranges.",
+      "Building automated cleaning into your pipeline - with validation rules, anomaly detection, and quality monitoring - is more sustainable than one-time manual cleaning. Data quality degrades over time as source systems change and edge cases accumulate; automated cleaning catches and handles new issues as they appear."
+    ],
+    "relatedTerms": ["data-quality", "data-deduplication", "data-validation"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-deduplication",
+    "term": "Data Deduplication",
+    "icon": "lucide:layers",
+    "category": "data-management",
+    "shortDef": "What is data deduplication?",
+    "definition": [
+      "Data deduplication is the process of identifying and removing duplicate records from a dataset. Duplicates arise when data is collected from multiple sources, when the same entity is represented differently across systems, or when pipeline errors cause records to be inserted more than once.",
+      "Deduplication strategies range from exact matching (identical primary key values) to fuzzy matching (similar names, addresses, or descriptions that likely refer to the same entity). Fuzzy matching is computationally expensive and often requires blocking techniques - first narrowing candidates by a rough criterion before comparing in detail.",
+      "In property data, the same listing may appear on multiple portals with slightly different field values. In retail, the same product may have multiple catalog entries with variant SKUs. Deduplication is a critical quality step for any pipeline that aggregates data from multiple sources."
+    ],
+    "relatedTerms": ["data-cleaning", "data-quality", "etl"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-validation",
+    "term": "Data Validation",
+    "icon": "lucide:check-circle",
+    "category": "data-management",
+    "shortDef": "What is data validation?",
+    "definition": [
+      "Data validation is the process of checking that incoming data meets defined rules and constraints before it is accepted into a system or pipeline. Validation ensures data is complete, correctly formatted, within expected ranges, and internally consistent.",
+      "Validation rules might include: price fields must be positive numbers, listing dates must be in the past, required fields must not be null, and status values must belong to an allowed set. Validation catches errors at ingestion - before they propagate into reports, models, or user-facing features.",
+      "Validation is distinct from data cleaning: validation checks whether data conforms to rules and rejects or flags what does not, while cleaning actively transforms non-conforming data. Both are necessary in a production-grade pipeline - validation as the gatekeeper and cleaning as the repair layer."
+    ],
+    "relatedTerms": ["data-quality", "data-cleaning", "data-schema"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-profiling",
+    "term": "Data Profiling",
+    "icon": "lucide:search",
+    "category": "data-management",
+    "shortDef": "What is data profiling?",
+    "definition": [
+      "Data profiling is the process of examining a dataset to understand its structure, content, and quality - without necessarily changing anything. It answers: how many records? What is the null rate per field? What are the min, max, and average values? Are there unexpected values or distributions?",
+      "Profiling is typically the first step when working with a new data source. Profiling a property listing dataset might reveal that 15% of floor area values are missing, prices cluster in two distinct ranges, and some location fields contain inconsistent country codes - insights that inform your cleaning and validation logic.",
+      "Automated profiling tools generate statistical summaries and flag anomalies as data flows through a pipeline. This enables ongoing data observability - detecting when data characteristics shift in a way that might indicate an upstream quality problem before it affects downstream users."
+    ],
+    "relatedTerms": ["data-quality", "data-cleaning", "data-observability"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-compression",
+    "term": "Data Compression",
+    "icon": "lucide:package",
+    "category": "data-management",
+    "shortDef": "What is data compression?",
+    "definition": [
+      "Data compression encodes data using fewer bits than the original representation, reducing storage space and transmission bandwidth. Compression is either lossless (the original can be perfectly reconstructed - required for structured data) or lossy (some precision is sacrificed for greater reduction - acceptable for images or audio).",
+      "In data pipelines, compression dramatically reduces storage costs and transfer times for large datasets. Parquet applies columnar compression automatically; CSV files are commonly compressed with gzip or zstandard. A 100MB CSV file might compress to 10-20MB depending on data characteristics and field repetition.",
+      "When working with APIs, HTTP compression (gzip or Brotli) reduces response size transparently - most HTTP clients decompress automatically. For datasets, always choose a compressed format like gzip-compressed CSV or Parquet for anything larger than a few megabytes to reduce storage costs and delivery time."
+    ],
+    "relatedTerms": ["parquet", "csv", "data-lake"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "big-data",
+    "term": "Big Data",
+    "icon": "lucide:database",
+    "category": "data-management",
+    "shortDef": "What is big data?",
+    "definition": [
+      "Big data refers to datasets too large, complex, or fast-moving to be processed with traditional database tools and standard analytics approaches. It is characterized by the three Vs: Volume (massive scale), Velocity (high-speed generation and ingestion), and Variety (structured, semi-structured, and unstructured data mixed together).",
+      "The big data era drove development of distributed processing frameworks like Apache Hadoop and Spark, which split computation across many machines in parallel. These tools made it economically feasible to process petabyte-scale datasets that would overwhelm any single server.",
+      "For most API and dataset use cases - even large ones - true big data infrastructure is unnecessary. A property listing dataset of 10 million records is large but processable with standard tools. Big data infrastructure becomes relevant when dealing with streaming event data, log files, or aggregated datasets from platforms with hundreds of millions of active users."
+    ],
+    "relatedTerms": ["data-warehouse", "data-lake", "stream-processing"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "open-data",
+    "term": "Open Data",
+    "icon": "lucide:globe",
+    "category": "data-management",
+    "shortDef": "What is open data?",
+    "definition": [
+      "Open data is data freely available for anyone to use, reuse, and redistribute without restrictions. It is typically released by governments, research institutions, and public organizations as part of transparency initiatives or to stimulate economic and academic activity.",
+      "Examples include US Census demographic data, UK Land Registry property transaction records (all sold prices since 1995), OpenStreetMap geographic data, and public company financial filings. These datasets serve as foundational layers in many analytical and application use cases.",
+      "Open data has significant value but comes with limitations: it may not be updated in real time, coverage may be incomplete for specific use cases, and formatting is often inconsistent across sources. Commercial data APIs typically offer more current, comprehensive, and developer-friendly access - often building on open data as one of many underlying sources."
+    ],
+    "relatedTerms": ["dataset", "data-licensing", "licensed-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "synthetic-data",
+    "term": "Synthetic Data",
+    "icon": "lucide:cpu",
+    "category": "data-management",
+    "shortDef": "What is synthetic data?",
+    "definition": [
+      "Synthetic data is artificially generated data that mimics the statistical properties and structure of real-world data without containing any actual real records. It is created using statistical models, generative AI, or rule-based simulation seeded by real data characteristics.",
+      "Synthetic data is used for software testing (when real data is too sensitive for test environments), machine learning model training (when labeled real data is scarce), and privacy compliance (replacing personal data with realistic substitutes for sharing or analysis without GDPR concerns).",
+      "The quality of synthetic data is measured by how faithfully it preserves the statistical distributions, correlations, and edge cases of the real dataset it represents. Poor synthetic data can produce models that work in testing but fail on real-world inputs - a phenomenon called distribution shift."
+    ],
+    "relatedTerms": ["training-data", "data-anonymization", "data-quality"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "metadata",
+    "term": "Metadata",
+    "icon": "lucide:tag",
+    "category": "data-management",
+    "shortDef": "What is metadata?",
+    "definition": [
+      "Metadata is data about data - information that describes the characteristics, context, and provenance of a dataset or data record. For a dataset, metadata includes the source system, collection date, schema version, record count, and refresh schedule. For an individual record, it might include a timestamp, source URL, or data quality score.",
+      "In API responses, metadata is typically returned alongside the payload - total result count, current page, request ID, and response time are all metadata that help clients interpret the data they receive. Good API design separates metadata from payload in the response envelope.",
+      "Metadata is the foundation of data catalogs, lineage tracking, and quality monitoring. Without metadata, you have data but no context - you cannot tell when it was collected, whether it is still fresh, or how it was processed. Capturing and maintaining metadata is a first-class concern in any data platform."
+    ],
+    "relatedTerms": ["data-catalog", "data-lineage", "data-schema"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-provider",
+    "term": "Data Provider",
+    "icon": "lucide:plug",
+    "category": "data-economics",
+    "shortDef": "What is a data provider?",
+    "definition": [
+      "A data provider is an organization that collects, curates, and distributes data to other businesses or developers through APIs, data feeds, or bulk dataset delivery. Providers specialize in acquiring raw data from primary sources, processing it into useful formats, and making it accessible at scale with documented interfaces and SLAs.",
+      "Data providers exist across every vertical: financial data providers (Bloomberg, Refinitiv), real estate data providers (Rightmove, Bayut), e-commerce data providers (Klarna, Sephora via data APIs), and location data providers. HappyEndpoint is a data provider delivering live API access to platform data from leading consumer applications.",
+      "The value of a data provider lies in the infrastructure behind the data: direct relationships with source platforms, processing pipelines that clean and normalize the data, uptime and freshness guarantees, and developer-friendly APIs with documentation. This is what you pay for when subscribing to a data API."
+    ],
+    "relatedTerms": ["data-as-a-service", "api", "licensed-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-broker",
+    "term": "Data Broker",
+    "icon": "lucide:share-2",
+    "category": "data-economics",
+    "shortDef": "What is a data broker?",
+    "definition": [
+      "A data broker is a company that collects personal information about individuals from various sources and sells or licenses it to other businesses - typically for advertising targeting, credit risk assessment, fraud detection, or marketing analytics.",
+      "Data brokers aggregate information from public records, loyalty programs, website tracking, purchase history, and many other sources to build detailed consumer profiles. This practice is regulated in the US (CCPA), EU (GDPR), and other jurisdictions, which give consumers rights to access, correct, or delete their profiles.",
+      "Data brokers are distinct from data providers that deal in non-personal, publicly accessible data (like property listings or product prices). The distinction matters legally - consumer profile data carries strict compliance obligations that pricing or listing data does not. Understand which category your data supplier falls into."
+    ],
+    "relatedTerms": ["pii", "gdpr", "ccpa"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "first-party-data",
+    "term": "First-party Data",
+    "icon": "lucide:user",
+    "category": "data-economics",
+    "shortDef": "What is first-party data?",
+    "definition": [
+      "First-party data is data collected directly by an organization from its own customers and users - through website interactions, purchase history, account registrations, in-app behavior, and feedback. It is the most valuable type of data because it is owned outright, directly relevant to the business, and collected with user consent.",
+      "Examples include users' search queries on your property portal, purchase history in your e-commerce app, and the listings users save or share. This data is unique to your platform and cannot be purchased or replicated by competitors, making it a genuine competitive asset.",
+      "First-party data becomes more powerful when enriched with third-party data from APIs. Adding market context (current pricing trends, inventory levels, competitive benchmarks) to your own user behavior signals creates richer insights than either source alone."
+    ],
+    "relatedTerms": ["third-party-data", "data-enrichment", "data-provider"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "third-party-data",
+    "term": "Third-party Data",
+    "icon": "lucide:users",
+    "category": "data-economics",
+    "shortDef": "What is third-party data?",
+    "definition": [
+      "Third-party data is data collected by an organization that has no direct relationship with the individuals or entities it describes. It is typically aggregated and sold or licensed to businesses that use it to supplement their own data - for example, purchasing market trend data, demographic overlays, or competitor pricing feeds.",
+      "Data APIs are a primary mechanism for accessing third-party data. Subscribing to a property data API, a retail price feed, or a financial market data API gives you access to data collected by the provider from source platforms where they have the access rights.",
+      "The legal use of third-party data requires understanding the licensing terms of each source. Third-party data that includes personal information is subject to privacy regulations; non-personal market or pricing data has fewer restrictions but may still carry use-case limitations defined in the data license."
+    ],
+    "relatedTerms": ["first-party-data", "licensed-data", "data-provider"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "licensed-data",
+    "term": "Licensed Data",
+    "icon": "lucide:file-text",
+    "category": "data-economics",
+    "shortDef": "What is licensed data?",
+    "definition": [
+      "Licensed data is data provided under a formal agreement that specifies the permitted uses, restrictions, duration, and fees. Unlike open data (free for any use) or scraped data (no formal agreement), licensed data comes with explicit terms governing what you can and cannot do with it.",
+      "When you subscribe to a data API on RapidAPI, you are accepting a data license - the terms of use of that API. These terms typically permit use in your application but restrict redistribution, reselling, or reverse engineering the underlying data.",
+      "Understanding data licensing is essential for production applications. Using licensed data outside the permitted scope can expose your organization to legal liability. Always review the terms of service for any API or dataset you use in production, and retain records of your subscriptions and usage terms."
+    ],
+    "relatedTerms": ["data-licensing", "data-provider", "open-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-as-a-service",
+    "term": "Data as a Service",
+    "icon": "lucide:cloud",
+    "category": "data-economics",
+    "shortDef": "What is Data as a Service?",
+    "definition": [
+      "Data as a Service (DaaS) is a cloud-based model where data is delivered to consumers on demand via APIs or managed data feeds, without requiring the consumer to build or maintain the underlying data infrastructure. The provider handles collection, processing, storage, and delivery; the consumer subscribes and queries.",
+      "DaaS is the model underlying most commercial data APIs. Instead of purchasing a database license and running your own data collection pipeline, you subscribe to a DaaS provider and pay for the data you consume. This dramatically lowers the barrier to accessing high-quality data for startups and independent developers.",
+      "HappyEndpoint's API and dataset products are a form of DaaS - we collect, process, and serve live data from leading platforms so that developers can access it through a simple API subscription, without needing to negotiate platform relationships or build collection infrastructure."
+    ],
+    "relatedTerms": ["data-provider", "api", "api-subscription"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-monetization",
+    "term": "Data Monetization",
+    "icon": "lucide:dollar-sign",
+    "category": "data-economics",
+    "shortDef": "What is data monetization?",
+    "definition": [
+      "Data monetization is the process of generating measurable economic value from data. It takes two primary forms: direct monetization (selling or licensing data to other organizations) and indirect monetization (using data internally to improve products, reduce costs, or increase revenue).",
+      "Direct data monetization includes building data APIs, publishing datasets, and licensing data feeds to analytics firms, developers, and enterprise buyers. It requires having data that others find valuable enough to pay for, the infrastructure to deliver it reliably, and legal rights to distribute it.",
+      "APIs are one of the most efficient mechanisms for data monetization: they enable consumption-based pricing (pay per request), allow the provider to meter and control access, and scale with demand without requiring new delivery infrastructure per customer. Platforms like RapidAPI are specifically designed to facilitate API-based data monetization."
+    ],
+    "relatedTerms": ["data-as-a-service", "api-marketplace", "licensed-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "proprietary-data",
+    "term": "Proprietary Data",
+    "icon": "lucide:lock",
+    "category": "data-economics",
+    "shortDef": "What is proprietary data?",
+    "definition": [
+      "Proprietary data is data owned exclusively by a specific organization - collected through its own operations, systems, or relationships - and not publicly available or accessible to competitors. It represents a competitive moat: because others cannot replicate it, it creates durable differentiation.",
+      "Examples of proprietary data include Bayut's exclusive property listing database in the UAE, Rightmove's full UK property transaction history, and Sephora's internal product catalog with granular SKU-level attributes. These organizations have built their proprietary datasets through years of platform operations.",
+      "Accessing proprietary data through APIs and datasets is the mechanism through which developers can leverage another organization's data assets without collecting the data themselves. The licensing terms of these APIs define what you can do with the data - it remains proprietary to the provider even when you access it."
+    ],
+    "relatedTerms": ["licensed-data", "data-provider", "first-party-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-licensing",
+    "term": "Data Licensing",
+    "icon": "lucide:file-text",
+    "category": "data-economics",
+    "shortDef": "What is data licensing?",
+    "definition": [
+      "Data licensing is the legal framework governing how data may be used, shared, modified, and redistributed. A data license grants specific rights to a recipient while retaining others for the licensor. Common terms include permitted use cases, geographic restrictions, redistribution rights, and duration of access.",
+      "When subscribing to a data API, you implicitly accept a data license - the API's terms of service. These typically permit using the data in your application but prohibit reselling the raw data, building a competing product, or exceeding the access rate stipulated in your subscription tier.",
+      "Understanding data licensing is essential before committing to a data source in a production product. Licenses vary significantly between providers: some permit only internal use, others allow commercial redistribution with attribution, and some restrict use to specific industries. Review terms before building a business on any external data source."
+    ],
+    "relatedTerms": ["licensed-data", "data-governance", "proprietary-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "batch-processing",
+    "term": "Batch Processing",
+    "icon": "lucide:layers",
+    "category": "data-processing",
+    "shortDef": "What is batch processing?",
+    "definition": [
+      "Batch processing is the execution of a series of data jobs on a collected group of records at scheduled intervals - nightly, hourly, or on demand - rather than processing each record as it arrives in real time. The system accumulates records, then processes them all at once in a single run.",
+      "Batch processing is well-suited for workloads where slight latency is acceptable and processing efficiency matters: nightly ETL jobs that refresh a data warehouse, weekly dataset exports, or end-of-day reconciliation runs. It simplifies error handling and retry logic since the entire batch can be re-run if something fails.",
+      "Batch and stream processing are complementary. A common architecture uses batch processing for large historical loads and stream processing for real-time incremental updates - ingesting the full property dataset weekly in batch while applying new listing and price changes in near-real-time."
+    ],
+    "relatedTerms": ["stream-processing", "etl", "data-pipeline"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "stream-processing",
+    "term": "Stream Processing",
+    "icon": "lucide:activity",
+    "category": "data-processing",
+    "shortDef": "What is stream processing?",
+    "definition": [
+      "Stream processing is the continuous computation of results on data records as they arrive, rather than accumulating them for batch processing. Each record is processed individually or in small windows, enabling near-real-time insights and actions.",
+      "Stream processing is used when latency matters: detecting a hotel price change within seconds, triggering a deal alert the moment a product drops below a threshold, or updating a live dashboard with property listing activity as it happens. Frameworks like Apache Kafka, Apache Flink, and AWS Kinesis are designed for this.",
+      "Building stream processing pipelines is more complex than batch processing - you must handle out-of-order events, exactly-once delivery guarantees, and stateful computation across time windows. For most API-based data integrations, batch processing is simpler and sufficient; stream processing is justified when sub-minute latency is a hard requirement."
+    ],
+    "relatedTerms": ["batch-processing", "real-time-data", "event-streaming"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "change-data-capture",
+    "term": "Change Data Capture",
+    "icon": "lucide:refresh-cw",
+    "category": "data-processing",
+    "shortDef": "What is change data capture?",
+    "definition": [
+      "Change Data Capture (CDC) is a technique for tracking and propagating changes (inserts, updates, deletes) in a database or data source to downstream systems in near-real-time. Instead of re-processing the entire dataset to find what changed, CDC identifies only the delta - the records that are new or modified since the last sync.",
+      "CDC is valuable for keeping downstream systems in sync with a source of truth without the cost of full re-ingestion. For example, instead of re-fetching all property listings from an API every hour, a CDC-like approach detects which listings changed (new price, new status, new listing) and propagates only those changes.",
+      "In the context of APIs, CDC patterns are approximated by querying a `since` parameter (records updated after a timestamp) or by maintaining a local snapshot and diffing against new API responses. True database CDC uses transaction log tailing (tools like Debezium) which is not available for external API data sources."
+    ],
+    "relatedTerms": ["data-pipeline", "stream-processing", "etl"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "microservices",
+    "term": "Microservices",
+    "icon": "lucide:grid",
+    "category": "data-processing",
+    "shortDef": "What are microservices?",
+    "definition": [
+      "Microservices is an architectural style where a large application is composed of small, independently deployable services that each perform a specific function and communicate via APIs. Rather than one monolithic codebase, microservices break functionality into pieces that can be developed, scaled, and deployed independently.",
+      "In data platform contexts, microservices often manifest as separate services for ingestion, transformation, enrichment, and serving - each with its own API and data store. An API call to a property search service might internally trigger calls to a listing service, a pricing service, and a geolocation service, each independently maintained.",
+      "The API-based integration model aligns well with microservices: each service exposes a documented REST API, making it possible to swap implementations without affecting callers. This is part of why API-first design has become standard practice in modern software architecture."
+    ],
+    "relatedTerms": ["api", "api-gateway", "serverless"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "api-gateway",
+    "term": "API Gateway",
+    "icon": "lucide:server",
+    "category": "data-processing",
+    "shortDef": "What is an API gateway?",
+    "definition": [
+      "An API gateway is a server that acts as the single entry point for all API requests from clients to a collection of backend services. It handles cross-cutting concerns including authentication, rate limiting, request routing, response caching, SSL termination, and usage logging.",
+      "Rather than each backend service implementing its own authentication and rate limiting, the gateway handles these uniformly for all services behind it. This simplifies service development and creates a single control plane for access policy, monitoring, and security.",
+      "API gateways are foundational infrastructure for any API-first product. AWS API Gateway, Kong, and Apigee are popular examples. For developers consuming APIs, the gateway is typically transparent - but its rate limiting behavior, error responses, and caching configuration are worth understanding when debugging unexpected API behavior."
+    ],
+    "relatedTerms": ["api", "rate-limiting", "microservices"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "graphql",
+    "term": "GraphQL",
+    "icon": "lucide:code-2",
+    "category": "data-processing",
+    "shortDef": "What is GraphQL?",
+    "definition": [
+      "GraphQL is a query language for APIs and a runtime for executing those queries, developed by Meta. Rather than the fixed response structures of REST APIs, GraphQL lets clients specify exactly what data they want in each request - eliminating over-fetching (receiving fields you do not need) and under-fetching (requiring multiple requests to get all needed data).",
+      "A GraphQL API exposes a single endpoint that accepts structured queries. The client declares a query describing the shape of the data it needs, and the server returns exactly that - nothing more, nothing less. This makes GraphQL particularly efficient for frontend applications with varied and complex data requirements.",
+      "GraphQL is popular for product APIs where the front end has highly varied data needs. Most data APIs, including those for real estate and retail data, use REST rather than GraphQL because the fixed, well-documented endpoint structure of REST maps more naturally to data retrieval use cases."
+    ],
+    "relatedTerms": ["rest-api", "api", "api-documentation"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "serverless",
+    "term": "Serverless Computing",
+    "icon": "lucide:cloud",
+    "category": "data-processing",
+    "shortDef": "What is serverless computing?",
+    "definition": [
+      "Serverless computing is a cloud execution model where the provider automatically manages the server infrastructure. Developers write code that runs in response to events or requests, and the cloud provider handles provisioning, scaling, and maintenance. You pay only for the compute time your code actually uses.",
+      "Serverless functions (AWS Lambda, Google Cloud Functions, Vercel Functions) are commonly used in data pipelines: a function can be triggered by an API call, a scheduled event, or a file upload to process data without requiring a permanently running server.",
+      "For developers building lightweight data integrations - such as a function that calls a property API every hour and stores results in a database - serverless is an efficient and cost-effective approach. The auto-scaling model means your pipeline handles spikes without manual capacity planning."
+    ],
+    "relatedTerms": ["api", "microservices", "data-pipeline"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "edge-computing",
+    "term": "Edge Computing",
+    "icon": "lucide:cpu",
+    "category": "data-processing",
+    "shortDef": "What is edge computing?",
+    "definition": [
+      "Edge computing is a distributed computing paradigm that moves computation and data processing closer to the source of data - to servers at the network edge rather than centralized cloud data centers. By processing data near where it is generated or consumed, edge computing reduces latency and bandwidth usage.",
+      "In the context of APIs and data delivery, edge computing manifests as CDN edge networks that cache and serve API responses from points of presence (PoPs) geographically close to end users. A property search API request from London is served from a London edge node rather than a data center in Virginia, reducing latency.",
+      "Cloudflare Pages (which hosts HappyEndpoint) uses edge computing to serve the static site from nodes worldwide. For latency-sensitive API use cases, selecting providers with edge-deployed infrastructure - or building your own caching layer at the edge - can meaningfully improve response times for international users."
+    ],
+    "relatedTerms": ["caching", "api-latency", "serverless"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "business-intelligence",
+    "term": "Business Intelligence",
+    "icon": "lucide:bar-chart-2",
+    "category": "analytics",
+    "shortDef": "What is business intelligence?",
+    "definition": [
+      "Business Intelligence (BI) refers to the technologies, processes, and practices for collecting, integrating, analyzing, and presenting business data to support decision-making. BI transforms raw data into actionable insights delivered through dashboards, reports, and visualizations.",
+      "A BI stack typically includes a data warehouse (where processed data lives), a transformation layer (where metrics are defined), and a BI tool (where analysts query and visualize). Popular BI tools include Tableau, Power BI, Looker, and Metabase.",
+      "For organizations using data APIs, BI is the analytical endpoint of the data pipeline: data collected from property APIs, retail price feeds, or financial data feeds flows through ETL into a data warehouse, where BI queries produce the dashboards and reports that drive business decisions."
+    ],
+    "relatedTerms": ["data-warehouse", "data-analytics", "predictive-analytics"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-analytics",
+    "term": "Data Analytics",
+    "icon": "lucide:trending-up",
+    "category": "analytics",
+    "shortDef": "What is data analytics?",
+    "definition": [
+      "Data analytics is the process of examining raw data to find patterns, draw conclusions, and support decision-making. It spans a spectrum from descriptive analytics (what happened?) to diagnostic (why did it happen?), predictive (what will happen?), and prescriptive (what should we do?).",
+      "Data analytics relies on clean, structured data as its foundation - which is why data quality, normalization, and pipeline reliability matter so much. An analytics product is only as good as the data flowing into it.",
+      "APIs and datasets are the raw material for data analytics products. Retail price tracking analytics requires reliable price feed data. Real estate market intelligence requires current listing and transaction data. The accuracy of analytical outputs depends directly on the freshness and quality of the underlying data source."
+    ],
+    "relatedTerms": ["business-intelligence", "data-science", "predictive-analytics"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-science",
+    "term": "Data Science",
+    "icon": "lucide:cpu",
+    "category": "analytics",
+    "shortDef": "What is data science?",
+    "definition": [
+      "Data science is an interdisciplinary field that uses statistical methods, machine learning, and domain expertise to extract knowledge and value from data. Data scientists build predictive models, discover patterns in large datasets, and design experiments to test hypotheses.",
+      "Data science work begins with data acquisition - often from APIs or datasets - and progresses through exploration, cleaning, feature engineering, model building, validation, and deployment. Each step depends on the quality and completeness of the input data.",
+      "For data science teams, APIs and datasets from providers like HappyEndpoint reduce the time spent on data acquisition and cleaning. Access to labeled, normalized, real-world data - like sold property transaction records with price, location, and property attributes - enables model training that would otherwise require months of custom data collection."
+    ],
+    "relatedTerms": ["training-data", "data-analytics", "feature-store"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "predictive-analytics",
+    "term": "Predictive Analytics",
+    "icon": "lucide:trending-up",
+    "category": "analytics",
+    "shortDef": "What is predictive analytics?",
+    "definition": [
+      "Predictive analytics uses statistical algorithms and machine learning to forecast future outcomes based on historical data. Rather than describing what happened (descriptive analytics), it projects what is likely to happen - predicting property prices, demand trends, customer churn, or inventory needs.",
+      "Predictive models require historical data for training - the richer and more comprehensive the history, the more accurate the predictions. Time series datasets of property prices, product demand patterns, or travel booking volumes are the input layer for most predictive analytics in these domains.",
+      "Building predictive analytics products on external data requires reliable, consistent data quality over time. A pricing prediction model trained on 6 months of API data will perform poorly if the API's data quality or schema changes in month 7. Monitoring data quality as an ongoing process - not a one-time setup - is essential for production predictive systems."
+    ],
+    "relatedTerms": ["data-analytics", "training-data", "time-series-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "training-data",
+    "term": "Training Data",
+    "icon": "lucide:database",
+    "category": "analytics",
+    "shortDef": "What is training data?",
+    "definition": [
+      "Training data is the labeled dataset used to teach a machine learning model the patterns it needs to learn. The model adjusts its parameters during training to minimize the difference between its predictions and the known correct answers in the training data.",
+      "The quality, size, and representativeness of training data directly determine model performance. A property valuation model trained only on urban high-rise apartments will perform poorly on suburban houses. Models are as biased as their training data - if historical data reflects past discrimination, the model may perpetuate it.",
+      "Datasets from HappyEndpoint - such as sold property transaction records or product price history - can serve as training data for models that predict future prices, estimate property value, or detect pricing anomalies. The key requirements are sufficient volume, accurate labels (the target variable you want to predict), and coverage of the edge cases your model will encounter in production."
+    ],
+    "relatedTerms": ["data-science", "synthetic-data", "data-annotation"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-annotation",
+    "term": "Data Annotation",
+    "icon": "lucide:tag",
+    "category": "analytics",
+    "shortDef": "What is data annotation?",
+    "definition": [
+      "Data annotation is the process of adding labels, tags, or metadata to raw data to make it suitable for training supervised machine learning models. Annotating images means drawing bounding boxes around objects; annotating text means labeling entities, sentiment, or intent; annotating product listings means classifying them into categories.",
+      "Annotation quality determines model quality. Ambiguous labeling guidelines, inconsistent annotators, and coverage gaps in the annotation set introduce noise that the model learns - resulting in production errors. High-quality annotation requires clear guidelines, multiple annotators for quality checks, and iterative refinement.",
+      "Many real-world datasets require annotation before they become useful training data. A raw product listing dataset might need manual category labeling; a property dataset might need human review to validate automated price anomaly flags. Annotation is a significant but often underestimated cost in building ML-powered data products."
+    ],
+    "relatedTerms": ["training-data", "data-science", "data-quality"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "feature-store",
+    "term": "Feature Store",
+    "icon": "lucide:database",
+    "category": "analytics",
+    "shortDef": "What is a feature store?",
+    "definition": [
+      "A feature store is a centralized repository for storing, managing, and serving the engineered features used in machine learning models. It bridges the gap between raw data (from pipelines and APIs) and the model training and inference systems that need computed, model-ready features.",
+      "Features are derived data columns computed from raw data - for example, 'average price per sqft in the property's neighborhood over the last 90 days' is a feature derived from raw listing data. Computing this feature identically for training and production is critical; a feature store ensures consistency.",
+      "Without a feature store, feature computation code is often duplicated between the training pipeline and the real-time inference service, leading to training-serving skew - where the model sees different values in production than it was trained on. Feature stores solve this by centralizing feature definitions and serving them from a shared platform."
+    ],
+    "relatedTerms": ["training-data", "data-science", "data-pipeline"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "gdpr",
+    "term": "GDPR",
+    "icon": "lucide:shield",
+    "category": "privacy",
+    "shortDef": "What is GDPR?",
+    "definition": [
+      "GDPR (General Data Protection Regulation) is a comprehensive data privacy law enacted by the European Union in 2018. It governs how organizations collect, store, process, and share personal data of EU residents, regardless of where the organization is based. Non-compliance can result in fines up to 4% of global annual revenue or €20 million, whichever is higher.",
+      "Key GDPR principles include lawful basis for processing (you need a valid reason to process personal data), data minimization (collect only what you need), purpose limitation (only use data for the reason it was collected), and individual rights (access, correction, deletion, and portability).",
+      "For developers working with APIs and datasets, GDPR is relevant when the data includes personal information about EU residents. Property listing data (public prices, addresses, property attributes) is generally not personal data. But if you store user search behavior or contact details from listing agents, GDPR compliance applies."
+    ],
+    "relatedTerms": ["pii", "data-anonymization", "data-controller"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-anonymization",
+    "term": "Data Anonymization",
+    "icon": "lucide:eye-off",
+    "category": "privacy",
+    "shortDef": "What is data anonymization?",
+    "definition": [
+      "Data anonymization is the process of transforming personal data so that individuals cannot be identified - either directly or indirectly - from the resulting dataset. Properly anonymized data falls outside the scope of privacy regulations like GDPR because it no longer constitutes personal data.",
+      "Anonymization techniques include generalization (replacing exact values with ranges - age 34 becomes age 30-39), suppression (removing identifying fields entirely), noise addition (slightly perturbing numerical values), and k-anonymity (ensuring each record is indistinguishable from at least k-1 others).",
+      "True anonymization is harder than it appears. Research has shown that 'anonymized' datasets can often be re-identified by combining them with other data sources - a property sale record that removes the buyer's name may still be re-identifiable from the combination of address, price, and date. Differential privacy is a more mathematically rigorous approach to anonymization."
+    ],
+    "relatedTerms": ["pii", "gdpr", "synthetic-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "pii",
+    "term": "PII",
+    "icon": "lucide:user",
+    "category": "privacy",
+    "shortDef": "What is PII?",
+    "definition": [
+      "PII (Personally Identifiable Information) is any data that can be used to identify a specific individual, either on its own or in combination with other data. Direct PII includes names, email addresses, phone numbers, national ID numbers, and passport numbers. Indirect PII includes IP addresses, device identifiers, location coordinates, and combinations of non-personal fields that together identify someone.",
+      "Privacy regulations like GDPR and CCPA impose strict requirements on the collection, storage, processing, and transfer of PII. Organizations must have a lawful basis for processing PII, protect it with appropriate security measures, and honor individuals' rights to access, correct, and delete their data.",
+      "When working with data APIs and datasets, identify whether any fields constitute PII before storing or processing the data. Property listing contact details (agent names, phone numbers) are PII; property prices and addresses are generally not. Building PII-aware data handling into your pipeline from the start is far cheaper than retrofitting it later."
+    ],
+    "relatedTerms": ["gdpr", "data-anonymization", "ccpa"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "ccpa",
+    "term": "CCPA",
+    "icon": "lucide:shield",
+    "category": "privacy",
+    "shortDef": "What is the CCPA?",
+    "definition": [
+      "The CCPA (California Consumer Privacy Act) is a California state law enacted in 2018 that gives California residents rights over their personal information - including the right to know what is collected, the right to delete it, the right to opt out of its sale, and the right to non-discrimination for exercising these rights.",
+      "The CCPA applies to for-profit businesses that meet certain thresholds (annual revenue over $25M, handling data of 100,000+ consumers, or deriving 50%+ of revenue from selling personal data) and operate in California or collect data from California residents.",
+      "For developers working with consumer-facing data, CCPA compliance requires building user-facing rights fulfillment flows (data access requests, deletion requests, opt-out mechanisms) and understanding which data vendors you share personal information with. Unlike GDPR, CCPA focuses primarily on the right to opt out of data selling rather than requiring a positive consent basis for all processing."
+    ],
+    "relatedTerms": ["gdpr", "pii", "data-broker"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-retention",
+    "term": "Data Retention",
+    "icon": "lucide:clock",
+    "category": "privacy",
+    "shortDef": "What is a data retention policy?",
+    "definition": [
+      "A data retention policy defines how long an organization keeps different types of data before deleting or anonymizing it. Retention periods are typically determined by legal requirements (tax records must be kept for 7 years in many jurisdictions), business need (operational data kept while relevant), and privacy obligations (personal data kept only as long as necessary under GDPR).",
+      "Retention policies are both a compliance requirement and a data management practice. Deleting data you no longer need reduces storage costs, minimizes breach risk (you cannot lose data you do not have), and simplifies GDPR compliance by avoiding the accumulation of personal data beyond its useful life.",
+      "When building pipelines that collect data from APIs - especially any data containing personal information - define retention periods as part of the initial design. Automated deletion jobs, archiving older data to cold storage, and replacing exact values with aggregates for long-term analytics are all valid retention strategies."
+    ],
+    "relatedTerms": ["gdpr", "pii", "data-governance"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-controller",
+    "term": "Data Controller",
+    "icon": "lucide:user",
+    "category": "privacy",
+    "shortDef": "What is a data controller?",
+    "definition": [
+      "A data controller is an organization or individual that determines the purposes and means of processing personal data. Under GDPR, the controller bears primary responsibility for compliance - they decide why data is collected, how it is used, and who has access to it.",
+      "Contrast with a data processor: a service or vendor that processes personal data on behalf of a controller, under the controller's instructions. Cloud providers, email marketing platforms, and analytics services are typically processors. The controller must have a data processing agreement with each processor.",
+      "For developers building applications that handle personal data - user accounts, contact details, behavioral tracking - your organization is the data controller. You are responsible for ensuring compliance with GDPR, CCPA, and other applicable regulations, including maintaining records of processing activities and appointing a Data Protection Officer if required."
+    ],
+    "relatedTerms": ["gdpr", "pii", "data-governance"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "right-to-erasure",
+    "term": "Right to Erasure",
+    "icon": "lucide:x-circle",
+    "category": "privacy",
+    "shortDef": "What is the right to erasure?",
+    "definition": [
+      "The right to erasure (also called the right to be forgotten) is a privacy right under GDPR (Article 17) that allows individuals to request the deletion of their personal data when it is no longer necessary for the purpose it was collected, when they withdraw consent, or when they object to its processing.",
+      "Organizations must respond to erasure requests within 30 days and delete the personal data from all systems - including backups, analytics databases, and any third-party processors they have shared the data with. Failure to comply can result in GDPR enforcement action.",
+      "Building systems that can honor erasure requests requires knowing exactly where every piece of personal data lives across your stack. This is why data lineage and a comprehensive data catalog are not just nice-to-haves - they are operational requirements for any organization handling significant volumes of personal data."
+    ],
+    "relatedTerms": ["gdpr", "pii", "data-controller"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "vector-database",
+    "term": "Vector Database",
+    "icon": "lucide:cpu",
+    "category": "technical",
+    "shortDef": "What is a vector database?",
+    "definition": [
+      "A vector database stores data as high-dimensional numerical vectors (embeddings) generated by machine learning models, and supports fast similarity search across these vectors. Rather than exact keyword matching, vector databases find records that are semantically similar - 'conceptually close' in the embedding space.",
+      "Vector databases are the infrastructure layer behind AI-powered search and recommendation systems. Searching a property dataset with 'spacious open-plan apartment near park' returns listings where the semantic content of the description matches the query, even without an exact keyword match. Pinecone, Weaviate, and pgvector (PostgreSQL extension) are popular vector database options.",
+      "The growth of large language models has made vector databases a standard component of AI application architectures. Retrieval-Augmented Generation (RAG) systems use vector databases to find relevant context from a knowledge base before generating a response. For data products, combining vector search over dataset records with structured filters (price, location, type) creates powerful hybrid search experiences."
+    ],
+    "relatedTerms": ["nosql", "data-science", "training-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-contract",
+    "term": "Data Contract",
+    "icon": "lucide:file-text",
+    "category": "technical",
+    "shortDef": "What is a data contract?",
+    "definition": [
+      "A data contract is a formal agreement between a data producer (a team, service, or API) and its consumers that defines the schema, semantics, quality guarantees, and SLAs for the data being provided. It makes implicit assumptions explicit and versioned.",
+      "A data contract might specify: the exact field names and types in a dataset, the maximum null rate for critical fields, the expected freshness of records, and the change policy (breaking changes require 30 days notice and a new contract version). This prevents producers from changing data in ways that silently break consumers.",
+      "Data contracts are a relatively new practice in data engineering, emerging as a solution to the 'silent breaking change' problem that plagues large data platforms with many teams sharing pipelines. Tools like Great Expectations, Soda, and custom schema registries are used to encode and enforce data contracts automatically."
+    ],
+    "relatedTerms": ["data-schema", "data-quality", "api-versioning"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-observability",
+    "term": "Data Observability",
+    "icon": "lucide:activity",
+    "category": "technical",
+    "shortDef": "What is data observability?",
+    "definition": [
+      "Data observability is the ability to understand the health and state of data in a system at any point in time - detecting anomalies, tracking freshness, monitoring schema changes, and alerting on quality degradation before downstream consumers are affected.",
+      "The five pillars of data observability are: freshness (is the data up to date?), volume (are the expected records arriving?), schema (did the structure change unexpectedly?), distribution (are field values within normal statistical ranges?), and lineage (which upstream data and transformations affect this output?).",
+      "Data observability platforms like Monte Carlo, Acyl, and custom monitoring built on dbt tests give data teams the same visibility into data health that application monitoring gives to software teams. For pipelines that ingest data from external APIs, observability monitors when the API response schema changes, when expected records stop appearing, or when field distributions shift in a way that suggests an upstream issue."
+    ],
+    "relatedTerms": ["data-quality", "data-lineage", "data-pipeline"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "public-api",
+    "term": "Public API",
+    "icon": "lucide:globe",
+    "category": "technical",
+    "shortDef": "What is a public API?",
+    "definition": [
+      "A public API is an API that is openly available for external developers to access, either for free or through a commercial subscription. It is documented, has a published endpoint, and provides a stable interface for building integrations. Most APIs on RapidAPI are public APIs.",
+      "Public APIs are the foundation of the API economy - they enable third-party developers to build products on top of an existing platform's data or functionality without needing internal access. Public APIs must maintain backward compatibility, provide documentation, and handle the operational demands of many concurrent consumers.",
+      "The 'public' in public API refers to accessibility, not cost. A public API may still require authentication, subscriptions, or commercial terms. The distinction from a private API is about whether external parties can access it at all."
+    ],
+    "relatedTerms": ["private-api", "api-marketplace", "api-documentation"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "private-api",
+    "term": "Private API",
+    "icon": "lucide:lock",
+    "category": "technical",
+    "shortDef": "What is a private API?",
+    "definition": [
+      "A private API is an API used only within an organization - between internal services, teams, or applications. It is not published to external developers and does not require the same level of documentation, backward compatibility, or security hardening as a public API.",
+      "Private APIs are the backbone of microservices architectures - each service exposes a private API consumed only by other services in the same platform. They enable teams to build independently while still integrating through well-defined interfaces.",
+      "The distinction between private and public APIs has significant implications for design and maintenance. Private APIs can be changed more freely since all consumers are known and internal. Public APIs must treat breaking changes as a major versioning event requiring advance notice."
+    ],
+    "relatedTerms": ["public-api", "api", "microservices"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "api-throttling",
+    "term": "API Throttling",
+    "icon": "lucide:gauge",
+    "category": "technical",
+    "shortDef": "What is API throttling?",
+    "definition": [
+      "API throttling is the practice of controlling the rate at which an API processes requests by limiting throughput - either per user, per endpoint, or globally. While rate limiting sets a hard cap on requests within a time window, throttling may shape traffic more dynamically, slowing down requests rather than outright rejecting them.",
+      "Throttling protects API infrastructure from overload, ensures fair resource distribution across consumers, and prevents any single client from degrading service for others. It can be applied at multiple levels: per API key, per subscription tier, per IP address, or per endpoint.",
+      "From a developer's perspective, throttling manifests as slower-than-expected response times or 429 Too Many Requests errors. Building robust retry logic with exponential backoff, respecting `Retry-After` headers, and implementing request queuing in your API client are the standard mitigations."
+    ],
+    "relatedTerms": ["rate-limiting", "api-gateway", "api-subscription"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-lakehouse",
+    "term": "Data Lakehouse",
+    "icon": "lucide:layers",
+    "category": "technical",
+    "shortDef": "What is a data lakehouse?",
+    "definition": [
+      "A data lakehouse is an architecture that combines the low-cost, flexible storage of a data lake with the performance, ACID transaction support, and governance features of a data warehouse - in a single system. Platforms like Delta Lake, Apache Iceberg, and Apache Hudi implement the lakehouse pattern on top of cloud object storage.",
+      "The lakehouse emerged to solve the two-architecture problem: organizations had a data lake for raw storage (cheap, flexible, poor for analytics) and a data warehouse for cleaned analytical data (expensive, fast, rigid). The lakehouse collapses these into one: raw and transformed data live in the same object store, with a table format layer providing warehouse-like query performance.",
+      "For data pipeline builders, the lakehouse means you can read API data directly into Parquet files on S3, apply ACID-compliant updates as new data arrives, and query with SQL-native BI tools - without loading data into a separate warehouse."
+    ],
+    "relatedTerms": ["data-lake", "data-warehouse", "parquet"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-marketplace",
+    "term": "Data Marketplace",
+    "icon": "lucide:store",
+    "category": "data-economics",
+    "shortDef": "What is a data marketplace?",
+    "definition": [
+      "A data marketplace is a platform where data providers publish datasets and data products (APIs, feeds, reports) and buyers discover, evaluate, and purchase access. It centralizes the commercial exchange of data assets, providing standardized licensing, billing, and delivery infrastructure.",
+      "Data marketplaces range from general-purpose platforms like Snowflake Marketplace, AWS Data Exchange, and RapidAPI to vertical-specific marketplaces focused on finance, real estate, or healthcare data. They reduce the friction of finding and licensing data by aggregating many providers in one place.",
+      "For data buyers, marketplaces enable comparative evaluation of competing data sources before committing. For providers, they handle discovery and distribution without requiring a dedicated sales and billing infrastructure. HappyEndpoint distributes its data products through RapidAPI, the world's largest API marketplace."
+    ],
+    "relatedTerms": ["api-marketplace", "data-provider", "data-as-a-service"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-silo",
+    "term": "Data Silo",
+    "icon": "lucide:lock",
+    "category": "data-management",
+    "shortDef": "What is a data silo?",
+    "definition": [
+      "A data silo is a collection of data held by one department or system that is not integrated with, or accessible to, the rest of the organization. Silos form when teams use separate tools that do not share data, when organizational incentives discourage data sharing, or when data governance is absent.",
+      "Data silos reduce analytical capability: insights that require combining data from two siloed systems require manual data extraction and merging, slowing down decision-making and increasing error risk. They also create compliance risk - PII held in an untracked silo may not be subject to the retention and access controls required by regulations.",
+      "Breaking down data silos is a core goal of enterprise data platform initiatives. Centralized data warehouses, shared data catalogs, and standardized APIs between systems are the technical approaches. The harder part is organizational - creating incentives and governance structures that reward data sharing across teams."
+    ],
+    "relatedTerms": ["data-governance", "data-catalog", "data-warehouse"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "event-streaming",
+    "term": "Event Streaming",
+    "icon": "lucide:activity",
+    "category": "data-processing",
+    "shortDef": "What is event streaming?",
+    "definition": [
+      "Event streaming is the continuous capture and transmission of events - discrete records of things that happened, such as a price change, a new property listing, or a user search - as an ordered, persistent log that multiple consumers can read from at their own pace.",
+      "Apache Kafka is the dominant event streaming platform. Events are written to topics (named log partitions), and any number of consumer services can subscribe to a topic and process events independently. This decouples producers from consumers - a price change event can simultaneously update a database, trigger a user alert, and refresh a dashboard.",
+      "Event streaming enables event-driven architectures where services react to data changes in real time. For data-intensive applications - live price tracking, real-time market monitoring, or property alert systems - event streaming provides the infrastructure layer that connects data sources to multiple downstream consumers with minimal latency."
+    ],
+    "relatedTerms": ["stream-processing", "webhook", "message-queue"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "message-queue",
+    "term": "Message Queue",
+    "icon": "lucide:list",
+    "category": "data-processing",
+    "shortDef": "What is a message queue?",
+    "definition": [
+      "A message queue is a form of asynchronous communication between services where a producer sends messages to a queue, and a consumer reads them when ready. The queue persists messages until they are consumed, decoupling the timing and speed of producers and consumers.",
+      "Message queues enable reliable asynchronous processing. When an API webhook delivers a price update, instead of processing it immediately (which could block if the downstream system is slow), you enqueue it and process it as capacity allows. If the consumer crashes, the message stays in the queue for retry.",
+      "Popular message queue systems include RabbitMQ, Amazon SQS, and Redis Streams. They differ from event streaming platforms like Kafka in that queues typically deliver each message to exactly one consumer (competing consumers), while streaming platforms allow multiple consumer groups to read the same event independently."
+    ],
+    "relatedTerms": ["event-streaming", "data-pipeline", "webhook"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "knowledge-graph",
+    "term": "Knowledge Graph",
+    "icon": "lucide:network",
+    "category": "technical",
+    "shortDef": "What is a knowledge graph?",
+    "definition": [
+      "A knowledge graph is a structured representation of real-world entities and the relationships between them, stored as nodes and edges. Entities (a property, a company, a person, a product) are connected by typed relationships (property `is located in` neighborhood, company `is parent of` brand, product `belongs to` category).",
+      "Knowledge graphs enable sophisticated queries that combine entity attributes with relationship traversal - 'find all properties within 500m of a metro station, owned by a developer with projects completed in the last 2 years, priced below the neighborhood median'. These multi-hop queries are impractical in relational or document databases.",
+      "Major applications include Google's Knowledge Panel (connecting entities in search results), financial graph databases linking companies and investments, and product knowledge graphs that connect products to brands, categories, and attributes. For data-rich applications in real estate or retail, knowledge graphs provide a powerful layer for contextual enrichment above raw listing or product data."
+    ],
+    "relatedTerms": ["graph-database", "data-enrichment", "structured-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-mesh",
+    "term": "Data Mesh",
+    "icon": "lucide:grid",
+    "category": "data-management",
+    "shortDef": "What is a data mesh?",
+    "definition": [
+      "Data mesh is a decentralized data architecture where domain teams own and serve their own data products rather than a centralized data team building monolithic pipelines. Each domain (property listings, pricing, user accounts) treats its data as a product with a defined API, SLA, and documentation - following a 'data as a product' principle.",
+      "The four principles of data mesh are: domain ownership (teams own their data), data as a product (data meets quality and usability standards), self-serve data infrastructure (a platform team provides tooling but not pipelines), and federated governance (standards and policies applied uniformly without centralizing all control).",
+      "Data mesh addresses the scaling limitations of centralized data lakes and warehouses, where a single data engineering team becomes a bottleneck for all analytical needs. By distributing data ownership to domain experts, data mesh creates higher-quality, more trustworthy data products - at the cost of requiring more engineering capability distributed across teams."
+    ],
+    "relatedTerms": ["data-governance", "data-catalog", "data-as-a-service"],
+    "updatedAt": "April 2026"
+  }
+]

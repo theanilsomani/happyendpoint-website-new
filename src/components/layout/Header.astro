@@ -34,6 +34,8 @@ import siteConfig from '@/config/site.config';
 export interface NavItem {
   label: string;
   href: string;
+  icon?: string;
+  children?: { label: string; href: string; icon?: string }[];
 }
 
 export interface HeaderAction {
@@ -119,6 +121,8 @@ const isInvert = colorScheme === 'invert';
 const defaultNav = getNavItems().map((item: NavConfigItem) => ({
   label: item.label,
   href: item.href,
+  ...(item.icon ? { icon: item.icon } : {}),
+  ...(item.children ? { children: item.children } : {}),
 }));
 const navItems: NavItem[] = nav || [...extraNav, ...defaultNav];
 
@@ -148,8 +152,9 @@ const headerClasses = cn(
 const innerClasses = headerInnerVariants({ size, shape });
 
 // Check if a nav item is active
-function isActive(href: string): boolean {
+function isActive(href: string, children?: { label: string; href: string }[]): boolean {
   if (!showActiveState) return false;
+  if (children) return children.some(c => currentPath === c.href || currentPath.startsWith(c.href + '/'));
   if (href.startsWith('#')) return false;
   return currentPath === href || currentPath.startsWith(href + '/');
 }
@@ -200,25 +205,72 @@ const buttonId = `${menuId}-button`;
           </nav>
         ) : (
           <nav class="hidden items-center gap-1 md:flex" aria-label="Main navigation">
-            {navItems.map(({ label, href }) => (
-              <a
-                href={href.startsWith('#') && !isLandingPage ? `/${href}` : href}
-                class={cn(
-                  'nav-link relative rounded-md px-3 py-2 text-sm',
-                  'transition-all duration-(--transition-fast)',
-                  isFloating && 'hdr-invert-text',
-                  isFloating
-                    ? (isActive(href)
-                        ? 'hdr-nav-active font-semibold'
-                        : 'font-medium opacity-80 hover:opacity-100')
-                    : (isActive(href)
-                        ? 'nav-link-active font-semibold text-foreground bg-secondary'
-                        : 'nav-link-inactive font-medium text-foreground-muted hover:text-foreground hover:bg-secondary/70')
-                )}
-                aria-current={isActive(href) ? 'page' : undefined}
-              >
-                {label}
-              </a>
+            {navItems.map(({ label, href, icon, children }) => (
+              children ? (
+                <div class="group relative">
+                  <button
+                    type="button"
+                    class={cn(
+                      'nav-link relative flex items-center gap-1.5 rounded-md px-3 py-2 text-sm',
+                      'transition-all duration-(--transition-fast)',
+                      isFloating && 'hdr-invert-text',
+                      isFloating
+                        ? (isActive(href, children)
+                            ? 'hdr-nav-active font-semibold'
+                            : 'font-medium opacity-80 hover:opacity-100')
+                        : (isActive(href, children)
+                            ? 'nav-link-active font-semibold text-foreground bg-secondary'
+                            : 'nav-link-inactive font-medium text-foreground-muted hover:text-foreground hover:bg-secondary/70')
+                    )}
+                    aria-haspopup="menu"
+                  >
+                    {icon && <Icon name={icon} size="xs" class="shrink-0 text-brand-600" />}
+                    {label}
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="m6 9 6 6 6-6"/>
+                    </svg>
+                  </button>
+                  <div class="absolute left-0 top-full z-50 hidden pt-1.5 group-hover:block">
+                    <div class="min-w-[170px] rounded-lg border border-border bg-background py-1 shadow-lg">
+                      {children.map(child => (
+                        <a
+                          href={child.href}
+                          class={cn(
+                            'flex items-center gap-2.5 px-4 py-2 text-sm transition-colors duration-(--transition-fast)',
+                            (currentPath === child.href || currentPath.startsWith(child.href + '/'))
+                              ? 'font-semibold text-foreground bg-secondary'
+                              : 'font-medium text-foreground-muted hover:text-foreground hover:bg-secondary/70'
+                          )}
+                          aria-current={(currentPath === child.href || currentPath.startsWith(child.href + '/')) ? 'page' : undefined}
+                        >
+                          {child.icon && <Icon name={child.icon} size="xs" class="shrink-0 text-brand-600" />}
+                          {child.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <a
+                  href={href.startsWith('#') && !isLandingPage ? `/${href}` : href}
+                  class={cn(
+                    'nav-link relative flex items-center gap-1.5 rounded-md px-3 py-2 text-sm',
+                    'transition-all duration-(--transition-fast)',
+                    isFloating && 'hdr-invert-text',
+                    isFloating
+                      ? (isActive(href)
+                          ? 'hdr-nav-active font-semibold'
+                          : 'font-medium opacity-80 hover:opacity-100')
+                      : (isActive(href)
+                          ? 'nav-link-active font-semibold text-foreground bg-secondary'
+                          : 'nav-link-inactive font-medium text-foreground-muted hover:text-foreground hover:bg-secondary/70')
+                  )}
+                  aria-current={isActive(href) ? 'page' : undefined}
+                >
+                  {icon && <Icon name={icon} size="xs" class="shrink-0 text-brand-600" />}
+                  {label}
+                </a>
+              )
             ))}
           </nav>
         ))
@@ -365,20 +417,46 @@ const buttonId = `${menuId}-button`;
             'space-y-1 py-4',
             isFloating ? 'px-4' : 'container'
           )}>
-            {navItems.map(({ label, href }) => (
-              <a
-                href={href.startsWith('#') && !isLandingPage ? `/${href}` : href}
-                class={cn(
-                  'mobile-nav-link block rounded-md px-3 py-2 text-sm',
-                  'transition-all duration-(--transition-fast)',
-                  isActive(href)
-                    ? 'mobile-nav-link-active bg-secondary text-foreground font-semibold'
-                    : 'mobile-nav-link-inactive text-foreground-muted hover:bg-secondary/70 hover:text-foreground font-medium'
-                )}
-                aria-current={isActive(href) ? 'page' : undefined}
-              >
-                {label}
-              </a>
+            {navItems.map(({ label, href, icon, children }) => (
+              children ? (
+                <div>
+                  <p class="flex items-center gap-1.5 px-3 pb-1 pt-2 text-xs font-semibold uppercase tracking-wider text-foreground-muted">
+                    {icon && <Icon name={icon} size="xs" class="shrink-0 text-brand-600" />}
+                    {label}
+                  </p>
+                  {children.map(child => (
+                    <a
+                      href={child.href}
+                      class={cn(
+                        'mobile-nav-link flex items-center gap-2 rounded-md px-3 py-2 pl-6 text-sm',
+                        'transition-all duration-(--transition-fast)',
+                        (currentPath === child.href || currentPath.startsWith(child.href + '/'))
+                          ? 'mobile-nav-link-active bg-secondary text-foreground font-semibold'
+                          : 'mobile-nav-link-inactive text-foreground-muted hover:bg-secondary/70 hover:text-foreground font-medium'
+                      )}
+                      aria-current={(currentPath === child.href || currentPath.startsWith(child.href + '/')) ? 'page' : undefined}
+                    >
+                      {child.icon && <Icon name={child.icon} size="xs" class="shrink-0 text-brand-600" />}
+                      {child.label}
+                    </a>
+                  ))}
+                </div>
+              ) : (
+                <a
+                  href={href.startsWith('#') && !isLandingPage ? `/${href}` : href}
+                  class={cn(
+                    'mobile-nav-link flex items-center gap-2 rounded-md px-3 py-2 text-sm',
+                    'transition-all duration-(--transition-fast)',
+                    isActive(href)
+                      ? 'mobile-nav-link-active bg-secondary text-foreground font-semibold'
+                      : 'mobile-nav-link-inactive text-foreground-muted hover:bg-secondary/70 hover:text-foreground font-medium'
+                  )}
+                  aria-current={isActive(href) ? 'page' : undefined}
+                >
+                  {icon && <Icon name={icon} size="xs" class="shrink-0 text-brand-600" />}
+                  {label}
+                </a>
+              )
             ))}
 
             {showCta && (

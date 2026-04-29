@@ -2,7 +2,9 @@
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import Breadcrumbs from '@/components/he/Breadcrumbs.astro';
 import { Icon } from 'astro-icon/components';
-import terms from '@/data/dictionary.json';
+import baseTerms from '@/data/dictionary.json';
+import extraTerms from '@/data/dictionary-extra.json';
+const terms = [...baseTerms, ...extraTerms].sort((a, b) => a.term.localeCompare(b.term));
 
 const letters = [...new Set(terms.map(t => t.term[0].toUpperCase()))].sort();
 const total = terms.length;
