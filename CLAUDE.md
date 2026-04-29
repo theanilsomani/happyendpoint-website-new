@@ -48,18 +48,24 @@ OpenAPI specs for the APIs live in `oas-docs/*.json`. Scalar docs are hosted sep
 
 `src/pages/` mixes hand-authored marketing pages (`index.astro`, `about.astro`, `why-happyendpoint.astro`, `use-cases.astro`, `contact.astro`, `privacy.astro`, `terms.astro`, `faq.astro`) with collection-driven dynamic routes:
 
-- `library/` -- APIs index (paginated, FilterPanel by platform/category) + `[slug]` detail (EntityHero with RapidAPI CTA, product details sidebar, features grid, EndpointTable if endpoints exist, FAQSection, PricingCard sidebar, related APIs)
-- `datasets/` -- datasets index (paginated, FilterPanel, FREE/FREE SAMPLE badges) + `[slug]` detail (EntityHero with dataset metrics, "Live Access" API link, features grid, FreeSampleBlock if freeSample exists, FAQSection, PricingCard sidebar, related datasets from same platform)
+- `library/` -- APIs index (paginated, FilterPanel by platform/category) + `[slug]` detail. The detail page uses a **single page-level two-column grid** (`lg:grid-cols-[1fr_300px]`): left column has the inlined hero (logo, title, tagline, "Get on RapidAPI" CTA) followed directly by Overview/Features/Endpoints/FAQ; right column is a `lg:sticky lg:top-24` sidebar with Product Details, Available Data (up to 2 datasets + "View all" link), and PricingCard. The PricingCard links to `{rapidApiUrl}/pricing` (not the base API URL). Do NOT use EntityHero's right slot on this page.
+- `datasets/` -- shows **all** published datasets (free and paid). Free datasets (`price === 'free'`) get a `'Free'` badge; paid datasets get no badge. No "FREE SAMPLE" badge concept. The `[slug]` detail CTA goes to `/contact` (not RapidAPI -- datasets are not on RapidAPI).
+- `dictionary/` -- index page (`/dictionary`) and detail pages (`/dictionary/[slug]`) driven by `src/data/dictionary.json` + `src/data/dictionary-extra.json` (merged at build time, ~155 terms). Each term has `slug`, `term`, `icon` (lucide short name), `category`, `shortDef`, `definition` (string[]), `relatedTerms`, `updatedAt`. Detail pages render `DefinedTerm` JSON-LD schema. Definition paragraphs support inline backtick spans rendered as `<code>` via `set:html` + a `renderPara()` helper.
 - `platforms/`, `categories/` -- index + `[slug]` detail
-- `free-datasets/` -- index only; shows datasets where `freeSample` exists OR `price === 'free'`; per-slug URLs redirect via `_redirects`
+- `free-datasets/` -- marketing/discovery page listing datasets where `freeSample` exists OR `price === 'free'`. No badges shown (everything listed is free). Per-slug URLs redirect via `_redirects`. The email-based download flow is **not yet implemented** -- free dataset CTAs currently send users to `/contact`.
 - `blog/[...slug].astro` -- blog router
 - `api/contact.ts`, `api/newsletter.ts` -- Resend-backed form endpoints
 
 Sitemap excludes `/search`, `/components`, `/projects` (see `astro.config.mjs`). `robots.txt`, `rss.xml`, `manifest.webmanifest`, and `favicon.svg` are generated from `*.ts` route files in `src/pages/`.
 
+### Navigation
+
+Navigation is driven by `src/config/nav.config.ts`. The `NavItem` type supports an optional `children` array for dropdown groups and an `icon` field (lucide short name -- the `Icon` wrapper at `@/components/ui/primitives/Icon/Icon.astro` auto-prefixes bare names with `lucide:`). Current top-level items: Library, Datasets, Resources (dropdown: Free Datasets, Dictionary, Blog), About, Contact. The **Footer** (`Footer.astro`) flattens items with children so all real page URLs appear as direct links -- never output a `href="#"` link in the footer.
+
 ### Components
 
 - `src/components/he/` -- **Happy Endpoint domain components** (EntityCard, EntityGrid, EntityHero, EndpointTable, FilterPanel, FreeSampleBlock, PlatformLogosStrip, PricingCard, FAQSection, ...). Use these for any platform/API/dataset UI.
+  - `PricingCard` accepts a `variant` prop (`'api'` default | `'dataset'`). The dataset variant shows contact-based copy and links to `/contact`; the API variant links to RapidAPI. Pass `isFree` for the dataset variant to adjust the CTA label.
 - `src/components/ui/` -- design-system primitives (form, data-display, feedback, overlay, primitives/Icon, marketing). Imported via barrel exports from `@/components/ui`.
 - `src/components/{layout,seo,blog,landing,patterns,hero,projects}/` -- upstream theme components.
 
@@ -106,6 +112,9 @@ If you touch the redirect logic, the failure mode is silent: `dist/_redirects` s
 - **Frontmatter is the source of truth** for content. Don't introduce config files that duplicate fields already in collection schemas.
 - **Don't import from `node_modules` paths** in app code (some `.claude/settings.local.json` permissions reference them -- those are debug-only).
 - **No em dashes in website copy** -- use a regular hyphen or reword instead. Em dashes read as AI-generated and hurt SEO. This applies to all content: MDX files, `.astro` templates, component strings, and any user-visible text. Never write `--` as a substitute em dash either; use a plain `-` or restructure the sentence.
+- **No inline quotes in YAML frontmatter list items** -- a feature list item like `- "Love It" label` will break the YAML parser. Either remove the quotes or wrap the entire item in single quotes: `- '"Love It" label'`.
+- **Datasets are not on RapidAPI** -- only APIs are sold on RapidAPI. Dataset CTAs always go to `/contact`. Never add a `rapidApiUrl`-style link to dataset pages.
+- **Dictionary data lives in JSON, not content collections** -- `src/data/dictionary.json` (base terms) and `src/data/dictionary-extra.json` (extra terms) are imported directly in the dictionary page files and merged at build time. Both files must be merged in `getStaticPaths()` as well as at module scope, because `getStaticPaths` cannot access module-level `const` variables.
 
 ## Deployment
 
