@@ -54,22 +54,19 @@ const id = `typing-${Math.random().toString(36).slice(2, 8)}`;
     if (!root) return;
     const textEl = root.querySelector('.typing-text');
 
-    // Lock the element width to the widest word so the layout never shifts
-    const measurer = document.createElement('span');
-    measurer.setAttribute('aria-hidden', 'true');
-    measurer.style.cssText = 'visibility:hidden;position:absolute;white-space:nowrap;pointer-events:none;';
+    // Lock the element width to the widest word so the layout never shifts.
+    // Use canvas.measureText instead of DOM offsetWidth to avoid forced reflows.
     const cs = getComputedStyle(root);
-    measurer.style.font = cs.font;
-    measurer.style.letterSpacing = cs.letterSpacing;
-    document.body.appendChild(measurer);
-
-    let maxWidth = 0;
-    for (const word of words) {
-      measurer.textContent = word + '|'; // include cursor character in measurement
-      maxWidth = Math.max(maxWidth, measurer.offsetWidth);
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      ctx.font = cs.font;
+      let maxWidth = 0;
+      for (const word of words) {
+        maxWidth = Math.max(maxWidth, ctx.measureText(word + '|').width);
+      }
+      root.style.minWidth = Math.ceil(maxWidth) + 'px';
     }
-    document.body.removeChild(measurer);
-    root.style.minWidth = maxWidth + 'px';
 
     let wordIndex = 0;
     let charIndex = 0;
