@@ -1,0 +1,1038 @@
+[
+  {
+    "slug": "api",
+    "term": "API",
+    "icon": "lucide:plug",
+    "category": "api-fundamentals",
+    "shortDef": "What is an API?",
+    "definition": [
+      "An API (Application Programming Interface) is a set of rules and protocols that allows one software application to communicate with another. APIs define the methods and data formats available so developers can request and exchange information between systems without knowing the internals of either side.",
+      "In practice, APIs power most of the modern web. When you search properties on a real estate app, check hotel prices on a travel site, or load product details on an e-commerce platform, an API is handling the data exchange behind the scenes.",
+      "For developers, APIs replace the need to build every data source from scratch. Instead of scraping websites or maintaining proprietary data pipelines, you subscribe to an API that delivers structured, reliable data on demand."
+    ],
+    "relatedTerms": ["rest-api", "endpoint", "api-key"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "rest-api",
+    "term": "REST API",
+    "icon": "lucide:globe",
+    "category": "api-fundamentals",
+    "shortDef": "What is a REST API?",
+    "definition": [
+      "A REST API (Representational State Transfer API) is an API that follows the REST architectural style, using standard HTTP methods and stateless communication between client and server. REST is the dominant standard for web APIs.",
+      "REST APIs use familiar HTTP verbs: GET to retrieve data, POST to create, PUT/PATCH to update, and DELETE to remove. Each resource has a unique URL, and all necessary information is passed in the request itself without relying on server-side session state.",
+      "Virtually all modern data APIs - including all HappyEndpoint APIs - are RESTful. This makes them compatible with every HTTP client, language, and framework without any special protocol knowledge."
+    ],
+    "relatedTerms": ["api", "endpoint", "http-methods"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "endpoint",
+    "term": "API Endpoint",
+    "icon": "lucide:link",
+    "category": "api-fundamentals",
+    "shortDef": "What is an API endpoint?",
+    "definition": [
+      "An API endpoint is a specific URL that accepts requests and returns a defined type of data. Each endpoint corresponds to one action or resource - for example, `/product-search` returns product listings while `/price-history` returns historical pricing for a specific product.",
+      "Well-designed APIs organize endpoints so developers can intuit what each one does from the URL. Endpoints accept parameters in the URL, query string, or request body to customize the data returned.",
+      "When evaluating an API, reviewing the endpoint list is the fastest way to understand its capabilities. Each endpoint in the documentation specifies required parameters, optional filters, and the structure of the response it returns."
+    ],
+    "relatedTerms": ["api", "rest-api", "query-parameters"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "api-key",
+    "term": "API Key",
+    "icon": "lucide:key",
+    "category": "api-fundamentals",
+    "shortDef": "What is an API key?",
+    "definition": [
+      "An API key is a unique identifier issued to a developer or application that grants access to an API. It functions like a password - the API server checks the key on every request to verify the caller is authorized before returning data.",
+      "API keys are typically passed in HTTP request headers. On RapidAPI, the standard header is `X-RapidAPI-Key`. Keys should be stored securely in environment variables rather than hardcoded in source code, since an exposed key lets others consume your quota.",
+      "Most API platforms let you regenerate a key if it is compromised, and some support multiple keys for different applications or environments - for example, a separate key for development and production."
+    ],
+    "relatedTerms": ["authentication", "bearer-token", "oauth"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "rate-limiting",
+    "term": "Rate Limiting",
+    "icon": "lucide:gauge",
+    "category": "api-fundamentals",
+    "shortDef": "What is rate limiting?",
+    "definition": [
+      "Rate limiting is a control applied by API providers to restrict how many requests a client can make within a given time window - typically expressed as requests per second, per minute, or per month.",
+      "When a client exceeds its limit, the API returns a `429 Too Many Requests` HTTP status code. The response often includes a `Retry-After` header indicating when the client can try again.",
+      "When building applications that call APIs frequently - such as price trackers or market monitors - design your code to respect rate limits, implement exponential backoff on 429 errors, and cache responses to reduce redundant requests."
+    ],
+    "relatedTerms": ["api-subscription", "caching", "status-codes"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "authentication",
+    "term": "API Authentication",
+    "icon": "lucide:shield",
+    "category": "api-fundamentals",
+    "shortDef": "What is API authentication?",
+    "definition": [
+      "API authentication is the process of verifying the identity of a client before granting access to an API. Without authentication, any request would be accepted regardless of origin, making usage tracking and access control impossible.",
+      "Common methods include API keys (simple, per-request header), OAuth 2.0 (delegated authorization with access tokens), and JWT tokens which encode identity and permissions. Each method has different trade-offs in security and complexity.",
+      "On RapidAPI, all authentication uses API keys. When you subscribe to an API, you receive a key that authenticates every request and allows the platform to track usage against your plan quota."
+    ],
+    "relatedTerms": ["api-key", "oauth", "bearer-token"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "pagination",
+    "term": "Pagination",
+    "icon": "lucide:list",
+    "category": "api-fundamentals",
+    "shortDef": "What is pagination?",
+    "definition": [
+      "Pagination is the technique of splitting large API result sets into smaller chunks delivered across multiple responses. Rather than returning thousands of records in a single call, the API returns a defined number per page along with metadata to request the next page.",
+      "Common pagination mechanisms include offset-based (using `page` and `limit` parameters), cursor-based (using an opaque token pointing to the next position), and keyset-based (using the last seen record's key to fetch the next batch).",
+      "Cursor-based pagination is preferred for large, frequently-changing datasets because it avoids the duplicate and skipped record issues that affect offset pagination when data is added or removed between pages."
+    ],
+    "relatedTerms": ["query-parameters", "api-response-format", "endpoint"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "webhook",
+    "term": "Webhook",
+    "icon": "lucide:zap",
+    "category": "api-fundamentals",
+    "shortDef": "What is a webhook?",
+    "definition": [
+      "A webhook is a mechanism that allows an API or service to push data to your application automatically when a specific event occurs, rather than requiring you to poll an endpoint repeatedly.",
+      "When an event triggers, the server sends an HTTP POST request to a URL you have registered. Webhooks are the foundation of event-driven architectures - instead of checking every minute whether a property price changed, a webhook delivers the update instantly when it happens.",
+      "Implementing a webhook listener requires exposing a public URL endpoint that accepts POST requests, validates the payload, and processes the event. Most webhook providers include a signature in request headers so you can verify authenticity."
+    ],
+    "relatedTerms": ["api", "real-time-data", "data-pipeline"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "json",
+    "term": "JSON",
+    "icon": "lucide:braces",
+    "category": "api-fundamentals",
+    "shortDef": "What is JSON?",
+    "definition": [
+      "JSON (JavaScript Object Notation) is a lightweight, text-based data format for representing structured data as key-value pairs and arrays. Despite originating from JavaScript, it is language-agnostic and supported by virtually every programming language.",
+      "In API development, JSON is the standard response format. An API returning a property listing might send `{\"price\": 500000, \"bedrooms\": 3, \"location\": \"Dubai Marina\"}` - a JSON object any client can parse and use.",
+      "JSON is preferred over older formats like XML because it is more compact, easier to read, and natively supported in JavaScript. Most modern APIs exclusively use JSON for both requests and responses."
+    ],
+    "relatedTerms": ["api-response-format", "structured-data", "api"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "http-methods",
+    "term": "HTTP Methods",
+    "icon": "lucide:arrow-right-left",
+    "category": "api-fundamentals",
+    "shortDef": "What are HTTP methods?",
+    "definition": [
+      "HTTP methods define what type of operation a client wants to perform when making a request. The four primary methods are GET (retrieve data), POST (create a resource), PUT or PATCH (update a resource), and DELETE (remove a resource).",
+      "For read-only data APIs - those returning property listings, product prices, or hotel availability - GET is almost exclusively used. GET requests pass parameters in the URL query string and are safe to repeat without side effects.",
+      "Understanding HTTP methods matters when reading error messages. A `405 Method Not Allowed` error means you are using the wrong HTTP method for that endpoint - for example, sending a POST to an endpoint that only accepts GET."
+    ],
+    "relatedTerms": ["rest-api", "endpoint", "status-codes"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "api-versioning",
+    "term": "API Versioning",
+    "icon": "lucide:git-branch",
+    "category": "api-fundamentals",
+    "shortDef": "What is API versioning?",
+    "definition": [
+      "API versioning is the practice of managing changes to an API without breaking existing integrations. When an API evolves - adding endpoints, changing response formats, or removing deprecated fields - versioning lets old and new clients coexist.",
+      "The most common strategy embeds the version in the URL path, such as `/v1/product-search` and `/v2/product-search`. Header-based and query parameter versioning also exist but are less common.",
+      "When an API you depend on releases a new version, read the changelog before upgrading. Breaking changes - renamed fields, changed data types - require updates to your parsing code. Most APIs maintain previous versions for a deprecation period."
+    ],
+    "relatedTerms": ["api-documentation", "api", "endpoint"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "sdk",
+    "term": "SDK",
+    "icon": "lucide:terminal",
+    "category": "api-fundamentals",
+    "shortDef": "What is an SDK?",
+    "definition": [
+      "An SDK (Software Development Kit) is a collection of libraries, tools, and documentation that simplifies integration with an API using a specific programming language. Rather than writing raw HTTP requests, developers use SDK methods that handle authentication, formatting, and response parsing automatically.",
+      "For example, a JavaScript SDK for a real estate API might expose a function like `searchProperties({ city: 'Dubai', minBedrooms: 2 })` that internally constructs the correct HTTP GET request, adds your API key, and returns a parsed JavaScript object.",
+      "SDKs reduce integration time and lower implementation errors. When an API changes, updating the SDK version is simpler than manually updating every HTTP call in your codebase."
+    ],
+    "relatedTerms": ["api", "api-documentation", "authentication"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "openapi",
+    "term": "OpenAPI Specification",
+    "icon": "lucide:file-text",
+    "category": "api-fundamentals",
+    "shortDef": "What is the OpenAPI Specification?",
+    "definition": [
+      "The OpenAPI Specification (OAS, formerly Swagger) is a standard format for describing REST APIs in a machine-readable document. An OpenAPI spec defines all available endpoints, request parameters, response schemas, authentication methods, and error codes.",
+      "Tools can automatically generate interactive documentation, client SDKs in multiple languages, server stubs, and automated tests from an OpenAPI spec - making the spec a single source of truth for everything developers need to integrate.",
+      "For developers evaluating APIs, an available OpenAPI spec is a strong signal of quality. It means the API contract is formally documented, the provider is serious about developer experience, and tooling support is available out of the box."
+    ],
+    "relatedTerms": ["api-documentation", "sdk", "endpoint"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "api-latency",
+    "term": "API Latency",
+    "icon": "lucide:activity",
+    "category": "api-fundamentals",
+    "shortDef": "What is API latency?",
+    "definition": [
+      "API latency is the time elapsed between sending a request and receiving the first byte of the response. It is measured in milliseconds and is a critical performance metric for applications where user experience depends on fast data retrieval.",
+      "Latency is affected by physical distance between client and server, complexity of database queries, network congestion, and processing time. CDNs, edge deployments, and caching are common strategies for reducing latency.",
+      "For real-time applications like property search interfaces or live price comparison tools, high latency degrades user experience. When selecting an API, look for documented response time benchmarks and test latency from the regions where your users are located."
+    ],
+    "relatedTerms": ["caching", "real-time-data", "api"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "bearer-token",
+    "term": "Bearer Token",
+    "icon": "lucide:lock",
+    "category": "api-fundamentals",
+    "shortDef": "What is a bearer token?",
+    "definition": [
+      "A bearer token is a security credential used to authenticate API requests, passed in the HTTP Authorization header as `Authorization: Bearer <token>`. Any request including a valid bearer token is granted the access associated with it.",
+      "Bearer tokens are commonly issued through OAuth 2.0 flows, where a client exchanges credentials for a short-lived access token. Unlike long-lived API keys, bearer tokens typically expire after minutes or hours and require periodic renewal through a refresh token.",
+      "Because bearer tokens grant access to whoever holds them, they must be transmitted over HTTPS and stored securely. Never log bearer tokens, store them in browser localStorage accessible to JavaScript, or include them in client-side source code."
+    ],
+    "relatedTerms": ["authentication", "oauth", "api-key"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "cors",
+    "term": "CORS",
+    "icon": "lucide:globe",
+    "category": "api-fundamentals",
+    "shortDef": "What is CORS?",
+    "definition": [
+      "CORS (Cross-Origin Resource Sharing) is a browser security mechanism that controls which domains can make HTTP requests to a server from a web page. By default, browsers block requests from one origin to a different origin.",
+      "API servers explicitly allow cross-origin requests by including CORS headers. The `Access-Control-Allow-Origin` header specifies which origins can make requests - either a specific domain or `*` for any domain.",
+      "CORS restrictions only apply in browser environments, not in server-side code. If you encounter CORS errors building a frontend app, the solution is typically to proxy API calls through your own server, or confirm with the API provider that your domain is allowlisted."
+    ],
+    "relatedTerms": ["authentication", "api", "rest-api"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "oauth",
+    "term": "OAuth 2.0",
+    "icon": "lucide:shield",
+    "category": "api-fundamentals",
+    "shortDef": "What is OAuth 2.0?",
+    "definition": [
+      "OAuth 2.0 is an authorization framework that allows applications to request limited access to a user's account on another service without requiring the user's password. The user grants permission through the service's own interface, and the service issues an access token to the requesting application.",
+      "The most familiar use is 'Sign in with Google' or 'Connect with GitHub'. The app redirects the user to Google, the user approves the permissions, and Google redirects back with an authorization code the app exchanges for an access token.",
+      "OAuth 2.0 is preferred when an API needs to act on behalf of a specific user. API keys are simpler for server-to-server integrations where no user delegation is needed."
+    ],
+    "relatedTerms": ["bearer-token", "authentication", "api-key"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "status-codes",
+    "term": "HTTP Status Codes",
+    "icon": "lucide:check-circle",
+    "category": "api-fundamentals",
+    "shortDef": "What are HTTP status codes?",
+    "definition": [
+      "HTTP status codes are three-digit numbers returned in every API response to indicate the outcome of the request. They are grouped into classes: 2xx (success), 4xx (client errors), and 5xx (server errors).",
+      "The most important codes for API integrations: 200 (success), 400 (bad request - check parameters), 401 (unauthorized - check API key), 404 (not found), 429 (rate limit exceeded), and 500 (server error).",
+      "Robust API integrations check status codes on every response rather than assuming success. Handling 429 with retry logic, surfacing 401 as a misconfiguration, and logging 500 errors for investigation are the building blocks of a resilient API client."
+    ],
+    "relatedTerms": ["rate-limiting", "api-key", "http-methods"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "query-parameters",
+    "term": "Query Parameters",
+    "icon": "lucide:filter",
+    "category": "api-fundamentals",
+    "shortDef": "What are query parameters?",
+    "definition": [
+      "Query parameters are key-value pairs appended to a URL to filter, sort, or configure the data returned by an API endpoint. They appear after a `?` in the URL, separated by `&` characters - for example `/product-search?keyword=sofa&sort=price_asc&region=usa`.",
+      "Query parameters are the primary mechanism for customizing GET requests without changing the endpoint path. Common uses include keyword search terms, geographic filters, price ranges, sort order, page number, and results per page.",
+      "Required parameters must be included for the endpoint to function - such as a `productId` for a product details endpoint. Optional parameters add filtering or customization but the endpoint will return results without them."
+    ],
+    "relatedTerms": ["endpoint", "pagination", "api-response-format"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "api-response-format",
+    "term": "API Response Format",
+    "icon": "lucide:code-2",
+    "category": "api-fundamentals",
+    "shortDef": "What is an API response format?",
+    "definition": [
+      "An API response format defines the structure of data returned by an API - the envelope around the payload (e.g., `{\"data\": [...], \"total\": 100, \"page\": 1}`), field names, data types, and nested object structures.",
+      "Consistent response formats make it easier to write robust parsing code. A well-designed API returns the same envelope for all successful responses, making it simple to write generic handling logic that extracts the payload regardless of which endpoint was called.",
+      "Common patterns include a `data` or `results` key for the payload, metadata at the top level, and errors in a structured `error` object with a `message` and `code`. Understanding the response format is the first step to writing reliable deserialization code."
+    ],
+    "relatedTerms": ["json", "endpoint", "api-documentation"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "api-subscription",
+    "term": "API Subscription Plan",
+    "icon": "lucide:credit-card",
+    "category": "api-fundamentals",
+    "shortDef": "What is an API subscription plan?",
+    "definition": [
+      "An API subscription plan is a billing tier on an API marketplace that grants a developer access to an API under defined conditions - typically a monthly quota of requests and a monthly price. Most APIs offer a free tier for testing and paid tiers for higher usage.",
+      "On RapidAPI, subscribing to a plan is instantaneous - select a tier, confirm billing details, and your API key is immediately active. Plans are structured around request quotas, with higher tiers offering more requests per month at a proportionally higher price.",
+      "When selecting a plan, estimate your monthly request volume based on your use case. For price tracking that polls hourly, your volume is (number of products) x 24 x 30. For property search apps, it depends on user traffic and API calls per search."
+    ],
+    "relatedTerms": ["api-key", "rate-limiting", "api-marketplace"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "api-documentation",
+    "term": "API Documentation",
+    "icon": "lucide:book-open",
+    "category": "api-fundamentals",
+    "shortDef": "What is API documentation?",
+    "definition": [
+      "API documentation is the technical reference that describes everything a developer needs to use an API - available endpoints, required and optional parameters, request and response formats, authentication methods, error codes, and rate limits.",
+      "Good documentation significantly reduces integration time and support burden. The best API docs include interactive explorers where you can make real API calls from the browser, code snippets in multiple languages, and detailed explanations of each response field.",
+      "For HappyEndpoint APIs, full documentation is available at docs.happyendpoint.com including OpenAPI specs, endpoint references, and integration guides. RapidAPI also hosts endpoint-level documentation for every API in its marketplace."
+    ],
+    "relatedTerms": ["openapi", "sdk", "endpoint"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "api-sandbox",
+    "term": "API Sandbox",
+    "icon": "lucide:box",
+    "category": "api-fundamentals",
+    "shortDef": "What is an API sandbox?",
+    "definition": [
+      "An API sandbox is a testing environment that mimics a production API without accessing live data or incurring production costs. Sandboxes return mock or sample responses, allowing developers to build and test integrations before subscribing to a paid plan.",
+      "Sandbox environments are useful for testing error handling - you can deliberately trigger 401, 404, and 429 responses to verify your code handles them correctly without consuming production quota.",
+      "Testing against a sandbox before going live reduces the risk of discovering bugs in production and avoids wasting API quota on broken requests while iterating on your integration code."
+    ],
+    "relatedTerms": ["api", "api-subscription", "api-key"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "api-marketplace",
+    "term": "API Marketplace",
+    "icon": "lucide:store",
+    "category": "api-fundamentals",
+    "shortDef": "What is an API marketplace?",
+    "definition": [
+      "An API marketplace is a platform where API providers publish their APIs and developers discover, test, and subscribe to them. Marketplaces centralize authentication, billing, and usage analytics so developers can integrate multiple APIs without managing separate accounts per provider.",
+      "RapidAPI is the world's largest API marketplace, hosting thousands of APIs across data, finance, travel, real estate, and retail. All HappyEndpoint APIs are on RapidAPI - giving developers one account, one billing setup, and one API key infrastructure across all HappyEndpoint products.",
+      "For API providers, marketplaces handle distribution, discovery, and payment processing. For developers, they provide a consistent integration experience and the ability to compare competing APIs side by side before committing to a subscription."
+    ],
+    "relatedTerms": ["api-subscription", "rapidapi", "api-key"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "dataset",
+    "term": "Dataset",
+    "icon": "lucide:database",
+    "category": "data-concepts",
+    "shortDef": "What is a dataset?",
+    "definition": [
+      "A dataset is a structured collection of data organized for a specific purpose and delivered as a file or set of files, rather than via real-time API calls. Datasets contain a snapshot of data at a point in time - all active property listings in a city, a complete product catalog, or historical sold transaction records.",
+      "Datasets are the right choice when you need large volumes of data for offline analysis, machine learning model training, database population, or market research. They are typically available in CSV, JSON, or Parquet format and downloaded once or refreshed periodically.",
+      "The key difference between a dataset and an API is delivery model. An API returns live data on demand; a dataset is a bulk file you download and work with locally. Many use cases benefit from both: a dataset to initialize your database and an API to keep it current."
+    ],
+    "relatedTerms": ["real-time-data", "csv", "historical-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "real-time-data",
+    "term": "Real-time Data",
+    "icon": "lucide:zap",
+    "category": "data-concepts",
+    "shortDef": "What is real-time data?",
+    "definition": [
+      "Real-time data is information delivered with minimal delay between when an event occurs and when it becomes available to your application. APIs serving real-time data reflect the current state of the source system at the moment the request is made, not a cached or pre-processed snapshot.",
+      "Examples include current hotel room pricing, active property listings with up-to-the-hour status, live product prices and stock levels, and today's financial market quotes. Real-time data enables decisions based on the current state of the world, not yesterday's.",
+      "Real-time data delivery requires low-latency infrastructure and fresh data pipelines. For price comparison engines or property search portals, real-time APIs are non-negotiable - showing a stale price can mislead users and damage trust."
+    ],
+    "relatedTerms": ["api", "data-freshness", "historical-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "historical-data",
+    "term": "Historical Data",
+    "icon": "lucide:clock",
+    "category": "data-concepts",
+    "shortDef": "What is historical data?",
+    "definition": [
+      "Historical data is a record of information at past points in time, preserved for retrospective analysis, trend detection, forecasting, and model training. Unlike live data, historical data captures the state of something - a price, a market, a listing - at a specific past date or over a time range.",
+      "In real estate, historical data includes sold transaction records, rental prices over time, and listing price changes for properties. In retail, it covers price evolution, seasonal patterns, and historical availability. In finance, it includes daily price series for securities going back years.",
+      "Access to historical data is a competitive advantage. Building it yourself by polling an API over time is one approach; purchasing a pre-built historical dataset is faster and more complete - especially for data that predates your integration going live."
+    ],
+    "relatedTerms": ["dataset", "time-series-data", "data-freshness"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-freshness",
+    "term": "Data Freshness",
+    "icon": "lucide:refresh-cw",
+    "category": "data-concepts",
+    "shortDef": "What is data freshness?",
+    "definition": [
+      "Data freshness describes how current or up-to-date data is relative to the real-world state it represents. Fresh data closely mirrors reality; stale data may reflect a state that no longer exists.",
+      "Different use cases have different freshness requirements. A live price comparison tool needs prices fresh within minutes. A market trend report can tolerate weekly data. Matching your data source's freshness to your application's needs is a critical design decision.",
+      "APIs that serve live data on every request provide maximum freshness. Datasets refreshed on a schedule have lower freshness - the trade-off is lower cost and better performance for bulk analysis where real-time accuracy is not required."
+    ],
+    "relatedTerms": ["real-time-data", "dataset", "historical-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "structured-data",
+    "term": "Structured Data",
+    "icon": "lucide:layout",
+    "category": "data-concepts",
+    "shortDef": "What is structured data?",
+    "definition": [
+      "Structured data is information organized according to a predefined schema with consistent fields, data types, and relationships between records. A property listing with fields like `price`, `bedrooms`, `location`, and `sqft` is structured data - each field has a defined type and meaning.",
+      "APIs return structured data in formats like JSON, enabling clients to reliably extract and use specific fields. Structured data is the foundation of databases, analytics systems, and machine learning pipelines - all of which require data that conforms to a known schema.",
+      "Contrast with unstructured data (free text, images, documents) which has no predefined schema. Property descriptions or product reviews embedded in API responses are unstructured data within an otherwise structured response."
+    ],
+    "relatedTerms": ["json", "data-schema", "unstructured-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "unstructured-data",
+    "term": "Unstructured Data",
+    "icon": "lucide:layers",
+    "category": "data-concepts",
+    "shortDef": "What is unstructured data?",
+    "definition": [
+      "Unstructured data is information without a predefined format or schema. Examples include free-text product descriptions, customer reviews, property listing copy, images, PDFs, and audio recordings. Unlike structured data, you cannot directly query a specific field - the information must be extracted or processed first.",
+      "APIs that include user-generated content - product reviews or property descriptions - return unstructured text fields alongside structured metadata. Analyzing this content for sentiment, keyword extraction, or summarization typically requires natural language processing (NLP) or AI models.",
+      "The boundary between structured and unstructured data is not always sharp. A review dataset might have a structured `rating` field alongside an unstructured `reviewText` field, requiring different processing approaches for each."
+    ],
+    "relatedTerms": ["structured-data", "data-enrichment", "data-quality"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-enrichment",
+    "term": "Data Enrichment",
+    "icon": "lucide:plus-circle",
+    "category": "data-concepts",
+    "shortDef": "What is data enrichment?",
+    "definition": [
+      "Data enrichment is the process of augmenting an existing dataset or record by adding information from external sources. The goal is to make data more complete, contextual, and useful than the raw source alone provides.",
+      "Common examples include enriching property listings with neighborhood walkability scores, school district ratings, or nearby amenity counts. Enriching e-commerce product records with competitor pricing adds a dimension not present in the original catalog data.",
+      "APIs are the primary mechanism for data enrichment - each API call adds one or more data points to a record in your system. Building an enrichment pipeline means identifying which external sources add the most value, then calling the relevant APIs for each record that needs enrichment."
+    ],
+    "relatedTerms": ["data-pipeline", "api", "dataset"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "csv",
+    "term": "CSV",
+    "icon": "lucide:file-text",
+    "category": "data-concepts",
+    "shortDef": "What is CSV?",
+    "definition": [
+      "CSV (Comma-Separated Values) is a plain-text file format where each row represents a record and columns are separated by commas. A CSV file is essentially a table - the first row typically contains column headers and each subsequent row is one data record.",
+      "CSV is one of the most universally supported data formats. It can be opened directly in spreadsheet tools like Excel or Google Sheets, imported into virtually any database, and processed by every major programming language.",
+      "HappyEndpoint datasets are available in CSV alongside JSON and Parquet. CSV is the right choice if you want to analyze data in a spreadsheet, import it into a BI tool, or use a database that has a CSV import feature."
+    ],
+    "relatedTerms": ["dataset", "data-schema", "historical-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "etl",
+    "term": "ETL",
+    "icon": "lucide:repeat",
+    "category": "data-concepts",
+    "shortDef": "What is ETL?",
+    "definition": [
+      "ETL stands for Extract, Transform, Load - the three-phase process of moving data from source systems into a destination like a data warehouse, database, or analytics platform.",
+      "The Extract phase fetches raw data from sources - APIs, databases, or files. The Transform phase cleans, normalizes, and reshapes the data to match the destination schema. The Load phase writes the transformed data to the destination.",
+      "For developers working with APIs and datasets, ETL thinking helps structure integration. Calling a property API is the extract; normalizing field names and filtering inactive listings is the transform; inserting records into your database is the load."
+    ],
+    "relatedTerms": ["data-pipeline", "data-normalization", "dataset"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-pipeline",
+    "term": "Data Pipeline",
+    "icon": "lucide:workflow",
+    "category": "data-concepts",
+    "shortDef": "What is a data pipeline?",
+    "definition": [
+      "A data pipeline is an automated sequence of steps that moves and processes data from one or more sources to a destination, running on a schedule or triggered by events. Pipelines handle data movement so applications can rely on fresh, processed data without manual intervention.",
+      "A typical pipeline ingesting property data might call a search API every hour, compare results against the previous snapshot to identify new listings and price changes, normalize the responses, and insert updates into a database - all automatically.",
+      "The key attributes of a healthy pipeline are reliability (runs successfully every time), observability (failures are logged and alerted), and idempotency (running the same pipeline twice does not create duplicates). Building these properties in from the start saves significant debugging effort later."
+    ],
+    "relatedTerms": ["etl", "data-normalization", "real-time-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-schema",
+    "term": "Data Schema",
+    "icon": "lucide:table-2",
+    "category": "data-concepts",
+    "shortDef": "What is a data schema?",
+    "definition": [
+      "A data schema defines the structure of a dataset or API response - field names, data types (string, integer, boolean, timestamp), which fields are required vs optional, and how nested objects and arrays are organized.",
+      "When integrating with an API, the response schema tells you exactly what to expect. Knowing that `price` is always a number, `status` is one of a fixed set of strings, and `photos` is an array of URL strings lets you write reliable parsing and storage code.",
+      "Well-documented schemas are a hallmark of high-quality APIs. Schema changes that remove or rename fields are breaking changes that require careful versioning and migration planning."
+    ],
+    "relatedTerms": ["structured-data", "openapi", "api-response-format"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-quality",
+    "term": "Data Quality",
+    "icon": "lucide:check-circle",
+    "category": "data-concepts",
+    "shortDef": "What is data quality?",
+    "definition": [
+      "Data quality refers to how well data fulfills its intended use based on dimensions like accuracy (does it reflect reality?), completeness (are required fields populated?), consistency (is the same concept represented the same way across records?), and timeliness (is it current enough?).",
+      "Low data quality in a price comparison app might mean showing outdated prices that differ from what the retailer actually charges. In a property listing app, it might mean displaying square footage in inconsistent units or showing listings that have already sold.",
+      "API providers that invest in data quality implement validation at ingestion, deduplication, anomaly detection, and normalization pipelines. When evaluating an API for production use, look for documentation on quality practices, freshness guarantees, and how errors are surfaced."
+    ],
+    "relatedTerms": ["data-freshness", "structured-data", "data-normalization"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-aggregation",
+    "term": "Data Aggregation",
+    "icon": "lucide:layers",
+    "category": "data-concepts",
+    "shortDef": "What is data aggregation?",
+    "definition": [
+      "Data aggregation is the process of combining data from multiple sources, records, or time periods into a unified view or summary. It can mean combining raw records (aggregating product prices from multiple retailers) or computing statistical summaries (average price per neighborhood, median days on market by property type).",
+      "In retail, an API that returns results from multiple stores in a single query is performing aggregation on your behalf - one of the primary value propositions of multi-store APIs. In real estate, aggregating sold transactions over time yields market trend metrics.",
+      "Pre-aggregated data from an API is far more convenient than raw records you must aggregate yourself. When evaluating APIs, note whether you need to aggregate responses yourself or whether the API provides summary endpoints that return computed metrics directly."
+    ],
+    "relatedTerms": ["cross-platform-search", "data-pipeline", "market-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-normalization",
+    "term": "Data Normalization",
+    "icon": "lucide:align-justify",
+    "category": "data-concepts",
+    "shortDef": "What is data normalization?",
+    "definition": [
+      "Data normalization is the process of converting data from different sources or formats into a consistent representation, removing inconsistencies that prevent data from being compared or processed together.",
+      "Common normalization tasks include standardizing date formats (all dates as ISO 8601 strings), unifying currency representation (all prices as numbers in a single currency), resolving naming differences (one source calls it 'sqft', another calls it 'area'), and converting units.",
+      "When building systems that ingest data from multiple API sources, normalization is a required ETL step. Defining a canonical schema before writing your pipeline makes normalization a deliberate, documented step rather than an afterthought."
+    ],
+    "relatedTerms": ["etl", "data-pipeline", "data-schema"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "data-scraping",
+    "term": "Data Scraping",
+    "icon": "lucide:globe",
+    "category": "data-concepts",
+    "shortDef": "What is data scraping?",
+    "definition": [
+      "Data scraping (or web scraping) is the automated extraction of data from websites by parsing their HTML or intercepting network traffic. A scraper loads a web page, locates data elements in the HTML structure, and extracts information into a structured format.",
+      "Scraping has significant drawbacks: scrapers break whenever the website's HTML changes, are often blocked by anti-bot measures, may violate the website's terms of service, and require ongoing maintenance to stay functional.",
+      "Data APIs are the preferred alternative. An API provides the same underlying data in a structured, documented format that does not break when the website redesigns its frontend. For production applications, APIs offer reliability, legal clarity, and developer support that scrapers cannot match."
+    ],
+    "relatedTerms": ["api", "real-time-data", "dataset"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "caching",
+    "term": "API Caching",
+    "icon": "lucide:server",
+    "category": "data-concepts",
+    "shortDef": "What is API caching?",
+    "definition": [
+      "API caching is the practice of storing a response temporarily so that subsequent identical requests can be served from the cached copy rather than triggering a new API call. Caching reduces request counts, lowers costs, and decreases response time for end users.",
+      "Cache TTL (time-to-live) determines how long a cached response is valid. A product catalog might be cached for an hour; a live hotel availability search might be cached for 30 seconds to balance freshness with performance.",
+      "Caching is especially important for high-traffic applications where popular queries are made simultaneously by many users. Caching at the application layer (an in-memory store like Redis) or at the CDN layer can dramatically reduce API request volume without degrading user experience."
+    ],
+    "relatedTerms": ["rate-limiting", "api-latency", "real-time-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "idempotency",
+    "term": "Idempotency",
+    "icon": "lucide:repeat",
+    "category": "data-concepts",
+    "shortDef": "What is idempotency?",
+    "definition": [
+      "Idempotency is the property of an operation where performing it multiple times produces the same result as performing it once. In API design, GET requests are inherently idempotent - fetching a product listing twice gives the same result as fetching it once.",
+      "Idempotency matters most when building retry logic. If a request times out, you cannot know whether the server received and processed it. For idempotent operations, retrying is safe because the duplicate request will not cause a duplicate side effect.",
+      "APIs that support state-changing operations often provide idempotency keys - a client-generated unique identifier in the request header that the server uses to detect and reject duplicate submissions, making inherently non-idempotent operations safe to retry."
+    ],
+    "relatedTerms": ["data-pipeline", "api", "status-codes"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "price-history",
+    "term": "Price History",
+    "icon": "lucide:trending-up",
+    "category": "e-commerce",
+    "shortDef": "What is price history?",
+    "definition": [
+      "Price history is a time-series record of how the price of a product has changed over time. It captures the sequence of price changes - including sale prices, promotional discounts, and regular adjustments - allowing consumers and analysts to see whether a current price represents a genuine discount.",
+      "For e-commerce applications, price history data is the foundation of deal alert tools, browser extensions that show whether a price is at its historical low, and price trend charts that help users decide when to buy.",
+      "APIs that expose price history typically return a time-indexed array of price points with optional metadata like the date of change, promotion type, and the store or region the price applies to. The depth of history available varies by API and subscription tier."
+    ],
+    "relatedTerms": ["price-tracking", "time-series-data", "dynamic-pricing"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "price-tracking",
+    "term": "Price Tracking",
+    "icon": "lucide:bar-chart-2",
+    "category": "e-commerce",
+    "shortDef": "What is price tracking?",
+    "definition": [
+      "Price tracking is the automated monitoring of a product's price over time, typically to alert users when prices drop below a target threshold. A price tracker polls price APIs periodically, stores the retrieved prices, compares them against previous values, and triggers notifications when a change is detected.",
+      "Building a price tracker requires: a product price API to retrieve current prices, a data store to record price history, a comparison engine to detect changes, and a notification system to alert users. Polling frequency depends on how quickly prices change in your target category.",
+      "Price tracking is one of the highest-value use cases for retail data APIs. Consumers consistently report that knowing a product's price history helps them decide when to buy. Products that appear discounted but have never sold for more are a common frustration that price tracking exposes."
+    ],
+    "relatedTerms": ["price-history", "deal-discovery", "inventory-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "price-comparison",
+    "term": "Price Comparison",
+    "icon": "lucide:arrow-right-left",
+    "category": "e-commerce",
+    "shortDef": "What is price comparison?",
+    "definition": [
+      "Price comparison is the aggregation of pricing data for the same or similar products from multiple retailers, presented together so consumers or analysts can identify the lowest available price without visiting each retailer individually.",
+      "Building a price comparison feature requires an API that covers multiple stores in a single response, or separate integrations per retailer combined into a unified view. The Klarna Ecom API, for example, returns results from multiple retailers including Amazon, Walmart, and Best Buy in a single query.",
+      "Effective price comparison surfaces not just current price but also normalized value - factoring in shipping costs, delivery time, and seller ratings. Price alone is rarely sufficient for a genuinely useful comparison."
+    ],
+    "relatedTerms": ["cross-platform-search", "price-history", "product-feed"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "sku",
+    "term": "SKU",
+    "icon": "lucide:tag",
+    "category": "e-commerce",
+    "shortDef": "What is a SKU?",
+    "definition": [
+      "A SKU (Stock Keeping Unit) is a unique alphanumeric identifier assigned to a specific product variant in a retailer's catalog. Each distinct combination of product, size, color, and other attributes gets its own SKU, allowing inventory systems to track stock levels and sales at the variant level.",
+      "In retail data APIs, SKUs are used to precisely identify the exact product you want details for. A product search might return a general product card, but the product detail endpoint typically requires a SKU to return variant-specific pricing and stock status.",
+      "SKUs are retailer-specific - the same physical product will have different SKUs at Target vs. Walmart vs. Best Buy. Cross-retailer product matching requires mapping products across different SKU systems, typically using common identifiers like UPCs or EANs."
+    ],
+    "relatedTerms": ["inventory-data", "product-feed", "price-comparison"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "msrp",
+    "term": "MSRP",
+    "icon": "lucide:dollar-sign",
+    "category": "e-commerce",
+    "shortDef": "What is MSRP?",
+    "definition": [
+      "MSRP (Manufacturer's Suggested Retail Price) is the price that a product manufacturer recommends retailers sell the product at. It serves as a reference price point - retailers can sell above, at, or below MSRP.",
+      "In retail data APIs, MSRP is commonly returned alongside the current selling price to enable discount calculation. If an API returns `price: 79.99` and `msrp: 129.99`, the implied discount is 38%. Price comparison and deal discovery tools use MSRP as a benchmark to determine whether a product is genuinely discounted.",
+      "MSRP is most meaningful for branded products where the manufacturer sets a consistent reference price. For commodity or private-label products, MSRP may not be set or may not be a reliable baseline."
+    ],
+    "relatedTerms": ["price-comparison", "deal-discovery", "dynamic-pricing"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "dynamic-pricing",
+    "term": "Dynamic Pricing",
+    "icon": "lucide:activity",
+    "category": "e-commerce",
+    "shortDef": "What is dynamic pricing?",
+    "definition": [
+      "Dynamic pricing is a strategy where prices are adjusted automatically in real time based on supply, demand, competition, time, and other contextual factors. Rather than fixed prices, dynamic pricing algorithms continuously optimize prices to maximize revenue or fill rates.",
+      "Dynamic pricing is ubiquitous in travel (airline seat prices change by the minute) and increasingly common in retail (surge pricing during peak demand, competitive price matching, flash sales). Hotel rates are adjusted continuously based on occupancy and demand signals.",
+      "For developers building price-sensitive applications, dynamic pricing means that cached prices quickly become stale. Applications displaying hotel rates or airline fares must call live APIs close to the moment of display, and should not store prices for extended periods."
+    ],
+    "relatedTerms": ["real-time-data", "price-history", "hotel-inventory"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "product-feed",
+    "term": "Product Feed",
+    "icon": "lucide:list",
+    "category": "e-commerce",
+    "shortDef": "What is a product feed?",
+    "definition": [
+      "A product feed is a structured, regularly updated file or API response containing a retailer's product catalog data - typically including SKU, product name, description, price, category, image URLs, and availability status. Feeds are used to distribute catalog data to external surfaces like comparison sites, advertising platforms, and analytics tools.",
+      "For developers building tools that use retailer data, a live product feed API is preferable to a scheduled file download because it provides fresher pricing and availability without the overhead of managing file ingestion.",
+      "The quality of a product feed depends on completeness (are all fields populated?), freshness (how quickly do price and stock changes propagate?), and coverage (does it include all products or only a subset?)."
+    ],
+    "relatedTerms": ["sku", "inventory-data", "price-comparison"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "affiliate-marketing",
+    "term": "Affiliate Marketing",
+    "icon": "lucide:share-2",
+    "category": "e-commerce",
+    "shortDef": "What is affiliate marketing?",
+    "definition": [
+      "Affiliate marketing is a performance-based model where a publisher earns a commission for directing traffic or sales to a merchant's website. The affiliate places tracked links on their site, and when a visitor clicks through and makes a purchase, the affiliate earns a percentage of the sale.",
+      "Product data APIs are central to affiliate marketing content. Price comparison sites, review sites, and coupon platforms all depend on accurate, up-to-date product pricing and availability to ensure their links lead to products still in stock at the advertised price.",
+      "For affiliate publishers, using a live data API significantly improves content quality compared to manually updated price tables. Real-time prices, stock status, and deal data ensure the content a visitor sees matches what they will find at the destination."
+    ],
+    "relatedTerms": ["product-feed", "price-tracking", "deal-discovery"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "inventory-data",
+    "term": "Inventory Data",
+    "icon": "lucide:package",
+    "category": "e-commerce",
+    "shortDef": "What is inventory data?",
+    "definition": [
+      "Inventory data describes the availability and stock status of products at a point in time - whether in-stock, low-stock, out-of-stock, on backorder, or available for pre-order. It is the supply side of the retail market.",
+      "Inventory status is highly volatile - popular items can sell out in minutes during high-demand events. Applications that display product availability need to query live APIs close to the moment of display, not rely on cached inventory from hours earlier.",
+      "Inventory tracking is the basis of restock alert features: monitor inventory status on a polling schedule, and notify users the moment a product transitions from out-of-stock to in-stock. This requires frequent API polling or a webhook-based architecture."
+    ],
+    "relatedTerms": ["real-time-data", "product-feed", "price-tracking"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "deal-discovery",
+    "term": "Deal Discovery",
+    "icon": "lucide:percent",
+    "category": "e-commerce",
+    "shortDef": "What is deal discovery?",
+    "definition": [
+      "Deal discovery is the process of identifying products currently available at a discount relative to their typical or reference price. Deal discovery tools aggregate current prices, compare them against historical prices or MSRP, and surface products where the discount exceeds a threshold.",
+      "APIs with dedicated deal endpoints - like the Klarna Ecom `/deals` endpoint or Kohls' `/product-search` with sale filters - expose currently discounted products directly, eliminating the need to independently calculate discounts from raw pricing data.",
+      "The freshness of deal data is critical - a deal that sold out an hour ago will lead to disappointed users. Real-time or near-real-time data is a hard requirement for any product in the deal discovery space."
+    ],
+    "relatedTerms": ["price-history", "dynamic-pricing", "inventory-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "cross-platform-search",
+    "term": "Cross-Platform Search",
+    "icon": "lucide:search",
+    "category": "e-commerce",
+    "shortDef": "What is cross-platform search?",
+    "definition": [
+      "Cross-platform search is an API query that retrieves results from multiple data sources or retailers simultaneously and returns them as a unified response. Instead of making separate calls to Amazon, Walmart, and Best Buy and merging the results yourself, a cross-platform search API handles the aggregation.",
+      "This dramatically simplifies the development of price comparison tools, shopping aggregators, and multi-source analytics dashboards. The Klarna Ecom API is an example - a single query returns normalized product results from multiple participating stores.",
+      "The value grows with the number of platforms covered. For developers, one integration replaces many; for end users, one query replaces many searches. When evaluating cross-platform APIs, check store and region coverage, result quality, and whether the normalization is sufficient for your comparison use case."
+    ],
+    "relatedTerms": ["data-aggregation", "price-comparison", "product-feed"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "property-listing",
+    "term": "Property Listing",
+    "icon": "lucide:home",
+    "category": "real-estate",
+    "shortDef": "What is a property listing?",
+    "definition": [
+      "A property listing is a record published by a seller or agent describing a property available for sale or rent. It typically includes asking price, location, property type, number of bedrooms and bathrooms, floor area, photos, a description, and contact details for the listing agent.",
+      "Property listing APIs provide programmatic access to a platform's active listings database, enabling developers to build search interfaces, price monitors, and market analysis tools without scraping the platform's website.",
+      "The lifecycle of a listing includes: active (on the market), under offer (sale agreed), and sold or let (transaction completed). APIs may return listings in any of these states depending on their data scope."
+    ],
+    "relatedTerms": ["real-estate-api", "proptech", "days-on-market"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "proptech",
+    "term": "PropTech",
+    "icon": "lucide:building-2",
+    "category": "real-estate",
+    "shortDef": "What is PropTech?",
+    "definition": [
+      "PropTech (Property Technology) is a broad term for the application of technology to improve, automate, or disrupt processes in the real estate industry. It covers everything from property search portals and online valuations to smart building management and tokenized real estate investment.",
+      "Data APIs are a foundational component of PropTech. They replace manual listing research and broker relationships with programmatic access to live property databases, enabling developers to build applications that were previously feasible only for large firms with proprietary data agreements.",
+      "Markets like Dubai, the UK, and Spain - covered by HappyEndpoint APIs - have active PropTech ecosystems where API access to platforms like Bayut, Rightmove, and Fotocasa is a competitive advantage for startups and independent developers."
+    ],
+    "relatedTerms": ["property-listing", "real-estate-api", "property-valuation"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "days-on-market",
+    "term": "Days on Market",
+    "icon": "lucide:calendar",
+    "category": "real-estate",
+    "shortDef": "What are days on market?",
+    "definition": [
+      "Days on market (DOM) is the number of days a property has been listed for sale or rent before being taken off the market - either because it sold, was let, or the listing was withdrawn. It is one of the most widely used metrics for assessing supply-demand dynamics in real estate.",
+      "A low DOM indicates a competitive market where properties sell quickly, often at or above asking price. A high DOM suggests weaker demand or that the property may be overpriced. Average DOM tracked at the neighborhood level is a reliable leading indicator of market temperature.",
+      "Property data APIs that include DOM allow developers to build market analysis tools, valuation models, and pricing intelligence features. It is also useful for deal-finding tools that flag properties that have been on the market unusually long."
+    ],
+    "relatedTerms": ["property-listing", "property-valuation", "market-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "rental-yield",
+    "term": "Rental Yield",
+    "icon": "lucide:percent",
+    "category": "real-estate",
+    "shortDef": "What is rental yield?",
+    "definition": [
+      "Rental yield is the annual return on a property investment expressed as a percentage of its purchase price. Gross rental yield = (annual rental income / property price) x 100. A property costing $500,000 earning $25,000 per year in rent has a 5% gross rental yield.",
+      "Rental yield is the primary metric real estate investors use to compare income-generating potential across properties and markets. Markets with high rental yields relative to purchase prices attract buy-to-let investors.",
+      "APIs that return both sale price and rental price data for the same property or market segment enable automated yield calculations. The UAE real estate market, covered by HappyEndpoint's Bayut and PropertyFinder APIs, is particularly notable for yield-focused investment due to its high rental demand."
+    ],
+    "relatedTerms": ["property-listing", "property-valuation", "real-estate-api"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "property-valuation",
+    "term": "Property Valuation",
+    "icon": "lucide:dollar-sign",
+    "category": "real-estate",
+    "shortDef": "What is property valuation?",
+    "definition": [
+      "Property valuation is the process of estimating the market value of a property - what a willing buyer would pay a willing seller under normal market conditions. Valuations inform buying decisions, mortgage lending, insurance, and investment analysis.",
+      "Automated Valuation Models (AVMs) use statistical analysis of comparable sales, market trends, and property attributes to generate instant estimates. They power tools like Rightmove's Value My Home. The accuracy of an AVM depends on data quality and the density of comparable transactions in the area.",
+      "Property data APIs provide the transaction history and active listing data that AVMs and valuation tools require. Access to recent sold prices, current listing prices for comparable properties, and market-level trend data is the foundation of any programmatic valuation product."
+    ],
+    "relatedTerms": ["property-listing", "days-on-market", "real-estate-api"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "price-per-sqft",
+    "term": "Price per Square Foot",
+    "icon": "lucide:ruler",
+    "category": "real-estate",
+    "shortDef": "What is price per square foot?",
+    "definition": [
+      "Price per square foot (price/sqft) is a normalized metric that expresses a property's value relative to its floor area, enabling fair comparison between properties of different sizes. It is calculated by dividing the sale or asking price by the total floor area in square feet.",
+      "Tracking price/sqft across a neighborhood or city over time reveals market trends that raw price data can obscure. A rising average price might simply reflect a shift toward larger properties rather than genuine appreciation - price/sqft normalizes for size.",
+      "In markets that use square meters, the equivalent is price per square meter (price/sqm). When building cross-market analysis tools, normalizing to a single unit is an essential data transformation step."
+    ],
+    "relatedTerms": ["property-listing", "property-valuation", "data-normalization"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "off-plan-property",
+    "term": "Off-Plan Property",
+    "icon": "lucide:hard-hat",
+    "category": "real-estate",
+    "shortDef": "What is off-plan property?",
+    "definition": [
+      "An off-plan property is a real estate development sold before construction is complete. Buyers purchase based on architectural drawings and specifications rather than a finished building, with completion timelines ranging from months to several years after purchase.",
+      "Off-plan sales are a significant segment of new-build markets, particularly in high-growth cities like Dubai where large-scale residential developments are the norm. Developers offer off-plan units at a discount as an incentive for buyers to commit early and help fund construction.",
+      "APIs covering markets with active off-plan sectors include these listings alongside ready properties. HappyEndpoint UAE real estate APIs include off-plan project listings with details like developer name, expected completion date, and payment plan structures."
+    ],
+    "relatedTerms": ["property-listing", "proptech", "real-estate-api"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "mls",
+    "term": "MLS",
+    "icon": "lucide:database",
+    "category": "real-estate",
+    "shortDef": "What is an MLS?",
+    "definition": [
+      "An MLS (Multiple Listing Service) is a database maintained cooperatively by real estate brokers that aggregates property listings from all member agents in a region. In the US, the MLS is the authoritative source for active, pending, and recently sold residential listings.",
+      "MLS data is arguably the most comprehensive real estate database in a given market because listing agents are required to submit listings to the MLS as a condition of broker membership. This makes MLS data significantly more complete than any individual portal.",
+      "Historically, MLS data was accessible only to licensed brokers. Today, platforms like Zillow and Realtor.com aggregate and display MLS data publicly, and APIs built on top of these platforms make MLS-sourced data accessible to developers building real estate applications."
+    ],
+    "relatedTerms": ["property-listing", "real-estate-api", "structured-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "real-estate-api",
+    "term": "Real Estate API",
+    "icon": "lucide:plug",
+    "category": "real-estate",
+    "shortDef": "What is a real estate API?",
+    "definition": [
+      "A real estate API is a web API that provides programmatic access to property listing data, market statistics, sold transaction records, valuation estimates, or related geographic information from a real estate platform or data provider.",
+      "Real estate APIs enable developers to build property search applications, investment analytics dashboards, market intelligence tools, and PropTech products using live data - without scraping websites, negotiating data agreements, or maintaining proprietary pipelines.",
+      "HappyEndpoint provides real estate APIs covering the UAE (via Bayut and PropertyFinder), the UK (via Rightmove), and Spain (via Fotocasa). Each connects to the leading property portal in its market, delivering live listing data through a consistent REST interface."
+    ],
+    "relatedTerms": ["property-listing", "proptech", "rapidapi"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "ota",
+    "term": "OTA",
+    "icon": "lucide:plane",
+    "category": "travel",
+    "shortDef": "What is an OTA?",
+    "definition": [
+      "An OTA (Online Travel Agency) is a platform that aggregates and distributes travel products - hotel rooms, airline tickets, car rentals, vacation packages - from multiple suppliers through a single website or app.",
+      "Major OTAs include Priceline, Booking.com, Expedia, Hotels.com, and Kayak. Each negotiates inventory access agreements with hotels, airlines, and car rental companies and presents that inventory to consumers. OTAs make revenue through commissions or markups.",
+      "Travel data APIs that source data from OTA inventory give developers access to the same pricing and availability information that OTA websites display to consumers - the foundation of travel price comparison tools, booking engines, and AI travel assistants."
+    ],
+    "relatedTerms": ["hotel-inventory", "dynamic-pricing", "availability-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "hotel-inventory",
+    "term": "Hotel Inventory",
+    "icon": "lucide:building-2",
+    "category": "travel",
+    "shortDef": "What is hotel inventory?",
+    "definition": [
+      "Hotel inventory refers to the available room types, quantities, and corresponding prices that a hotel has open for booking on a given date or date range. It is the supply side of the hotel booking market.",
+      "Hotel inventory is highly dynamic - availability and pricing change continuously as rooms are booked or released, and as pricing algorithms respond to changes in occupancy and competitive rates. This makes hotel inventory APIs some of the most latency-sensitive data APIs.",
+      "APIs that query hotel inventory return real-time availability for a specified location, check-in date, check-out date, and occupancy. The response includes room types, prices per night, and rate conditions (refundable vs. non-refundable). This data is essential for building booking engines and price comparison tools."
+    ],
+    "relatedTerms": ["dynamic-pricing", "ota", "availability-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "rate-shopping",
+    "term": "Rate Shopping",
+    "icon": "lucide:bar-chart-2",
+    "category": "travel",
+    "shortDef": "What is rate shopping?",
+    "definition": [
+      "Rate shopping is the practice of systematically comparing hotel room prices across multiple booking channels - the hotel's own website, OTAs, and metasearch engines - to identify the best available rate or to monitor competitive pricing.",
+      "For developers, rate shopping tools are built on travel data APIs that return pricing from multiple channels in a single query, enabling side-by-side comparisons. A rate shopping dashboard might monitor prices for a list of competitor hotels and alert when prices change significantly.",
+      "Consumers also benefit: comparing prices across Priceline, Booking.com, and Hotels.com for the same property and dates frequently reveals meaningful differences. Travel apps that surface these comparisons automatically save users time and money."
+    ],
+    "relatedTerms": ["hotel-inventory", "availability-data", "price-comparison"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "availability-data",
+    "term": "Availability Data",
+    "icon": "lucide:calendar",
+    "category": "travel",
+    "shortDef": "What is availability data?",
+    "definition": [
+      "Availability data describes which products, rooms, seats, or services are currently open for booking and at what price. In travel, availability is the core of any search - without knowing what is available and what it costs for specific dates, no booking can take place.",
+      "Availability data is highly dynamic and perishable. A hotel room available at 9am may be booked by 9:01am. Airline seat classes fill and reprice constantly. Applications displaying availability must query live APIs at or close to display time.",
+      "Travel APIs return availability as a combination of product identifiers, price, and booking conditions. For hotels: room type, rate plan, price per night, and cancellation policy. For flights: fare class, price, and rules like baggage allowance and flexibility for changes."
+    ],
+    "relatedTerms": ["hotel-inventory", "dynamic-pricing", "real-time-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "gds",
+    "term": "GDS",
+    "icon": "lucide:globe",
+    "category": "travel",
+    "shortDef": "What is a GDS?",
+    "definition": [
+      "A GDS (Global Distribution System) is a centralized network that connects travel service providers - airlines, hotels, car rental companies - with travel agencies and booking platforms, enabling real-time distribution of inventory, pricing, and reservation capabilities.",
+      "The three major GDS networks are Amadeus, Sabre, and Travelport. Historically, access to a GDS was the only way for travel agencies to see and book inventory from multiple providers. The GDS became the central nervous system of the travel industry.",
+      "Modern travel APIs and OTAs have made it easier for developers to access comparable inventory without direct GDS connectivity, which traditionally required expensive contracts and technical certification."
+    ],
+    "relatedTerms": ["ota", "hotel-inventory", "availability-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "market-data",
+    "term": "Market Data",
+    "icon": "lucide:bar-chart-2",
+    "category": "finance",
+    "shortDef": "What is market data?",
+    "definition": [
+      "Market data is real-time or historical information about financial instruments - stocks, bonds, mutual funds, ETFs, commodities - including prices, trading volumes, dividends, corporate actions, and performance metrics.",
+      "Market data is produced by exchanges and distributed through data vendors and APIs. Real-time market data reflects trades as they happen; historical market data is the archive of prices, volumes, and events going back years or decades.",
+      "Access to quality market data was historically a privilege of large financial institutions. APIs that surface market data make it accessible to independent developers, fintech startups, and retail investment platforms. The Morningstar API provides one of the most comprehensive market data sets available through a developer-friendly API."
+    ],
+    "relatedTerms": ["time-series-data", "financial-data-feed", "morningstar-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "time-series-data",
+    "term": "Time Series Data",
+    "icon": "lucide:trending-up",
+    "category": "finance",
+    "shortDef": "What is time series data?",
+    "definition": [
+      "Time series data is a sequence of data points collected at successive points in time, typically at regular intervals. Each point has a timestamp and one or more measured values - a daily stock closing price, an hourly property listing count, or a monthly average rental yield are all time series.",
+      "Time series data is the foundation of trend analysis, seasonality detection, forecasting, and anomaly detection. Charts showing price history, market trends, or performance over time are all visualizations of time series data.",
+      "In APIs, time series data is retrieved via a history endpoint (e.g., `/price-history?productId=X&interval=daily&range=90days`) that returns an array of time-stamped records. The depth of available history and granularity of intervals are key parameters when selecting an API for time series use cases."
+    ],
+    "relatedTerms": ["historical-data", "price-history", "market-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "morningstar-data",
+    "term": "Morningstar Data",
+    "icon": "lucide:star",
+    "category": "finance",
+    "shortDef": "What is Morningstar data?",
+    "definition": [
+      "Morningstar is a global investment research firm that produces proprietary ratings, performance analysis, and data covering mutual funds, ETFs, stocks, and other financial instruments. Morningstar data is used by financial advisors, wealth managers, and retail investment platforms worldwide.",
+      "The Morningstar star rating system - 1 to 5 stars based on risk-adjusted returns relative to peers - is one of the most widely recognized quality signals in the investment industry. Beyond ratings, Morningstar provides detailed fund profiles, holdings data, performance histories, and analyst commentary.",
+      "API access to Morningstar data enables developers to build investment screening tools, portfolio analytics platforms, and financial dashboards using the same underlying data available to professional fund selectors."
+    ],
+    "relatedTerms": ["market-data", "time-series-data", "financial-data-feed"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "financial-data-feed",
+    "term": "Financial Data Feed",
+    "icon": "lucide:activity",
+    "category": "finance",
+    "shortDef": "What is a financial data feed?",
+    "definition": [
+      "A financial data feed is a continuous or regularly updated stream of financial market data delivered to applications via API. Data feeds provide price quotes, trade data, corporate actions, and other events for financial instruments in real time or near-real-time.",
+      "Applications that display live prices, calculate portfolio values, or trigger alerts based on price movements depend on reliable, low-latency data feeds. The quality dimensions that matter most are latency (how quickly prices update), accuracy (do prices match exchange data?), and completeness (are all instruments covered?).",
+      "For developers building investment apps or fintech products, data feed APIs are the foundation layer. The cost and latency tier should match the use case: a portfolio dashboard can use 15-minute delayed data; an algorithmic trading system requires real-time feeds."
+    ],
+    "relatedTerms": ["market-data", "real-time-data", "time-series-data"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "rapidapi",
+    "term": "RapidAPI",
+    "icon": "lucide:zap",
+    "category": "web-data",
+    "shortDef": "What is RapidAPI?",
+    "definition": [
+      "RapidAPI is the world's largest API marketplace, hosting thousands of APIs from independent developers and companies across every category - data, finance, travel, real estate, sports, social media, and more.",
+      "All HappyEndpoint APIs are published on RapidAPI. Subscribing to any of them gives you a single API key that authenticates requests and a single billing account to manage all subscriptions. RapidAPI handles payment processing, usage tracking, and quota enforcement on behalf of API providers.",
+      "For API providers, RapidAPI is a distribution channel that eliminates the need to build authentication, billing, and developer portal infrastructure. For developers, it is a one-stop shop for discovering APIs and integrating them with minimal friction."
+    ],
+    "relatedTerms": ["api-marketplace", "api-subscription", "api-key"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "geolocation-data",
+    "term": "Geolocation Data",
+    "icon": "lucide:map-pin",
+    "category": "web-data",
+    "shortDef": "What is geolocation data?",
+    "definition": [
+      "Geolocation data associates records with a specific geographic location, expressed as coordinates (latitude/longitude), an address, or an administrative area like city, region, or postal code.",
+      "In real estate APIs, geolocation data enables map-based property search (show listings within a drawn boundary) and radius search (properties within 2km of a point of interest). In retail, it powers store locator features and regional price comparison.",
+      "Location data quality matters greatly for user-facing features. Inaccurate coordinates place a property on the wrong street in a map view; imprecise postal codes distort radius searches. Always test the precision of geolocation data against known addresses in your target market."
+    ],
+    "relatedTerms": ["property-listing", "multi-region-api", "real-estate-api"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "search-autocomplete",
+    "term": "Search Autocomplete",
+    "icon": "lucide:search",
+    "category": "web-data",
+    "shortDef": "What is search autocomplete?",
+    "definition": [
+      "Search autocomplete (also called typeahead or suggestions) returns suggested search terms, locations, or matching records as a user types. It reduces keystrokes needed to reach the right query and improves accuracy by guiding users toward valid inputs before they finish typing.",
+      "In property and e-commerce APIs, dedicated autocomplete endpoints are designed for keystroke-by-keystroke querying - returning fast, lightweight suggestions optimized for low latency. A location autocomplete endpoint for property search might return matching cities, neighborhoods, and postal codes as the user types.",
+      "Implementing autocomplete correctly requires calling the API with a short debounce (100-300ms after the last keystroke). The response should arrive in under 200ms to feel instantaneous. Most autocomplete endpoints are read-only GET requests optimized for this latency profile."
+    ],
+    "relatedTerms": ["query-parameters", "property-listing", "cross-platform-search"],
+    "updatedAt": "April 2026"
+  },
+  {
+    "slug": "multi-region-api",
+    "term": "Multi-Region API",
+    "icon": "lucide:globe",
+    "category": "web-data",
+    "shortDef": "What is a multi-region API?",
+    "definition": [
+      "A multi-region API serves data covering multiple geographic markets through a single integration, with a parameter to specify the target region. This allows a developer to power applications targeting users in different countries without maintaining separate integrations per region.",
+      "The Klarna Ecom API supports 13 regions (Austria, Denmark, Finland, France, Germany, Ireland, Italy, Netherlands, Norway, Spain, Sweden, UK, USA) via a single `region` parameter. A single integration can power a global price comparison tool without any additional development per market.",
+      "Multi-region APIs save significant development time for applications with international scope. When evaluating them, verify whether all features and data fields are available across all regions or whether coverage varies by market."
+    ],
+    "relatedTerms": ["geolocation-data", "cross-platform-search", "api"],
+    "updatedAt": "April 2026"
+  }
+]

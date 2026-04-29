@@ -1,0 +1,136 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import Breadcrumbs from '@/components/he/Breadcrumbs.astro';
+import JsonLd from '@/components/seo/JsonLd.astro';
+import { Icon } from 'astro-icon/components';
+import { breadcrumbListSchema } from '@/lib/schema-ld';
+import siteConfig from '@/config/site.config';
+import terms from '@/data/dictionary.json';
+import type { WithContext, DefinedTerm } from 'schema-dts';
+
+export function getStaticPaths() {
+  return terms.map(t => ({ params: { slug: t.slug } }));
+}
+
+const { slug } = Astro.params;
+const term = terms.find(t => t.slug === slug);
+if (!term) return Astro.redirect('/404');
+
+const related = term.relatedTerms
+  .map(s => terms.find(t => t.slug === s))
+  .filter(Boolean) as typeof terms;
+
+const categoryLabel: Record<string, string> = {
+  'api-fundamentals': 'API Fundamentals',
+  'data-concepts':    'Data Concepts',
+  'e-commerce':       'E-commerce',
+  'real-estate':      'Real Estate',
+  'travel':           'Travel',
+  'finance':          'Finance',
+  'web-data':         'Web & APIs',
+};
+
+const categoryCtaHref: Record<string, { label: string; href: string }> = {
+  'api-fundamentals': { label: 'Explore APIs', href: '/library' },
+  'data-concepts':    { label: 'Browse Datasets', href: '/datasets' },
+  'e-commerce':       { label: 'Retail APIs', href: '/library' },
+  'real-estate':      { label: 'Property APIs', href: '/library' },
+  'travel':           { label: 'Travel APIs', href: '/library' },
+  'finance':          { label: 'Finance APIs', href: '/library' },
+  'web-data':         { label: 'Explore APIs', href: '/library' },
+};
+
+const cta = categoryCtaHref[term.category];
+const metaDescription = term.definition[0].slice(0, 160);
+
+const definedTermSchema: WithContext<DefinedTerm> = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: term.term,
+  description: metaDescription,
+  url: `${siteConfig.url}/dictionary/${term.slug}`,
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'HappyEndpoint API & Data Dictionary',
+    url: `${siteConfig.url}/dictionary`,
+  },
+};
+
+const breadcrumbLd = breadcrumbListSchema([
+  { name: 'Home', url: siteConfig.url },
+  { name: 'Dictionary', url: `${siteConfig.url}/dictionary` },
+  { name: term.term, url: `${siteConfig.url}/dictionary/${term.slug}` },
+]);
+---
+
+<MarketingLayout
+  title={`${term.shortDef} | HappyEndpoint Dictionary`}
+  description={metaDescription}
+>
+  <JsonLd schema={[definedTermSchema, breadcrumbLd]} />
+
+  <Breadcrumbs items={[
+    { label: 'Home', href: '/' },
+    { label: 'Dictionary', href: '/dictionary' },
+    { label: term.term },
+  ]} />
+
+  <article class="container max-w-3xl py-10 md:py-14">
+    <div class="flex items-start gap-5">
+      <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-border bg-background shadow-sm">
+        <Icon name={term.icon} class="h-7 w-7 text-brand-600" />
+      </div>
+      <div>
+        <span class="rounded-full bg-brand-500/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-brand-700 dark:text-brand-400">
+          {categoryLabel[term.category] ?? term.category}
+        </span>
+        <h1 class="mt-2 text-2xl font-bold tracking-tight text-foreground md:text-3xl">{term.term}</h1>
+        <p class="mt-1 text-xs text-foreground-muted">Definition updated {term.updatedAt}</p>
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <h2 class="text-lg font-bold text-foreground md:text-xl">{term.shortDef}</h2>
+      <div class="mt-4 space-y-4 text-base leading-relaxed text-foreground-secondary">
+        {term.definition.map(para => (
+          <p>{para}</p>
+        ))}
+      </div>
+    </div>
+
+    {related.length > 0 && (
+      <div class="mt-10 border-t border-border pt-8">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-foreground-muted">Related Terms</h3>
+        <div class="mt-4 flex flex-wrap gap-2">
+          {related.map(r => (
+            <a
+              href={`/dictionary/${r.slug}`}
+              class="flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 text-sm font-medium text-foreground transition hover:border-brand-500/50 hover:text-brand-600"
+            >
+              <Icon name={r.icon} class="h-3.5 w-3.5 text-brand-600" />
+              {r.term}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {cta && (
+      <div class="mt-10 rounded-xl border border-brand-500/20 bg-brand-500/5 p-6">
+        <p class="text-sm font-semibold text-foreground">
+          Ready to work with live data?
+        </p>
+        <p class="mt-1 text-sm text-foreground-secondary">
+          HappyEndpoint APIs deliver real-world data from leading platforms - no scraping, no stale snapshots.
+        </p>
+        <a
+          href={cta.href}
+          class="mt-4 inline-flex items-center gap-2 rounded-lg bg-brand-700 px-4 py-2 text-sm font-bold text-white transition hover:bg-brand-800"
+        >
+          {cta.label}
+          <Icon name="lucide:arrow-right" class="h-4 w-4" />
+        </a>
+      </div>
+    )}
+  </article>
+</MarketingLayout>
