@@ -1,0 +1,44 @@
+---
+name: Sephora Customer Reviews Dataset
+platform: sephora
+description: 500,000+ verified customer reviews from Sephora US with star ratings, skin type, review text, and helpfulness votes - ideal for NLP and sentiment analysis.
+recordCount: "500,000+ reviews"
+format: JSON / CSV
+price: Contact Us
+tags:
+  - reviews
+  - nlp
+  - sentiment
+  - skincare
+  - beauty
+features:
+  - Full review text with title and body
+  - Star rating (1-5) per review
+  - Reviewer skin type, tone, and age range
+  - Helpfulness votes (found helpful / not helpful)
+  - Verified purchase flag
+  - Product ID and brand cross-reference
+  - Review date for time-series analysis
+  - Incentivized review disclosure flag
+order: 2
+featured: true
+draft: false
+---
+
+The Sephora Customer Reviews Dataset aggregates over 500,000 individual product reviews from Sephora.com. Each review includes the full text, a star rating, and structured metadata about the reviewer - skin type, skin tone, age range, and eye color - making it one of the richest beauty review datasets available for NLP research and consumer insights work.
+
+## What's included
+
+Every record represents a single review tied to a specific product SKU. The review text field contains both the short title and the full body, preserved exactly as submitted. Ratings run from 1 to 5 stars. Helpfulness signals capture how many other shoppers marked the review as helpful or not helpful, which makes it straightforward to weight or filter by review quality.
+
+Reviewer attributes - skin type (dry, oily, combination, normal), skin tone (fair, light, medium, tan, deep), and age range (18-24, 25-34, 35-44, 45-54, 55+) - are self-reported by the reviewer at the time of posting. These fields are valuable for building personalization models that surface products best suited to a user's profile.
+
+The verified purchase flag distinguishes organic reviews from incentivized or seeded ones. An incentivized disclosure flag captures the subset of reviews where Sephora has flagged the reviewer received the product for free.
+
+## Ideal use cases
+
+Sentiment analysis and aspect-based opinion mining teams use this dataset to train models that extract fine-grained opinions about product attributes (texture, scent, longevity, packaging). Recommendation systems use the reviewer profile metadata to surface products for specific skin types. Academic researchers studying online review behavior use the helpfulness vote and incentivization fields for econometric modeling.
+
+## Delivery
+
+Delivered as CSV or line-delimited JSON. Snapshots are produced monthly. Cross-reference keys align with the Sephora US Full Product Catalog dataset so the two can be joined on product ID.

@@ -141,15 +141,15 @@ const getPlatformLogo = (id: string) => {
         </div>
       </div>
 
-      {(freeSamples.length > 0 || platformDatasets.length > 0) && (
+      {platformDatasets.length > 0 && (
         <div class="space-y-3">
           <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground-muted">Available Data</h3>
           <div class="space-y-2">
-            {[...freeSamples, ...platformDatasets].slice(0, 2).map(d => (
+            {platformDatasets.slice(0, 3).map(d => (
               <a href={`/datasets/${d.id}`} class="group flex items-center justify-between gap-3 p-2 rounded-lg border border-border bg-brand-500/[0.02] hover:bg-brand-500/[0.05] transition-colors">
                 <div class="min-w-0">
                   <p class="text-xs font-bold text-foreground truncate">{d.data.name}</p>
-                  <p class="text-[9px] uppercase tracking-wider text-foreground-muted">{d.data.price.toLowerCase() === 'free' ? 'Free Sample' : 'Full Dataset'}</p>
+                  <p class="text-[9px] uppercase tracking-wider text-foreground-muted">{d.data.price.toLowerCase() === 'free' ? 'Free' : 'Dataset'}</p>
                 </div>
                 <Icon name="lucide:chevron-right" class="h-3 w-3 text-foreground-muted group-hover:text-brand-600 transition-colors" />
               </a>

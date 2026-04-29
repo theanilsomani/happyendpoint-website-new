@@ -1,0 +1,39 @@
+---
+name: Sephora Top 500 Bestsellers
+platform: sephora
+description: Free dataset of Sephora's top 500 bestselling products across all categories, with pricing, ratings, and brand data. Updated monthly.
+recordCount: "500 products"
+format: JSON / CSV
+price: Free
+tags:
+  - bestsellers
+  - free
+  - ratings
+  - pricing
+features:
+  - Top 500 products ranked by sales velocity
+  - Retail price and current sale price
+  - Star rating and total review count
+  - Brand name and product category
+  - Primary product image URL
+  - Sephora's Choice and Fan Favorite editorial badges
+order: 3
+featured: false
+draft: false
+---
+
+The Sephora Top 500 Bestsellers dataset is a free, ready-to-use slice of Sephora's most popular products. It is produced monthly from a snapshot of Sephora.com's bestseller rankings across all major categories - Skincare, Makeup, Fragrance, Hair, and Bath & Body.
+
+## What's included
+
+Each record covers a single product entry in Sephora's bestseller list. You get the product name, brand, top-level category, retail price, current sale price (where applicable), weighted average star rating, and total review count. The primary image URL is included so you can render cards or thumbnails without making additional requests.
+
+Where Sephora surfaces editorial badges - "Sephora's Choice", "Fan Favorite", or "New" - those are captured as boolean flags per record.
+
+## Why it's free
+
+We publish this dataset as a sample to give you a feel for the data quality and schema before committing to a full catalog purchase. The 500-product slice uses the same field structure as the full 30,000+ product dataset, so any pipeline or model you build against it will work without modification on the full data.
+
+## Ideal use cases
+
+Competitive intelligence dashboards that track which brands dominate Sephora's bestseller list. Price monitoring scripts that alert on sale price changes among top products. Quick prototyping of beauty recommendation UI before licensing the full catalog.

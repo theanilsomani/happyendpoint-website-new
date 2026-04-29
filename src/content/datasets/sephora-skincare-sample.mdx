@@ -1,0 +1,42 @@
+---
+name: Sephora Skincare Sample
+platform: sephora
+description: Free sample of 1,000 Sephora skincare products with ingredients, skin type compatibility, and customer ratings. Perfect for testing ML pipelines.
+recordCount: "1,000 products"
+format: JSON / CSV
+price: Free
+tags:
+  - skincare
+  - free
+  - ingredients
+  - ml-ready
+features:
+  - 1,000 skincare SKUs across moisturizers, serums, SPF, and cleansers
+  - Full ingredient lists as parsed arrays
+  - Skin type compatibility tags (dry, oily, combination, sensitive)
+  - Concern tags (anti-aging, brightening, acne, hydration)
+  - Star ratings and review counts
+  - Brand and sub-brand fields
+  - Price and size/volume information
+order: 4
+featured: false
+draft: false
+---
+
+The Sephora Skincare Sample is a curated free dataset of 1,000 skincare products drawn from Sephora's full catalog. It covers the four most-searched skincare subcategories - moisturizers, serums, SPF products, and cleansers - and is designed to be immediately useful for machine learning experiments, ingredient analysis tools, and skincare recommendation prototypes.
+
+## What's included
+
+Each record is a single skincare product SKU. Ingredient data is provided as a parsed array of INCI names rather than a raw string, so you can build ingredient overlap detectors or clean/vegan filters without writing your own parser.
+
+Skin type compatibility and concern tags are taken directly from Sephora's structured product metadata - these reflect how Sephora categorizes the product, not inferred values. Tags include skin types (dry, oily, combination, normal, sensitive) and skin concerns (anti-aging, brightening, dark spots, acne, redness, hydration).
+
+Price is captured as the retail price at snapshot time. Where volume or size information is present (e.g. 30ml, 1 fl oz), it is included in a separate field so you can calculate price-per-ml comparisons across products.
+
+## Why it's free
+
+Ingredient and skincare compatibility data is one of the most-requested dataset types among our customers. This free sample lets you validate that the schema fits your use case before purchasing the full skincare slice or the complete Sephora US catalog.
+
+## Ideal use cases
+
+Building an ingredient checker or "is this clean?" classifier. Prototyping a skin type recommendation engine. Academic research on cosmetic ingredient trends. Price comparison tools for the skincare vertical.

@@ -1,9 +1,8 @@
 ---
-name: Sephora US Products Dataset
+name: Sephora US Full Product Catalog
 platform: sephora
-version: US
-description: Complete Sephora US product catalog with reviews and ratings.
-recordCount: "30K+ products"
+description: Complete Sephora US product catalog with 30,000+ SKUs, full pricing, brand data, ratings, and customer review counts across all categories.
+recordCount: "30,000+ products"
 format: JSON / CSV
 price: Contact Us
 tags:
@@ -11,26 +10,33 @@ tags:
   - reviews
   - ratings
   - brand-data
+  - pricing
 features:
-  - US catalog
-  - Reviews
-  - Ratings
-  - Brand data
+  - Full product name, brand, and category hierarchy
+  - Retail and sale pricing with discount flags
+  - Weighted average star ratings and review counts
+  - Product images (primary + gallery URLs)
+  - Ingredient lists and shade/size variants
+  - Sephora Collection vs third-party brand flags
+  - Love It and New editorial labels
+  - In-store availability flags
 order: 1
-featured: false
+featured: true
 draft: false
-freeSample:
-  id: sephora-products-sample
-  name: Sephora Beauty Sample
-  version: Sample
-  description: Sample beauty products with reviews and ratings. Great for ML experiments.
-  recordCount: "2,000 products"
-  format: JSON / CSV
-  features:
-    - Reviews included
-    - Ratings
-    - Brand data
 ---
 
-Complete Sephora US product catalog with reviews and ratings.
+The Sephora US Full Product Catalog is the most comprehensive beauty dataset we offer. It covers every active SKU on Sephora.com - from skincare serums and foundations to fragrance and hair tools - with the structured fields you need to build recommendation engines, price trackers, trend dashboards, and competitive intelligence tools.
 
+## What's included
+
+Each record maps to a single product SKU and includes the product name, brand, top-level category (Skincare, Makeup, Fragrance, Hair, Bath & Body, Tools), and subcategory. Pricing captures both the retail and current sale price so you can calculate discount depth over time. Ratings are expressed as a weighted average with the total review count, giving you a reliable signal of social proof.
+
+Product images are delivered as direct CDN URLs covering the primary product shot and up to six gallery images. Where Sephora provides ingredient data, it is included as a parsed list - useful for building clean/vegan filters or allergen detection tools.
+
+## Ideal use cases
+
+This dataset powers beauty retail analytics platforms that track assortment changes, new launches, and price movements. It is widely used in recommendation engines that need a canonical product graph for cross-sell and upsell. Brand monitoring teams use it to track share of shelf and rating trends across the Sephora marketplace. ML teams training product classification or image recognition models also rely on this dataset for its consistent category taxonomy.
+
+## Delivery and updates
+
+The dataset is delivered as a single flat CSV or a line-delimited JSON file, your choice. A full refresh is produced weekly. If you need daily delta files (new products, price changes, delisted SKUs), that cadence is available on request.
