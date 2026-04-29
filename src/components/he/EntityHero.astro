@@ -17,7 +17,7 @@ const { eyebrow, title, tagline, badges = [], primaryCta, secondaryCta, logoUrl,
 
 <section class="relative bg-background pt-8 pb-8 md:pt-12 md:pb-10">
   <div class="container">
-    <div class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between md:gap-12">
+    <div class="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
       <div class="flex flex-col gap-6 md:flex-row md:items-start md:gap-8 flex-1">
         <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-background border border-border shadow-sm md:h-20 md:w-20">
           {logoUrl ? (
@@ -74,7 +74,7 @@ const { eyebrow, title, tagline, badges = [], primaryCta, secondaryCta, logoUrl,
         </div>
       </div>
 
-      <div class="hidden lg:block">
+      <div class="w-full lg:w-auto lg:shrink-0">
         <slot name="right" />
       </div>
     </div>
