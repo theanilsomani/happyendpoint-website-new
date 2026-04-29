@@ -29,6 +29,9 @@ export default defineConfig({
     mdx(),
     sitemap({
       filter: (page) => !page.includes('/search') && !page.includes('/components') && !page.includes('/projects'),
+      serialize(item) {
+        return { ...item, lastmod: new Date().toISOString().split('T')[0] };
+      },
     }),
     icon(),
   ],
