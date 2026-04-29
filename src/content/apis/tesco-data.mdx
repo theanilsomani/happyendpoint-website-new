@@ -9,15 +9,61 @@ tags:
   - nutrition
   - clubcard-offers
 features:
-  - Product Search
-  - Categories
-  - Nutrition
-  - Clubcard Offers
-endpoints: []
+  - UK Product Search
+  - Ireland Product Search
+  - Product Details
+  - Nutritional Data
+  - Category Browsing
+  - Category Taxonomy
+  - Pricing and Offers
+  - 300,000+ SKUs
+endpoints:
+  - method: "GET"
+    path: "/product-search-by-keyword"
+    summary: "Search Tesco UK products by keyword, e.g. milk, bread, electronics"
+  - method: "GET"
+    path: "/product-details"
+    summary: "Full product data for a Tesco UK product by ID or URL"
+  - method: "GET"
+    path: "/ireland-product-details"
+    summary: "Full product data for a Tesco Ireland product by ID or URL"
+  - method: "GET"
+    path: "/category-page"
+    summary: "Paginated product listings for a Tesco UK category"
+  - method: "GET"
+    path: "/ireland-category-page"
+    summary: "Paginated product listings for a Tesco Ireland category"
+  - method: "GET"
+    path: "/get-category-id-for-uk"
+    summary: "Full category taxonomy for Tesco UK"
+  - method: "GET"
+    path: "/get-category-ids-for-ireland"
+    summary: "Full category taxonomy for Tesco Ireland"
 pricing: null
 featured: false
 draft: false
 ---
 
-Real-time grocery data for Tesco UK & Ireland. Pricing, nutrition, and clubcard offers.
+The Tesco Data API provides real-time product data from Tesco UK and Tesco Ireland, covering over 300,000 SKUs. It is designed for grocery, retail, and e-commerce applications that need structured product information including pricing, nutritional data, promotional offers, and category hierarchy.
 
+## What the API Covers
+
+**Product search** lets you query the Tesco UK catalog by keyword, returning matching products with names, prices, promotional offers, images, and availability status. For category-based browsing, paginated category pages are available for both UK and Ireland, allowing you to replicate Tesco's catalog structure in your own application.
+
+**Product details** endpoints return comprehensive data for individual products: name, description, pricing, promotional tags, images, stock status, and full nutritional information. This level of detail makes the API suitable for shopping assistants and health-focused grocery apps where ingredient and nutrition data matter.
+
+**Category taxonomy** endpoints return the full hierarchical structure of Tesco's categories for both regions, which is useful for building navigation trees or for bulk data collection across specific product segments.
+
+**Ireland coverage** is included as a first-class feature. Dedicated endpoints handle Tesco Ireland product details and category browsing separately, so regional differences in product range and pricing are preserved.
+
+## Use Cases
+
+- Price comparison tools and grocery deal alert apps
+- Retail analytics and competitive intelligence dashboards
+- AI shopping assistants that need structured grocery data
+- Consumer demand and behavior analysis platforms
+- E-commerce catalog aggregation and automation systems
+
+## Coverage
+
+Tesco UK and Tesco Ireland. Covers food, beverages, household goods, health and beauty, electronics, and other Tesco product categories.

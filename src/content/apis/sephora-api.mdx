@@ -9,15 +9,78 @@ tags:
   - stock
   - store-finder
 features:
-  - Reviews
-  - Ratings
-  - Stock
-  - Store Finder
-endpoints: []
+  - Product Search
+  - Product Reviews
+  - Brand Directory
+  - Category Browse
+  - Real-Time Availability
+  - Store Locator
+  - Keyword Autocomplete
+  - Sub-400ms Responses
+endpoints:
+  - method: "GET"
+    path: "/auto-complete"
+    summary: "Product suggestions from partial search queries"
+  - method: "GET"
+    path: "/search-by-keyword"
+    summary: "Advanced keyword search with filters across the Sephora catalog"
+  - method: "GET"
+    path: "/search-by-category"
+    summary: "Fetch products by category ID"
+  - method: "GET"
+    path: "/search-by-brand"
+    summary: "Retrieve products from a specific brand"
+  - method: "GET"
+    path: "/brands-list"
+    summary: "Full list of brands available on Sephora"
+  - method: "GET"
+    path: "/categories-list"
+    summary: "Root product categories"
+  - method: "GET"
+    path: "/category-data"
+    summary: "Subcategories and metadata for a given category"
+  - method: "GET"
+    path: "/product-details"
+    summary: "Full product data including images, ingredients, pricing, and specifications"
+  - method: "GET"
+    path: "/product-reviews"
+    summary: "Customer reviews and ratings for a product"
+  - method: "GET"
+    path: "/product-availability"
+    summary: "Store-level stock availability for a product"
+  - method: "GET"
+    path: "/store-list"
+    summary: "Sephora store locations near a given location"
 pricing: null
-featured: false
+featured: true
 draft: false
 ---
 
-Beauty catalog access. Product ratings, reviews, stock data, and store information.
+The Sephora API provides real-time access to product data, inventory, reviews, and store locations from Sephora.com. With 11 endpoints and sub-400ms response times, it is built for production-grade beauty and retail applications.
 
+## What the API Covers
+
+**Product discovery** works through multiple entry points. Search by keyword to find products matching a query, browse by category to navigate the catalog structure, or filter by brand to retrieve a specific brand's full lineup. The autocomplete endpoint supports real-time search suggestions for search-as-you-type interfaces.
+
+**Product details** return comprehensive data for individual items: name, description, ingredients, pricing, product images, and full specifications. This level of detail is useful for beauty apps that need to surface ingredient lists or formulation details alongside standard product information.
+
+**Reviews and ratings** are available through the `/product-reviews` endpoint, returning customer ratings and written feedback. This data is well suited for recommendation engines, comparison tools, or any interface where social proof is part of the product display.
+
+**Inventory data** from `/product-availability` returns store-level stock status, allowing applications to show users where a specific product is currently available near their location.
+
+**Store locations** are accessible via geo-based queries, returning Sephora store details including addresses and proximity to a given point.
+
+## Authentication
+
+Include these two headers with every request:
+
+- `X-RapidAPI-Key`: your RapidAPI key
+- `X-RapidAPI-Host`: `real-time-sephora-api.p.rapidapi.com`
+
+## Use Cases
+
+- Beauty and skincare apps surfacing product details, ingredient lists, and reviews
+- E-commerce platforms building affiliate storefronts or comparison tools around Sephora's catalog
+- Market intelligence tools tracking pricing and availability across SKUs
+- AI-powered recommendation engines that need structured product metadata and customer review data
+- Price and inventory monitoring tools for brands or retail analysts

@@ -9,15 +9,60 @@ tags:
   - cars
   - vacation-packages
 features:
-  - Hotels
-  - Flights
-  - Cars
-  - Vacation Packages
-endpoints: []
+  - Hotel Search
+  - Hotel Details and Rooms
+  - Real-Time Room Pricing
+  - Flight Search
+  - Car Rentals
+  - Location Autocomplete
+  - Real-Time Availability
+  - Fast and Reliable
+endpoints:
+  - method: "GET"
+    path: "/autocomplete-location-search"
+    summary: "Fast, predictive location search for hotels, airports, and destinations"
+  - method: "GET"
+    path: "/hotels-search"
+    summary: "Search hotels by any criteria including location, dates, and occupancy"
+  - method: "GET"
+    path: "/hotel-details"
+    summary: "Rich hotel details including photos, amenities, and policies"
+  - method: "GET"
+    path: "/hotel-rooms-and-pricing-details"
+    summary: "All available room types with granular, real-time pricing"
+  - method: "GET"
+    path: "/cars"
+    summary: "Search car rental options by pickup location and dates"
+  - method: "GET"
+    path: "/flight"
+    summary: "Search flights by origin, destination, dates, and preferences"
 pricing: null
 featured: false
 draft: false
 ---
 
-Unlock the full power of Priceline. Real-time pricing for hotels, flights, and cars.
+The Priceline Pro API provides real-time access to travel data from Priceline.com, covering hotels, flights, and car rentals. It is built for developers who need fast, stable, and comprehensive travel data to power booking tools, price comparison engines, and travel applications.
 
+## What the API Covers
+
+**Hotel search** returns available properties based on location, check-in and check-out dates, and occupancy requirements. The `/hotels-search` endpoint gives you a broad results set, while `/hotel-details` pulls rich data for any specific property: photos, amenity lists, policies, and ratings.
+
+**Room pricing** is a dedicated endpoint returning granular, real-time data for all available room types within a hotel. This level of detail is what separates a basic hotel search from a full booking-ready integration. Each room entry includes the room type, pricing, and availability at the time of the request.
+
+**Flight search** covers the data and parameters needed to build a flight search experience: origin, destination, dates, and preferences. Results reflect current availability and pricing directly from Priceline.
+
+**Car rentals** are available through the `/cars` endpoint, returning rental options at a specified pickup location with pricing per day.
+
+**Location autocomplete** powers the search experience by returning predictive destination suggestions as users type, covering hotels, airports, cities, and landmarks.
+
+## Use Cases
+
+- Online travel agencies and booking platforms
+- Hotel and flight price comparison tools
+- Corporate travel management applications
+- AI travel assistants that need structured real-time pricing
+- Deal discovery apps targeting travelers looking for the best available rates
+
+## Disclaimer
+
+This API is an independent service built by HappyEndpoint. It is not affiliated with, endorsed, or sponsored by Priceline.com. All data is retrieved from publicly available sources.

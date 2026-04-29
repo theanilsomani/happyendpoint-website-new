@@ -9,15 +9,93 @@ tags:
   - property-details
   - market-trends
 features:
-  - Map Search
   - Property Search
-  - Property Details
-  - Market Trends
-endpoints: []
+  - Agent Directory
+  - Broker Database
+  - Market Intelligence
+  - Transaction History
+  - Price Trends
+  - New Projects
+  - Commercial Listings
+  - Developer Directory
+  - Redis Caching
+endpoints:
+  - method: "GET"
+    path: "/autocomplete-location"
+    summary: "Search locations, communities, or buildings, returns IDs and coordinates"
+  - method: "GET"
+    path: "/search-property"
+    summary: "Search residential properties for rent or sale with 15+ filter options"
+  - method: "GET"
+    path: "/search-commercial-rent"
+    summary: "Search commercial properties available for rent"
+  - method: "GET"
+    path: "/search-commercial-buy"
+    summary: "Search commercial properties available for purchase"
+  - method: "GET"
+    path: "/search-new-projects"
+    summary: "Find off-plan and new development projects"
+  - method: "GET"
+    path: "/property-details"
+    summary: "Full listing details including description, floor plans, photos, and agent info"
+  - method: "GET"
+    path: "/search-agents"
+    summary: "Find real estate agents by location or name with contact details"
+  - method: "GET"
+    path: "/search-brokers"
+    summary: "Find real estate brokerages operating in specific areas"
+  - method: "GET"
+    path: "/agent-properties"
+    summary: "All active listings from a specific agent"
+  - method: "GET"
+    path: "/broker-properties"
+    summary: "All active listings from a specific brokerage"
+  - method: "GET"
+    path: "/price-trend-of-location"
+    summary: "Historical price trend data for a location and property type"
+  - method: "GET"
+    path: "/property-insight"
+    summary: "Community-level insights, average prices, and popularity metrics"
+  - method: "GET"
+    path: "/get-transactions"
+    summary: "Historical sales and rental transaction records for an area"
+  - method: "GET"
+    path: "/real-estate-developers"
+    summary: "List of active real estate developers in the UAE"
+  - method: "GET"
+    path: "/communities"
+    summary: "List of communities sorted by popularity or affordability"
 pricing: null
-featured: false
+featured: true
 draft: false
 ---
 
-Comprehensive UAE Real Estate API with 500K+ Property Listings: Updated daily.
+The PropertyFinder API provides real-time access to one of the UAE's largest property databases. With 500K or more listings updated daily and support for residential, commercial, and off-plan properties, it is built for production-grade real estate applications.
 
+## What You Can Access
+
+**Property search** covers the full residential and commercial market with 15 or more filters: location, price range, bedrooms, bathrooms, area size, property type, furnishing, completion status, and listing date. Each result includes rich listing data: photos, description, amenities, location, and agent contact information.
+
+**Market intelligence** endpoints give you price trend history by location and property type, community-level insights, and historical transaction data covering both sales and rentals. These are the building blocks for investment research tools, property valuation dashboards, and automated market reports.
+
+**Agent and broker directories** are built in. Search for agents by location or name, retrieve their full profiles with contact details, and pull their active listings. The same applies to brokerages.
+
+**Commercial listings** are accessible through dedicated endpoints for rent and sale, covering offices, retail units, warehouses, and other commercial property types across the UAE.
+
+**Developer and community data** rounds out the API. Pull a list of active UAE property developers, or browse communities sorted by affordability or popularity.
+
+## Performance
+
+Responses are delivered via a RESTful JSON API with pagination and Redis caching for fast, consistent access under high load.
+
+## Use Cases
+
+- UAE real estate portals and property search applications
+- Investment dashboards with price trend and transaction history data
+- Agent and broker directory platforms
+- PropTech tools requiring both commercial and residential market coverage
+- CRM systems that sync UAE property listings and agent data
+
+## Coverage
+
+Dubai, Abu Dhabi, Sharjah, and all major UAE communities including Dubai Marina, Downtown Dubai, Palm Jumeirah, JBR, Business Bay, JLT, Al Reem Island, Yas Island, and Saadiyat Island.

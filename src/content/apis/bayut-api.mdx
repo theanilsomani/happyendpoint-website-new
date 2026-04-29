@@ -9,22 +9,93 @@ tags:
   - property-details
   - market-trends
 features:
-  - Map Search
   - Property Search
-  - Property Details
-  - Market Trends
-endpoints: []
+  - Off-Plan Projects
+  - Agent Directory
+  - Agency Search
+  - Amenities Filter
+  - Location Autocomplete
+  - No Proxies Required
+  - JSON Responses
+endpoints:
+  - method: "GET"
+    path: "/autocomplete"
+    summary: "Search locations across Dubai and the UAE, returns location IDs and slugs"
+  - method: "GET"
+    path: "/search-property"
+    summary: "Search properties for sale or rent with filters for location, price, bedrooms, and property type"
+  - method: "GET"
+    path: "/search-new-projects"
+    summary: "Search off-plan properties and new development projects in Dubai"
+  - method: "GET"
+    path: "/agent-search-by-name"
+    summary: "Find real estate agents by name, returns profile, agency, and listing statistics"
+  - method: "GET"
+    path: "/agent-properties"
+    summary: "Retrieve all active property listings from a specific agent"
+  - method: "GET"
+    path: "/agency-search"
+    summary: "Search real estate agencies by location"
+  - method: "GET"
+    path: "/agency-search-by-name"
+    summary: "Find agencies by name, returns profile and listing count"
+  - method: "GET"
+    path: "/agency-details"
+    summary: "Get full details for a specific real estate agency"
+  - method: "GET"
+    path: "/agency-properties"
+    summary: "Retrieve all listings from a specific agency"
+  - method: "GET"
+    path: "/amenities-search"
+    summary: "Search available amenities and the count of properties featuring each"
 users: 1240
 rating: 98
 pricing: null
-featured: false
+featured: true
 draft: false
 ---
 
 > [!IMPORTANT]
 > **This API is being rebranded and migrated.**
-> Please migrate to the new [UAE Real Estate API](https://rapidapi.com/happyendpoint/api/uae-real-estate3) before **May 12, 2026**. 
+> Please migrate to the new [UAE Real Estate API](https://rapidapi.com/happyendpoint/api/uae-real-estate3) before **May 12, 2026**.
 > Read our [Migration Guide](/rapidapi-uae-real-estate-migration) for step-by-step instructions.
 
-Comprehensive UAE Real Estate API with 500K+ Property Listings: Updated daily.
+The Bayut API gives developers structured, real-time access to property listings, agents, agencies, and development projects from Bayut.com, the UAE's leading real estate portal. All responses are delivered in clean JSON with no proxies required.
 
+## What You Can Access
+
+Property search covers the full UAE market. Filter listings by location, price range, bedrooms, bathrooms, property type, furnishing status, completion status, and amenities. Results include property title, price, area in square feet, photos, agent contact details, and verification status.
+
+Off-plan and new development projects are accessible through a dedicated endpoint, making this API a strong fit for platforms focused on Dubai property investment or pre-launch project tracking.
+
+Agent and agency data is available in depth. Search for brokers by name, retrieve their active listings, and pull full agency profiles including contact information and listing statistics.
+
+The `/amenities-search` endpoint returns all available amenity filters (swimming pool, gym, parking, balcony, security) alongside a count of how many listings include each. Pass these directly into `/search-property` to build advanced filtering interfaces.
+
+## Use Cases
+
+- Real estate portals targeting the Dubai and UAE market
+- PropTech platforms that need a reliable property data feed without building or maintaining scrapers
+- Investment dashboards tracking Dubai property prices and off-plan opportunities
+- Lead generation tools surfacing agents and agencies in specific areas
+- Analytics platforms studying UAE property market trends
+
+## Response Format
+
+All endpoints return structured JSON with consistent pagination support:
+
+```json
+{
+  "success": true,
+  "data": {
+    "properties": [...],
+    "total": 1432,
+    "page": 1,
+    "totalPages": 58
+  }
+}
+```
+
+## Coverage
+
+UAE-wide coverage including Dubai Marina, Downtown Dubai, Palm Jumeirah, Business Bay, JBR, JLT, Arabian Ranches, and thousands of other communities and buildings across Dubai, Abu Dhabi, and Sharjah.

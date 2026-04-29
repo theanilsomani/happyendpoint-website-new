@@ -9,15 +9,64 @@ tags:
   - map-search
   - market-trends
 features:
-  - Property Search
-  - Property Details
-  - Map Search
-  - Market Trends
-endpoints: []
+  - URL to JSON Conversion
+  - 500K+ Live Listings
+  - Agent and Broker Contacts
+  - Geo-Coordinates Included
+  - Pagination Support
+  - Redis Caching
+  - Sub-500ms Latency
+  - No Proxies Required
+endpoints:
+  - method: "GET"
+    path: "/search-by-url"
+    summary: "Pass any PropertyFinder search URL and receive fully parsed listing data as JSON"
+  - method: "GET"
+    path: "/property-details-by-url"
+    summary: "Retrieve full property details from a PropertyFinder listing URL"
 pricing: null
 featured: false
 draft: false
 ---
 
-Propertyfinder UAE Real Estate API with 500K+ listings, Get data by URL: Updated daily.
+The PropertyFinder Search by URL API converts any PropertyFinder search URL directly into structured JSON data. Instead of building or maintaining a scraper, you pass a URL and receive clean, parsed listing results ready to use in your application.
 
+## How It Works
+
+Copy any search URL from PropertyFinder, including URLs with filters, page numbers, or sorting parameters applied, and pass it to the API endpoint. The response returns fully structured property data from that exact results page.
+
+This works with:
+
+- Filtered searches (price range, bedrooms, location, amenities)
+- Any page number for pagination through large result sets
+- Sorting and advanced query parameters already applied in the URL
+
+## What Each Response Includes
+
+Every API response contains rich, structured data extracted from the listings:
+
+- Property details: price, size, bedrooms, bathrooms, property type
+- Full location hierarchy with geo-coordinates for mapping
+- Amenities list and furnishing status
+- High-quality images and media URLs
+- Agent and broker information including contact details
+- Listing metadata, verification status, and availability
+
+## Why URL-Based Access
+
+The URL-based approach is particularly useful when:
+
+- Users paste PropertyFinder links directly into your tool (chatbots, CRMs, browser extensions)
+- You are processing a list of URLs collected from external sources
+- You want to mirror a specific search someone has already set up on PropertyFinder
+- You need to paginate through a filtered search without reconstructing filter parameters manually
+
+For standard programmatic property search, the main PropertyFinder UAE Data API offers a full parameter-based search interface.
+
+## Performance
+
+Responses are delivered in under 500ms using Redis caching. No proxies are required and bot protection is handled server-side, so you get reliable access without managing infrastructure.
+
+## Coverage
+
+Dubai, Abu Dhabi, Sharjah, and all UAE communities. Covers residential rentals and sales, commercial properties, and new development projects. Data is updated daily from PropertyFinder.ae.

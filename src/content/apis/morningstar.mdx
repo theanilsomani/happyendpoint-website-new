@@ -10,14 +10,65 @@ tags:
   - esg-ratings
 features:
   - Real-Time Quotes
-  - Financials
-  - ETFs
-  - ESG Ratings
-endpoints: []
+  - Financial Statements
+  - ESG Risk Ratings
+  - ETF and Fund Data
+  - Valuation Metrics
+  - Earnings Transcripts
+  - Ownership Data
+  - Dividend History
+endpoints:
+  - method: "GET"
+    path: "/auto-complete"
+    summary: "Find performanceId or ticker for any stock, ETF, fund, or index"
+  - method: "GET"
+    path: "/stock/details"
+    summary: "Key metrics, price data, and summary for a stock or fund"
+  - method: "GET"
+    path: "/stock/financials"
+    summary: "Income statement, balance sheet, and cash flow data"
+  - method: "GET"
+    path: "/stock/valuation"
+    summary: "Valuation ratios including P/E, P/B, and earnings yield"
+  - method: "GET"
+    path: "/stock/dividends"
+    summary: "Historical dividend payments and yield data"
+  - method: "GET"
+    path: "/stock/ownership"
+    summary: "Institutional and insider ownership structure"
+  - method: "GET"
+    path: "/market/summary"
+    summary: "Real-time market overview including movers and sector performance"
+  - method: "GET"
+    path: "/esg/ratings"
+    summary: "Morningstar ESG risk and sustainability ratings for a security"
 pricing: null
-featured: false
+featured: true
 draft: false
 ---
 
-Institutional-grade financial data. Stocks, ETFs, financials, and ESG risk ratings.
+The Morningstar API gives developers access to institutional-grade financial data covering stocks, ETFs, mutual funds, and global market indexes. It is designed for investment platforms, financial analysis tools, and market dashboards that require deep, structured financial data.
 
+## What the API Covers
+
+**Real-time market data** includes live quotes, price charts, and market mover updates across equities, commodities, currencies, and indexes. The data covers global markets, not just US equities.
+
+**Financial fundamentals** are accessible through dedicated endpoints: income statement, balance sheet, and cash flow data for public companies. Valuation ratios (P/E, P/B, earnings yield, and others) are available separately, making it straightforward to build screeners or comparison tools.
+
+**Corporate intelligence** includes executive details, institutional and insider ownership structures, historical dividend payments, and earnings call transcripts. These are the data points that differentiate a serious research tool from a basic quote tracker.
+
+**ESG ratings** are Morningstar's own sustainability and risk scoring, integrated directly into the API. This is particularly useful for platforms targeting ESG-conscious investors or institutional clients with sustainability mandates.
+
+**ETF and fund data** covers holdings, performance history, and category classification, making the API suitable for fund comparison tools and portfolio analytics platforms.
+
+## How to Get Started
+
+Use the `/auto-complete` endpoint to find the unique `performanceId` or ticker for any asset. Pass that identifier to specific endpoints like `/stock/details` or `/stock/financials` to retrieve the data you need. The auto-complete endpoint handles stocks, ETFs, funds, indexes, commodities, and currencies.
+
+## Use Cases
+
+- Investment platforms requiring deep fundamental and real-time market data
+- Portfolio analytics and performance tracking tools
+- Financial screening and research applications
+- ESG-focused investment tools and reporting dashboards
+- Applications looking for an alternative to Bloomberg Terminal or similar commercial data providers

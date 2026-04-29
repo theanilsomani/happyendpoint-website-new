@@ -9,15 +9,50 @@ tags:
   - property-details
   - market-trends
 features:
-  - Map Search
-  - Analytics
-  - Property Details
-  - Market Trends
-endpoints: []
+  - Property Search
+  - Location Autocomplete
+  - Detailed Listings
+  - Market Analytics
+  - Spain and Andorra Coverage
+  - Balearic Islands
+  - Real-Time Updates
+  - RESTful JSON API
+endpoints:
+  - method: "GET"
+    path: "/property-suggestions"
+    summary: "Search suggestions and autocomplete for locations and properties in Spain"
+  - method: "GET"
+    path: "/search-properties"
+    summary: "Search property listings with filters for location, price, property type, and more"
+  - method: "GET"
+    path: "/property-details"
+    summary: "Comprehensive listing data for a specific property"
 pricing: null
 featured: false
 draft: false
 ---
 
-Spanish real estate data. Search millions of properties in Spain with granular filtering.
+The Fotocasa API provides access to one of Spain's largest real estate databases, with over 1.5 million property listings across Spain, Andorra, and the Balearic Islands. Data is updated continuously and delivered as clean JSON, making it straightforward to integrate into property search tools, market research platforms, and real estate applications.
 
+## What the API Covers
+
+**Property search** supports filtering by location, price, property type, number of rooms, and other standard real estate parameters. The search suggestion endpoint powers autocomplete experiences, returning location suggestions and property matches as users type.
+
+**Listing data** is comprehensive. Each property record includes price, location, property type, size, photos, key specifications, and agent or developer information where available.
+
+**Market coverage** spans all of Spain's regions, from major urban centers like Barcelona and Madrid to coastal areas such as Costa del Sol and the Canary Islands. Andorra and the Balearic Islands are also included, which is relevant for international buyers and cross-border property platforms.
+
+## Use Cases
+
+- Spanish real estate portals and property search applications
+- Market research and analysis tools for the Spanish property sector
+- Property valuation platforms using live listing data
+- Investment portfolio tools tracking Spanish real estate
+- Location intelligence and PropTech applications covering the Iberian market
+
+## Authentication
+
+All requests require the standard RapidAPI headers:
+
+- `X-RapidAPI-Key`: your RapidAPI key
+- `X-RapidAPI-Host`: `fotocasa3.p.rapidapi.com`

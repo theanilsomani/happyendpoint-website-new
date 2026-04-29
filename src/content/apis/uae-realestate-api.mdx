@@ -9,17 +9,93 @@ tags:
   - property-details
   - market-trends
 features:
-  - Historical Data
+  - Bayut and PropertyFinder Data
   - Property Search
-  - Property Details
-  - Market Trends
-endpoints: []
+  - Agent Search
+  - Agency Search
+  - Transaction History
+  - Single API Key
+  - Location Autocomplete
+  - 450,000+ Listings
+endpoints:
+  - method: "GET"
+    path: "/autocomplete"
+    summary: "Location search with auto-complete, returns location IDs and coordinates"
+  - method: "GET"
+    path: "/search-properties"
+    summary: "Search properties for rent or sale across Bayut and PropertyFinder with 15+ filters"
+  - method: "GET"
+    path: "/property-details"
+    summary: "Full property details including photos, amenities, floor plans, and agent info"
+  - method: "GET"
+    path: "/search-agents"
+    summary: "Find real estate agents by name or location across both platforms"
+  - method: "GET"
+    path: "/agent-details"
+    summary: "Full agent profile with contact info, service areas, and listing stats"
+  - method: "GET"
+    path: "/agent-properties"
+    summary: "All properties listed by a specific agent"
+  - method: "GET"
+    path: "/search-agencies"
+    summary: "Search real estate agencies or brokerages by name or location"
+  - method: "GET"
+    path: "/agency-details"
+    summary: "Full agency or brokerage profile with listing and agent statistics"
+  - method: "GET"
+    path: "/agency-properties"
+    summary: "All properties listed by a specific agency or brokerage"
+  - method: "GET"
+    path: "/get-transactions"
+    summary: "Historical property transaction data with filters for type, bedrooms, and time period"
 users: 850
 rating: 95
 pricing: null
-featured: false
+featured: true
 draft: false
 ---
 
-Bayut & Property Finder data in one UAE Real Estate API: Updated daily.
+The UAE Real Estate API combines property data from both Bayut and PropertyFinder through a single, unified interface. Instead of maintaining separate integrations for each platform, you get access to over 450,000 UAE property listings using one API key and one consistent endpoint structure.
 
+## How It Works
+
+Pass a location name (such as "Dubai Marina" or "Business Bay") and the platform parameter, and the API resolves the location to the correct platform-specific ID and returns results. You do not need to pre-fetch location IDs or learn different schemas for each platform. Switching between Bayut and PropertyFinder data is a single parameter change.
+
+## What the API Covers
+
+**Property search** supports 15 or more filters including location, bedrooms, bathrooms, price range, area, property type, furnishing, completion status, and rental frequency. Each result includes full listing data: price, photos, amenities, agent contact info, and verification status.
+
+**Agent and agency search** works across both platforms. Find agents by name or location, retrieve their full profiles with contact details, and pull their active listings. The same applies to agencies and brokerages.
+
+**Transaction data** provides historical sales and rental records filterable by property type, bedrooms, time period, and sort order. This is the foundation for property valuation tools, investment research dashboards, and automated market reports.
+
+## Example Queries
+
+Search apartments for rent in Dubai Marina:
+
+```
+GET /search-properties?platform=bayut&purpose=rent&location=Dubai Marina&property_type=apartment
+```
+
+Get transaction history for Palm Jumeirah sales:
+
+```
+GET /get-transactions?platform=bayut&transaction_type=sale&location=Palm Jumeirah&time_period=1y
+```
+
+Find agents in Business Bay:
+
+```
+GET /search-agents?platform=propertyfinder&location=Business Bay&purpose=buy
+```
+
+## Coverage
+
+All UAE Emirates: Dubai, Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah, and Umm Al Quwain. Popular areas include Dubai Marina, Downtown Dubai, Palm Jumeirah, JBR, Business Bay, JLT, Arabian Ranches, DIFC, Al Reem Island, Yas Island, and Saadiyat Island.
+
+## Data Sources
+
+| Platform | Website | Listings |
+|---|---|---|
+| Bayut | bayut.com | 200,000+ listings |
+| PropertyFinder | propertyfinder.ae | 250,000+ listings |

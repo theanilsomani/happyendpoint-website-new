@@ -9,15 +9,74 @@ tags:
   - sold-prices
   - student-housing
 features:
-  - Sales
-  - Rentals
-  - Sold Prices
+  - Sales Listings
+  - Rental Listings
+  - Sold Price History
+  - New Homes
   - Student Housing
-endpoints: []
+  - Commercial Properties
+  - Estate Agent Search
+  - Location Autocomplete
+  - Property Detail Pages
+endpoints:
+  - method: "GET"
+    path: "/auto-complete"
+    summary: "Location and keyword suggestions to power search bars"
+  - method: "GET"
+    path: "/property-for-sale"
+    summary: "Search residential properties currently listed for sale"
+  - method: "GET"
+    path: "/new-home-for-sale"
+    summary: "Search new-build and development homes for sale"
+  - method: "GET"
+    path: "/property-to-rent"
+    summary: "Search residential properties available for rent"
+  - method: "GET"
+    path: "/student-property-to-rent"
+    summary: "Search student accommodation available for rent"
+  - method: "GET"
+    path: "/commercial/properties-to-rent"
+    summary: "Search commercial properties available for rent"
+  - method: "GET"
+    path: "/commercial/properties-to-sale"
+    summary: "Search commercial properties available for purchase"
+  - method: "GET"
+    path: "/house-prices/sold-house-prices"
+    summary: "Historical sold prices for properties in a given area"
+  - method: "GET"
+    path: "/sold-house-prices/details"
+    summary: "Detailed information about a specific historical sale"
+  - method: "GET"
+    path: "/property-details"
+    summary: "Full listing details for a single Rightmove property"
+  - method: "GET"
+    path: "/estate-agents/list"
+    summary: "Find and list estate agents operating in a specific area"
 pricing: null
-featured: false
+featured: true
 draft: false
 ---
 
-The fastest UK property API. Sales, rentals, sold prices, and student accommodation.
+The Rightmove UK API provides fast, reliable access to property data from Rightmove, the UK's largest property portal. With 11 endpoints, it covers the complete UK property market: residential sales, rentals, new homes, student accommodation, commercial properties, sold price history, and estate agent data.
 
+## What the API Covers
+
+**Residential listings** are available for both sale and rent. Each listing includes price, address, photos, key property attributes (bedrooms, bathrooms, floor area), and agent details. Results are returned as structured JSON and support standard pagination.
+
+**Sold prices** provide historical transaction data for any area in the UK, useful for property valuation tools, investment analysis, and market research. The detail endpoint gives you specific information about individual historical sales.
+
+**New homes** have a dedicated endpoint returning newly built and off-plan properties from developers across the UK. This is useful for platforms targeting first-time buyers or new build investors.
+
+**Student accommodation** is separated into its own endpoint, covering houses, flats, and purpose-built student properties near universities. A useful differentiator for platforms serving the student rental market.
+
+**Commercial properties** are available for both rent and purchase, covering offices, retail units, industrial spaces, and other commercial types.
+
+**Estate agents** can be searched by area, returning agents operating in that market with profile and contact information.
+
+## Coverage
+
+UK-wide coverage including England, Scotland, and Wales. Major cities, suburban areas, and rural locations are all included.
+
+## Why Use This API
+
+The API is engineered for speed with low-latency responses and clean, predictable JSON output. The breadth of endpoints means you can build a comprehensive UK property application without sourcing data from multiple providers. Whether you need current listings, historical price data, or agent directories, it is all available through the same integration.

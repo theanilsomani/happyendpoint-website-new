@@ -9,15 +9,56 @@ tags:
   - q-and-a
   - pricing
 features:
-  - Reviews
-  - Inventory
-  - "Q&A"
-  - Pricing
-endpoints: []
+  - Product Search
+  - Product Details
+  - Customer Reviews
+  - Q and A Data
+  - Category Tree
+  - Store Locator
+  - Pricing Data
+  - Inventory Status
+endpoints:
+  - method: "GET"
+    path: "/product-search"
+    summary: "Search Kohls.com products by keyword, returns listings with pricing and availability"
+  - method: "GET"
+    path: "/product-details"
+    summary: "Full product information including specifications, pricing, and stock status"
+  - method: "GET"
+    path: "/product-reviews"
+    summary: "Customer reviews and ratings for a specific product"
+  - method: "GET"
+    path: "/product-qa"
+    summary: "Buyer questions and seller answers for a specific product"
+  - method: "GET"
+    path: "/categories"
+    summary: "Full Kohls product category tree and subcategory structure"
+  - method: "GET"
+    path: "/stores"
+    summary: "Kohls store locations with addresses and contact details"
 pricing: null
 featured: false
 draft: false
 ---
 
-Integrate pricing, inventory, reviews, and Q&A data directly from Kohls.com.
+The Kohls Data API provides programmatic access to product information, pricing, inventory, reviews, and store data from Kohls.com. It is designed for retail analytics tools, price tracking applications, e-commerce research platforms, and affiliate marketing solutions that need structured data from one of the largest US department store chains.
 
+## What the API Covers
+
+**Product search** queries the Kohls catalog by keyword, returning matching products with names, prices, promotional pricing, and availability status. This is the starting point for most integrations.
+
+**Product details** go deeper, providing full product specifications, pricing, stock status, product images, and categorization data. This endpoint is useful for building complete product pages or enriching an existing dataset.
+
+**Customer reviews** and **Q&A data** are available as separate endpoints. Reviews return ratings and written feedback from verified buyers. The Q&A endpoint surfaces questions asked by prospective buyers alongside official answers, providing context that product descriptions alone may not cover.
+
+**Category tree** exposes the full hierarchical structure of Kohls' product taxonomy, useful for building category-level navigation or for systematic catalog collection.
+
+**Store locator** returns Kohls store locations with addresses and contact details, useful for applications that combine online and in-store data.
+
+## Use Cases
+
+- Price comparison platforms tracking Kohls product prices and promotional deals
+- Retail analytics dashboards monitoring availability and pricing changes
+- E-commerce catalog enrichment and affiliate marketing tools
+- Market research and brand intelligence analysis
+- Inventory monitoring systems tracking stock changes over time

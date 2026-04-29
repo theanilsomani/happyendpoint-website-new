@@ -9,15 +9,58 @@ tags:
   - store-finder
   - global-coverage
 features:
-  - Stock Check
-  - Catalog
-  - Store Finder
-  - Global Coverage
-endpoints: []
+  - Keyword Product Search
+  - Category Browse
+  - Product Details
+  - Store Locator
+  - Multi-Country Support
+  - 12,000+ Products
+  - Real-Time Catalog
+  - Category Filters
+endpoints:
+  - method: "GET"
+    path: "/countries"
+    summary: "List of supported IKEA countries and regions"
+  - method: "GET"
+    path: "/stores"
+    summary: "IKEA store locations and details for a given country"
+  - method: "GET"
+    path: "/search-by-keyword"
+    summary: "Search IKEA products by keyword with optional filters"
+  - method: "GET"
+    path: "/search-by-category"
+    summary: "Browse products within a specific category"
+  - method: "GET"
+    path: "/filters"
+    summary: "Available search and category filters for refining results"
+  - method: "GET"
+    path: "/product-details"
+    summary: "Full product data including images, pricing, dimensions, materials, and availability"
 pricing: null
 featured: false
 draft: false
 ---
 
-Complete product catalog, store stock levels, and category trees for global Ikea stores.
+The IKEA Pro API provides real-time access to IKEA's product catalog, store data, and category structure across multiple countries. It covers 12,000 or more products with current pricing, availability, dimensions, and high-resolution images.
 
+## What the API Covers
+
+**Product search** works by keyword or category. A keyword search lets you find products directly (searching for "BILLY bookcase" returns matching products with full metadata). Category-based search mirrors how IKEA's website is structured, letting you navigate the full catalog hierarchy from furniture categories down to individual items.
+
+**Product details** include everything needed to build a complete product page: images, current pricing, availability status, dimensions, materials, and product specifications. The data is structured for direct integration without additional processing.
+
+**Store data** covers IKEA locations by country, making it useful for store finder features or location-based availability queries.
+
+**Multi-country support** means you can localize queries by passing a country parameter. This is useful for apps that need to show region-specific pricing or availability.
+
+## Use Cases
+
+- E-commerce and affiliate storefronts featuring IKEA products
+- Interior design and room planning apps that need product dimensions and images
+- Price comparison and price tracking tools across IKEA categories
+- Inventory monitoring systems for retail analytics
+- AI-powered furniture recommendation engines that need structured product metadata
+
+## Disclaimer
+
+This API is built by HappyEndpoint and is not affiliated with or endorsed by IKEA. All data is sourced from publicly available product information.

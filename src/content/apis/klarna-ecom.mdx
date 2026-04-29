@@ -9,15 +9,69 @@ tags:
   - discount-tracking
   - comparison
 features:
-  - Price History
-  - Multi-Store
-  - Discount Tracking
-  - Comparison
-endpoints: []
+  - Multi-Store Coverage
+  - Price History Charts
+  - Product Reviews
+  - 13 Regions Supported
+  - Cross-Platform Search
+  - Deal Discovery
+  - Category Intelligence
+  - Store and Category Data
+endpoints:
+  - method: "GET"
+    path: "/product-search"
+    summary: "Search products across multiple stores with filters and sorting"
+  - method: "GET"
+    path: "/category-search"
+    summary: "Browse products within a specific category"
+  - method: "GET"
+    path: "/product-details"
+    summary: "Full product metadata from multiple retailers"
+  - method: "GET"
+    path: "/product-reviews"
+    summary: "User and professional reviews for a product"
+  - method: "GET"
+    path: "/price-history"
+    summary: "Historical price chart for a product across multiple time intervals"
+  - method: "GET"
+    path: "/stores"
+    summary: "List of stores available in the Klarna shopping ecosystem"
+  - method: "GET"
+    path: "/categories"
+    summary: "Category structure and subcategories"
+  - method: "GET"
+    path: "/deals"
+    summary: "Current deals and discounted products"
+  - method: "GET"
+    path: "/keyword-suggestions"
+    summary: "Search keyword suggestions for product discovery"
 pricing: null
 featured: false
 draft: false
 ---
 
-Multi-store intelligence. Aggregate data from Amazon, Walmart, and Target via Klarna.
+The Klarna Ecom API aggregates product data, pricing, reviews, and deals from multiple top e-commerce platforms through Klarna's shopping ecosystem. With a single API, you can access data from stores including Amazon, Walmart, Best Buy, Target, and many more, across 13 supported regions.
 
+## What the API Covers
+
+**Multi-store product search** is the core capability. A single query returns results from multiple retailers, making it practical for building comparison engines, deal finders, or shopping aggregators without managing separate API integrations per store.
+
+**Price history** is available at the product level with data across multiple time intervals. This makes it possible to build price trackers, alert systems, or discount pattern analysis tools without maintaining your own historical pricing database.
+
+**Product reviews** include both user-submitted ratings and written reviews, as well as professional review content where available. Related product groups are accessible alongside the main product data, useful for building "similar items" or "frequently compared" features.
+
+**Category and store intelligence** endpoints expose the full structure of Klarna's shopping ecosystem: store lists, category hierarchies, subcategories, cashback opportunities, and curated Klarna shopping experiences. This is the data layer needed for building structured navigation and browsing interfaces.
+
+**Deal discovery** surfaces currently discounted products and active deals across the ecosystem.
+
+## Supported Regions
+
+The API supports 13 regions: Austria, Denmark, Finland, France, Germany, Ireland, Italy, Netherlands, Norway, Spain, Sweden, UK, and USA. All features are supported across all regions. Pass the `region` parameter to localize results; the default is `usa`.
+
+## Use Cases
+
+- Price comparison websites and browser extensions
+- Shopping assistant apps and AI recommenders
+- Affiliate marketing and deal discovery platforms
+- Dropshipping research tools
+- E-commerce analytics and market intelligence platforms

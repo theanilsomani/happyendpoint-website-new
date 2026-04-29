@@ -9,15 +9,55 @@ tags:
   - product-search
   - supplier-data
 features:
-  - Trend Analysis
-  - Global Stores
   - Product Search
-  - Supplier Data
-endpoints: []
+  - Category Browse
+  - Store Locator
+  - Supplier Details
+  - Multi-Country Support
+  - Search Autocomplete
+  - JSON Responses
+  - Near Real-Time Data
+endpoints:
+  - method: "GET"
+    path: "/product-search"
+    summary: "Search H&M products by keyword with filters for size, color, fit, and material"
+  - method: "GET"
+    path: "/auto-complete"
+    summary: "Real-time search suggestions for search-as-you-type experiences"
+  - method: "GET"
+    path: "/categories"
+    summary: "Full H&M category hierarchy for organizing or filtering product data"
+  - method: "GET"
+    path: "/countries"
+    summary: "List of supported countries and language codes for localization"
+  - method: "GET"
+    path: "/stores"
+    summary: "H&M store locations by country including opening hours and departments"
+  - method: "GET"
+    path: "/supplier-details"
+    summary: "Supplier and manufacturing information for specific H&M products"
 pricing: null
 featured: false
 draft: false
 ---
 
-Fashion discovery data. Search products, supplier details, and store locations worldwide.
+The H&M API provides real-time access to product data, store locations, and supplier information from H&M's global catalog. It covers all key data points needed for fashion discovery tools, retail analytics platforms, and e-commerce applications targeting the H&M product range.
 
+## What the API Covers
+
+**Product search** supports keyword queries with advanced filters including size, color, fit, material, and sorting options. Pagination is included, making it practical for loading large result sets. Autocomplete is available through a separate endpoint for search-as-you-type interfaces.
+
+**Category structure** is accessible through a dedicated endpoint that returns H&M's full product hierarchy. This is useful for building navigation trees, filtering interfaces, or for organizing a catalog by product type.
+
+**Store data** covers H&M locations worldwide, returning stores by country with addresses, opening hours, and available departments. Multi-country localization is supported through the `/countries` endpoint, which provides language codes and region-specific configuration.
+
+**Supplier details** is a distinctive feature of this API. It returns manufacturing and supplier information for specific products, covering factory names, locations, and production details. This is valuable for platforms focused on supply chain transparency, sustainability reporting, or ethical sourcing research.
+
+## Use Cases
+
+- Fashion trend trackers and product discovery apps
+- Price comparison tools and availability monitors across H&M's global catalog
+- Retail analytics dashboards tracking H&M product data
+- AI styling assistants that need structured clothing metadata
+- Supply chain transparency platforms using the supplier endpoint
+- E-commerce and affiliate tools built around H&M products
