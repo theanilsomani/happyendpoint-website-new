@@ -8,7 +8,7 @@ import { getAllPublishedApis, getAllPublishedPlatforms, getAllCategories } from 
 const PAGE_SIZE = 6;
 
 const apis = await getAllPublishedApis();
-apis.sort((a, b) => a.data.name.localeCompare(b.data.name));
+apis.sort((a, b) => a.data.order - b.data.order);
 const platforms = await getAllPublishedPlatforms();
 const categories = await getAllCategories();
 
