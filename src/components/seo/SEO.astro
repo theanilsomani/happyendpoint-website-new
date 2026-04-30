@@ -14,6 +14,7 @@ interface Props {
   };
   noindex?: boolean;
   nofollow?: boolean;
+  canonical?: string;
 }
 
 const {
@@ -24,11 +25,14 @@ const {
   article,
   noindex = false,
   nofollow = false,
+  canonical,
 } = Astro.props;
 
 const pageTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.name;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = canonical
+  ? new URL(canonical, Astro.site)
+  : new URL(Astro.url.pathname, Astro.site);
 
 // Process image - fall back to the static default OG image
 let ogImage: string;

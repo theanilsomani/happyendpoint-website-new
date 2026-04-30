@@ -24,6 +24,7 @@ interface Props {
   includeOrgSchema?: boolean;
   includePersonSchema?: boolean;
   includeProfessionalServiceSchema?: boolean;
+  canonical?: string;
 }
 
 const {
@@ -37,6 +38,7 @@ const {
   includeOrgSchema = false,
   includePersonSchema = false,
   includeProfessionalServiceSchema = false,
+  canonical,
 } = Astro.props;
 
 // Build JSON-LD schemas
@@ -77,6 +79,7 @@ if (includeProfessionalServiceSchema) {
       article={article}
       noindex={noindex}
       nofollow={nofollow}
+      canonical={canonical}
     />
 
     <!-- RSS Feed -->

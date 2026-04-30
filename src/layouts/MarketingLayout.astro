@@ -16,6 +16,7 @@ interface Props {
   noindex?: boolean;
   nofollow?: boolean;
   includeOrgSchema?: boolean;
+  canonical?: string;
 }
 
 const {
@@ -26,6 +27,7 @@ const {
   noindex = false,
   nofollow = false,
   includeOrgSchema = false,
+  canonical,
 } = Astro.props;
 ---
 
@@ -37,6 +39,7 @@ const {
   noindex={noindex}
   nofollow={nofollow}
   includeOrgSchema={includeOrgSchema}
+  canonical={canonical}
 >
   <Header
     slot="header"

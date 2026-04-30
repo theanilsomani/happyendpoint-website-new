@@ -1,0 +1,66 @@
+---
+title: "Retail Data API: IKEA Product Catalog, Pricing, and Stock"
+description: "Live retail data from IKEA and Kohl's. Product catalog, real-time pricing, store stock levels, and category data via API and bulk dataset."
+vertical: ecommerce
+isHub: false
+targetKeyword: 'retail data api'
+eyebrow: 'Ecommerce Data - Retail'
+relatedApiSlugs: [ikea-pro, kohls-data]
+relatedDatasetSlugs: [ikea-catalog-sample]
+faqItems:
+  - question: 'Does the IKEA API cover all countries?'
+    answer: 'IKEA operates in 60+ markets. The API supports multi-country queries so you can retrieve pricing and stock for any supported market in a single integration.'
+  - question: 'Can I check in-store stock levels with the IKEA API?'
+    answer: 'Yes. The IKEA Pro API returns per-store stock levels, letting you tell users whether a product is available at their nearest store before they make a trip.'
+  - question: 'Is there a free dataset sample for IKEA?'
+    answer: 'Yes. A free IKEA catalog sample is available for download without an account. See the datasets section below.'
+  - question: 'How current is IKEA pricing data?'
+    answer: 'Pricing is returned in real time - each API call fetches current prices directly from the live IKEA catalog, including any active promotions.'
+draft: false
+---
+
+Retail product data powers a wide range of applications - price comparison tools, furniture visualizers, inventory management systems, affiliate feeds, and shopping assistants. Happy Endpoint covers two major retail platforms: IKEA (global home furnishings) and Kohl's (US department store).
+
+## IKEA Pro API
+
+IKEA is one of the world's largest furniture and home goods retailers, operating in 60+ countries with a catalog of over 12,000 products. The IKEA Pro API gives you structured access to that catalog in real time.
+
+**Product search** - search by keyword across IKEA's global catalog with filters for category and market. Returns product name, price, currency, and direct product URL.
+
+**Category browse** - IKEA's full category tree from top-level department down to sub-category. Useful for systematic catalog ingestion or building browse-style navigation on top of IKEA data.
+
+**Product details** - the full product record including name, dimensions, materials, available colors, price, sale price, product images, and assembly information.
+
+**Store stock levels** - per-store inventory status so you can show users whether a specific product is available at their local IKEA before they visit.
+
+**Store locator** - all IKEA stores by country, with addresses and opening hours.
+
+**Multi-country support** - query pricing for the same product across different markets. Useful for cross-border price comparison and grey market analysis.
+
+## Kohl's Data API
+
+Kohl's is one of the largest US department store chains, with a product mix covering clothing, footwear, home goods, and outdoor equipment. The API covers the full product catalog and transaction-level detail including promotions.
+
+**Product search** - keyword search with category, brand, price range, and rating filters. Returns pricing including Kohl's Cash promotions and sale prices.
+
+**Product details** - full record with name, brand, category, price, sale price, inventory status, images, and product variants (color, size).
+
+**Customer reviews** - rating, review text, date, and verified purchase status per product.
+
+**Pricing data** - current and promotional pricing, including Kohl's Cash events that affect effective product cost.
+
+**Category tree** - the full Kohl's category hierarchy for systematic catalog coverage.
+
+## Use cases
+
+**Furniture comparison tools** - pull product details, pricing, and stock availability from IKEA to build comparison features or room-planning tools that reference live catalog data.
+
+**Price monitoring** - track promotional events at IKEA and Kohl's. Both retailers run frequent seasonal and clearance promotions; automated monitoring is more reliable than manual checks.
+
+**Affiliate feed management** - keep affiliate product feeds current. Retail feeds go stale quickly as prices, availability, and product lines change across markets.
+
+**Inventory intelligence** - IKEA's per-store stock endpoint is rare in retail APIs. Applications that route customers to the nearest store with availability, or that track stock depletion patterns, benefit from this granularity.
+
+**Shopping assistants** - enrich product recommendations with live price and availability so users see what is actually purchasable at the shown price.
+
+**Retail analytics** - category structure and pricing data across two major retail chains provides a foundation for competitive analysis, market basket modeling, and assortment planning.

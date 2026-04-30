@@ -22,6 +22,21 @@ const { slug } = Astro.params;
 const category = await getCategoryBySlug(slug!);
 if (!category) return Astro.redirect('/404');
 
+// Canonical URLs pointing to the richer topic pages for each category.
+// This keeps category pages browsable for users while telling search engines
+// which URL is authoritative, avoiding thin-content penalties.
+const categoryCanonicals: Record<string, string> = {
+  'real-estate': '/real-estate-data/',
+  'travel':      '/travel-data/',
+  'finance':     '/finance-data/',
+  'grocery':     '/ecommerce-data/grocery/',
+  'beauty':      '/ecommerce-data/beauty/',
+  'fashion':     '/ecommerce-data/fashion/',
+  'retail':      '/ecommerce-data/retail/',
+  'aggregator':  '/finance-data/shopping/',
+};
+const canonical = categoryCanonicals[category.id];
+
 const { Content } = await render(category);
 const platforms = await getPlatformsInCategory(category.id);
 
@@ -48,6 +63,7 @@ const faqs = [
 <MarketingLayout
   title={`${category.data.name} APIs & datasets`}
   description={category.data.description}
+  canonical={canonical}
 >
   <Breadcrumbs items={[
     { label: 'Home', href: '/' },
