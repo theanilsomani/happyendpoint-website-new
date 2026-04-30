@@ -33,6 +33,7 @@ export const navItems: NavItem[] = [
           { label: 'Free Datasets', href: '/free-datasets', icon: 'gift' },
           { label: 'Dictionary',    href: '/dictionary',    icon: 'book-open' },
           { label: 'Blog',          href: '/blog',          icon: 'newspaper' },
+          { label: 'Use Cases',     href: '/use-cases',     icon: 'lightbulb' },
         ],
       },
       {
