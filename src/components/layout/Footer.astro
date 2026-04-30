@@ -132,8 +132,6 @@ const premiumLinks = {
     { label: 'Use Cases',              href: '/use-cases' },
     { label: 'Why Happy Endpoint?',    href: '/why-happyendpoint' },
     { label: 'FAQ',                    href: '/faq' },
-    { label: 'Privacy Policy',         href: '/privacy' },
-    { label: 'Terms of Service',       href: '/terms' },
   ]
 };
 
@@ -141,6 +139,9 @@ const premiumLinks = {
 const defaultNav: NavItem[] = getNavItems().flatMap((item: NavConfigItem) => {
   if (item.children) {
     return item.children.map(c => ({ label: c.label, href: c.href, ...(c.icon ? { icon: c.icon } : {}) }));
+  }
+  if (item.sections) {
+    return item.sections.flatMap(s => s.items.map(c => ({ label: c.label, href: c.href, ...(c.icon ? { icon: c.icon } : {}) })));
   }
   return [{ label: item.label, href: item.href, ...(item.icon ? { icon: item.icon } : {}) }];
 });

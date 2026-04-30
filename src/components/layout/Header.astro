@@ -23,7 +23,7 @@
  */
 import type { HTMLAttributes } from 'astro/types';
 import { cn } from '@/lib/cn';
-import { getNavItems, type NavItem as NavConfigItem } from '@/config/nav.config';
+import { getNavItems, type NavItem as NavConfigItem, type NavSection } from '@/config/nav.config';
 import { headerVariants, headerInnerVariants } from './header.variants';
 import Button from '@/components/ui/form/Button/Button.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
@@ -36,6 +36,7 @@ export interface NavItem {
   href: string;
   icon?: string;
   children?: { label: string; href: string; icon?: string }[];
+  sections?: NavSection[];
 }
 
 export interface HeaderAction {
@@ -123,6 +124,7 @@ const defaultNav = getNavItems().map((item: NavConfigItem) => ({
   href: item.href,
   ...(item.icon ? { icon: item.icon } : {}),
   ...(item.children ? { children: item.children } : {}),
+  ...(item.sections ? { sections: item.sections } : {}),
 }));
 const navItems: NavItem[] = nav || [...extraNav, ...defaultNav];
 
@@ -152,9 +154,10 @@ const headerClasses = cn(
 const innerClasses = headerInnerVariants({ size, shape });
 
 // Check if a nav item is active
-function isActive(href: string, children?: { label: string; href: string }[]): boolean {
+function isActive(href: string, children?: { label: string; href: string }[], sections?: NavSection[]): boolean {
   if (!showActiveState) return false;
   if (children) return children.some(c => currentPath === c.href || currentPath.startsWith(c.href + '/'));
+  if (sections) return sections.some(s => s.items.some(c => currentPath === c.href || currentPath.startsWith(c.href + '/')));
   if (href.startsWith('#')) return false;
   return currentPath === href || currentPath.startsWith(href + '/');
 }
@@ -205,8 +208,8 @@ const buttonId = `${menuId}-button`;
           </nav>
         ) : (
           <nav class="hidden items-center gap-1 md:flex" aria-label="Main navigation">
-            {navItems.map(({ label, href, icon, children }) => (
-              children ? (
+            {navItems.map(({ label, href, icon, children, sections }) => (
+              (children || sections) ? (
                 <div class="group relative">
                   <button
                     type="button"
@@ -215,10 +218,10 @@ const buttonId = `${menuId}-button`;
                       'transition-all duration-(--transition-fast)',
                       isFloating && 'hdr-invert-text',
                       isFloating
-                        ? (isActive(href, children)
+                        ? (isActive(href, children, sections)
                             ? 'hdr-nav-active font-semibold'
                             : 'font-medium opacity-80 hover:opacity-100')
-                        : (isActive(href, children)
+                        : (isActive(href, children, sections)
                             ? 'nav-link-active font-semibold text-foreground bg-secondary'
                             : 'nav-link-inactive font-medium text-foreground-muted hover:text-foreground hover:bg-secondary/70')
                     )}
@@ -231,23 +234,48 @@ const buttonId = `${menuId}-button`;
                     </svg>
                   </button>
                   <div class="absolute left-0 top-full z-50 hidden pt-1.5 group-hover:block">
-                    <div class="min-w-[170px] rounded-lg border border-border bg-background py-1 shadow-lg">
-                      {children.map(child => (
-                        <a
-                          href={child.href}
-                          class={cn(
-                            'flex items-center gap-2.5 px-4 py-2 text-sm transition-colors duration-(--transition-fast)',
-                            (currentPath === child.href || currentPath.startsWith(child.href + '/'))
-                              ? 'font-semibold text-foreground bg-secondary'
-                              : 'font-medium text-foreground-muted hover:text-foreground hover:bg-secondary/70'
-                          )}
-                          aria-current={(currentPath === child.href || currentPath.startsWith(child.href + '/')) ? 'page' : undefined}
-                        >
-                          {child.icon && <Icon name={child.icon} size="xs" class="shrink-0 text-brand-600" />}
-                          {child.label}
-                        </a>
-                      ))}
-                    </div>
+                    {sections ? (
+                      <div class="grid grid-cols-2 gap-x-1 min-w-[340px] rounded-lg border border-border bg-background p-2 shadow-lg">
+                        {sections.map(section => (
+                          <div>
+                            <p class="px-3 pb-1 pt-2 text-[10px] font-bold uppercase tracking-wider text-foreground-muted">{section.title}</p>
+                            {section.items.map(child => (
+                              <a
+                                href={child.href}
+                                class={cn(
+                                  'flex items-center gap-2.5 px-3 py-2 text-sm rounded-md transition-colors duration-(--transition-fast)',
+                                  (currentPath === child.href || currentPath.startsWith(child.href + '/'))
+                                    ? 'font-semibold text-foreground bg-secondary'
+                                    : 'font-medium text-foreground-muted hover:text-foreground hover:bg-secondary/70'
+                                )}
+                                aria-current={(currentPath === child.href || currentPath.startsWith(child.href + '/')) ? 'page' : undefined}
+                              >
+                                {child.icon && <Icon name={child.icon} size="xs" class="shrink-0 text-brand-600" />}
+                                {child.label}
+                              </a>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div class="min-w-[170px] rounded-lg border border-border bg-background py-1 shadow-lg">
+                        {children!.map(child => (
+                          <a
+                            href={child.href}
+                            class={cn(
+                              'flex items-center gap-2.5 px-4 py-2 text-sm transition-colors duration-(--transition-fast)',
+                              (currentPath === child.href || currentPath.startsWith(child.href + '/'))
+                                ? 'font-semibold text-foreground bg-secondary'
+                                : 'font-medium text-foreground-muted hover:text-foreground hover:bg-secondary/70'
+                            )}
+                            aria-current={(currentPath === child.href || currentPath.startsWith(child.href + '/')) ? 'page' : undefined}
+                          >
+                            {child.icon && <Icon name={child.icon} size="xs" class="shrink-0 text-brand-600" />}
+                            {child.label}
+                          </a>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               ) : (
@@ -417,14 +445,34 @@ const buttonId = `${menuId}-button`;
             'space-y-1 py-4',
             isFloating ? 'px-4' : 'container'
           )}>
-            {navItems.map(({ label, href, icon, children }) => (
-              children ? (
+            {navItems.map(({ label, href, icon, children, sections }) => (
+              (children || sections) ? (
                 <div>
                   <p class="flex items-center gap-1.5 px-3 pb-1 pt-2 text-xs font-semibold uppercase tracking-wider text-foreground-muted">
                     {icon && <Icon name={icon} size="xs" class="shrink-0 text-brand-600" />}
                     {label}
                   </p>
-                  {children.map(child => (
+                  {sections ? sections.map(section => (
+                    <>
+                      <p class="px-6 pb-0.5 pt-2 text-[10px] font-bold uppercase tracking-wider text-foreground-muted/60">{section.title}</p>
+                      {section.items.map(child => (
+                        <a
+                          href={child.href}
+                          class={cn(
+                            'mobile-nav-link flex items-center gap-2 rounded-md px-3 py-2 pl-8 text-sm',
+                            'transition-all duration-(--transition-fast)',
+                            (currentPath === child.href || currentPath.startsWith(child.href + '/'))
+                              ? 'mobile-nav-link-active bg-secondary text-foreground font-semibold'
+                              : 'mobile-nav-link-inactive text-foreground-muted hover:bg-secondary/70 hover:text-foreground font-medium'
+                          )}
+                          aria-current={(currentPath === child.href || currentPath.startsWith(child.href + '/')) ? 'page' : undefined}
+                        >
+                          {child.icon && <Icon name={child.icon} size="xs" class="shrink-0 text-brand-600" />}
+                          {child.label}
+                        </a>
+                      ))}
+                    </>
+                  )) : children!.map(child => (
                     <a
                       href={child.href}
                       class={cn(
