@@ -164,6 +164,39 @@ const apiPills = [
     </div>
   </section>
 
+  <!-- 5b. Data guides by vertical -->
+  <section class="border-t border-border bg-background-secondary py-16">
+    <div class="container">
+      <div class="flex items-end justify-between gap-6">
+        <div>
+          <h2 class="text-2xl font-bold text-foreground md:text-3xl">Data guides by vertical</h2>
+          <p class="mt-2 text-foreground-secondary">What data is available, what it covers, and what you can build with it.</p>
+        </div>
+      </div>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { label: 'Real Estate Data',  href: '/real-estate-data/',  icon: 'lucide:building-2',   desc: 'UAE, UK, and Spain property listings, sold prices, and transactions.' },
+          { label: 'Ecommerce Data',    href: '/ecommerce-data/',    icon: 'lucide:shopping-bag',  desc: 'Grocery, fashion, and beauty product catalogs and price intelligence.' },
+          { label: 'Finance Data',      href: '/finance-data/',      icon: 'lucide:trending-up',   desc: 'Morningstar investment data, ESG ratings, and cross-retailer price history.' },
+          { label: 'Travel Data',       href: '/travel-data/',       icon: 'lucide:plane',         desc: 'Real-time hotel pricing, flight search, and car rental data.' },
+        ].map(v => (
+          <a
+            href={v.href}
+            class="group flex flex-col gap-3 rounded-lg border border-border bg-card p-5 transition hover:border-border-strong hover:shadow-sm"
+          >
+            <span class="flex h-10 w-10 items-center justify-center rounded-md bg-brand-500/10 text-brand-600">
+              <Icon name={v.icon} class="h-5 w-5" />
+            </span>
+            <div>
+              <p class="font-semibold text-foreground group-hover:text-brand-600">{v.label}</p>
+              <p class="mt-1 text-sm text-foreground-secondary">{v.desc}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- 6. Free samples CTA band -->
   <section class="container py-12">
     <div>

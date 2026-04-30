@@ -104,29 +104,36 @@ const premiumLinks = {
     { label: 'Blog',          href: '/blog',          icon: 'newspaper' },
   ],
   apis: [
-    { label: 'UAE Real Estate API', href: '/library/uae-realestate-api' },
-    { label: 'Bayut Data API', href: '/library/bayut-api' },
-    { label: 'PropertyFinder API', href: '/library/propertyfinder-api' },
-    { label: 'Sephora Catalog API', href: '/library/sephora-api' },
+    { label: 'UAE Real Estate API',    href: '/library/uae-realestate-api' },
+    { label: 'Bayut Data API',         href: '/library/bayut-api' },
+    { label: 'PropertyFinder API',     href: '/library/propertyfinder-api' },
+    { label: 'Tesco Data API',         href: '/library/tesco-data' },
+    { label: 'Sephora API',            href: '/library/sephora-api' },
+    { label: 'Rightmove UK API',       href: '/library/rightmove-uk' },
   ],
   datasets: [
-    { label: 'Bayut Property Dataset', href: '/datasets/bayut-properties' },
-    { label: 'Tesco Products Dataset', href: '/datasets/tesco-products' },
-    { label: 'H&M Inventory Dataset', href: '/datasets/hm-inventory' },
-    { label: 'Morningstar Data', href: '/datasets/morningstar' },
+    { label: 'Rightmove Sold Prices',  href: '/datasets/rightmove-sold' },
+    { label: 'Sephora US Catalog',     href: '/datasets/sephora-products-us' },
+    { label: 'Tesco UK Products',      href: '/datasets/tesco-products-uk' },
+    { label: 'PropertyFinder UAE',     href: '/datasets/propertyfinder-transactions-data' },
+    { label: 'Sephora Reviews',        href: '/datasets/sephora-reviews-dataset' },
+    { label: 'Browse all datasets',    href: '/datasets' },
   ],
-  learn: [
-    { label: 'API Documentation', href: 'https://docs.happyendpoint.com', external: true },
-    { label: 'Use Cases', href: '/use-cases' },
-    { label: 'Why Happy Endpoint?', href: '/why-happyendpoint' },
-    { label: 'FAQ', href: '/faq' },
+  dataGuides: [
+    { label: 'Real Estate Data',       href: '/real-estate-data/' },
+    { label: 'UAE Real Estate',        href: '/real-estate-data/uae/' },
+    { label: 'UK Property Data',       href: '/real-estate-data/uk/' },
+    { label: 'Ecommerce Data',         href: '/ecommerce-data/' },
+    { label: 'Beauty Data (Sephora)',  href: '/ecommerce-data/beauty/' },
+    { label: 'Travel Data',            href: '/travel-data/' },
   ],
   resources: [
-    { label: 'Custom requests', href: '/contact' },
-    { label: 'Contact Support', href: '/contact' },
-    { label: 'Privacy Policy', href: '/privacy' },
-    { label: 'Terms of Service', href: '/terms' },
-    { label: 'Cookie Policy', href: '/privacy' },
+    { label: 'API Documentation',      href: 'https://docs.happyendpoint.com', external: true },
+    { label: 'Use Cases',              href: '/use-cases' },
+    { label: 'Why Happy Endpoint?',    href: '/why-happyendpoint' },
+    { label: 'FAQ',                    href: '/faq' },
+    { label: 'Privacy Policy',         href: '/privacy' },
+    { label: 'Terms of Service',       href: '/terms' },
   ]
 };
 
@@ -251,11 +258,11 @@ function getSocialIcon(platform: string): string {
             </ul>
           </div>
 
-          {/* Column 4: Learn */}
+          {/* Column 4: Data Guides */}
           <div class="space-y-4">
-            <h3 class="text-sm font-semibold uppercase tracking-wider text-foreground-muted">Learn</h3>
+            <h3 class="text-sm font-semibold uppercase tracking-wider text-foreground-muted">Data Guides</h3>
             <ul class="space-y-3">
-              {premiumLinks.learn.map(link => (
+              {premiumLinks.dataGuides.map(link => (
                 <li>
                   <a href={link.href} class="text-sm font-medium text-foreground-secondary transition hover:text-brand-600">
                     {link.label}
@@ -271,7 +278,12 @@ function getSocialIcon(platform: string): string {
             <ul class="space-y-3">
               {premiumLinks.resources.map(link => (
                 <li>
-                  <a href={link.href} class="text-sm font-medium text-foreground-secondary transition hover:text-brand-600">
+                  <a
+                    href={link.href}
+                    class="text-sm font-medium text-foreground-secondary transition hover:text-brand-600"
+                    target={link.external ? '_blank' : undefined}
+                    rel={link.external ? 'noopener noreferrer' : undefined}
+                  >
                     {link.label}
                   </a>
                 </li>
