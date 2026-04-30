@@ -1,0 +1,73 @@
+---
+title: 'API for grocery stores: what is available and how to use it'
+description: 'A practical guide to grocery store APIs in 2025 - what data is available, which retailers have coverage, and how to integrate grocery data into your product.'
+publishedAt: 2026-04-29
+author: 'Happy Endpoint Team'
+tags: ['grocery', 'tesco', 'retail', 'api', 'price-comparison']
+coverImage: /blog/covers/api-for-grocery-stores.png
+coverCategory: GUIDE
+coverSlugLabel: GROCERY API
+---
+
+Grocery is one of the most-searched retail data verticals. Developers building price comparison tools, basket optimisation apps, nutrition trackers, and food delivery products all need programmatic access to grocery store data. What actually exists, what it covers, and how to use it is less well-documented than it should be.
+
+This post covers what's available in the UK grocery API market, with a focus on what you can build with it.
+
+## What grocery API data typically includes
+
+A grocery API returns some combination of:
+
+- **Product catalog** - product name, brand, category, package size, images
+- **Pricing** - current price, unit price (per 100g, per litre), promotional price
+- **Promotions** - multi-buy deals ("3 for £5"), member pricing (like Tesco Clubcard), temporary price reductions
+- **Nutritional data** - calories, macros, vitamins, allergens, per 100g and per serving
+- **Stock status** - in stock / out of stock, sometimes with store-level granularity
+- **Category taxonomy** - the hierarchy from department down to sub-category
+
+Not every retailer or API provides all of these. Nutritional data and promotions are the fields most commonly missing from thin API providers.
+
+## Tesco Data API: the most comprehensive UK grocery API
+
+The Tesco Data API is the deepest UK grocery API available through RapidAPI. Tesco is the UK's largest grocery retailer with approximately 27% market share, carrying over 300,000 SKUs across UK and Ireland stores.
+
+What it covers:
+
+- **Product search** - keyword search across the full catalog with pricing, images, and PDP URLs
+- **Product details** - full record including nutritional panel, allergens, storage, and preparation
+- **Category browsing** - full category hierarchy from department to sub-category
+- **Clubcard offers** - current promotional pricing, including complex multi-buy mechanics
+- **UK and Ireland** - separate endpoints for each market
+
+The nutritional data is particularly thorough - energy, fat, saturates, carbohydrates, sugars, fibre, protein, and salt, per 100g and per serving. Required for any nutrition-focused feature.
+
+A bulk dataset is also available: 500K+ Tesco UK products with pricing, nutrition, and promotional data, updated weekly.
+
+## What about Asda, Ocado, and Lidl?
+
+Asda, Ocado, and Lidl do not have comparable third-party APIs available on RapidAPI at the depth the Tesco API provides. If you need UK market coverage across multiple retailers rather than Tesco-specific data, two approaches exist:
+
+**Use the Klarna Ecom API** for cross-retailer product search across UK merchants. It covers grocery categories within its multi-retailer scope and includes price history. It is less deep on nutritional data than the Tesco API but gives you multi-retailer coverage.
+
+**Build a multi-API integration** - use the Tesco API for deep Tesco data, and supplement with other sources for other retailers as they become available.
+
+## What to build with grocery API data
+
+**Grocery price comparison** - query the same product across multiple retailers and surface the cheapest option. The Tesco API is the UK's most complete single-retailer source; pair with Klarna for cross-retailer comparison.
+
+**Basket optimisation** - a user inputs a shopping list; your app finds the cheapest way to buy it all. Multi-buy promotions (Tesco Clubcard deals) are non-trivial to model but highly valued by users.
+
+**Nutrition tracking app** - the Tesco API's nutritional data is detailed enough to power a calorie tracker, macro monitor, or allergen-avoidance tool without manual data entry.
+
+**Dietary filter and recipe tool** - filter Tesco's catalog by allergen, dietary requirement (vegan, gluten-free, low-sodium), and nutritional threshold. Combine with a recipe API to surface purchasable ingredient lists.
+
+**Price history and promotion monitoring** - the weekly dataset snapshots let you build historical price charts for individual products. "This product has been on promotion for 3 of the last 8 weeks" is a genuinely useful consumer insight.
+
+**Competitor price intelligence** - if you are a branded goods manufacturer, monitoring your products' retail prices at Tesco is a standard market intelligence function.
+
+## Sample data before you commit
+
+The Tesco API has a free tier on RapidAPI that lets you test real responses against your integration. Evaluate the schema - especially the nutritional data structure and the Clubcard offer format - before subscribing to a paid plan.
+
+For bulk work, start by reviewing the <a href="/datasets/tesco-products-uk">Tesco UK Products dataset</a> page for format and record count information. <a href="/contact">Contact us</a> for dataset pricing.
+
+<a href="/library/tesco-data">View the Tesco Data API →</a> · <a href="/ecommerce-data/grocery/">UK grocery API guide →</a>

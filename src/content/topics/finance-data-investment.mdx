@@ -1,0 +1,54 @@
+---
+title: 'Investment Data API: Morningstar Financial Data and ESG Ratings'
+description: 'Institutional financial data via the Morningstar API. Real-time quotes, ETFs, mutual funds, financial statements, ESG risk ratings, and earnings transcripts.'
+vertical: finance
+isHub: false
+targetKeyword: 'morningstar api'
+eyebrow: 'Finance Data - Investment'
+relatedApiSlugs: [morningstar]
+relatedDatasetSlugs: []
+faqItems:
+  - question: 'Is this the official Morningstar API?'
+    answer: 'This is a third-party API that surfaces Morningstar data via RapidAPI, structured for developer use. It provides the same institutional data available on the Morningstar platform in a developer-friendly JSON format.'
+  - question: 'What asset classes does the Morningstar API cover?'
+    answer: 'Equities, ETFs, and mutual funds. Includes real-time quotes, fundamental financial statements, ESG risk scores, earnings transcripts, ownership data, and dividend history.'
+  - question: 'Are ESG ratings available?'
+    answer: 'Yes. Morningstar ESG Risk Ratings are available per security and fund. ESG ratings are increasingly required in investment screening and portfolio compliance workflows.'
+  - question: 'What is the latency for real-time quotes?'
+    answer: 'Quotes return near-real-time data. For equity markets, this reflects exchange-reported prices on a short delay depending on exchange rules.'
+draft: false
+---
+
+Financial applications that need investment research data - portfolio tools, screeners, robo-advisors, fintech dashboards, ESG reporting products - typically need Morningstar-quality data: institutional-grade, comprehensive, and reliable. The Morningstar API on RapidAPI gives you that data in a developer-friendly format without a direct Morningstar enterprise contract.
+
+## What the Morningstar API covers
+
+**Real-time quotes** - current price, volume, day range, 52-week range, and market cap for equities, ETFs, and funds.
+
+**Financial statements** - income statement, balance sheet, and cash flow statement. Quarterly and annual data, typically covering 5+ years of history.
+
+**ESG Risk Ratings** - Morningstar/Sustainalytics ESG risk scores per security and fund. Useful for ESG-screened portfolio products, SRI reporting, and institutional compliance workflows.
+
+**ETF and fund data** - holdings, expense ratios, category classification, performance data, and Morningstar star ratings.
+
+**Valuation metrics** - P/E, P/B, P/S, EV/EBITDA, and other multiples.
+
+**Earnings transcripts** - text of earnings call transcripts, useful for NLP-based earnings sentiment products.
+
+**Ownership data** - institutional holder list with share counts and change-in-position data.
+
+**Dividend history** - dividend amounts and payment dates per security.
+
+## Use cases
+
+**Investment screener** - filter a universe of equities or funds by fundamental metrics (P/E band, debt-to-equity, revenue growth), ESG score, and Morningstar category. The API provides the underlying data; your product handles the screening logic and display.
+
+**Portfolio analysis tool** - enrich a user's portfolio with live quotes, fundamental data, and ESG scores. Show sector exposure, performance attribution, and sustainability metrics in one view.
+
+**ESG reporting** - pull ESG risk scores for a set of securities and generate a portfolio-level sustainability report. Increasingly required by institutional investors and required by regulation in some jurisdictions.
+
+**Robo-advisor data layer** - feed a rules-based portfolio construction system with the financial and ESG data it needs to select, rebalance, and report on portfolio positions.
+
+**Financial content platform** - enrich editorial content (stock analysis articles, fund comparisons) with live data pulled at read time.
+
+**Research automation** - automate the data collection step in equity research workflows. Pull statements and transcripts on earnings schedule rather than copying from the platform manually.

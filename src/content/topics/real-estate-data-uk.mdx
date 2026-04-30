@@ -1,0 +1,72 @@
+---
+title: 'UK Property Data API: Rightmove Listings, Rentals, and Sold Prices'
+description: 'Live UK property data from Rightmove. Sales, rentals, sold price history, student housing, and 5M+ transaction records via API and bulk dataset.'
+vertical: real-estate
+isHub: false
+targetKeyword: 'uk property api'
+eyebrow: 'Real Estate Data - UK'
+relatedApiSlugs: [rightmove-uk]
+relatedDatasetSlugs: [rightmove-sales-sample, rightmove-rentals-sample, rightmove-sold]
+faqItems:
+  - question: 'Does the Rightmove API include sold prices?'
+    answer: 'The Rightmove UK API includes sold price history endpoints alongside live listings. For bulk historical transaction data, the Rightmove Sold Prices dataset has 5M+ records and is better suited for analysis at scale.'
+  - question: 'Are there free samples for UK property data?'
+    answer: 'Yes. Free sample datasets are available for both Rightmove sales listings (5,000 properties, London area) and Rightmove rental listings (3,000 properties). Download them from the <a href="/free-datasets" class="text-brand-600 underline">free samples page</a>.'
+  - question: 'Does the Rightmove API cover student housing?'
+    answer: 'Yes. Student accommodation and new homes are both covered alongside standard sales and rental listings.'
+  - question: 'Can I use Rightmove data for an AVM (Automated Valuation Model)?'
+    answer: 'The Rightmove Sold Prices dataset - 5M+ transaction records with price, location, property type, and date - is well-suited for training or benchmarking valuation models. Pair it with the live API for current listing comparables.'
+draft: false
+---
+
+Rightmove is the UK's largest property portal, with more listings and more traffic than any competing platform. If your product or analysis touches UK property, Rightmove data is the primary source.
+
+The Rightmove UK API and associated datasets give you access to the full Rightmove inventory: sales, rentals, sold prices, new homes, student accommodation, and commercial properties.
+
+## Rightmove UK API
+
+The API covers every major property type and use case:
+
+**Sales listings** - live for-sale inventory with price, property type, beds, baths, agent details, photos, floorplan availability, and geo-coordinates.
+
+**Rental listings** - live rental inventory across all tenancy types. Includes asking rent, deposit information, let type (short/long), and availability date.
+
+**Sold prices** - historical sold price data for completed transactions, accessible per address or area.
+
+**New homes** - developer-built properties listed on Rightmove's New Homes channel.
+
+**Student housing** - purpose-built student accommodation and HMO listings near universities.
+
+**Commercial properties** - offices, retail units, industrial, and land.
+
+**Estate agent search** - find agents by location.
+
+**Location autocomplete** - resolve street names, postcode districts, or town names to Rightmove location identifiers.
+
+All responses are structured JSON with stable field names. The schema matches the Rightmove datasets exactly - your integration works against both.
+
+## Use cases for the Rightmove API
+
+**Search and browse products** - Power a UK property search with filters for location, price range, property type, beds, and more. The API maps cleanly onto a standard property-search UI.
+
+**Price alerting** - Poll for new listings matching saved criteria and notify users. London buyers typically want alerts within minutes of a new listing appearing.
+
+**Yield calculators** - Combine rental and sales data for the same area to estimate gross rental yield. Useful for landlord tools, property investment apps, and mortgage advisory products.
+
+**Estate agent CRM enrichment** - Pull listing data for properties on an agent's books to keep CRM records current without manual entry.
+
+## Rightmove Datasets
+
+Three bulk datasets are available for offline analysis:
+
+**Rightmove Sales Sample** - 5,000 properties from the London area. Full schema, suitable for development and prototyping. Free.
+
+**Rightmove Rentals Sample** - 3,000 rental listings. Full schema including agent info. Free.
+
+**Rightmove Sold Prices Dataset** - 5M+ completed UK property transactions. Includes sale price, date, property type, tenure (freehold/leasehold), postcode, and address. Updated monthly. Paid - <a href="/contact" class="text-brand-600 underline">contact us</a> for pricing.
+
+The sold prices dataset is particularly useful for:
+- Automated valuation model training
+- Area-level price trend analysis
+- Property investment research
+- Academic and market research

@@ -1,0 +1,74 @@
+---
+title: "Fashion Data API: H&M and Kohl's Product Catalog"
+description: "Live fashion retail data from H&M (global) and Kohl's (US). Product search, pricing, inventory, reviews, supplier data, and category browsing via API."
+vertical: ecommerce
+isHub: false
+targetKeyword: 'fashion data api'
+eyebrow: 'Ecommerce Data - Fashion'
+relatedApiSlugs: [hm-api, kohls-data]
+relatedDatasetSlugs: []
+faqItems:
+  - question: 'Does the H&M API cover all countries?'
+    answer: 'H&M operates in 70+ markets. The API supports multi-country queries and returns pricing in local currency for each market.'
+  - question: 'Does the Kohl''s API include customer reviews?'
+    answer: "Yes. The Kohl's Data API includes customer review data (rating, review text, date) and Q&A content alongside pricing and inventory."
+  - question: 'Can I get supplier data from the H&M API?'
+    answer: 'Yes. H&M publishes supplier information as part of its sustainability commitments. The API exposes supplier name, country, and facility details linked to product categories.'
+  - question: 'How current is fashion pricing data?'
+    answer: 'Both APIs return near-real-time data. Price changes and sale events typically appear within minutes of going live on the retail site.'
+draft: false
+---
+
+Fashion retail moves fast. Prices change with promotions and markdowns, inventory shifts by the hour, and new products enter the catalog continuously. For price monitoring, affiliate feed management, competitor analysis, or recommendation engines that touch fashion data, you need a data source that keeps pace.
+
+Happy Endpoint provides live fashion data APIs for two major retailers: H&M (global) and Kohl's (US).
+
+## H&M API
+
+H&M is one of the world's largest fashion retailers, operating in 70+ markets with a catalog spanning clothing, accessories, beauty, and home. The H&M API gives you:
+
+**Product search** - search by keyword across H&M's global catalog with results filtered by category, gender, age group, and market. Returns product name, price, currency, and product URL.
+
+**Category browse** - H&M's full category tree from department level down to sub-category. Useful for systematic catalog ingestion or building browse-style navigation.
+
+**Product details** - full product record including name, brand, category path, price, sale price, available colors, available sizes, composition (fabric percentages), care instructions, and product images.
+
+**Store locator** - H&M store locations by country and city, with opening hours and services.
+
+**Supplier details** - linked supplier information per product line, including facility name, country, and compliance status.
+
+**Search autocomplete** - term suggestions as the user types.
+
+Multi-country support means you can query pricing for the same product across different markets - useful for cross-border price monitoring and grey market analysis.
+
+## Kohl's Data API
+
+Kohl's is one of the largest US department store chains, with a product mix spanning clothing, footwear, home goods, and outdoor. The API covers:
+
+**Product search** - keyword search with category, brand, price range, and rating filters. Returns pricing including Kohl's Cash promotions and sale prices.
+
+**Product details** - full product record with name, brand, category, price, sale price, inventory status, images, product description, and variants (color, size).
+
+**Customer reviews** - review content (rating, title, body, date, verified purchase), useful for sentiment analysis and social proof features.
+
+**Q&A data** - customer questions and retailer answers per product.
+
+**Category tree** - the full Kohl's category hierarchy.
+
+**Store locator** - store locations with hours and services.
+
+**Pricing data** - current and sale pricing including promotional pricing (Kohl's Cash events).
+
+**Inventory status** - in-stock/out-of-stock per variant.
+
+## Use cases
+
+**Price monitoring** - track markdowns and promotion events across H&M and Kohl's. Fashion retailers run frequent promotional cycles; automated monitoring is far more reliable than manual checks.
+
+**Affiliate feed management** - keep affiliate product feeds current. Fashion product feeds go stale quickly as prices and availability change.
+
+**Competitor analysis** - if you are a fashion brand or retailer, monitoring competitor pricing at scale is a standard intelligence function.
+
+**Recommendation engines** - enrich product recommendations with live price, availability, and rating data so recommendations reflect what is actually purchasable at the shown price.
+
+**Trend analysis** - H&M's new arrivals and category structure give signals on seasonal trends and product focus. The supplier data adds a manufacturing-chain lens.

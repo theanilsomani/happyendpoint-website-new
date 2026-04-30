@@ -197,6 +197,25 @@ const datasets = defineCollection({
   }),
 });
 
+const topics = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/topics' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().max(160),
+    vertical: z.enum(['real-estate', 'ecommerce', 'finance', 'travel']),
+    isHub: z.boolean().default(false),
+    targetKeyword: z.string(),
+    eyebrow: z.string().optional(),
+    relatedPlatforms: z.array(z.string()).default([]),
+    relatedApiSlugs: z.array(z.string()).default([]),
+    relatedDatasetSlugs: z.array(z.string()).default([]),
+    faqItems: z
+      .array(z.object({ question: z.string(), answer: z.string() }))
+      .default([]),
+    draft: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   blog,
   pages,
@@ -208,4 +227,5 @@ export const collections = {
   platforms,
   apis,
   datasets,
+  topics,
 };

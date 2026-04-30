@@ -1,0 +1,96 @@
+---
+title: 'Klarna Ecom API: multi-store price comparison and price history data'
+description: 'How the Klarna Ecom API works - cross-retailer product search, price history charts, and deal tracking across 13 regions - and what to build with it.'
+publishedAt: 2026-04-29
+author: 'Happy Endpoint Team'
+tags: ['klarna', 'price-comparison', 'deals', 'retail', 'price-history']
+coverImage: /blog/covers/klarna-price-history-shopping-api.png
+coverCategory: GUIDE
+coverSlugLabel: KLARNA API
+---
+
+The Klarna Ecom API is not Klarna's payment product. It is Klarna's product discovery infrastructure - a cross-retailer shopping API that returns product search results, price history, and deal data from multiple retailers simultaneously across 13 regions.
+
+If you are building a price comparison product, a deal discovery feed, or a consumer shopping tool that needs multi-retailer pricing in one API, this is the data source.
+
+## What the Klarna Ecom API covers
+
+**Multi-store search** - search for a product and receive results from multiple retailers in the selected region in a single response. Each result includes product name, current price, retailer name, retailer logo, and product URL. This is the core value: one query, multiple retailer results.
+
+**Price history** - per-product historical price data showing how pricing has changed over time across retailers. Returned as a time series suitable for rendering price history charts. The "is this the lowest price in 90 days?" signal that drives purchase confidence.
+
+**Deals** - products currently at a significant discount relative to their recent price history. A deals feed surfaced to users in their region.
+
+**Product reviews** - review data from Klarna's integrated review network, linked to product records.
+
+**Category intelligence** - browse categories with multi-retailer product results rather than single-retailer catalogs.
+
+**Store data** - retailer metadata for covered merchants in each region.
+
+**13 regions** - coverage spans Europe and North America, with different retailer sets per region.
+
+## A multi-store search query
+
+```js
+const response = await fetch(
+  'https://klarna7.p.rapidapi.com/api/search?' +
+  new URLSearchParams({
+    q: 'sony wh-1000xm5',
+    countryCode: 'GB',
+    size: '20',
+  }),
+  {
+    headers: {
+      'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+      'X-RapidAPI-Host': 'klarna7.p.rapidapi.com',
+    },
+  }
+);
+
+const { products } = await response.json();
+// products = array of results
+// Each has: name, currentPrice, retailer, url, reviewCount, reviewRating
+```
+
+To get price history for a specific product from the results:
+
+```js
+const productId = products[0].id;
+
+const historyRes = await fetch(
+  `https://klarna7.p.rapidapi.com/api/products/${productId}/price-history`,
+  {
+    headers: {
+      'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+      'X-RapidAPI-Host': 'klarna7.p.rapidapi.com',
+    },
+  }
+);
+
+const { history } = await historyRes.json();
+// history = [{ date: '2025-01-15', price: 259, retailer: 'Amazon UK' }, ...]
+```
+
+## What to build with Klarna data
+
+**Price comparison website** - the most direct use case. A user searches for a product; your app shows them where it is cheapest across all covered retailers in their region. The Klarna API provides this in one response.
+
+**Price drop alerts** - combine the price history endpoint with a target price the user sets. Poll for the product on a schedule; notify when the current price drops to or below the target.
+
+**Purchase timing advice** - show users whether now is a good time to buy. "This product is 18% below its 6-month average price" is a high-value signal. The price history data makes this a simple calculation.
+
+**Deal discovery feed** - use the deals endpoint to surface a curated feed of significant price drops across covered retailers in the user's region. Works well as a push notification, email digest, or home feed.
+
+**Affiliate comparison layer** - price comparison products that drive affiliate click-through are one of the most established e-commerce monetisation models. The Klarna API provides the comparison data; you handle the affiliate link attribution and conversion tracking.
+
+## Region coverage
+
+The 13 supported regions span major European markets (UK, Germany, France, Sweden, Netherlands, and others) and the US. The retailer set varies by region - some are regional-only, some are pan-European or global. Check the API documentation on RapidAPI for the current region and retailer coverage list.
+
+## Klarna as a complement to single-retailer APIs
+
+The Klarna API trades depth for breadth. It covers many retailers with standard product fields but does not return nutritional data, detailed inventory, or retailer-specific attributes that specialist APIs provide (like the Tesco API's Clubcard pricing or Kohl's review detail).
+
+For products that need single-retailer depth (a nutrition tracker needs the full Tesco nutritional panel), use the specialist API. For products that need cross-retailer comparison (a price comparison site), use Klarna.
+
+<a href="/library/klarna-ecom">View the Klarna Ecom API →</a> · <a href="/finance-data/shopping/">Shopping intelligence guide →</a>

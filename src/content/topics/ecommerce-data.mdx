@@ -1,0 +1,68 @@
+---
+title: 'Ecommerce Product Data API: Grocery, Fashion, and Beauty'
+description: "Retail product data APIs and datasets: grocery (Tesco), fashion (H&M, Kohl's), beauty (Sephora), and furniture (IKEA). Real-time pricing and bulk catalogs."
+vertical: ecommerce
+isHub: true
+targetKeyword: 'ecommerce product data api'
+eyebrow: 'Ecommerce Data'
+relatedPlatforms: [tesco, hm, kohls, sephora, klarna, ikea]
+relatedApiSlugs: []
+relatedDatasetSlugs: []
+faqItems:
+  - question: 'Which retailers do you cover?'
+    answer: 'Grocery: Tesco UK. Fashion: H&M (global), Kohl''s (US). Beauty: Sephora (US). Furniture: IKEA (global). Price intelligence: Klarna multi-store across 13 regions.'
+  - question: 'Is pricing data real-time?'
+    answer: 'Yes. All ecommerce APIs return current pricing at time of request, including promotional and sale prices. Promotions like Tesco Clubcard offers and Klarna price history are also available.'
+  - question: 'Are free samples available for ecommerce datasets?'
+    answer: 'Yes. The Sephora Skincare Sample (1,000 products), Sephora Top 500 Bestsellers, IKEA Catalog Sample (500 products), and Priceline Hotels Sample are all free. See the <a href="/free-datasets" class="text-brand-600 underline">free samples page</a>.'
+  - question: 'Can I get bulk catalog data rather than per-request API calls?'
+    answer: 'Yes. Full catalog datasets are available for Tesco UK (500K+ SKUs), Sephora US (30K+ products), and IKEA. Contact us for dataset pricing.'
+draft: false
+---
+
+Ecommerce data products power price intelligence tools, competitor monitoring platforms, catalog search systems, recommendation engines, and market research products. The challenge is getting clean, structured data from retail platforms without building and maintaining scrapers yourself.
+
+Happy Endpoint provides ecommerce data APIs and datasets across four retail verticals: grocery, fashion, beauty, and furniture. Each product gives you structured JSON - either on-demand via API or as a bulk file via dataset.
+
+## Grocery
+
+**Tesco Data API** - the UK's largest grocery retailer. 300K+ SKUs with real-time pricing, nutritional data, Clubcard promotional pricing, and category taxonomy. Covers both UK and Ireland inventory.
+
+Grocery data use cases: price comparison tools, basket optimisation, nutrition apps, allergen filters, promotional monitoring, and competitive price intelligence.
+
+## Fashion
+
+**H&M API** - live product data from H&M's global catalog. Product search, category browse, store locator, supplier details, and multi-country pricing. Near-real-time data across H&M's 70+ markets.
+
+**Kohl's Data API** - US department store data. Real-time pricing, inventory status, customer reviews, Q&A content, and category tree. Includes Kohl's Cash and promotional pricing.
+
+Fashion data use cases: price monitoring, trend analysis, competitor catalog comparison, affiliate feed management, and recommendation engines.
+
+## Beauty
+
+**Sephora API** - live product data from Sephora US. Product search, reviews, brand directory, category browse, real-time availability, and store locator. Sub-400ms response times.
+
+**Sephora datasets** - four datasets covering different angles:
+- Full US product catalog (30K+ SKUs)
+- Top 500 bestsellers (free)
+- Skincare sample (1,000 products, free, ML-ready)
+- Customer reviews (500K+ reviews with star ratings, skin type, and review text)
+
+Beauty data use cases: catalog ingestion, price monitoring, sentiment analysis, shade matching, recommendation systems, and competitive intelligence.
+
+## Furniture
+
+**IKEA Pro API** - live IKEA product catalog. 12,000+ products with real-time pricing, stock levels by store and market, dimensional data (width, depth, height, weight), and material information. Covers 30+ markets.
+
+## Price intelligence (cross-retailer)
+
+**Klarna Ecom API** - multi-store product data with price history charts, deals, and cross-platform search across 13 regions. The only product in our catalog that spans multiple retailers in one API, making it useful for price comparison and deal discovery products.
+
+## Choosing between API and dataset
+
+For ecommerce data, the choice depends on your use case:
+
+- **Price monitoring** - use the API. You need current prices, not a snapshot.
+- **Catalog ingestion** - use the dataset. You want every row once, then refresh on a schedule.
+- **ML training** - use the dataset. Models need volume; APIs are rate-limited.
+- **Product enrichment** - either. If you have a list of known SKUs, the API is precise. If you need every SKU, the dataset is faster.

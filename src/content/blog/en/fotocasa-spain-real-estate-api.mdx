@@ -1,0 +1,89 @@
+---
+title: 'Fotocasa API: Spain real estate data for property apps and analytics'
+description: 'What the Fotocasa API covers - 1.5M+ Spanish listings, market analytics, and location data - and how to use it for property search and investment research.'
+publishedAt: 2026-04-29
+author: 'Happy Endpoint Team'
+tags: ['fotocasa', 'spain', 'real-estate', 'property-data', 'barcelona']
+coverImage: /blog/covers/fotocasa-spain-real-estate-api.png
+coverCategory: GUIDE
+coverSlugLabel: FOTOCASA API
+---
+
+Spain's property market is one of Europe's most active, with deep domestic demand, a large expat buyer segment, and sustained international interest in coastal and island markets. Fotocasa is the dominant Spanish property portal - the Rightmove of Spain. The Fotocasa API gives you structured access to 1.5M+ live listings across the entire country.
+
+## What the Fotocasa API covers
+
+**Property search** - filter by location, price range, property type (apartment, house, penthouse, studio, land, commercial), transaction type (sale or rent), surface area, beds, baths, condition (new, second-hand, to rebuild), and extras (parking, storage room, swimming pool).
+
+**Location autocomplete** - resolves to municipality, neighborhood, or urbanization. Handles both Spanish and Catalan place names. Covers mainland Spain, the Balearic Islands, the Canary Islands, and Andorra.
+
+**Detailed listings** - each listing record includes: price, surface area in m2, floor number, orientation, energy certificate rating, construction year (where available), parking, storage, agency or private seller, photos, and geo-coordinates.
+
+**Market analytics** - average price per square meter by municipality or neighborhood, with trend direction (rising, stable, falling). Useful for area comparison tools, investor dashboards, and editorial content.
+
+**Real-time updates** - new listings and price changes appear in the API within minutes. Spain's market moves fast, particularly in Barcelona, Madrid, and the Balearic Islands.
+
+## Key Spanish property markets covered
+
+**Barcelona** - the most liquid urban market in Spain. Strong demand for apartments in Eixample, Gràcia, and Poblenou. High investor and expat buyer activity.
+
+**Madrid** - the largest market by volume. Central districts (Salamanca, Chamberí, Retiro) command premium prices; surrounding commuter towns offer different yield profiles.
+
+**Valencia** - rapidly growing market. Lower prices than Madrid or Barcelona with strong rental demand from students and young professionals.
+
+**Costa del Sol (Malaga)** - primary international buyer destination. Marbella, Estepona, and Benalmadena have deep luxury and mid-market inventory.
+
+**Balearic Islands** - Mallorca, Ibiza, and Menorca. High-value, seasonal market. Ibiza commands some of the highest prices per square meter in Europe.
+
+**Seville, Bilbao, Zaragoza** - major regional capitals with distinct local market dynamics.
+
+## Querying the Fotocasa API
+
+```js
+const response = await fetch(
+  'https://fotocasa3.p.rapidapi.com/fotocasa/search?' +
+  new URLSearchParams({
+    transactionType: 'sale',
+    locationId: '724', // Barcelona
+    propertyType: 'flat',
+    minRooms: '2',
+    maxPrice: '500000',
+    page: '1',
+    maxItems: '20',
+  }),
+  {
+    headers: {
+      'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+      'X-RapidAPI-Host': 'fotocasa3.p.rapidapi.com',
+    },
+  }
+);
+
+const { realEstates } = await response.json();
+// realEstates = array of listing objects
+// Each has: id, price, rooms, bathrooms, surface, address, coordinates, photos
+```
+
+Use the location autocomplete endpoint first to resolve a city or neighborhood name to its `locationId`.
+
+## Use cases
+
+**International buyer tools** - many people searching Spanish property are not in Spain. An English-language product with Fotocasa's full listing inventory, local market context, and the ability to compare areas is a meaningful product gap. The market analytics endpoint gives you the area comparison layer.
+
+**Property portal** - use Fotocasa data as your listing source. Filter by region, price band, and property type; present results with photos, maps, and contact forms.
+
+**Price monitoring** - track asking price trends in a specific municipality over 3-6 months. Useful for estate agents active in Spanish markets and for investment advisors with Spanish clients.
+
+**Rental yield analysis** - Spain has strong long-term rental demand, particularly in university cities. Combine rental asking prices and sale prices in the same area to estimate gross yield.
+
+**Investment screening** - filter properties where price-per-square-meter is below the area average returned by the analytics endpoint. Flag as potential value. Spain's fragmented market means undervalued properties exist even in high-demand areas.
+
+## Fotocasa vs Spanish alternatives
+
+Idealista is the other major Spanish portal. Fotocasa has broader coverage in Catalonia; Idealista has a stronger presence in some other regions. For maximum Spain market coverage, combining both sources is the thorough approach. We currently provide the Fotocasa API; Idealista is on the roadmap.
+
+## Evaluating before subscribing
+
+Test the Fotocasa API directly on RapidAPI with a free-tier subscription. Evaluate the response schema against your integration requirements before committing.
+
+<a href="/library/fotocasa-api">View the Fotocasa API →</a> · <a href="/real-estate-data/spain/">Spain real estate data guide →</a>

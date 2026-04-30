@@ -1,0 +1,83 @@
+---
+title: 'Morningstar financial data API: equities, ETFs, ESG ratings, and fundamentals'
+description: 'What the Morningstar API covers - real-time quotes, financial statements, ESG risk ratings, ETF data - and how to use it in investment research and fintech products.'
+publishedAt: 2026-04-29
+author: 'Happy Endpoint Team'
+tags: ['morningstar', 'finance', 'investing', 'esg', 'fundamentals']
+coverImage: /blog/covers/morningstar-financial-data-api.png
+coverCategory: GUIDE
+coverSlugLabel: MORNINGSTAR API
+---
+
+Morningstar is one of the most trusted names in investment research. Portfolio tools, screeners, robo-advisors, ESG reporting platforms, and financial content products all rely on the kind of institutional-quality data Morningstar provides. The Morningstar API on RapidAPI gives you that data in a developer-friendly format without negotiating a direct enterprise data contract.
+
+## What the Morningstar API covers
+
+**Real-time quotes** - current price, volume, day range (open, high, low, close), 52-week range, and market cap for equities, ETFs, and mutual funds. Updated to reflect exchange-reported prices on the standard delay basis for each exchange.
+
+**Financial statements** - standardised income statements, balance sheets, and cash flow statements. Quarterly and annual data, typically 5+ years of history. All statements use Morningstar's standardised taxonomy, meaning the same field names apply consistently across companies and sectors.
+
+**ESG Risk Ratings** - Morningstar/Sustainalytics ESG risk scores per security and fund. Includes total ESG risk score, E/S/G component scores, controversy level, and controversy events. This is increasingly required data for institutional portfolio compliance and for any retail product with a sustainability filter.
+
+**ETF and fund data** - holdings, expense ratios, Morningstar category classification, star rating (1-5), risk-adjusted return metrics, and top-10 holdings.
+
+**Valuation metrics** - P/E ratio, price-to-book, price-to-sales, EV/EBITDA, and other standard multiples. Both trailing and forward metrics where available.
+
+**Earnings transcripts** - text of quarterly earnings call transcripts. Useful for NLP-based products that extract sentiment, guidance language, or analyst question patterns from earnings calls.
+
+**Ownership data** - institutional holder list with share counts, percentage of float held, and quarter-over-quarter change in position.
+
+**Dividend history** - dividend amounts, ex-dividend dates, and payment dates per security. Useful for income-focused screeners and dividend tracking apps.
+
+## Building an ESG screener
+
+```js
+async function screenByESG(tickers, maxRisk = 25) {
+  const results = await Promise.all(
+    tickers.map(async (ticker) => {
+      const res = await fetch(
+        `https://morningstar13.p.rapidapi.com/esg?ticker=${ticker}`,
+        {
+          headers: {
+            'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+            'X-RapidAPI-Host': 'morningstar13.p.rapidapi.com',
+          },
+        }
+      );
+      const esg = await res.json();
+      return { ticker, esgRisk: esg.totalEsgRiskScore, level: esg.esgRiskLevel };
+    })
+  );
+
+  return results.filter(r => r.esgRisk <= maxRisk);
+}
+
+// Returns only securities with ESG risk score at or below threshold
+// Morningstar ESG scale: <10 negligible, 10-20 low, 20-30 medium, 30-40 high, >40 severe
+```
+
+For a fund or portfolio-level ESG score, weight the individual security scores by their portfolio weight.
+
+## Use cases
+
+**Investment screener** - filter equities or ETFs by fundamental metrics (P/E range, minimum revenue growth, debt cap), ESG score threshold, Morningstar category, and star rating. The API provides the data; your product handles the screening logic.
+
+**Portfolio analytics tool** - given a list of positions, pull quotes, sector data, and ESG scores to show portfolio composition, performance attribution, and sustainability metrics. Users increasingly expect both financial and ESG views in one product.
+
+**ESG reporting** - pull ESG risk scores for a set of holdings and produce a portfolio sustainability report. The controversy event data (from ESG response) is useful for governance-focused reporting.
+
+**Robo-advisor data layer** - fund selection rules in a robo-advisor typically depend on expense ratio, Morningstar category, star rating, and asset class. The API covers all of these.
+
+**Financial content enrichment** - enrich investment content with live data. An article about a stock that shows current price, P/E, and ESG score pulled at read time is more useful than static numbers that were accurate when the article was written.
+
+**Dividend tracking** - build an income calendar that shows upcoming ex-dividend dates and payment amounts for a user's portfolio. The dividend history endpoint provides the input data.
+
+**Earnings analysis** - combine earnings transcript text (NLP-processed for sentiment and guidance tone) with financial statement changes to build earnings-season analysis tools.
+
+## Data freshness and coverage
+
+Real-time quotes reflect exchange-reported prices. Financial statements and ESG scores are updated when Morningstar's underlying data is refreshed - typically after earnings releases for quarterly statements and at regular intervals for ESG scores.
+
+Coverage is strongest for US-listed securities (NYSE, NASDAQ) and major international exchanges. Emerging market and small-cap coverage is thinner.
+
+<a href="/library/morningstar">View the Morningstar API →</a> · <a href="/finance-data/investment/">Investment data guide →</a>

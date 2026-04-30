@@ -1,0 +1,101 @@
+---
+title: 'Rightmove UK property data: API and dataset guide for developers'
+description: 'What the Rightmove UK API covers - sales, rentals, sold prices, new homes - and how to use the 5M+ transaction dataset for property analytics.'
+publishedAt: 2026-04-29
+author: 'Happy Endpoint Team'
+tags: ['rightmove', 'uk', 'real-estate', 'property-data', 'sold-prices']
+coverImage: /blog/covers/rightmove-uk-property-data-api.png
+coverCategory: GUIDE
+coverSlugLabel: RIGHTMOVE API
+---
+
+Rightmove is the UK's largest property portal by traffic and listing volume. For any product that touches UK residential property - search, price tracking, valuation, investment research, or market analytics - Rightmove data is the primary source. There is no equivalent in terms of market penetration.
+
+The Rightmove UK API and datasets give you structured access to that inventory: live sales and rental listings, sold price history, new homes, and student accommodation.
+
+## What the Rightmove UK API returns
+
+**Sales listings** - the full for-sale inventory with price, property type, tenure (freehold/leasehold), beds, baths, description, floor area where available, agent details, photos, and geo-coordinates.
+
+**Rental listings** - live rental inventory with asking rent per week/month, let type, deposit amount, available date, and tenant type (family, professional, student).
+
+**Sold prices** - historical transaction data accessible by property address or area. Returns sold price, date, property type, and tenure.
+
+**New homes** - properties on Rightmove's New Homes channel, listed directly by developers. Includes development name, developer, unit types, and price range.
+
+**Student housing** - purpose-built student accommodation and HMOs within range of universities.
+
+**Commercial properties** - offices, retail, industrial, and land.
+
+**Estate agent search** - find agents by location, with their listed property count.
+
+**Location autocomplete** - resolves street names, postcodes, postcode districts, and towns to Rightmove location identifiers. This is the entry point for any area-based search.
+
+All responses are structured JSON with consistent field names. The schema matches the Rightmove datasets exactly.
+
+## Querying rental listings
+
+```js
+const response = await fetch(
+  'https://rightmove-uk-real-estate-data.p.rapidapi.com/properties/list?' +
+  new URLSearchParams({
+    locationIdentifier: 'REGION^87490', // London
+    maxBedrooms: '2',
+    minBedrooms: '1',
+    propertyTypes: 'flat',
+    maxPrice: '2500',
+    channel: 'RENT',
+    index: '0',
+    sortType: '6', // most recent
+  }),
+  {
+    headers: {
+      'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+      'X-RapidAPI-Host': 'rightmove-uk-real-estate-data.p.rapidapi.com',
+    },
+  }
+);
+
+const data = await response.json();
+// data.properties = listing array
+// data.resultCount = total matching
+```
+
+Get the `locationIdentifier` from the autocomplete endpoint first. Rightmove uses internal region, branch, and outcode identifiers rather than standard postcodes.
+
+## The Rightmove Sold Prices dataset
+
+The sold prices dataset is different from the API - it is a bulk file rather than a request-time lookup.
+
+- **5M+ completed transactions** - UK residential sales since records began
+- **Fields**: sale price, date, property type, tenure, address, and postcode
+- **Updates**: monthly
+- **Format**: JSON or CSV
+
+This is the right shape for:
+
+**Valuation model training** - the input features for an AVM are price, date, property type, floor area, and location. The sold prices dataset provides all of these at scale. Combine with the live API for current listing comparables.
+
+**Price trend analysis** - aggregate sold prices by postcode, property type, and quarter to produce indices. Useful for market reporting, investment research, and editorial content.
+
+**Area benchmarking** - given a live listing, find all comparable sold prices in the same postcode district within the last 18 months. This is the standard comparable selection methodology used by valuers.
+
+**Investment research** - calculate average hold periods, median price growth by area, and how different property types have performed over time.
+
+Free samples are available for both sales and rental listings - download them from the <a href="/free-datasets">free samples page</a> to evaluate the schema before committing.
+
+## Use cases for the live API
+
+**Property search product** - the sales and rental endpoints map directly onto a standard property search UI: location input (autocomplete), filters (beds, price, type), results with photos.
+
+**Price alerts** - monitor a postcode or area for new listings below a price threshold. Poll the API on a schedule; compare new results against a seen-IDs set.
+
+**Rental yield calculator** - combine asking rent from the rental endpoint and asking price from the sales endpoint for the same area to estimate gross yield. Useful for landlord tools, buy-to-let advisors, and property investment apps.
+
+**Agent tools** - the estate agent search endpoint gives you agent metadata. Build tools that let agents track competitor listings in their patch, benchmark their stock, or monitor market time for similar properties.
+
+## Samples before you subscribe
+
+Download the free Rightmove sales sample (5,000 London-area properties) or rental sample (3,000 properties) to evaluate the schema end-to-end. Both are at identical schema to the full paid dataset.
+
+<a href="/library/rightmove-uk">View the Rightmove UK API →</a> · <a href="/real-estate-data/uk/">UK property data guide →</a> · <a href="/free-datasets">Free samples →</a>

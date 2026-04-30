@@ -1,0 +1,29 @@
+---
+import TopicPage from '@/components/he/TopicPage.astro';
+import { render } from 'astro:content';
+import { getStaticPathsForVertical, resolveTopicRelations } from '@/lib/topic-routes';
+import type { CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  return getStaticPathsForVertical('real-estate');
+}
+
+interface Props { topic: CollectionEntry<'topics'> }
+const { topic } = Astro.props;
+const { Content } = await render(topic);
+const { apis, datasets } = await resolveTopicRelations(topic);
+---
+
+<TopicPage
+  topic={topic}
+  apis={apis}
+  datasets={datasets}
+  hubHref="/real-estate-data/"
+  breadcrumbs={[
+    { label: 'Home', href: '/' },
+    { label: 'Real Estate Data', href: '/real-estate-data/' },
+    { label: topic.data.title },
+  ]}
+>
+  <Content />
+</TopicPage>

@@ -1,0 +1,70 @@
+---
+title: 'Grocery API: Tesco Product Data, Pricing, and Nutrition'
+description: 'Live UK grocery data via the Tesco API. 300K+ SKUs, real-time pricing, Clubcard promotions, nutritional data, and a 500K+ product bulk dataset.'
+vertical: ecommerce
+isHub: false
+targetKeyword: 'api for grocery stores'
+eyebrow: 'Ecommerce Data - Grocery'
+relatedApiSlugs: [tesco-data]
+relatedDatasetSlugs: [tesco-products-uk]
+faqItems:
+  - question: 'Is there an API for grocery stores in the UK?'
+    answer: 'The Tesco Data API is the most comprehensive UK grocery API available. It covers 300K+ SKUs with real-time pricing, nutritional data, and promotional offers. Tesco is the UK''s largest grocery retailer by market share.'
+  - question: 'Does the Tesco API include Clubcard prices?'
+    answer: 'Yes. Clubcard promotional pricing - including multi-buy deals like "2 for £4" - is available as a separate endpoint alongside standard pricing.'
+  - question: 'Does the API cover Irish Tesco stores?'
+    answer: 'Yes. The Tesco Data API covers both UK and Ireland product inventory with separate search endpoints for each market.'
+  - question: 'Is a bulk Tesco product dataset available?'
+    answer: 'Yes. The Tesco UK Products Dataset has 500K+ products with pricing, nutrition, offers, and weekly updates. Contact us for pricing and delivery.'
+  - question: 'What grocery retailers besides Tesco do you cover?'
+    answer: 'Currently Tesco is the only grocery retailer in our catalog. For cross-retailer price comparison, the Klarna Ecom API covers multiple UK retailers including grocery categories.'
+draft: false
+---
+
+UK grocery is one of the most data-intensive retail verticals. Tesco alone carries over 300,000 SKUs with prices, multi-buy promotions, Clubcard offers, nutritional panels, and stock states that all change throughout the day. Building and maintaining a scraper against a grocery platform at this scale is a significant engineering investment. The Tesco Data API removes that cost.
+
+## Tesco Data API
+
+The API covers four data shapes that grocery products most commonly need:
+
+**Product search** - keyword search across the full Tesco catalog. Returns product IDs, names, current prices, Clubcard prices, and PDP URLs. Covers both UK and Ireland inventory.
+
+**Product details** - full product record for a specific SKU. Includes:
+- Name, brand, and category
+- Current price and Clubcard price
+- Nutritional data (energy, fat, saturates, carbohydrates, sugars, fibre, protein, salt - per 100g and per serving)
+- Allergen information
+- Storage and preparation instructions
+- Package size and unit price
+- Product images
+
+**Category browsing** - the full Tesco category taxonomy, from top-level departments down to sub-categories. Useful for building browsing UIs and for systematic catalog backfills.
+
+**Clubcard offers** - current promotional pricing, including multi-buy deals. These change frequently and are one of the most valuable signals for price comparison and basket optimisation.
+
+The response schema is stable and structured. Every field name is consistent across endpoints.
+
+## What developers build with Tesco data
+
+**Grocery price comparison** - compare Tesco pricing against other UK retailers. The Tesco API is the data source; your app handles the comparison logic and display.
+
+**Basket optimisation** - given a shopping list, find the cheapest combination of products including Clubcard deals. Multi-buy logic is non-trivial; the API gives you the raw data to work with.
+
+**Nutrition and allergen tools** - the nutritional data and allergen fields make it straightforward to build apps for specific dietary needs: coeliac, low-sodium, keto, high-protein.
+
+**Price intelligence** - monitor price changes across a set of competitor SKUs. Useful for branded goods manufacturers tracking retail pricing.
+
+**Grocery price history** - the Tesco UK Products Dataset (see below) gives you historical snapshots for trend analysis.
+
+## Tesco UK Products Dataset
+
+The dataset is the bulk version of the same data:
+
+- 500K+ products with the full schema
+- Pricing, nutritional data, Clubcard offers
+- Weekly updates to capture price and promotion changes
+- JSON and CSV formats
+
+Use the dataset when you need the full catalog in one file rather than per-request API calls. ML training, internal analytics, and catalog enrichment are typical cases.
+
+Pricing on request - <a href="/contact" class="text-brand-600 underline">contact us</a>.

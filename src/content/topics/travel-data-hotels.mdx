@@ -1,0 +1,70 @@
+---
+title: 'Hotel Data API: Priceline Real-Time Rates and Availability'
+description: 'Real-time hotel search, room pricing, and availability via the Priceline Pro API. Includes a free 2,000-hotel sample dataset for testing.'
+vertical: travel
+isHub: false
+targetKeyword: 'priceline api'
+eyebrow: 'Travel Data - Hotels'
+relatedApiSlugs: [priceline-pro]
+relatedDatasetSlugs: [priceline-hotels-sample]
+faqItems:
+  - question: 'Does the Priceline API return taxes and fees?'
+    answer: 'Yes. Rate responses include the full price breakdown: nightly rate, taxes, and fees. Display taxes and fees upfront or show a total-including-fees price.'
+  - question: 'Can I search hotels by amenity?'
+    answer: 'Hotel search supports filters for star rating and occupancy. Property detail responses include the full amenities list for each property.'
+  - question: 'What does the Priceline Hotels Sample dataset include?'
+    answer: 'The free sample dataset covers 2,000 hotels from major US cities with property details, amenities, pricing data, and geographic information. Suitable for development and UI prototyping.'
+  - question: 'Can the Priceline API be used for a corporate travel tool?'
+    answer: 'Yes. Corporate travel tools that need to surface hotel rates, compare properties, and enforce travel policy (star rating limits, rate caps) are a common use case for the API.'
+draft: false
+---
+
+Hotel rate data is among the most dynamic data in any vertical. Rates change by the hour based on occupancy, booking channel, length of stay, and seasonal demand. If you are building meta-search, a price comparison tool, a corporate travel product, or a travel-deals feed, you need data that reflects those real-time changes - not a cached snapshot from hours ago.
+
+The Priceline Pro API returns the same rate data that powers Priceline's own front-end.
+
+## Priceline Pro API
+
+**Hotel search** - search by location (city, lat/lng, point of interest, airport), check-in/check-out dates, and occupancy. Returns matching properties with current rate and property summary.
+
+**Hotel details** - full property record: name, brand chain, star rating, address, geo-coordinates, description, amenities list (pool, gym, spa, breakfast, parking, pet policy, and others), photos, and review rating.
+
+**Live room pricing** - current rates per room type per night for the queried date range. Includes:
+- Room type name and description
+- Nightly rate and total for stay
+- Taxes and fees breakdown
+- Cancellation policy
+- Meal plan (room only, breakfast included, etc.)
+
+**Reviews** - rating distribution and review count per property.
+
+**Deals** - properties currently flagged with promotional pricing below their recent average rate.
+
+**Flights** - search flights by origin, destination, and dates.
+
+**Car rentals** - rental car search by location and dates.
+
+**Location autocomplete** - resolve city names, airport codes, or points of interest to Priceline location identifiers.
+
+## Priceline Hotels Sample Dataset
+
+A free dataset covering 2,000 hotels from major US cities (New York, Los Angeles, Chicago, Miami, San Francisco, and others). Each record includes property name, brand chain, star rating, address, amenities, pricing snapshot, and geographic data.
+
+Use the sample for:
+- Development and UI prototyping without API rate limits
+- Testing your data pipeline before going live
+- Building a static demo or preview of your travel product
+
+The sample schema matches the API response exactly. Download it from the <a href="/free-datasets" class="text-brand-600 underline">free samples page</a>.
+
+## Use cases
+
+**Travel meta-search** - aggregate hotel options for a query and present them with current rates. The Priceline API provides the rates; your product handles ranking, filtering, and display.
+
+**Corporate travel tool** - surface hotel options that meet company policy (star rating cap, rate cap, approved chains) for a given trip. Add approval workflows on top of the pricing layer.
+
+**Price tracking and deal alerts** - monitor rates for a set of properties and alert users when prices drop below a threshold. Seasonal analysis on the Priceline hotels dataset shows when rates are historically low for a given market.
+
+**Rate benchmarking** - compare current rates across properties in a market to build occupancy intelligence dashboards for hoteliers.
+
+**Travel content enrichment** - enrich editorial content about destinations with current pricing context: "hotels in Barcelona from X per night" pulled at read time.

@@ -1,0 +1,50 @@
+---
+title: 'Shopping Price Intelligence API: Klarna Multi-Store Data'
+description: 'Cross-retailer product data with price history, deals, and comparisons across 13 regions via the Klarna Ecom API.'
+vertical: finance
+isHub: false
+targetKeyword: 'klarna api'
+eyebrow: 'Finance Data - Shopping'
+relatedApiSlugs: [klarna-ecom]
+relatedDatasetSlugs: []
+faqItems:
+  - question: 'Does the Klarna API require a Klarna merchant account?'
+    answer: 'No. The Klarna Ecom API is a product discovery and price intelligence API sold via RapidAPI. It does not require a Klarna merchant relationship or payment integration.'
+  - question: 'Which regions does the Klarna API cover?'
+    answer: 'Thirteen regions are supported. The specific region list is available in the API documentation on RapidAPI.'
+  - question: 'Does Klarna return price history?'
+    answer: 'Yes. Price history charts per product showing how prices have changed over time are one of the key features of the Klarna Ecom API.'
+  - question: 'Is this useful for a price comparison website?'
+    answer: 'Yes. Multi-store search results with current pricing and price history across 13 regions is the core use case the API was built for.'
+draft: false
+---
+
+The Klarna Ecom API is shopping intelligence infrastructure - not Klarna's payment product. It provides cross-retailer product search, price history, and deal data across 13 regions. If you are building a price comparison product, a deal discovery app, or a consumer shopping tool that needs to surface pricing from multiple retailers simultaneously, this is the data layer.
+
+## What the Klarna Ecom API covers
+
+**Multi-store search** - search for a product and get results from multiple retailers simultaneously in the queried region. Returns product name, retailer, current price, and product URL.
+
+**Price history** - historical price data per product showing price changes over time. Useful for displaying "this is the lowest price in X days" indicators or for alerting users when a product hits a target price.
+
+**Product reviews** - review data from Klarna's integrated review network.
+
+**Deals** - products currently flagged with significant price reductions.
+
+**Category intelligence** - browse products by category with multi-store results.
+
+**Store data** - retailer information and store-level data for covered merchants.
+
+**13 regions** - coverage across Europe and North America.
+
+## Use cases
+
+**Price comparison** - the core use case. Users search for a product; your app shows them where it is cheapest across all covered retailers in their region.
+
+**Price drop alerts** - combine the price history data with a polling loop to notify users when a product they are watching drops to their target price.
+
+**Deal discovery** - surface the current best deals across multiple retailers in a single feed. The deals endpoint makes this straightforward to implement.
+
+**Purchase timing advice** - use price history to show users whether now is a good time to buy relative to historical pricing. "This product is 15% below its 90-day average" is a clear signal.
+
+**Affiliate monetisation** - price comparison surfaces from which users click through to retailers are a common affiliate model. The multi-store data gives you the comparison layer; affiliate links handle the monetisation.

@@ -1,0 +1,70 @@
+---
+title: 'Real Estate Data API: UAE, UK, and Spain Property Listings'
+description: 'Structured property data APIs and bulk datasets covering UAE, UK, and Spain real estate markets. From live listings to sold prices and transaction history.'
+vertical: real-estate
+isHub: true
+targetKeyword: 'real estate data api'
+eyebrow: 'Real Estate Data'
+relatedPlatforms: [bayut, propertyfinder, uae-realestate, rightmove, fotocasa]
+relatedApiSlugs: []
+relatedDatasetSlugs: []
+faqItems:
+  - question: 'Which real estate markets do you cover?'
+    answer: 'UAE (Bayut, PropertyFinder, and an aggregator combining both), UK (Rightmove sales, rentals, and sold prices), and Spain (Fotocasa). All three markets are available as live APIs and bulk datasets.'
+  - question: 'What is the difference between an API and a dataset for real estate data?'
+    answer: 'APIs give you live listings on demand - query by location, price range, or property type and get fresh JSON. Datasets are full snapshots of the listing inventory, useful for market analysis, ML training, or bulk enrichment. See our <a href="/blog/en/datasets-vs-live-apis-which-to-choose" class="text-brand-600 underline">guide on choosing between the two</a>.'
+  - question: 'Is transaction and sold price data available?'
+    answer: 'Yes. The Rightmove Sold Prices dataset covers 5M+ UK transactions. The PropertyFinder Transactions dataset covers UAE property transactions with 120K+ rows. Both are available as bulk datasets via the <a href="/datasets" class="text-brand-600 underline">datasets page</a>.'
+  - question: 'Can I try the data before buying?'
+    answer: 'Yes. Rightmove rentals and sales both ship with free sample datasets. Download them from the <a href="/free-datasets" class="text-brand-600 underline">free samples page</a> - same schema as the full dataset, no account required.'
+draft: false
+---
+
+Real estate applications need reliable, structured property data. Whether you are building a search portal, an investment analytics tool, a price-monitoring service, or a market research product, the data source you choose shapes everything that follows.
+
+Happy Endpoint provides real estate data APIs and datasets across three markets: the UAE, the UK, and Spain. Each market is served by one or more platforms we collect and structure.
+
+## What is in a real estate API?
+
+A real estate API returns live listing data on demand. You send a query - location, price range, property type, beds, baths - and get back structured JSON: property details, agent contacts, geo-coordinates, pricing, and photos. The data reflects the platform in near-real time.
+
+Use a live API when:
+- You are powering a search or browse UI that needs current listings
+- You are running price alerts that trigger when new matching properties appear
+- You are building an agent tool that needs to answer questions about specific listings
+
+## What is in a real estate dataset?
+
+A dataset is a bulk export of the full listing inventory at a point in time. All rows, all fields, one file. For some platforms, transaction and sold price history is also available.
+
+Use a dataset when:
+- You are training a price prediction or valuation model
+- You are doing market analysis across thousands of properties
+- You need historical data that the API does not serve efficiently
+- You are enriching your internal CRM or database with property attributes
+
+## Markets we cover
+
+### UAE
+
+The UAE real estate market runs on two dominant portals: Bayut and PropertyFinder. Both are available as separate APIs and as a combined aggregator that lets you query both with one key. The PropertyFinder transactions dataset gives you historical UAE sales records.
+
+### UK
+
+Rightmove is the largest UK property portal. The Rightmove UK API covers sales, rentals, sold prices, new homes, and student housing. The Rightmove Sold Prices dataset has over 5 million historical transactions.
+
+### Spain
+
+Fotocasa is the primary Spanish property portal. The Fotocasa API covers 1.5M+ listings across mainland Spain, the Balearic Islands, and Andorra.
+
+## Typical use cases
+
+**Property price monitoring** - Subscribe to a market and track how list prices shift week over week. Useful for investment funds, estate agents, and market intelligence products.
+
+**Investment research automation** - Pull all listings in a target area, calculate yield estimates from rental data, and flag properties that meet investment criteria.
+
+**Valuation model training** - Combine listing attributes (beds, baths, size, location) with sold price history to train or benchmark automated valuation models.
+
+**Alerting** - Poll for new listings that match saved criteria and notify users in real time. The PropertyFinder API tutorial walks through this pattern.
+
+**Competitive market dashboards** - Aggregate listing inventory across platforms to give estate agents or developers a view of what is competing with their stock.

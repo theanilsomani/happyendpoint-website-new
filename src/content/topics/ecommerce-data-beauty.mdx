@@ -1,0 +1,90 @@
+---
+title: 'Beauty Data API: Sephora Products, Reviews, and Ratings'
+description: 'Live Sephora product data via API plus four bulk datasets: 30K+ SKU catalog, 500K+ customer reviews, skincare ML sample, and top 500 bestsellers.'
+vertical: ecommerce
+isHub: false
+targetKeyword: 'sephora api'
+eyebrow: 'Ecommerce Data - Beauty'
+relatedApiSlugs: [sephora-api]
+relatedDatasetSlugs: [sephora-products-us, sephora-reviews-dataset, sephora-bestsellers-free, sephora-skincare-sample]
+faqItems:
+  - question: 'What markets does the Sephora API cover?'
+    answer: 'The Sephora API covers the US market (Sephora.com). Sephora US carries products from hundreds of brands across makeup, skincare, fragrance, hair, and body categories.'
+  - question: 'Are there free Sephora datasets available?'
+    answer: 'Yes. Two free datasets are available without purchase: the Sephora Top 500 Bestsellers and the Sephora Skincare Sample (1,000 skincare products with full ingredient lists). Download both from the <a href="/free-datasets" class="text-brand-600 underline">free samples page</a>.'
+  - question: 'Is the Sephora reviews dataset suitable for NLP training?'
+    answer: 'Yes. The 500K+ reviews dataset was specifically designed for NLP and sentiment analysis. Each review includes the full review text, title, star rating, skin type, skin tone, age range, and helpfulness votes.'
+  - question: 'Does the Sephora API return ingredient lists?'
+    answer: 'Ingredient information is available in the full product catalog dataset. The live API focuses on real-time pricing, availability, reviews, and product search.'
+draft: false
+---
+
+Beauty is one of the richest data verticals in retail. Sephora's US catalog carries thousands of SKUs across hundreds of brands, with product attributes - shade, finish, ingredients, skin type compatibility, active ingredients, ratings, and reviews - that are core to how customers actually choose products. If your product touches beauty in any way, Sephora data is one of the highest-signal sources available.
+
+Happy Endpoint provides one live Sephora API and four datasets at different depth levels.
+
+## Sephora API
+
+The live API returns current Sephora product data on demand:
+
+**Product search** - keyword search across the full Sephora catalog. Filter by category, brand, price range, skin type, and rating. Returns product ID, name, brand, price, rating, review count, and availability.
+
+**Product reviews** - review data per product. Includes star rating, review title, review text, reviewer attributes (skin type, skin tone, age range), verified purchase flag, and helpfulness votes.
+
+**Brand directory** - full list of brands carried by Sephora with brand IDs for systematic catalog work.
+
+**Category browse** - Sephora's category hierarchy from top level (makeup, skincare, fragrance, hair, body) down to sub-categories (foundation, moisturizer, serum, etc.).
+
+**Real-time availability** - in-stock status and shade/size availability.
+
+**Store locator** - Sephora store locations by city or zip code.
+
+**Keyword autocomplete** - search suggestions as the user types.
+
+Response times average under 400ms.
+
+## Sephora Datasets
+
+Four datasets are available for different use cases:
+
+### Sephora US Full Product Catalog
+
+30,000+ SKUs covering all categories. Each product record includes:
+- Full product name, brand, and category hierarchy
+- Retail price and current sale price
+- Average rating and review count
+- Key product attributes (shade, finish, skin type, active ingredients where available)
+- Product images
+
+Best for catalog ingestion, recommendation engine training, and competitive analysis. Paid - <a href="/contact" class="text-brand-600 underline">contact us</a> for pricing.
+
+### Sephora Customer Reviews Dataset
+
+500,000+ verified customer reviews. Each review includes:
+- Full review text (title and body)
+- Star rating
+- Reviewer skin type, skin tone, and age range
+- Helpfulness votes (positive and total)
+- Product ID and product name
+
+Best for NLP and sentiment analysis, recommendation personalisation, and beauty attribute analysis. Paid - <a href="/contact" class="text-brand-600 underline">contact us</a>.
+
+### Sephora Top 500 Bestsellers (Free)
+
+The top 500 best-selling Sephora products across all categories, ranked by sales velocity. Includes retail price, current sale price, rating, and brand. Updated monthly. Free - <a href="/free-datasets" class="text-brand-600 underline">download here</a>.
+
+### Sephora Skincare Sample (Free)
+
+1,000 skincare products with full ingredient lists as parsed arrays, skin type compatibility flags, and customer ratings. Designed for ML pipeline testing. Free - <a href="/free-datasets" class="text-brand-600 underline">download here</a>.
+
+## Use cases
+
+**Beauty catalog** - ingest the full product catalog to power a search experience you control. The dataset gives you every SKU once; the API gives you live prices and availability.
+
+**Price monitoring** - track price changes and sale events across Sephora's catalog. Beauty pricing moves with promotional cycles (Sephora's twice-yearly sale events drive significant price changes).
+
+**Shade and ingredient matching** - the rich product attributes enable shade-matching tools, ingredient-avoidance filters (for sensitivity or allergy use cases), and skin type compatibility recommendations.
+
+**NLP and sentiment analysis** - the reviews dataset is one of the largest publicly available beauty review corpora. It is well-suited for training sentiment models, extracting product claims, or analysing attribute sentiment (texture, scent, lasting power).
+
+**Competitive intelligence** - track which brands are gaining shelf space, which products are climbing the bestseller list, and how pricing compares across categories.

@@ -1,0 +1,83 @@
+---
+title: 'H&M fashion data API: product catalog, pricing, and global store data'
+description: 'What the H&M API returns - product search, pricing across 70+ markets, supplier data, and store locations - and how to use it for retail intelligence products.'
+publishedAt: 2026-04-29
+author: 'Happy Endpoint Team'
+tags: ['hm', 'fashion', 'retail', 'price-monitoring', 'catalog']
+coverImage: /blog/covers/hm-fashion-data-api.png
+coverCategory: GUIDE
+coverSlugLabel: H&M API
+---
+
+H&M is one of the world's largest fashion retailers, operating in more than 70 markets with a catalog spanning clothing, accessories, beauty, and home. The H&M API gives you structured access to that catalog: product search, live pricing across markets, store locations, category browsing, and supplier information.
+
+## What the H&M API covers
+
+**Product search** - keyword search across H&M's global catalog. Filter by category, gender (women, men, kids), age group, and market. Returns product name, price, currency, sale indicator, and product URL.
+
+**Category browsing** - H&M's category hierarchy from top-level departments (women, men, kids, home) down to sub-categories (jackets, dresses, accessories). Useful for systematic catalog ingestion and for building browse-style UIs.
+
+**Product details** - the full product record per SKU:
+- Name and description
+- Brand (H&M, H&M Home, COS, Arket, and others within the group)
+- Category path
+- Current price and sale price (where applicable)
+- Available colors with color names and image URLs
+- Available sizes and size guide
+- Materials composition (e.g. "100% cotton", "80% polyester, 20% elastane")
+- Care instructions
+- Product images per color
+
+**Store locator** - H&M store locations by country and city. Returns store name, address, coordinates, opening hours, and available services (click and collect, alterations).
+
+**Supplier details** - H&M's published supply chain data linked to product categories. Includes supplier facility name, country of manufacture, and compliance status. Useful for supply chain transparency products and ESG analysis.
+
+**Search autocomplete** - term suggestions for search-as-you-type functionality.
+
+## Multi-market pricing
+
+H&M prices the same product differently across markets. Querying the API with a specific market code returns prices in local currency for that market. This makes cross-market price analysis straightforward - query the same product ID across different market codes and compare.
+
+```js
+const markets = ['GB', 'US', 'SE', 'DE', 'FR'];
+const productId = '0992849001';
+
+const prices = await Promise.all(
+  markets.map(async (market) => {
+    const res = await fetch(
+      `https://h-m-hennes-mauritz1.p.rapidapi.com/products/${productId}?market=${market}`,
+      {
+        headers: {
+          'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+          'X-RapidAPI-Host': 'h-m-hennes-mauritz1.p.rapidapi.com',
+        },
+      }
+    );
+    const data = await res.json();
+    return { market, price: data.price, currency: data.currency };
+  })
+);
+// prices = [{ market: 'GB', price: 24.99, currency: 'GBP' }, ...]
+```
+
+For cross-border grey market analysis, this pattern is the foundation.
+
+## Use cases
+
+**Price monitoring** - H&M runs frequent promotional events: seasonal sales, member-price weekdays, and category-specific markdowns. Monitoring a set of products for price drops is straightforward with the API and a simple polling loop.
+
+**Affiliate feed management** - affiliate product feeds need current prices and availability. Fashion feeds go stale fast as prices change and sizes sell out. The H&M API keeps your feed accurate.
+
+**Fashion catalog ingestion** - for comparison sites, style apps, or outfit recommendation tools that include H&M as a retailer source, the category browsing and product detail endpoints give you the full catalog.
+
+**Competitor price analysis** - if you are a fashion brand or retailer, tracking H&M's pricing on comparable product types helps you position your own pricing and monitor promotional intensity.
+
+**Supply chain transparency** - the supplier data is uncommon in retail APIs. For ESG reporting products, responsible sourcing tools, or supply chain intelligence platforms, H&M's published supplier information is a useful signal.
+
+**Multi-market retail intelligence** - H&M's global presence makes it useful as a benchmark for retail pricing across markets. A product that tracks H&M prices across regions can surface anomalies and cross-border arbitrage opportunities.
+
+## Kohl's as a complement
+
+For the US market, the <a href="/library/kohls-data">Kohl's Data API</a> covers a different US retail segment - department store with strong private label and national brands. Pair H&M for global fashion with Kohl's for US department store depth.
+
+<a href="/library/hm-api">View the H&M API →</a> · <a href="/ecommerce-data/fashion/">Fashion data API guide →</a>

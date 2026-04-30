@@ -1,0 +1,96 @@
+---
+title: 'Bayut API: Dubai real estate data for property apps and analytics'
+description: 'What the Bayut API covers, how to query it, and what to build with UAE property data - from search UIs to investment research tools.'
+publishedAt: 2026-04-29
+author: 'Happy Endpoint Team'
+tags: ['bayut', 'real-estate', 'uae', 'dubai', 'tutorial']
+coverImage: /blog/covers/bayut-api-dubai-real-estate-data.png
+coverCategory: GUIDE
+coverSlugLabel: BAYUT API
+---
+
+Bayut is one of the UAE's two dominant property portals, with strong coverage across all seven emirates and a deep inventory of mid-market and affordable listings alongside premium stock. If you're building a property app, an investment tool, or a market analytics product that touches the UAE, Bayut data is one of the first sources to evaluate.
+
+This post covers what the Bayut API returns, how to structure queries, and what the most common use cases look like in practice.
+
+## What the Bayut API covers
+
+The API serves the full Bayut listing inventory with supporting data:
+
+**Property search** - filter by emirate, area, property type (apartment, villa, penthouse, townhouse, land), transaction type (sale, rent), price range, beds, baths, and furnishing status. Results include price, property type, beds, baths, area in square feet, agent details, and listing URL.
+
+**Off-plan projects** - developer-listed off-plan projects with project name, developer, location, expected completion, price range, and available units. This is a major part of the UAE market that many data sources miss.
+
+**Agent and agency directory** - agent profiles with name, agency, listed properties count, and contact details. Useful for agent-facing tools and CRM enrichment.
+
+**Location autocomplete** - resolves to building, street, community, and emirate level. Dubai's property market uses community names (Dubai Marina, JBR, Downtown, Business Bay) more than street addresses, so this endpoint is important for any UI.
+
+**Map search** - spatial queries by bounding box or radius. Returns listings within a geographic area with coordinates.
+
+**Amenities filter** - pool, gym, parking, balcony, view type, and others. These filters matter to buyers and renters in a way that varies by property type.
+
+**Market trend data** - average price per square foot by area and property type, with trend direction. Useful for market intelligence dashboards.
+
+## A typical property search query
+
+```js
+const response = await fetch(
+  'https://bayut14.p.rapidapi.com/properties/list?' +
+  new URLSearchParams({
+    locationExternalIDs: '5002', // Dubai Marina
+    purpose: 'for-sale',
+    categoryExternalID: '1',     // Apartments
+    minPrice: '1000000',
+    maxPrice: '3000000',
+    bedrooms: '2',
+    hitsPerPage: '25',
+    page: '0',
+    lang: 'en',
+  }),
+  {
+    headers: {
+      'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+      'X-RapidAPI-Host': 'bayut14.p.rapidapi.com',
+    },
+  }
+);
+
+const data = await response.json();
+// data.hits = array of listings
+// data.nbHits = total matching count
+// data.nbPages = pagination
+```
+
+Each listing in `hits` includes the full property record: ID, title, price, area, beds, baths, agent, photos, coordinates, and amenities.
+
+## Pagination and rate limits
+
+The Bayut API paginates via `page` and `hitsPerPage`. For a full-market backfill, iterate pages until `page >= nbPages`. For a production search UI, a single page of 25 results is usually what you need.
+
+Stay within your RapidAPI plan's request limits. For bulk operations, consider the dataset approach instead.
+
+## What to build with Bayut data
+
+**Property search and browse** - the most direct use case. The API maps cleanly onto a filter-and-results search UI. Location autocomplete handles the input; search handles the results.
+
+**Property alerts** - poll for new listings that match saved criteria. The standard pattern: keep a set of seen listing IDs in Redis, compare each poll against that set, fire notifications for new IDs. Response times are fast enough for a 5-minute poll interval.
+
+**Investment screening** - filter listings by price-per-square-foot against the market average. Bayut's trend data gives you the benchmark; the listing data gives you the candidates. Flag properties below area average as potential value.
+
+**Off-plan tracking** - monitor new project launches and available units for a developer or area. Off-plan is a significant share of Dubai's transaction volume, especially in high-demand areas.
+
+**Agent and agency dashboards** - the agent directory lets you build tools that help estate agents manage their pipeline, track competitor listings in their area, or benchmark their own performance.
+
+**Market reporting** - aggregate listing inventory by area and price band to produce market reports. Useful for consultancies, developers, and media covering the UAE property market.
+
+## Bayut vs PropertyFinder vs the aggregator
+
+Bayut and PropertyFinder have overlapping but not identical inventories. If you need maximum coverage, the UAE Real Estate aggregator API combines both under one key. If you need portal-specific data (agent attribution, off-plan project details native to Bayut's format), the Bayut API directly is the right choice.
+
+See the <a href="/real-estate-data/uae/">UAE real estate data guide</a> for a side-by-side comparison.
+
+## Start with a free evaluation
+
+The UAE real estate aggregator ships with no free sample dataset (live data only), but you can test the Bayut API directly on RapidAPI's playground with a free-tier subscription. Evaluate the schema against your use case before committing to a paid plan.
+
+<a href="/library/bayut-api">View the Bayut UAE Data API →</a> · <a href="/real-estate-data/uae/">UAE real estate data guide →</a>
