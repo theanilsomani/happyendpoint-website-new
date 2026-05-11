@@ -143,14 +143,10 @@
     scroll-behavior: smooth;
   }
 
-  /* When an announcement bar is shown, shift the fixed header below it.
-     !important overrides Tailwind's top-0 utility (utilities layer wins over base). */
-  body.has-announcement-bar header {
-    top: 2.5rem !important; /* matches bar py-2.5 + text-sm line-height (~40px) */
-  }
-
+  /* When an announcement bar is shown below the navbar, push main content down
+     by the bar's height so nothing hides behind it (bar is ~40px = 2.5rem). */
   body.has-announcement-bar #main-content {
-    padding-top: 2.5rem; /* keep page content from hiding under the bar */
+    padding-top: 2.5rem;
   }
 
   body {
