@@ -28,7 +28,9 @@ export default defineConfig({
     react(),
     mdx(),
     sitemap({
-      filter: (page) => !page.includes('/search') && !page.includes('/components') && !page.includes('/projects'),
+      filter: (page) =>
+        !page.includes('/search') &&
+        !page.includes('/rapidapi-uae-real-estate-migration'),
     }),
     icon(),
   ],
