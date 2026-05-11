@@ -170,6 +170,29 @@ const getPlatformLogo = (id: string) => {
             </section>
           )}
 
+          {api.data.apifyActors && api.data.apifyActors.length > 0 && (
+            <section id="apify" class="pt-10 border-t border-border">
+              <h2 class="text-2xl font-bold tracking-tight text-foreground mb-2">Also on Apify</h2>
+              <p class="text-foreground-secondary mb-6 text-sm">Run these open-source scrapers on Apify's cloud - no API key required.</p>
+              <div class="grid gap-4 sm:grid-cols-2">
+                {api.data.apifyActors.map(actor => (
+                  <a
+                    href={`https://apify.com/happyendpoint/${actor.slug}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group flex flex-col gap-2 rounded-xl border border-border bg-card p-5 transition hover:border-brand-400 hover:shadow-sm"
+                  >
+                    <div class="flex items-center justify-between gap-2">
+                      <span class="font-semibold text-foreground group-hover:text-brand-600 transition-colors">{actor.name}</span>
+                      <Icon name="lucide:external-link" class="h-4 w-4 shrink-0 text-foreground-muted group-hover:text-brand-600 transition-colors" />
+                    </div>
+                    <p class="text-sm text-foreground-secondary">{actor.description}</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
+
           <section id="faq" class="pt-10 border-t border-border">
             <FAQSection faqs={faqs} isNested={true} />
           </section>
