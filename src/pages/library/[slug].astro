@@ -88,6 +88,7 @@ const getPlatformLogo = (id: string) => {
 <MarketingLayout
   title={api.data.seoTitle ?? (platform ? `${api.data.name} - ${platform.data.name} API` : api.data.name)}
   description={api.data.description}
+  image={`/og/api/${slug}.png`}
   noindex={api.data.noindex}
 >
   <JsonLd schema={jsonLd} />
