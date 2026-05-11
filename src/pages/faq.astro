@@ -2,6 +2,8 @@
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import Breadcrumbs from '@/components/he/Breadcrumbs.astro';
 import FAQSection from '@/components/he/FAQSection.astro';
+import JsonLd from '@/components/seo/JsonLd.astro';
+import { faqPageSchema } from '@/lib/schema-ld';
 
 const sections = [
   {
@@ -45,12 +47,18 @@ const sections = [
     ],
   },
 ];
+
+const allFaqs = sections.flatMap(s => s.faqs).map(f => ({
+  question: f.question,
+  answer: f.answer.replace(/<[^>]+>/g, ''),
+}));
 ---
 
 <MarketingLayout
   title="Frequently asked questions"
   description="Answers about Happy Endpoint's APIs, datasets, pricing, data quality, and licensing."
 >
+  <JsonLd schema={faqPageSchema(allFaqs)} />
   <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'FAQ' }]} />
 
   <section class="container max-w-3xl py-12 md:py-16">
