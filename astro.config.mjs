@@ -30,7 +30,7 @@ export default defineConfig({
     sitemap({
       filter: (page) =>
         !page.includes('/search') &&
-        !page.includes('/rapidapi-uae-real-estate-migration'),
+        !page.includes('/migrate/'),
     }),
     icon(),
   ],
