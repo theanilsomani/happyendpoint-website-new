@@ -90,7 +90,9 @@ const getPlatformLogo = (id: string) => {
   description={api.data.description}
   image={`/og/api/${slug}.png`}
   noindex={api.data.noindex}
+  canonical={api.data.canonical}
 >
+
   <JsonLd schema={jsonLd} />
 
   <Breadcrumbs items={[

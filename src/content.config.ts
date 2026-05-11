@@ -99,6 +99,7 @@ const apis = defineCollection({
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
     noindex: z.boolean().default(false),
+    canonical: z.string().url().optional(),
     apifyActors: z.array(z.object({
       name: z.string(),
       slug: z.string(),
@@ -138,8 +139,10 @@ const datasets = defineCollection({
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
     noindex: z.boolean().default(false),
+    canonical: z.string().url().optional(),
   }),
 });
+
 
 const topics = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/topics' }),

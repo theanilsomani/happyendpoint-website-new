@@ -28,10 +28,12 @@ export default defineConfig({
     react(),
     mdx(),
     sitemap({
+      lastmod: new Date(),
       filter: (page) =>
         !page.includes('/search') &&
         !page.includes('/migrate/'),
     }),
+
     icon(),
   ],
   vite: { plugins: [tailwindcss()] },
