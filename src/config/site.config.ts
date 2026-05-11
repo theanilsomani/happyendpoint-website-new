@@ -68,7 +68,7 @@ const siteConfig: SiteConfig = {
   },
   blogImageOverlay: true,
   branding: {
-    logo: { alt: 'Happy Endpoint', imageUrl: '/favicon.svg' },
+    logo: { alt: 'Happy Endpoint', imageUrl: '/happyendpoint-com-logo.png' },
     favicon: { svg: '/favicon.svg' },
     colors: { themeColor: '#2563eb', backgroundColor: '#ffffff' },
   },

@@ -4,8 +4,8 @@ import SEO from '@/components/seo/SEO.astro';
 import JsonLd from '@/components/seo/JsonLd.astro';
 import Analytics from '@/components/layout/Analytics.astro';
 import ConsentBanner from '@/components/ui/overlay/ConsentBanner';
-import { createWebsiteSchema, createOrganizationSchema, createPersonSchema, createProfessionalServiceSchema } from '@/lib/schema';
-import type { WebSite, Organization, Person, WithContext } from 'schema-dts';
+import { createWebsiteSchema, createOrganizationSchema } from '@/lib/schema';
+import type { WebSite, Organization, WithContext } from 'schema-dts';
 import siteConfig from '@/config/site.config';
 
 interface Props {
@@ -22,8 +22,6 @@ interface Props {
   noindex?: boolean;
   nofollow?: boolean;
   includeOrgSchema?: boolean;
-  includePersonSchema?: boolean;
-  includeProfessionalServiceSchema?: boolean;
   canonical?: string;
 }
 
@@ -36,21 +34,13 @@ const {
   noindex = false,
   nofollow = false,
   includeOrgSchema = false,
-  includePersonSchema = false,
-  includeProfessionalServiceSchema = false,
   canonical,
 } = Astro.props;
 
 // Build JSON-LD schemas
-const schemas: Array<WithContext<WebSite> | WithContext<Organization> | WithContext<Person>> = [createWebsiteSchema()];
+const schemas: Array<WithContext<WebSite> | WithContext<Organization>> = [createWebsiteSchema()];
 if (includeOrgSchema) {
   schemas.push(createOrganizationSchema());
-}
-if (includePersonSchema) {
-  schemas.push(createPersonSchema());
-}
-if (includeProfessionalServiceSchema) {
-  schemas.push(createProfessionalServiceSchema());
 }
 ---
 

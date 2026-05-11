@@ -1,8 +1,6 @@
 import type {
   WebSite,
   Organization,
-  Person,
-  LocalBusiness,
   BlogPosting,
   BreadcrumbList,
   FAQPage,
@@ -20,54 +18,6 @@ export function createWebsiteSchema(): WithContext<WebSite> {
     name: siteConfig.name,
     url: siteConfig.url,
     description: siteConfig.description,
-  };
-}
-
-/**
- * Create Person schema for Astro Rocket
- */
-export function createPersonSchema(): WithContext<Person> {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Astro Rocket',
-    jobTitle: 'Web Designer & Developer',
-    url: siteConfig.url,
-    email: siteConfig.email,
-    ...(siteConfig.authorImage ? { image: `${siteConfig.url}${siteConfig.authorImage}` } : {}),
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Veghel',
-      addressRegion: 'Noord-Brabant',
-      addressCountry: 'NL',
-    },
-    sameAs: siteConfig.socialLinks,
-  };
-}
-
-/**
- * Create ProfessionalService schema for local SEO
- */
-export function createProfessionalServiceSchema(): WithContext<LocalBusiness> {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'ProfessionalService' as 'LocalBusiness',
-    name: siteConfig.name,
-    url: siteConfig.url,
-    email: siteConfig.email,
-    ...(siteConfig.phone ? { telephone: siteConfig.phone } : {}),
-    ...(siteConfig.authorImage ? { image: `${siteConfig.url}${siteConfig.authorImage}` } : {}),
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Veghel',
-      addressRegion: 'Noord-Brabant',
-      addressCountry: 'NL',
-    },
-    areaServed: [
-      { '@type': 'Country', name: 'Netherlands' },
-      { '@type': 'Country', name: 'Worldwide' },
-    ],
-    sameAs: siteConfig.socialLinks,
   };
 }
 

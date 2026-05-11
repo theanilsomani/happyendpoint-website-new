@@ -88,8 +88,9 @@ const getPlatformLogo = (id: string) => {
 ---
 
 <MarketingLayout
-  title={dataset.data.name}
+  title={dataset.data.seoTitle ?? (platform ? `${dataset.data.name} - ${platform.data.name} Dataset` : dataset.data.name)}
   description={dataset.data.description}
+  noindex={dataset.data.noindex}
 >
   <Breadcrumbs items={[
     { label: 'Home', href: '/' },

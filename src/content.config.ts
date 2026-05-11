@@ -160,9 +160,11 @@ const apis = defineCollection({
     users: z.number().optional().default(0),
     rating: z.number().optional().default(0),
     icon: z.string().optional(),
+    seoTitle: z.string().optional(),
     order: z.number().default(99),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
+    noindex: z.boolean().default(false),
   }),
 });
 
@@ -191,9 +193,11 @@ const datasets = defineCollection({
       })
       .optional(),
     icon: z.string().optional(),
+    seoTitle: z.string().optional(),
     order: z.number().default(99),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
+    noindex: z.boolean().default(false),
   }),
 });
 

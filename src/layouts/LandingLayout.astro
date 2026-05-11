@@ -19,8 +19,6 @@ interface Props {
   noindex?: boolean;
   nofollow?: boolean;
   includeOrgSchema?: boolean;
-  includePersonSchema?: boolean;
-  includeProfessionalServiceSchema?: boolean;
 }
 
 const {
@@ -31,11 +29,7 @@ const {
   noindex = false,
   nofollow = false,
   includeOrgSchema = false,
-  includePersonSchema = false,
-  includeProfessionalServiceSchema = false,
 } = Astro.props;
-
-const isHomePage = Astro.url.pathname === '/';
 ---
 
 <BaseLayout
@@ -46,8 +40,6 @@ const isHomePage = Astro.url.pathname === '/';
   noindex={noindex}
   nofollow={nofollow}
   includeOrgSchema={includeOrgSchema}
-  includePersonSchema={includePersonSchema}
-  includeProfessionalServiceSchema={includeProfessionalServiceSchema}
 >
   <Header
     slot="header"
