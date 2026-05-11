@@ -12,18 +12,19 @@ const ld = breadcrumbListSchema(
   items.map(i => ({ name: i.label, url: i.href ? `${siteConfig.url}${i.href}` : siteConfig.url })),
 );
 ---
-<nav aria-label="Breadcrumb" class="container pt-20 text-sm text-foreground-muted">
-  <ol class="flex flex-wrap items-center gap-1">
+<nav aria-label="Breadcrumb" class="container pt-6 md:pt-10 text-xs sm:text-sm text-foreground-muted">
+  <ol class="flex flex-wrap items-center gap-1.5">
     {items.map((item, i) => (
-      <li class="flex items-center gap-1">
-        {i > 0 && <span class="text-foreground-muted/60">/</span>}
+      <li class="flex items-center gap-1.5">
+        {i > 0 && <span class="text-foreground-muted/40 font-light">/</span>}
         {item.href ? (
-          <a href={item.href} class="hover:text-foreground">{item.label}</a>
+          <a href={item.href} class="hover:text-foreground transition-colors">{item.label}</a>
         ) : (
-          <span class="text-foreground">{item.label}</span>
+          <span class="text-foreground font-medium truncate max-w-[150px] sm:max-w-none">{item.label}</span>
         )}
       </li>
     ))}
   </ol>
 </nav>
+
 <JsonLd schema={ld} />

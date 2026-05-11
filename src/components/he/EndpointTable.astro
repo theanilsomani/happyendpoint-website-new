@@ -13,26 +13,40 @@ const methodColor: Record<string, string> = {
 };
 ---
 {endpoints.length > 0 && (
-  <div class="overflow-x-auto rounded-lg border border-border">
-    <table class="w-full text-sm">
-      <thead class="bg-background-secondary text-xs uppercase tracking-wide text-foreground-muted">
+  <div class="overflow-x-auto no-scrollbar mask-horizontal-sm">
+    <table class="w-full min-w-[600px] text-sm">
+      <thead class="bg-background-secondary border-b border-border text-[10px] uppercase tracking-wider text-foreground-muted">
         <tr>
-          <th class="px-4 py-2 text-left">Method</th>
-          <th class="px-4 py-2 text-left">Path</th>
-          <th class="px-4 py-2 text-left">Summary</th>
+          <th class="px-5 py-3 text-left font-bold">Method</th>
+          <th class="px-5 py-3 text-left font-bold">Path</th>
+          <th class="px-5 py-3 text-left font-bold">Summary</th>
         </tr>
       </thead>
-      <tbody class="divide-y divide-border">
+      <tbody class="divide-y divide-border/50">
         {endpoints.map(e => (
-          <tr>
-            <td class="px-4 py-2">
-              <span class={`inline-flex rounded px-2 py-0.5 text-xs font-bold ${methodColor[e.method] ?? 'bg-secondary'}`}>{e.method}</span>
+          <tr class="group hover:bg-background-secondary transition-colors">
+            <td class="px-5 py-4">
+              <span class={`inline-flex rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-tight ${methodColor[e.method] ?? 'bg-secondary'}`}>{e.method}</span>
             </td>
-            <td class="px-4 py-2 font-mono text-xs text-foreground">{e.path}</td>
-            <td class="px-4 py-2 text-foreground-secondary">{e.summary ?? ''}</td>
+            <td class="px-5 py-4 font-mono text-xs text-foreground group-hover:text-brand-600 transition-colors">{e.path}</td>
+            <td class="px-5 py-4 text-xs leading-relaxed text-foreground-secondary">{e.summary ?? ''}</td>
           </tr>
         ))}
       </tbody>
     </table>
   </div>
 )}
+
+<style>
+  .mask-horizontal-sm {
+    mask-image: linear-gradient(to right, black 95%, transparent);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+

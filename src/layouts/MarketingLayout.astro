@@ -50,7 +50,7 @@ const hasAnnouncement = Astro.slots.has('announcement');
   canonical={canonical}
   bodyClass={hasAnnouncement ? 'has-announcement-bar' : undefined}
 >
-  <div id="fixed-nav-container" class="fixed top-0 left-0 right-0 z-50">
+  <div id="nav-container" class="sticky top-0 left-0 right-0 z-50">
     {hasAnnouncement && (
       <div id="announcement-wrapper">
         <slot name="announcement" />
@@ -75,39 +75,5 @@ const hasAnnouncement = Astro.slots.has('announcement');
   <Footer slot="footer" layout="premium" background="default" showPreFooter={true} socialLinks={socialLinks} />
 </BaseLayout>
 
-<script>
-  function updateAnnouncementHeight() {
-    const wrapper = document.getElementById('announcement-wrapper');
-    const height = wrapper ? wrapper.offsetHeight : 0;
-    document.documentElement.style.setProperty('--announcement-height', `${height}px`);
-  }
-
-  // Update on load and resize
-  window.addEventListener('load', updateAnnouncementHeight);
-  window.addEventListener('resize', updateAnnouncementHeight);
-  
-  // Use MutationObserver to catch cases where announcement content might change height
-  const wrapper = document.getElementById('announcement-wrapper');
-  if (wrapper) {
-    const observer = new MutationObserver(updateAnnouncementHeight);
-    observer.observe(wrapper, { attributes: true, childList: true, subtree: true });
-  }
-
-  // Initial call
-  updateAnnouncementHeight();
-</script>
-
-<style is:global>
-  /* Push main content down by the height of the announcement bar only.
-     The components' own padding (e.g., pt-20) will handle clearing the header. */
-  #main-content {
-    padding-top: var(--announcement-height, 0px);
-  }
-
-  /* Override the legacy hardcoded padding from global.css */
-  body.has-announcement-bar #main-content {
-    padding-top: var(--announcement-height, 0px) !important;
-  }
-</style>
 
 

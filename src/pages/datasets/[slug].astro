@@ -114,7 +114,8 @@ const getPlatformLogo = (id: string) => {
     <div slot="right" class="flex flex-col gap-6 w-full lg:min-w-[280px]">
       <div class="space-y-3">
         <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground-muted">Dataset Details</h3>
-        <div class="grid grid-cols-2 gap-x-8 gap-y-4 text-xs border-t border-border/50 pt-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-xs border-t border-border/50 pt-3">
+
           <div>
             <p class="text-foreground-muted font-medium">Records</p>
             <p class="text-foreground font-bold mt-0.5">{dataset.data.recordCount}</p>
@@ -161,7 +162,15 @@ const getPlatformLogo = (id: string) => {
 
   <div class="container py-12 md:py-16">
     <div class="grid gap-16 lg:grid-cols-[1fr_320px]">
-      <div class="space-y-24">
+      
+      <!-- Sidebar (Moves to top on mobile) -->
+      <aside class="space-y-12 order-first lg:order-last">
+        <!-- Pricing Card -->
+        <PricingCard pricing={dataset.data.price} variant="dataset" isFree={isFreeItself} purchaseUrl={dataset.data.purchaseUrl} />
+      </aside>
+
+      <!-- Main Content -->
+      <div class="space-y-24 order-last lg:order-first">
         <!-- Overview / Long Description -->
         <section id="overview">
           <h2 class="text-2xl font-bold tracking-tight text-foreground mb-8">Overview</h2>
@@ -205,14 +214,9 @@ const getPlatformLogo = (id: string) => {
           <FAQSection faqs={faqs} isNested={true} />
         </section>
       </div>
-
-      <!-- Sidebar -->
-      <aside class="space-y-12">
-        <!-- Pricing Card -->
-        <PricingCard pricing={dataset.data.price} variant="dataset" isFree={isFreeItself} purchaseUrl={dataset.data.purchaseUrl} />
-      </aside>
     </div>
   </div>
+
 
   {relatedDatasets.length > 0 && (
     <section class="border-t border-border py-24 bg-background">
