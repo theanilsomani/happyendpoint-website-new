@@ -35,6 +35,8 @@ const socialLinks = [
   siteConfig.social?.twitter && { platform: 'twitter', href: siteConfig.social.twitter, label: 'Follow on X' },
   siteConfig.social?.github && { platform: 'github', href: siteConfig.social.github, label: 'GitHub' },
 ].filter(Boolean) as { platform: string; href: string; label: string }[];
+
+const hasAnnouncement = Astro.slots.has('announcement');
 ---
 
 <BaseLayout
@@ -46,7 +48,14 @@ const socialLinks = [
   nofollow={nofollow}
   includeOrgSchema={includeOrgSchema}
   canonical={canonical}
+  bodyClass={hasAnnouncement ? 'has-announcement-bar' : undefined}
 >
+  {hasAnnouncement && (
+    <div class="fixed top-0 left-0 right-0 z-[60]">
+      <slot name="announcement" />
+    </div>
+  )}
+
   <Header
     slot="header"
     shape="bar"

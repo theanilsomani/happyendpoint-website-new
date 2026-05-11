@@ -23,6 +23,7 @@ interface Props {
   nofollow?: boolean;
   includeOrgSchema?: boolean;
   canonical?: string;
+  bodyClass?: string;
 }
 
 const {
@@ -35,6 +36,7 @@ const {
   nofollow = false,
   includeOrgSchema = false,
   canonical,
+  bodyClass,
 } = Astro.props;
 
 // Build JSON-LD schemas
@@ -123,7 +125,7 @@ if (includeOrgSchema) {
     </script>
   </head>
 
-  <body class="min-h-screen bg-background text-foreground antialiased">
+  <body class:list={["min-h-screen bg-background text-foreground antialiased", bodyClass]}>
     <!-- Skip to content link -->
     <a
       href="#main-content"
