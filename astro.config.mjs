@@ -28,11 +28,17 @@ export default defineConfig({
     react(),
     mdx(),
     sitemap({
-      lastmod: new Date(),
+      serialize(item) {
+        item.lastmod = new Date().toISOString();
+        return item;
+      },
       filter: (page) =>
         !page.includes('/search') &&
         !page.includes('/migrate/'),
     }),
+
+
+
 
     icon(),
   ],
