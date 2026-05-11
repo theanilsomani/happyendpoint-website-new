@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project context
 
-This is **happyendpoint.com** -- a marketing/catalog site for APIs and datasets sold on RapidAPI. It is a fork of the **Astro Rocket** starter (itself a fork of Velocity). Treat the upstream theme as a starting point -- branding, content, and the Happy Endpoint domain model (`platforms` -> `apis` / `datasets`) are project-specific.
+This is **happyendpoint.com** -- a marketing/catalog site for APIs and datasets sold on RapidAPI. It was bootstrapped from the **Astro Rocket** starter but the upstream template has been heavily stripped: all template pages, demo content collections, and unused components have been removed. Only Happy Endpoint domain code remains.
 
 The site is **static** (`output: 'static'` in `astro.config.mjs`) and ships to **Cloudflare Pages**. The Next.js predecessor lives at `D:/Programming/happyendpoint-website` and is the source of legacy data for the migration script.
 
@@ -35,10 +35,12 @@ Node 22.12+ and pnpm 9+ are required.
 Almost every "page" is generated from a content collection. Routes use `[slug].astro` files that call `getStaticPaths()` against a collection. To understand the site, start in `src/content.config.ts` -- it defines all Zod schemas:
 
 - `platforms` (e.g. Bayut, Sephora) -- top-level entities; have a `category` and flags `hasApi` / `hasDatasets` / `hasFreeDatasets`.
-- `apis` -- children of platforms. Key fields: `name`, `platform` (slug FK), `rapidApiUrl`, `description` (max 300), `tags`, `features`, `endpoints` (array of `{method, path, summary}`), `openApiFile`, `users`, `rating`, `featured`, `draft`.
-- `datasets` -- children of platforms. Key fields: `name`, `platform` (slug FK), `description` (max 300), `recordCount`, `format`, `price`, `tags`, `features`, `freeSample` (optional nested object with `id`, `name`, `recordCount`, `format`, `downloadUrl`, `features`), `featured`, `draft`.
+- `apis` -- children of platforms. Key fields: `name`, `platform` (slug FK), `rapidApiUrl`, `description` (max 300), `tags`, `features`, `endpoints` (array of `{method, path, summary}`), `openApiFile`, `users`, `rating`, `featured`, `draft`, `noindex`, `apifyActors` (optional array of `{name, slug, description}` for Apify actor cards).
+- `datasets` -- children of platforms. Key fields: `name`, `platform` (slug FK), `description` (max 300), `recordCount`, `format`, `price`, `tags`, `features`, `freeSample` (optional nested object with `id`, `name`, `recordCount`, `format`, `downloadUrl`, `features`), `purchaseUrl`, `featured`, `draft`, `noindex`.
 - `categories` -- group platforms (real-estate, retail, ...).
-- `blog`, `pages`, `authors`, `faqs`, `projects`, `stack` -- inherited from the upstream theme; `blog` is locale-aware (`en` | `es` | `fr`).
+- `topics` -- vertical landing pages (`real-estate-data/`, `ecommerce-data/`, `finance-data/`, `travel-data/`). Each topic has `vertical`, `isHub`, `targetKeyword`, `relatedPlatforms`, `relatedApiSlugs`, `relatedDatasetSlugs`, `faqItems`.
+- `blog` -- locale-aware (`en` | `es` | `fr`), only `en` is used. Key fields: `title`, `description`, `publishedAt`, `coverImage`, `coverCategory`, `coverSlugLabel`, `featured`, `draft`.
+- `pages` -- static markdown pages (currently empty, reserved).
 
 Cross-collection queries live in `src/lib/content-queries.ts` (`getApisForPlatform`, `getRelatedApis`, etc.). Use these helpers -- don't re-implement filtering inside page files.
 
@@ -48,30 +50,57 @@ OpenAPI specs for the APIs live in `oas-docs/*.json`. Scalar docs are hosted sep
 
 `src/pages/` mixes hand-authored marketing pages (`index.astro`, `about.astro`, `why-happyendpoint.astro`, `use-cases.astro`, `contact.astro`, `privacy.astro`, `terms.astro`, `faq.astro`) with collection-driven dynamic routes:
 
-- `library/` -- APIs index (paginated, FilterPanel by platform/category) + `[slug]` detail. The detail page uses a **single page-level two-column grid** (`lg:grid-cols-[1fr_300px]`): left column has the inlined hero (logo, title, tagline, "Get on RapidAPI" CTA) followed directly by Overview/Features/Endpoints/FAQ; right column is a `lg:sticky lg:top-24` sidebar with Product Details, Available Data (up to 2 datasets + "View all" link), and PricingCard. The PricingCard links to `{rapidApiUrl}/pricing` (not the base API URL). Do NOT use EntityHero's right slot on this page.
+- `library/` -- APIs index (paginated, FilterPanel by platform/category) + `[slug]` detail. The detail page uses a **single page-level two-column grid** (`lg:grid-cols-[1fr_300px]`): left column has the inlined hero (logo, title, tagline, "Get on RapidAPI" CTA) followed directly by Overview/Features/Endpoints/"Also on Apify"/FAQ sections; right column is a `lg:sticky lg:top-24` sidebar with Product Details, Available Data (up to 2 datasets + "View all" link), and PricingCard. The PricingCard links to `{rapidApiUrl}/pricing` (not the base API URL). Do NOT use EntityHero's right slot on this page.
 - `datasets/` -- shows **all** published datasets (free and paid). Free datasets (`price === 'free'`) get a `'Free'` badge; paid datasets get no badge. No "FREE SAMPLE" badge concept. The `[slug]` detail CTA goes to `/contact` (not RapidAPI -- datasets are not on RapidAPI).
 - `dictionary/` -- index page (`/dictionary`) and detail pages (`/dictionary/[slug]`) driven by `src/data/dictionary.json` + `src/data/dictionary-extra.json` (merged at build time, ~155 terms). Each term has `slug`, `term`, `icon` (lucide short name), `category`, `shortDef`, `definition` (string[]), `relatedTerms`, `updatedAt`. Detail pages render `DefinedTerm` JSON-LD schema. Definition paragraphs support inline backtick spans rendered as `<code>` via `set:html` + a `renderPara()` helper.
-- `platforms/`, `categories/` -- index + `[slug]` detail
+- `platforms/`, `categories/` -- index + `[slug]` detail.
+- `real-estate-data/`, `ecommerce-data/`, `finance-data/`, `travel-data/` -- vertical topic hub pages driven by the `topics` collection. Hub pages (`isHub: true`) and sub-topic pages share the same `[slug].astro` route under each vertical directory.
 - `free-datasets/` -- marketing/discovery page listing datasets where `freeSample` exists OR `price === 'free'`. No badges shown (everything listed is free). Per-slug URLs redirect via `_redirects`. The email-based download flow is **not yet implemented** -- free dataset CTAs currently send users to `/contact`.
-- `blog/[...slug].astro` -- blog router
-- `api/contact.ts`, `api/newsletter.ts` -- Resend-backed form endpoints
+- `blog/[...slug].astro` -- blog router.
+- `api/contact.ts`, `api/newsletter.ts` -- Resend-backed form endpoints.
 
-Sitemap excludes `/search`, `/components`, `/projects` (see `astro.config.mjs`). `robots.txt`, `rss.xml`, `manifest.webmanifest`, and `favicon.svg` are generated from `*.ts` route files in `src/pages/`.
+Sitemap excludes `/search` (see `astro.config.mjs`). `robots.txt`, `rss.xml`, `manifest.webmanifest`, and `favicon.svg` are generated from `*.ts` route files in `src/pages/`.
+
+`public/llms.txt` is the machine-readable site index for LLMs (served at `/llms.txt`). Update it when adding new APIs, datasets, platforms, or blog posts.
 
 ### Navigation
 
-Navigation is driven by `src/config/nav.config.ts`. The `NavItem` type supports an optional `children` array for dropdown groups and an `icon` field (lucide short name -- the `Icon` wrapper at `@/components/ui/primitives/Icon/Icon.astro` auto-prefixes bare names with `lucide:`). Current top-level items: Library, Datasets, Resources (dropdown: Free Datasets, Dictionary, Blog), About, Contact. The **Footer** (`Footer.astro`) flattens items with children so all real page URLs appear as direct links -- never output a `href="#"` link in the footer.
+Navigation is driven by `src/config/nav.config.ts`. The `NavItem` type supports an optional `children` array for dropdown groups and an `icon` field (lucide short name -- the `Icon` wrapper at `@/components/ui/primitives/Icon/Icon.astro` auto-prefixes bare names with `lucide:`). Current top-level items: Library, Datasets, Resources (dropdown: Free Datasets, Dictionary, Blog), About, Contact. The **Footer** (`Footer.astro`) flattens items with children so all real page URLs appear as direct links -- never output a `href="#"` link in the footer. The Footer `premium` layout's Resources column includes links to Free Datasets, Dictionary, Blog, All Platforms, and Apify Actors.
+
+### Social and brand config
+
+Social links live in `src/config/site.config.ts` under `social: { twitter, github, apify }`. `MarketingLayout.astro` reads these and passes them to `Footer` as `socialLinks`. Twitter handle is `@happyendpointhq`.
 
 ### Components
 
 - `src/components/he/` -- **Happy Endpoint domain components** (EntityCard, EntityGrid, EntityHero, EndpointTable, FilterPanel, FreeSampleBlock, PlatformLogosStrip, PricingCard, FAQSection, ...). Use these for any platform/API/dataset UI.
   - `PricingCard` accepts a `variant` prop (`'api'` default | `'dataset'`). The dataset variant shows contact-based copy and links to `/contact`; the API variant links to RapidAPI. Pass `isFree` for the dataset variant to adjust the CTA label.
 - `src/components/ui/` -- design-system primitives (form, data-display, feedback, overlay, primitives/Icon, marketing). Imported via barrel exports from `@/components/ui`.
-- `src/components/{layout,seo,blog,landing,patterns,hero,projects}/` -- upstream theme components.
+- `src/components/landing/` -- homepage components. `HeroModern.astro` and `FeatureMosaic.astro` are used on the homepage; `CTA.astro` is the only other active one. The SVG illustration assets (`CRM Enrichment Illustration.svg`, `Platforms Isometric Illustration.svg`, etc.) in `public/` are referenced by `FeatureMosaic.astro` via relative paths -- do not move or rename them.
+- `src/components/{layout,seo,blog,patterns}/` -- layout, SEO, and blog components.
 
 The design system is a three-tier OKLCH token system: `src/styles/tokens/` (primitives) -> `src/styles/themes/*.css` (semantic) -> Tailwind v4 `@theme` in `src/styles/global.css`. Brand color edits go in `src/styles/themes/blue.css` (the active theme). Switching themes at runtime is supported via `ThemeSelector`, but the canonical brand for this site is **blue**.
 
 Path alias `@/*` -> `src/*` (`tsconfig.json`). Use it instead of relative imports across module boundaries.
+
+### OG images
+
+Per-entity OG images are pre-generated PNGs stored in `public/og/`:
+
+- `public/og/api/{slug}.png` -- one per API (referenced in `library/[slug].astro`)
+- `public/og/datasets/{slug}.png` -- one per dataset
+- `public/og/platforms/{slug}.png` -- one per platform
+- `public/og/categories/{slug}.png` -- one per category
+- `public/og/site/` -- index page images (library, datasets, platforms, categories)
+- `public/og-default.png` -- site-wide fallback (referenced in `site.config.ts`)
+- `public/blog/covers/{slug}.png` -- blog post cover images (also used as OG image in BlogLayout)
+
+Generation scripts live in `scripts/`:
+- `generate-og-images.ts` -- generates entity OG images (API, dataset, platform, category). Supports `--type`, `--slug`, `--force` flags.
+- `generate-site-og.ts` -- generates the 6 site-level OG images.
+- `generate-blog-covers.ts` -- generates blog post cover images. Full design + template documented in `docs/blog-cover-pipeline.md`.
+
+All three scripts call the `html2png.dev` API: POST HTML -> JSON `{success, url}` -> GET PNG. Dark template: `#07090f` background, `#3b82f6` accent, scattered SVG icons at low opacity. Do not generate these via external tools or placeholder services -- run the scripts.
 
 ### Build pipeline
 
@@ -115,6 +144,8 @@ If you touch the redirect logic, the failure mode is silent: `dist/_redirects` s
 - **No inline quotes in YAML frontmatter list items** -- a feature list item like `- "Love It" label` will break the YAML parser. Either remove the quotes or wrap the entire item in single quotes: `- '"Love It" label'`.
 - **Datasets are not on RapidAPI** -- only APIs are sold on RapidAPI. Dataset CTAs always go to `/contact`. Never add a `rapidApiUrl`-style link to dataset pages.
 - **Dictionary data lives in JSON, not content collections** -- `src/data/dictionary.json` (base terms) and `src/data/dictionary-extra.json` (extra terms) are imported directly in the dictionary page files and merged at build time. Both files must be merged in `getStaticPaths()` as well as at module scope, because `getStaticPaths` cannot access module-level `const` variables.
+- **Meta descriptions must be 160 chars or under** -- enforced by the Zod schema (`max(300)`) only for the full description field; the `description` field is also used as the meta description, so keep it under 160 chars in practice.
+- **FAQPage JSON-LD answers must be plain text** -- strip HTML tags before passing to `faqPageSchema()`. Use `.replace(/<[^>]+>/g, '')`.
 
 ## Deployment
 
