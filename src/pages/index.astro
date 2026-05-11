@@ -79,13 +79,26 @@ const apiPills = [
   image="/og/site/home.png"
   includeOrgSchema={true}
 >
-  <!-- Migration notice (fixed below navbar via MarketingLayout's announcement slot) -->
-  <div slot="announcement" class="border-b border-amber-300 bg-amber-100 px-4 py-2 text-center dark:border-amber-400/20 dark:bg-amber-950/60">
-    <p class="text-xs font-medium text-amber-900 sm:text-sm dark:text-amber-200">
-      <span class="font-semibold">Bayut API users:</span> migration to UAE Real Estate API required by May 12.
-      <a href="/migrate/rapidapi-uae-real-estate" class="ml-1 underline underline-offset-2 hover:no-underline">View migration guide &rarr;</a>
-    </p>
+  <!-- Migration notice (consolidated in MarketingLayout) -->
+  <div slot="announcement" class="relative border-b border-amber-200/50 bg-amber-50/80 px-4 py-2.5 backdrop-blur-md dark:border-amber-900/30 dark:bg-amber-950/40">
+    <div class="container flex flex-col items-center justify-center gap-x-3 gap-y-1 text-center sm:flex-row sm:text-left">
+      <div class="flex items-center gap-2">
+        <span class="flex h-5 w-5 items-center justify-center rounded-full bg-amber-100 text-amber-600 dark:bg-amber-900/50 dark:text-amber-400">
+          <Icon name="lucide:alert-triangle" class="h-3 w-3" />
+        </span>
+        <p class="text-xs font-semibold tracking-tight text-amber-900 dark:text-amber-200">
+          Bayut API Deprecation
+        </p>
+      </div>
+      <p class="text-xs font-medium text-amber-800/80 dark:text-amber-300/70">
+        Migration to UAE Real Estate API required by May 12.
+        <a href="/migrate/rapidapi-uae-real-estate" class="ml-1.5 font-bold text-amber-900 underline underline-offset-4 transition-colors hover:text-amber-600 dark:text-amber-200 dark:hover:text-amber-400">
+          View migration guide &rarr;
+        </a>
+      </p>
+    </div>
   </div>
+
 
   <!-- 1. Hero (includes platform logos row) -->
   <HeroModern />
