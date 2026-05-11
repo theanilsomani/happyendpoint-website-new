@@ -55,7 +55,7 @@ const siteConfig: SiteConfig = {
   description:
     'APIs and datasets for real-estate, travel, grocery, finance, retail, fashion, and beauty - sold on RapidAPI. Free samples available.',
   url: SITE_URL || 'https://happyendpoint.com',
-  ogImage: '/og-default.svg',
+  ogImage: '/og-default.png',
   author: 'Happy Endpoint',
   email: 'happyendpointhq@gmail.com',
   socialLinks: [
