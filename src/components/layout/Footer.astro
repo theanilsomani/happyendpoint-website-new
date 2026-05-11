@@ -304,8 +304,23 @@ function getSocialIcon(platform: string): string {
             <span set:html={processedCopyright} />
           </div>
 
-          <div class="flex flex-wrap items-center gap-4">
-            <div class="flex items-center gap-3 pr-4 border-r border-border">
+          <div class="flex flex-wrap items-center gap-6">
+            {showSocial && socialLinks.length > 0 && (
+              <div class="flex items-center gap-3">
+                {socialLinks.map((social) => (
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label || `Follow us on ${social.platform}`}
+                    class="text-foreground-muted transition-colors hover:text-foreground"
+                  >
+                    <Icon name={getSocialIcon(social.platform)} size="md" />
+                  </a>
+                ))}
+              </div>
+            )}
+            <div class="flex items-center gap-3 pl-4 border-l border-border">
               <img src="/ccpa-compliant-badge.svg" alt="CCPA Compliant" class="h-6 w-auto" width="80" height="24" />
               <img src="/gdpr-compliant-badge.svg" alt="GDPR Compliant" class="h-6 w-auto" width="80" height="24" />
             </div>
