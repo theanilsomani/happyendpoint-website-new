@@ -223,9 +223,8 @@ function getSocialIcon(platform: string): string {
 
           {/* Column 2: API Library */}
           <div class="space-y-4">
-            <h3 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-foreground-muted">
-              API Library
-              <Icon name="external-link" class="h-3 w-3 opacity-50" />
+            <h3 class="text-sm font-semibold uppercase tracking-wider text-foreground-muted">
+              <a href="/library" class="hover:text-foreground transition-colors">API Library</a>
             </h3>
             <ul class="space-y-3">
               {premiumLinks.apis.map(link => (
@@ -243,9 +242,8 @@ function getSocialIcon(platform: string): string {
 
           {/* Column 3: Datasets */}
           <div class="space-y-4">
-            <h3 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-foreground-muted">
-              Datasets
-              <Icon name="external-link" class="h-3 w-3 opacity-50" />
+            <h3 class="text-sm font-semibold uppercase tracking-wider text-foreground-muted">
+              <a href="/datasets" class="hover:text-foreground transition-colors">Datasets</a>
             </h3>
             <ul class="space-y-3">
               {premiumLinks.datasets.map(link => (
