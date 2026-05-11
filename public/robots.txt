@@ -1,0 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow admin or search paths if they exist
+Disallow: /search
+
+# Sitemaps
+Sitemap: https://happyendpoint.com/sitemap-index.xml
