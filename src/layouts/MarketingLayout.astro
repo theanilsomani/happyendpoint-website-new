@@ -50,30 +50,30 @@ const hasAnnouncement = Astro.slots.has('announcement');
   canonical={canonical}
   bodyClass={hasAnnouncement ? 'has-announcement-bar' : undefined}
 >
-  <div id="nav-container" class="sticky top-0 left-0 right-0 z-50">
-    {hasAnnouncement && (
-      <div id="announcement-wrapper">
-        <slot name="announcement" />
-      </div>
-    )}
+  {hasAnnouncement && (
+    <div slot="header">
+      <slot name="announcement" />
+    </div>
+  )}
 
-    <Header
-      slot="header"
-      shape="bar"
-      variant="solid"
-      position="static"
-      colorScheme="default"
-      showLanguageSwitcher={false}
-      showCta={false}
-      cta={{ label: 'Start a Project', href: '/contact' }}
-      showScrollProgress
-    />
-  </div>
+  <Header
+    slot="header"
+    shape="bar"
+    variant="solid"
+    position="sticky"
+    colorScheme="default"
+    showLanguageSwitcher={false}
+    showCta={false}
+    cta={{ label: 'Start a Project', href: '/contact' }}
+    showScrollProgress
+  />
 
   <slot />
 
+
   <Footer slot="footer" layout="premium" background="default" showPreFooter={true} socialLinks={socialLinks} />
 </BaseLayout>
+
 
 
 

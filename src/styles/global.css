@@ -143,11 +143,8 @@
     scroll-behavior: smooth;
   }
 
-  /* When an announcement bar is shown below the navbar, push main content down
-     by the bar's height so nothing hides behind it (bar is ~40px = 2.5rem). */
-  body.has-announcement-bar #main-content {
-    padding-top: 2.5rem;
-  }
+
+
 
   body {
     background-color: var(--color-background);
