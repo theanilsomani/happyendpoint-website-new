@@ -133,6 +133,11 @@ const platforms = defineCollection({
       hasFreeDatasets: z.boolean().default(false),
       featured: z.boolean().default(false),
       draft: z.boolean().default(false),
+      apifyActors: z.array(z.object({
+        name: z.string(),
+        slug: z.string(),
+        description: z.string(),
+      })).optional(),
     }),
 });
 

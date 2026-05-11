@@ -16,6 +16,11 @@ export interface SiteConfig {
     country: string;
   };
   socialLinks: string[];
+  social?: {
+    twitter?: string;
+    github?: string;
+    apify?: string;
+  };
   twitter?: { site: string; creator: string };
   verification?: { google?: string; bing?: string };
   authorImage?: string;
@@ -61,7 +66,12 @@ const siteConfig: SiteConfig = {
   socialLinks: [
     'https://rapidapi.com/user/happyendpoint',
   ],
-  twitter: { site: '@happyendpoint', creator: '@happyendpoint' },
+  social: {
+    twitter: 'https://x.com/happyendpointhq',
+    github: 'https://github.com/happyendpointhq',
+    apify: 'https://apify.com/happyendpoint',
+  },
+  twitter: { site: '@happyendpointhq', creator: '@happyendpointhq' },
   verification: {
     google: GOOGLE_SITE_VERIFICATION,
     bing: BING_SITE_VERIFICATION,

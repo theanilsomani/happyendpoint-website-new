@@ -6,6 +6,7 @@ import EntityGrid from '@/components/he/EntityGrid.astro';
 import Breadcrumbs from '@/components/he/Breadcrumbs.astro';
 import FAQSection from '@/components/he/FAQSection.astro';
 import FreeSampleBlock from '@/components/he/FreeSampleBlock.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import { getCollection, render } from 'astro:content';
 import {
   getPlatformBySlug,
@@ -145,6 +146,32 @@ const faqs = [
             );
           })}
         </div>
+      </div>
+    </section>
+  )}
+
+  {platform.data.apifyActors && platform.data.apifyActors.length > 0 && (
+    <section class="container py-12 border-t border-border">
+      <div class="flex items-center gap-3 mb-2">
+        <Icon name="external-link" size="sm" class="text-brand-600" />
+        <h2 class="text-2xl font-bold text-foreground md:text-3xl">Also on Apify</h2>
+      </div>
+      <p class="text-foreground-secondary mb-8">Run these open-source scrapers on Apify's cloud infrastructure - no API key required.</p>
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {platform.data.apifyActors.map(actor => (
+          <a
+            href={`https://apify.com/happyendpoint/${actor.slug}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex flex-col gap-2 rounded-xl border border-border bg-card p-5 transition hover:border-brand-400 hover:shadow-sm"
+          >
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-semibold text-foreground group-hover:text-brand-600 transition-colors">{actor.name}</span>
+              <Icon name="external-link" size="sm" class="shrink-0 text-foreground-muted group-hover:text-brand-600 transition-colors" />
+            </div>
+            <p class="text-sm text-foreground-secondary">{actor.description}</p>
+          </a>
+        ))}
       </div>
     </section>
   )}

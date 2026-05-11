@@ -7,6 +7,7 @@
 import BaseLayout from './BaseLayout.astro';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
+import siteConfig from '@/config/site.config';
 
 interface Props {
   title?: string;
@@ -29,6 +30,11 @@ const {
   includeOrgSchema = false,
   canonical,
 } = Astro.props;
+
+const socialLinks = [
+  siteConfig.social?.twitter && { platform: 'twitter', href: siteConfig.social.twitter, label: 'Follow on X' },
+  siteConfig.social?.github && { platform: 'github', href: siteConfig.social.github, label: 'GitHub' },
+].filter(Boolean) as { platform: string; href: string; label: string }[];
 ---
 
 <BaseLayout
@@ -55,5 +61,5 @@ const {
 
   <slot />
 
-  <Footer slot="footer" layout="premium" background="default" showPreFooter={true} />
+  <Footer slot="footer" layout="premium" background="default" showPreFooter={true} socialLinks={socialLinks} />
 </BaseLayout>
