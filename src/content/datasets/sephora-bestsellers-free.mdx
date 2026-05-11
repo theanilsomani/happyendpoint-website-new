@@ -1,39 +1,45 @@
 ---
-name: Sephora Top 500 Bestsellers
+name: Sephora US Products Free Sample
 platform: sephora
-description: Free dataset of Sephora's top 500 bestselling products across all categories, with pricing, ratings, and brand data. Updated monthly.
-recordCount: "500 products"
-format: JSON / CSV
-price: Free
+description: "Free sample of Sephora US product data with 10 fields per record - brand, price, rating, reviews, product URL, image URL, and category path. Instant CSV download from Payhip."
+recordCount: "Sample"
+format: CSV
+price: "Free"
+purchaseUrl: "https://payhip.com/b/KerPv"
 tags:
-  - bestsellers
   - free
+  - us-catalog
   - ratings
   - pricing
+  - sephora-sample
 features:
-  - Top 500 products ranked by sales velocity
-  - Retail price and current sale price
-  - Star rating and total review count
-  - Brand name and product category
+  - Unique Sephora product and SKU identifiers
+  - Brand name (e.g. Fenty Beauty, Dior, Rare Beauty)
+  - Product display name as listed on Sephora
+  - USD list price
+  - Average customer star rating
+  - Total customer review count
+  - Direct product page URL
   - Primary product image URL
-  - Sephora's Choice and Fan Favorite editorial badges
+  - Full category hierarchy path
+  - Same 10-column schema as the full paid dataset
 order: 3
 featured: false
 draft: false
 ---
 
-The Sephora Top 500 Bestsellers dataset is a free, ready-to-use slice of Sephora's most popular products. It is produced monthly from a snapshot of Sephora.com's bestseller rankings across all major categories - Skincare, Makeup, Fragrance, Hair, and Bath & Body.
+A free slice of Sephora US product data - same schema as the full 8,000+ product dataset. Download it, run your analysis, confirm the data quality, then buy the full version if it fits your use case.
 
-## What's included
+## What you get
 
-Each record covers a single product entry in Sephora's bestseller list. You get the product name, brand, top-level category, retail price, current sale price (where applicable), weighted average star rating, and total review count. The primary image URL is included so you can render cards or thumbnails without making additional requests.
+The same 10 columns as the full paid dataset: `productId`, `skuId`, `brandName`, `displayName`, `listPrice`, `rating`, `reviews`, `targetUrl`, `heroImage`, `categoryPath`.
 
-Where Sephora surfaces editorial badges - "Sephora's Choice", "Fan Favorite", or "New" - those are captured as boolean flags per record.
+Every field is identical between this free sample and the paid product. Any pipeline, model, or tool you build against this sample will work without modification when you upgrade to the full dataset.
 
 ## Why it's free
 
-We publish this dataset as a sample to give you a feel for the data quality and schema before committing to a full catalog purchase. The 500-product slice uses the same field structure as the full 30,000+ product dataset, so any pipeline or model you build against it will work without modification on the full data.
+Buying data without seeing it first is a bad deal. This sample exists so you can inspect the field names, verify the data types, check for the brands and categories you care about, and confirm the schema fits your system - before paying anything.
 
-## Ideal use cases
+## Upgrade to the full dataset
 
-Competitive intelligence dashboards that track which brands dominate Sephora's bestseller list. Price monitoring scripts that alert on sale price changes among top products. Quick prototyping of beauty recommendation UI before licensing the full catalog.
+The full Sephora US Product Data (8,000+ products, $99) is available on Payhip. It covers Sephora's complete US catalog with the same clean, flat structure as this sample.

@@ -1,10 +1,11 @@
 ---
-name: Sephora US Full Product Catalog
+name: Sephora US Product Data
 platform: sephora
-description: Complete Sephora US product catalog with 30,000+ SKUs, full pricing, brand data, ratings, and customer review counts across all categories.
-recordCount: "30,000+ products"
-format: JSON / CSV
-price: Contact Us
+description: "8,000+ Sephora US products with brand data, USD pricing, star ratings, review counts, category paths, product page URLs, and image URLs. One-time CSV download."
+recordCount: "8,000+ products"
+format: CSV
+price: "$99"
+purchaseUrl: "https://payhip.com/b/faOZH"
 tags:
   - us-catalog
   - reviews
@@ -12,31 +13,57 @@ tags:
   - brand-data
   - pricing
 features:
-  - Full product name, brand, and category hierarchy
-  - Retail and sale pricing with discount flags
-  - Weighted average star ratings and review counts
-  - Product images (primary + gallery URLs)
-  - Ingredient lists and shade/size variants
-  - Sephora Collection vs third-party brand flags
-  - Love It and New editorial labels
-  - In-store availability flags
+  - Unique Sephora product and SKU identifiers
+  - Brand name (e.g. Fenty Beauty, Dior, Rare Beauty)
+  - Product display name as listed on Sephora
+  - USD list price
+  - Average customer star rating
+  - Total customer review count
+  - Direct product page URL
+  - Primary product image URL
+  - Full category hierarchy path
+  - 10 columns per product, one row per SKU
 order: 1
 featured: true
 draft: false
 ---
 
-The Sephora US Full Product Catalog is the most comprehensive beauty dataset we offer. It covers every active SKU on Sephora.com - from skincare serums and foundations to fragrance and hair tools - with the structured fields you need to build recommendation engines, price trackers, trend dashboards, and competitive intelligence tools.
+8,000+ Sephora US product records in a single CSV, scraped from Sephora.com in 2026. Every row is a product SKU. Every column is immediately useful.
 
-## What's included
+## What you get
 
-Each record maps to a single product SKU and includes the product name, brand, top-level category (Skincare, Makeup, Fragrance, Hair, Bath & Body, Tools), and subcategory. Pricing captures both the retail and current sale price so you can calculate discount depth over time. Ratings are expressed as a weighted average with the total review count, giving you a reliable signal of social proof.
+10 fields per product, flat structure, no nested data. Open the file and start working - no cleanup or post-processing required.
 
-Product images are delivered as direct CDN URLs covering the primary product shot and up to six gallery images. Where Sephora provides ingredient data, it is included as a parsed list - useful for building clean/vegan filters or allergen detection tools.
+**Identity**: each record has a unique Sephora product ID and SKU-level ID. Brand name and product display name are included as text fields, exactly as they appear on Sephora.com.
 
-## Ideal use cases
+**Pricing**: USD list price as a numeric value, ready for arithmetic without parsing.
 
-This dataset powers beauty retail analytics platforms that track assortment changes, new launches, and price movements. It is widely used in recommendation engines that need a canonical product graph for cross-sell and upsell. Brand monitoring teams use it to track share of shelf and rating trends across the Sephora marketplace. ML teams training product classification or image recognition models also rely on this dataset for its consistent category taxonomy.
+**Social proof**: average customer star rating and total review count per product. These two fields together give a reliable signal of popularity and product quality across Sephora's catalog.
 
-## Delivery and updates
+**Product URL**: direct link to the product page on Sephora.com for every record.
 
-The dataset is delivered as a single flat CSV or a line-delimited JSON file, your choice. A full refresh is produced weekly. If you need daily delta files (new products, price changes, delisted SKUs), that cadence is available on request.
+**Image URL**: the main product image URL for building visual displays, product cards, or training image models.
+
+**Category path**: the full category hierarchy for each product - for example, Skincare > Moisturizers > Face Moisturizers. Use this to filter by category, build category-level analytics, or train classification models.
+
+## Who uses this
+
+**E-commerce sellers and affiliate marketers** tracking Sephora's US assortment and pricing for comparison or affiliate link building.
+
+**Beauty market researchers** analysing brand distribution, price positioning, and rating patterns across Sephora's catalog.
+
+**Data analysts and developers** building beauty product recommendation engines, price monitors, or category-level trend dashboards.
+
+**Pricing intelligence teams** monitoring Sephora's list prices across brands and categories.
+
+## Dataset specs
+
+| Field | Value |
+|---|---|
+| Total products | 8,000+ |
+| Columns per row | 10 |
+| Format | CSV |
+| File size | 10 MB |
+| Market | United States |
+| Marketplace | Sephora US |
+| Price | USD 99, one-time payment |

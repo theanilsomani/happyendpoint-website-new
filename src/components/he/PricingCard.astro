@@ -7,20 +7,29 @@ interface Props {
   variant?: 'api' | 'dataset';
   isFree?: boolean;
   external?: boolean;
+  purchaseUrl?: string;
 }
 
-const { pricing, rapidApiUrl, variant = 'api', isFree = false, external = true } = Astro.props;
+const { pricing, rapidApiUrl, variant = 'api', isFree = false, external = true, purchaseUrl } = Astro.props;
 
 const isDataset = variant === 'dataset';
-const ctaLabel   = isDataset ? (isFree ? 'Get Free Dataset' : 'Inquire about pricing') : 'View pricing on RapidAPI';
-const ctaHref    = isDataset ? '/contact' : (rapidApiUrl ?? '/contact');
-const ctaExternal = isDataset ? false : external;
-const note       = isDataset
-  ? (isFree
-      ? 'Submit your details and we\'ll send you a secure download link.'
-      : 'Contact us to purchase this dataset. We\'ll send you a secure download link.')
+const hasPurchaseUrl = isDataset && !!purchaseUrl;
+
+const ctaLabel = isDataset
+  ? (hasPurchaseUrl ? (isFree ? 'Download Free Dataset' : 'Buy on Payhip') : (isFree ? 'Get Free Dataset' : 'Inquire about pricing'))
+  : 'View pricing on RapidAPI';
+const ctaHref = isDataset
+  ? (hasPurchaseUrl ? purchaseUrl! : '/contact')
+  : (rapidApiUrl ?? '/contact');
+const ctaExternal = isDataset ? hasPurchaseUrl : external;
+const note = isDataset
+  ? (hasPurchaseUrl
+      ? (isFree ? 'Free instant download via Payhip. No account required.' : 'One-time payment. Instant download via Payhip after purchase.')
+      : (isFree ? 'Submit your details and we\'ll send you a secure download link.' : 'Contact us to purchase this dataset. We\'ll send you a secure download link.'))
   : 'Current plans, free tier limits, and per-request pricing live on RapidAPI - always up to date.';
-const trustBadge = isDataset ? 'Secure delivery via email' : 'Secure billing via RapidAPI';
+const trustBadge = isDataset
+  ? (hasPurchaseUrl ? 'Secure checkout via Payhip' : 'Secure delivery via email')
+  : 'Secure billing via RapidAPI';
 ---
 
 <div class="rounded-xl border border-border bg-card p-6 shadow-sm">

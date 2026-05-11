@@ -1,0 +1,79 @@
+---
+name: IKEA US Complete Product Catalog
+platform: ikea
+description: "10,564 IKEA US products across 933 categories with pricing, ratings, images, badge data, and full category paths. 31 columns per product. Instant CSV download. Scraped April 2026."
+recordCount: "10,564 products"
+format: CSV
+price: "$249"
+purchaseUrl: "https://payhip.com/b/Ppkis"
+tags:
+  - furniture
+  - retail
+  - us-catalog
+  - pricing
+  - images
+features:
+  - Product name, type, item number, and dimensions
+  - USD price with discount flag and sale tags
+  - Star rating (0 to 5) and review count
+  - Badge data (Best Seller, New, Last Chance flags)
+  - Online sellable flag
+  - Primary product image URL and alt text
+  - Contextual lifestyle image URL and alt text
+  - Color count, color names, and variant count
+  - Category ID, name, and full path
+  - Direct URL to the live IKEA product page
+  - 31 columns per product, one row per record
+order: 1
+featured: true
+draft: false
+---
+
+10,564 IKEA US products across 933 categories - scraped directly from IKEA's US catalog in April 2026. Every row is a product. Open the CSV and start working.
+
+## What you get
+
+31 fields per product covering identity, pricing, social proof, merchandising signals, images, and categorisation.
+
+**Product identity** includes name, type description, item number (US and global variants), and dimensions where provided. Color and variant data covers the number of available colors, color names, and total variant count - useful for building configurators or variant-aware recommendation logic.
+
+**Pricing** is captured as a numeric USD value with a boolean discount flag and sale tag text where applicable. Prices are stored as numbers, not strings - no parsing required.
+
+**Social proof**: star rating on a 0 to 5 scale and total review count per product.
+
+**Merchandising signals**: badge type (Best Seller, New, etc.) and badge label text, a last-chance flag for products being discontinued, and an online sellable flag indicating availability for online purchase.
+
+**Images**: direct CDN URLs for both the primary product image and the contextual lifestyle/room-setting image, with alt text for each.
+
+**Category**: category ID, category name, and full category path (for example, Storage and organization > Shelving furniture > Bookshelves and bookcases). 933 unique categories are covered end-to-end.
+
+**Product URL**: direct link to the live IKEA US product page for each record.
+
+## Column list
+
+`productId` `itemNo` `itemNoGlobal` `name` `typeName` `dimensions` `validDesignText` `price` `currencyCode` `discount` `ratingValue` `ratingCount` `badge` `badgeType` `pipUrl` `mainImageUrl` `mainImageAlt` `contextualImageUrl` `contextualImageAlt` `colorCount` `colorsText` `variantCount` `quickFactsText` `businessArea` `productArea` `productRangeArea` `onlineSellable` `lastChance` `categoryId` `categoryName` `categoryPath`
+
+## Who uses this
+
+**E-commerce and affiliate marketers** building furniture comparison sites, price tracking tools, or affiliate stores that feature IKEA products.
+
+**Interior design apps** that need a structured product catalog with images, dimensions, and categories to power product recommendations or room-planning features.
+
+**Price tracking and market research teams** monitoring IKEA's US catalog for assortment changes, new launches, and pricing movements.
+
+**Developers and data engineers** building recommendation engines, furniture classification models, or product search indexes.
+
+**Dropshippers and resellers** researching IKEA's full US product range across all categories.
+
+## Dataset specs
+
+| Field | Value |
+|---|---|
+| Total products | 10,564 |
+| Categories | 933 |
+| Columns per row | 31 |
+| Format | CSV (UTF-8) |
+| File size | 8 MB |
+| Market | IKEA United States |
+| Scraped | April 2026 |
+| Price | USD 249, one-time payment |

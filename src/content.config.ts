@@ -194,6 +194,7 @@ const datasets = defineCollection({
       .optional(),
     icon: z.string().optional(),
     seoTitle: z.string().optional(),
+    purchaseUrl: z.string().url().optional(),
     order: z.number().default(99),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
